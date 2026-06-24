@@ -1,0 +1,1958 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<!-- 
+  ============================================================================
+  TRIPODI - SITIO WEB INTERACTIVO
+  ============================================================================
+  Archivo: index.html
+  Descripción: Sitio web interactivo sobre el origen, historia y genealogía del apellido Tripodi
+  Autor: Jorge Osvaldo Tripodi
+  Fecha: 2026
+  
+  ESTRUCTURA DEL ARCHIVO:
+  1. HEAD - Metadatos, fuentes y estilos CSS
+  2. BODY - Contenido principal del sitio
+     2.1. Navbar - Navegación principal
+     2.2. Hero - Sección principal con título y KPIs
+     2.3. Secciones de contenido (Etimología, Timeline, Hipótesis, etc.)
+     2.4. Footer - Pie de página
+  3. SCRIPT - JavaScript para funcionalidades interactivas
+  ============================================================================
+-->
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tripodi — Viaje al Origen de un Apellido Milenario</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* ============================================================================
+   SECCIÓN 1: VARIABLES CSS Y SISTEMA DE TEMAS
+   ============================================================================
+   Define las variables CSS para los temas claro y oscuro, incluyendo colores,
+   fondos, textos y bordes.
+*/
+
+/* Variables para tema oscuro (por defecto) */
+:root {
+  --gold:#C9A84C;           /* Color dorado principal */
+  --gold-lt:#E8C96A;        /* Dorado claro */
+  --ember:#B85C2A;          /* Color ámbar/terracota */
+  --terracotta:#D4725A;     /* Terracota */
+  --aegean:#2A5B7A;         /* Azul egeo */
+  --aegean-lt:#3A7A9F;      /* Azul egeo claro */
+  --marble:#F2EDE6;         /* Color mármol */
+  --bg-dark:#0E0C09;        /* Fondo oscuro principal */
+  --bg-panel:#1A1610;       /* Fondo de paneles */
+  --bg-card:#211E18;        /* Fondo de tarjetas */
+  --text-main:#EDE8DF;      /* Texto principal */
+  --text-muted:#9A9180;     /* Texto secundario/atenuado */
+  --border:rgba(201,168,76,0.2); /* Color de bordes */
+  --radius:8px;             /* Radio de bordes */
+}
+
+/* Variables para tema claro */
+[data-theme="light"] {
+  --bg-dark:#F2EDE6;        /* Fondo claro principal */
+  --bg-panel:#E8E0D4;       /* Fondo de paneles claro */
+  --bg-card:#FFFFFF;        /* Fondo de tarjetas blanco */
+  --text-main:#1C1710;      /* Texto principal oscuro */
+  --text-muted:#6B5E4A;     /* Texto secundario */
+  --border:rgba(100,70,30,0.2); /* Bordes para tema claro */
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{font-family:'Lora',Georgia,serif;background:var(--bg-dark);color:var(--text-main);overflow-x:hidden;transition:background .4s,color .4s;}
+h1,h2,h3,.serif-display{font-family:'Cinzel',serif;}
+.sans{font-family:'Inter',sans-serif;}
+::-webkit-scrollbar{width:6px;}::-webkit-scrollbar-track{background:var(--bg-dark);}::-webkit-scrollbar-thumb{background:var(--gold);border-radius:3px;}
+
+
+
+/* HERO */
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem 6rem;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 70%,#2A1A08 0%,#0E0C09 70%);z-index:0;}
+[data-theme="light"] .hero-bg{background:radial-gradient(ellipse at 50% 60%,#D4B88A 0%,#E8D9C0 60%,#F2EDE6 100%);}
+.hero-stars{position:absolute;inset:0;background-image:radial-gradient(1px 1px at 20% 30%,rgba(201,168,76,.4) 0,transparent 100%),radial-gradient(1px 1px at 70% 15%,rgba(201,168,76,.3) 0,transparent 100%),radial-gradient(1px 1px at 85% 65%,rgba(201,168,76,.2) 0,transparent 100%),radial-gradient(1.5px 1.5px at 60% 45%,rgba(255,255,255,.15) 0,transparent 100%);z-index:1;}
+[data-theme="light"] .hero-stars{display:none;}
+.tripod-icon{font-size:5rem;margin-bottom:1.5rem;position:relative;z-index:2;filter:drop-shadow(0 0 24px rgba(201,168,76,.5));animation:glow-pulse 3s ease-in-out infinite;}
+@keyframes glow-pulse{0%,100%{filter:drop-shadow(0 0 16px rgba(201,168,76,.4));}50%{filter:drop-shadow(0 0 36px rgba(201,168,76,.7));}}
+.hero-eyebrow{font-family:'Inter',sans-serif;font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;position:relative;z-index:2;}
+.hero-title{font-size:clamp(3rem,8vw,7rem);font-weight:900;line-height:1;letter-spacing:.04em;color:var(--gold-lt);text-shadow:0 2px 40px rgba(201,168,76,.3);position:relative;z-index:2;margin-bottom:.5rem;}
+[data-theme="light"] .hero-title{color:var(--ember);text-shadow:none;}
+.hero-subtitle-greek{font-family:'Cinzel',serif;font-size:clamp(1rem,2.5vw,1.6rem);color:var(--text-muted);letter-spacing:.12em;margin-bottom:1.5rem;position:relative;z-index:2;}
+.hero-subtitle{max-width:640px;font-size:1.15rem;line-height:1.8;color:var(--text-main);opacity:.85;position:relative;z-index:2;margin-bottom:2.5rem;}
+.hero-kpis{display:flex;gap:2rem;flex-wrap:wrap;justify-content:center;position:relative;z-index:2;margin-bottom:3rem;}
+.kpi{text-align:center;}
+.kpi-num{font-family:'Cinzel',serif;font-size:2.2rem;font-weight:700;color:var(--gold);line-height:1;}
+.kpi-label{font-family:'Inter',sans-serif;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-muted);margin-top:.3rem;}
+.scroll-cue{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);z-index:2;display:flex;flex-direction:column;align-items:center;gap:.4rem;color:var(--text-muted);font-family:'Inter',sans-serif;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;animation:float 2s ease-in-out infinite;}
+@keyframes float{0%,100%{transform:translateX(-50%) translateY(0);}50%{transform:translateX(-50%) translateY(6px);}}
+.scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,var(--gold),transparent);}
+
+/* SECTION BASE */
+.section{max-width:1100px;margin:0 auto;padding:5rem 2rem;}
+.section-divider{width:100%;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent);opacity:.35;}
+.section-eyebrow{font-family:'Inter',sans-serif;font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:.8rem;}
+.section-title{font-size:clamp(1.8rem,4vw,3rem);color:var(--text-main);margin-bottom:1.2rem;line-height:1.15;}
+.section-lead{font-size:1.1rem;line-height:1.85;color:var(--text-muted);max-width:680px;}
+
+/* FULL-WIDTH IMAGE BANNER */
+.img-banner{width:100%;position:relative;overflow:hidden;max-height:500px;}
+.img-banner img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease;}
+.img-banner:hover img{transform:scale(1.02);}
+.img-caption{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,0,0,.85) 0%,transparent 100%);padding:1.5rem 2rem .8rem;font-family:'Inter',sans-serif;font-size:.75rem;color:rgba(255,255,255,.8);letter-spacing:.1em;}
+.img-caption strong{color:var(--gold-lt);}
+[data-theme="light"] .img-caption{background:linear-gradient(to top,rgba(0,0,0,.7) 0%,transparent 100%);}
+
+/* SIDE IMAGE */
+.side-img-wrap{position:relative;border-radius:var(--radius);overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.4);}
+.side-img-wrap img{width:100%;display:block;object-fit:cover;}
+.side-img-caption{background:var(--bg-card);border:1px solid var(--border);border-top:none;padding:.7rem 1rem;font-family:'Inter',sans-serif;font-size:.72rem;color:var(--text-muted);line-height:1.5;border-radius:0 0 var(--radius) var(--radius);}
+.side-img-caption strong{color:var(--gold);}
+
+/* ETYMOLOGY */
+.etym-hero{background:var(--bg-panel);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.etym-breakdown{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:1rem;align-items:center;margin-top:3rem;text-align:center;}
+@media(max-width:640px){.etym-breakdown{grid-template-columns:1fr;gap:.5rem;}.etym-plus{display:none;}}
+.etym-part{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:1.8rem 1.2rem;position:relative;overflow:hidden;transition:border-color .3s;}
+.etym-part:hover{border-color:var(--gold);}
+.etym-part::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gold);}
+.etym-greek{font-family:'Cinzel',serif;font-size:2.4rem;font-weight:700;color:var(--gold);line-height:1;margin-bottom:.5rem;}
+.etym-meaning{font-family:'Inter',sans-serif;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.8rem;}
+.etym-desc{font-size:.9rem;line-height:1.6;color:var(--text-main);opacity:.8;}
+.etym-plus,.etym-equals{font-family:'Cinzel',serif;font-size:2rem;color:var(--gold);opacity:.4;}
+.etym-result{background:linear-gradient(135deg,var(--ember),#8B3A1A);border:none;}
+.etym-result::before{background:var(--gold-lt);}
+.etym-result .etym-greek{color:#fff;font-size:2.8rem;}
+.etym-result .etym-meaning{color:rgba(255,255,255,.6);}
+.etym-result .etym-desc{color:rgba(255,255,255,.85);}
+.mycenae-note{margin-top:2.5rem;background:var(--bg-card);border-left:3px solid var(--gold);padding:1.2rem 1.5rem;border-radius:0 var(--radius) var(--radius) 0;font-style:italic;color:var(--text-muted);font-size:.95rem;line-height:1.7;}
+.mycenae-note strong{color:var(--gold);font-style:normal;}
+
+/* TIMELINE */
+.timeline{position:relative;margin-top:3.5rem;}
+.timeline::before{content:'';position:absolute;left:2.5rem;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,var(--gold),transparent);}
+.tl-item{display:flex;gap:2rem;margin-bottom:3rem;position:relative;opacity:0;transform:translateY(20px);transition:all .6s ease;}
+.tl-item.visible{opacity:1;transform:none;}
+.tl-dot-wrap{flex-shrink:0;width:5rem;display:flex;justify-content:center;}
+.tl-dot{width:3rem;height:3rem;border-radius:50%;background:var(--bg-card);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;position:relative;z-index:2;}
+.tl-body{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:1.4rem 1.6rem;flex:1;transition:border-color .3s;}
+.tl-body:hover{border-color:var(--gold);}
+.tl-date{font-family:'Inter',sans-serif;font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem;}
+.tl-title{font-family:'Cinzel',serif;font-size:1.1rem;color:var(--text-main);margin-bottom:.6rem;}
+.tl-text{font-size:.92rem;line-height:1.75;color:var(--text-muted);}
+
+/* HYPOTHESES */
+.hypo-section{background:var(--bg-panel);border-top:1px solid var(--border);}
+.hypo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;margin-top:3rem;}
+.hypo-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);overflow:visible;cursor:pointer;transition:all .35s;position:relative;}
+.hypo-card:hover,.hypo-card.active{border-color:var(--gold);transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.3);}
+.hypo-header{padding:1.5rem 1.5rem 1rem;display:flex;align-items:flex-start;gap:1rem;}
+.hypo-icon{font-size:2.5rem;line-height:1;flex-shrink:0;}
+.hypo-num{font-family:'Cinzel',serif;font-size:3rem;font-weight:900;color:var(--border);position:absolute;top:.5rem;right:1rem;line-height:1;}
+.hypo-title{font-family:'Cinzel',serif;font-size:1.1rem;color:var(--gold-lt);margin-bottom:.3rem;}
+.hypo-subtitle{font-family:'Inter',sans-serif;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-muted);}
+.hypo-bar-wrap{padding:0 1.5rem;margin-bottom:1rem;}
+.hypo-bar-label{font-family:'Inter',sans-serif;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.4rem;display:flex;justify-content:space-between;}
+.hypo-bar{height:4px;background:var(--border);border-radius:2px;overflow:hidden;}
+.hypo-bar-fill{height:100%;background:linear-gradient(to right,var(--gold),var(--gold-lt));border-radius:2px;width:0;transition:width 1.2s cubic-bezier(.25,.46,.45,.94);}
+.hypo-card.visible .hypo-bar-fill{width:var(--fill);}
+.hypo-body{padding:0 1.5rem 1.5rem;font-size:.92rem;line-height:1.75;color:var(--text-muted);}
+/* FIX: detail expanded correctly, no overflow clip */
+.hypo-detail{max-height:0;overflow:hidden;transition:max-height .5s ease,padding .3s ease;padding:0 1.5rem;font-size:.88rem;line-height:1.75;color:var(--text-muted);}
+.hypo-card.active .hypo-detail{max-height:600px;padding:1rem 1.5rem 1.5rem;border-top:1px solid var(--border);}
+
+/* ORACLE */
+.oracle-section{background:var(--bg-dark);position:relative;overflow:hidden;}
+.oracle-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(42,91,122,.15) 0%,transparent 60%);pointer-events:none;}
+.oracle-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;margin-top:3rem;}
+@media(max-width:768px){.oracle-grid{grid-template-columns:1fr;}}
+.oracle-visual{position:relative;display:flex;align-items:center;justify-content:center;}
+.oracle-circle{width:min(320px,90%);aspect-ratio:1;border-radius:50%;background:radial-gradient(circle at 40% 35%,rgba(42,91,122,.3) 0%,var(--bg-card) 70%);border:1px solid var(--aegean-lt);display:flex;align-items:center;justify-content:center;position:relative;box-shadow:0 0 60px rgba(42,91,122,.2);}
+.oracle-img-circle{width:min(320px,90%);aspect-ratio:1;border-radius:50%;overflow:hidden;border:2px solid var(--aegean-lt);box-shadow:0 0 60px rgba(42,91,122,.3);position:relative;}
+.oracle-img-circle img{width:100%;height:100%;object-fit:cover;object-position:center 20%;}
+.oracle-img-circle::after{content:'';position:absolute;inset:0;border-radius:50%;box-shadow:inset 0 0 40px rgba(0,0,0,.5);}
+.oracle-ring{position:absolute;border-radius:50%;border:1px solid rgba(58,122,159,.3);animation:spin-slow linear infinite;}
+.oracle-ring-1{width:110%;aspect-ratio:1;animation-duration:20s;}
+.oracle-ring-2{width:125%;aspect-ratio:1;animation-duration:30s;animation-direction:reverse;border-style:dashed;}
+@keyframes spin-slow{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+.oracle-quote{background:var(--bg-card);border:1px solid var(--border);border-left:4px solid var(--aegean-lt);padding:1.5rem;border-radius:0 var(--radius) var(--radius) 0;margin-bottom:1.5rem;font-style:italic;font-size:1.05rem;line-height:1.75;color:var(--text-main);}
+.oracle-quote cite{display:block;margin-top:.8rem;font-style:normal;font-family:'Inter',sans-serif;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--aegean-lt);}
+.facts-list{list-style:none;display:flex;flex-direction:column;gap:.8rem;}
+.facts-list li{display:block;font-size:.92rem;line-height:1.6;color:var(--text-muted);}
+.facts-list li::before{content:'⚡ ';font-size:.75rem;display:inline;}
+
+/* GEO */
+.geo-section{background:var(--bg-panel);border-top:1px solid var(--border);}
+.geo-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-top:3rem;align-items:start;}
+@media(max-width:768px){.geo-grid{grid-template-columns:1fr;}}
+.geo-bars{display:flex;flex-direction:column;gap:1rem;}
+.geo-bar-item{display:grid;grid-template-columns:160px 1fr 3rem;gap:1rem;align-items:center;}
+@media(max-width:500px){.geo-bar-item{grid-template-columns:100px 1fr 2.5rem;}}
+.geo-bar-name{font-family:'Inter',sans-serif;font-size:.8rem;color:var(--text-main);text-align:right;line-height:1.3;}
+.geo-bar-track{height:6px;background:var(--border);border-radius:3px;overflow:hidden;}
+.geo-bar-fill{height:100%;border-radius:3px;width:0;transition:width 1.4s cubic-bezier(.25,.46,.45,.94);background:linear-gradient(to right,var(--ember),var(--gold));}
+.geo-section.visible .geo-bar-fill{width:var(--pct);}
+.geo-bar-val{font-family:'Cinzel',serif;font-size:.85rem;color:var(--gold);}
+.geo-notes{display:flex;flex-direction:column;gap:1.2rem;}
+.geo-note-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:1.2rem 1.4rem;}
+.geo-note-title{font-family:'Cinzel',serif;font-size:.95rem;color:var(--gold-lt);margin-bottom:.5rem;}
+.geo-note-text{font-size:.88rem;line-height:1.65;color:var(--text-muted);}
+
+/* DIASPORA */
+.diaspora-section{background:var(--bg-dark);}
+.flow-stages{display:flex;flex-direction:column;}
+.flow-stage{display:grid;grid-template-columns:5rem 1fr;opacity:0;transform:translateX(-20px);transition:all .6s ease;}
+.flow-stage.visible{opacity:1;transform:none;}
+.flow-connector{display:flex;flex-direction:column;align-items:center;}
+.flow-node{width:3.5rem;height:3.5rem;border-radius:50%;background:var(--bg-card);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;z-index:2;}
+.flow-line{flex:1;width:2px;background:linear-gradient(to bottom,var(--gold),rgba(201,168,76,.2));min-height:2rem;}
+.flow-body{padding:0 0 2rem 1.5rem;}
+.flow-era{font-family:'Inter',sans-serif;font-size:.65rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:.3rem;}
+.flow-title{font-family:'Cinzel',serif;font-size:1.1rem;color:var(--text-main);margin-bottom:.5rem;}
+.flow-text{font-size:.9rem;line-height:1.7;color:var(--text-muted);}
+.flow-destinations{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.8rem;}
+.dest-tag{font-family:'Inter',sans-serif;font-size:.7rem;padding:.25rem .65rem;background:var(--bg-card);border:1px solid var(--border);border-radius:2rem;color:var(--text-muted);}
+
+/* LINGUISTICS */
+.linguis-section{background:var(--bg-panel);border-top:1px solid var(--border);}
+.linguis-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-top:3rem;align-items:center;}
+@media(max-width:768px){.linguis-grid{grid-template-columns:1fr;}}
+.lang-attrs{display:flex;flex-direction:column;gap:1rem;}
+.lang-attr{display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:center;padding:1rem 1.2rem;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);transition:border-color .3s;}
+.lang-attr:hover{border-color:var(--gold);}
+.lang-attr-label{font-family:'Inter',sans-serif;font-size:.8rem;font-weight:500;color:var(--text-main);margin-bottom:.3rem;}
+.lang-attr-desc{font-size:.8rem;color:var(--text-muted);line-height:1.5;}
+.lang-score{font-family:'Cinzel',serif;font-size:1.4rem;color:var(--gold);font-weight:700;}
+#radarCanvas{max-width:320px;width:100%;margin:0 auto;display:block;}
+
+/* HERALDRY */
+.heraldry-section{background:var(--bg-dark);}
+.heraldry-grid{display:grid;grid-template-columns:auto 1fr;gap:3rem;align-items:start;margin-top:3rem;}
+@media(max-width:640px){.heraldry-grid{grid-template-columns:1fr;}}
+.coat-of-arms-wrap{display:flex;flex-direction:column;align-items:center;gap:1rem;flex-shrink:0;}
+.coat-of-arms-img{width:180px;height:auto;border-radius:var(--radius);border:1px solid var(--border);background:var(--bg-card);padding:.5rem;box-shadow:0 8px 32px rgba(0,0,0,.4);}
+.coat-placeholder{width:180px;height:220px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;color:var(--text-muted);font-family:'Inter',sans-serif;font-size:.7rem;text-align:center;padding:1rem;}
+.coat-pending{font-size:2rem;margin-bottom:.5rem;}
+.blazon-text{background:var(--bg-card);border:1px solid var(--border);border-left:3px solid var(--gold);padding:1.2rem 1.5rem;border-radius:0 var(--radius) var(--radius) 0;font-style:italic;font-size:1.05rem;line-height:1.8;color:var(--text-main);margin-bottom:1.5rem;}
+.blazon-translation{font-style:normal;font-size:.85rem;color:var(--text-muted);margin-top:.6rem;font-family:'Inter',sans-serif;}
+.heraldry-facts{display:flex;flex-direction:column;gap:1rem;}
+.heraldry-fact{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:1.2rem 1.4rem;}
+.heraldry-fact-title{font-family:'Cinzel',serif;font-size:.95rem;color:var(--gold-lt);margin-bottom:.5rem;}
+.heraldry-fact-text{font-size:.88rem;line-height:1.65;color:var(--text-muted);}
+
+/* NOTABLE */
+.notable-section{background:var(--bg-panel);border-top:1px solid var(--border);}
+.notable-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.2rem;margin-top:3rem;}
+.notable-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:1.4rem;transition:all .3s;position:relative;overflow:hidden;}
+.notable-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(to right,var(--ember),var(--gold));transform:scaleX(0);transition:transform .3s;}
+.notable-card:hover{border-color:var(--gold);transform:translateY(-3px);}
+.notable-card:hover::after{transform:scaleX(1);}
+.notable-emoji{font-size:2rem;margin-bottom:.8rem;}
+.notable-name{font-family:'Cinzel',serif;font-size:1rem;color:var(--gold-lt);margin-bottom:.3rem;}
+.notable-role{font-family:'Inter',sans-serif;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-muted);margin-bottom:.6rem;}
+.notable-desc{font-size:.85rem;line-height:1.6;color:var(--text-muted);}
+.notable-people{margin-top:.6rem;padding-top:.6rem;border-top:1px solid var(--border);}
+.notable-person{font-size:.8rem;line-height:1.6;color:var(--text-muted);padding:.2rem 0;}
+.notable-person strong{color:var(--text-main);font-style:normal;}
+
+/* VARIANTS */
+.variants-section{background:var(--bg-dark);}
+.variants-grid{display:flex;flex-wrap:wrap;gap:1rem;margin-top:2.5rem;}
+.variant-pill{background:var(--bg-card);border:1px solid var(--border);border-radius:2rem;padding:.6rem 1.2rem;display:flex;flex-direction:column;align-items:center;gap:.2rem;cursor:default;transition:all .3s;}
+.variant-pill:hover{border-color:var(--gold);transform:scale(1.05);}
+.variant-name{font-family:'Cinzel',serif;font-size:1rem;color:var(--gold);}
+.variant-note{font-family:'Inter',sans-serif;font-size:.65rem;color:var(--text-muted);letter-spacing:.05em;}
+
+/* SOURCES */
+.sources-section{background:var(--bg-panel);border-top:1px solid var(--border);}
+.sources-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem;margin-top:2.5rem;}
+@media(max-width:640px){.sources-grid{grid-template-columns:1fr;}}
+.source-group-title{font-family:'Cinzel',serif;font-size:1rem;color:var(--gold-lt);margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid var(--border);}
+.source-item{display:flex;gap:.8rem;padding:.8rem 0;border-bottom:1px solid rgba(201,168,76,.08);}
+.source-item:last-child{border-bottom:none;}
+.source-num{font-family:'Cinzel',serif;font-size:.8rem;color:var(--gold);flex-shrink:0;width:1.5rem;text-align:right;padding-top:.1rem;}
+.source-content{font-size:.82rem;line-height:1.65;color:var(--text-muted);}
+.source-content em{color:var(--text-main);}
+.source-content a{color:var(--aegean-lt);text-decoration:none;word-break:break-all;}
+.source-content a:hover{color:var(--gold);text-decoration:underline;}
+.source-content .source-type{font-family:'Inter',sans-serif;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-muted);background:var(--bg-card);padding:.1rem .4rem;border-radius:2px;margin-left:.4rem;vertical-align:middle;}
+
+/* CLOSING */
+.closing-section{text-align:center;background:var(--bg-dark);position:relative;overflow:hidden;}
+.closing-section::before{content:'ΤΡΙΠΟΔΙ';position:absolute;font-family:'Cinzel',serif;font-size:clamp(5rem,15vw,12rem);font-weight:900;color:rgba(201,168,76,.04);top:50%;left:50%;transform:translate(-50%,-50%);white-space:nowrap;pointer-events:none;user-select:none;}
+.closing-tripod{font-size:4rem;margin-bottom:1.5rem;display:block;}
+.closing-title{font-size:clamp(2rem,5vw,3.5rem);color:var(--gold-lt);margin-bottom:1.2rem;}
+.closing-text{max-width:640px;margin:0 auto 2.5rem;font-size:1.05rem;line-height:1.85;color:var(--text-muted);}
+.closing-latin{font-family:'Cinzel',serif;font-style:italic;font-size:1.2rem;color:var(--gold);margin-bottom:.5rem;}
+
+/* FOOTER */
+footer{background:var(--bg-panel);border-top:1px solid var(--border);padding:2.5rem 2rem;text-align:center;}
+.footer-text{font-family:'Inter',sans-serif;font-size:.7rem;letter-spacing:.1em;color:var(--text-muted);line-height:2.2;}
+.footer-copy{margin-top:1rem;padding-top:1rem;border-top:1px solid var(--border);font-family:'Cinzel',serif;font-size:.8rem;color:var(--gold);letter-spacing:.12em;}
+
+/* ANIMATIONS */
+.fade-up{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease;}
+.fade-up.visible{opacity:1;transform:none;}
+
+/* DONUT */
+.donut-wrap{display:flex;align-items:center;gap:2rem;margin-top:3rem;flex-wrap:wrap;}
+#donutCanvas{flex-shrink:0;width:200px;height:200px;}
+.donut-legend{display:flex;flex-direction:column;gap:.8rem;flex:1;}
+.legend-item{display:flex;align-items:center;gap:.8rem;font-size:.9rem;color:var(--text-muted);}
+.legend-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0;}
+.legend-pct{font-family:'Cinzel',serif;font-size:1rem;color:var(--gold);margin-left:auto;}
+
+@media(max-width:640px){.section{padding:3rem 1.2rem;}.tl-body{padding:1rem;}.flow-body{padding:0 0 1.5rem 1rem;}.timeline::before{left:1.5rem;}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important;}}
+
+/* LIGHTBOX */
+.lightbox-overlay{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:9999;display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .3s ease;padding:1rem;}
+.lightbox-overlay.open{opacity:1;pointer-events:all;}
+.lightbox-inner{position:relative;max-width:90vw;max-height:90vh;display:flex;flex-direction:column;align-items:center;gap:1rem;}
+.lightbox-inner img{max-width:100%;max-height:80vh;object-fit:contain;border-radius:4px;box-shadow:0 0 60px rgba(0,0,0,.8);}
+.lightbox-caption{font-family:'Inter',sans-serif;font-size:.8rem;color:rgba(255,255,255,.75);text-align:center;max-width:600px;line-height:1.6;padding:0 1rem;}
+.lightbox-caption strong{color:var(--gold-lt);}
+.lightbox-close{position:absolute;top:-2.5rem;right:0;background:none;border:1px solid rgba(255,255,255,.3);color:#fff;width:2rem;height:2rem;border-radius:50%;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:border-color .2s;}
+.lightbox-close:hover{border-color:var(--gold);color:var(--gold);}
+
+/* IMAGE BANNER FIXES (escritorio: imagen completa, mobile: pie flotante al tocar) */
+.img-banner{width:100%;position:relative;overflow:hidden;}
+.img-banner img{width:100%;height:auto;object-fit:contain;display:block;transition:transform .6s ease;cursor:pointer;}
+.img-banner:hover img{transform:scale(1.01);}
+.img-caption{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,0,0,.88) 0%,transparent 100%);padding:1.5rem 2rem .8rem;font-family:'Inter',sans-serif;font-size:.75rem;color:rgba(255,255,255,.85);letter-spacing:.1em;transition:opacity .3s;}
+.img-caption strong{color:var(--gold-lt);}
+[data-theme="light"] .img-caption{background:linear-gradient(to top,rgba(0,0,0,.7) 0%,transparent 100%);}
+/* Mobile: hide caption by default, show on tap */
+@media(max-width:768px){
+  .img-caption{opacity:0;pointer-events:none;}
+  .img-banner.caption-visible .img-caption{opacity:1;pointer-events:all;}
+  .img-caption-tap-hint{display:block;position:absolute;bottom:.6rem;right:.8rem;background:rgba(0,0,0,.55);color:rgba(255,255,255,.7);font-family:'Inter',sans-serif;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;padding:.25rem .5rem;border-radius:2rem;pointer-events:none;}
+}
+@media(min-width:769px){.img-caption-tap-hint{display:none;}}
+
+/* ORACLE SECTION: items como lista continua sin celdas */
+.facts-list{list-style:none;display:flex;flex-direction:column;gap:0;}
+.facts-list li{display:block;font-size:.92rem;line-height:1.75;color:var(--text-muted);padding:.55rem 0;border-bottom:1px solid rgba(201,168,76,.07);}
+.facts-list li:last-child{border-bottom:none;}
+.facts-list li::before{content:'⚡ ';font-size:.75rem;display:inline;}
+
+/* HYPO-CARD: thumbnail + chevron */
+.hypo-thumb-wrap{padding:0 1.5rem .75rem;}
+.hypo-thumb{width:100%;height:100px;object-fit:cover;border-radius:calc(var(--radius) - 2px);cursor:pointer;transition:transform .3s,box-shadow .3s;display:block;}
+.hypo-thumb:hover{transform:scale(1.02);box-shadow:0 4px 20px rgba(0,0,0,.4);}
+.hypo-thumb-label{font-family:'Inter',sans-serif;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-muted);margin-top:.4rem;text-align:center;}
+/* Animated chevron: positioned relative to .hypo-card */
+.hypo-card{position:relative;}
+.hypo-chevron{position:absolute;bottom:1rem;right:1.2rem;width:1.4rem;height:1.4rem;display:flex;align-items:center;justify-content:center;color:var(--gold);opacity:.6;animation:chevron-bounce 1.6s ease-in-out infinite;pointer-events:none;}
+@keyframes chevron-bounce{0%,100%{transform:translateY(0);}50%{transform:translateY(4px);}}
+.hypo-card.active .hypo-chevron{transform:rotate(180deg);animation:none;opacity:1;}
+
+/* HERALDRY: two coat sections */
+.heraldry-dual{display:flex;flex-direction:column;gap:3.5rem;margin-top:3rem;}
+.heraldry-block{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;}
+.heraldry-block-header{font-family:'Cinzel',serif;font-size:1.15rem;color:var(--gold-lt);margin-bottom:1.5rem;padding-bottom:.8rem;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:.8rem;}
+.heraldry-block-badge{font-family:'Inter',sans-serif;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;background:var(--bg-panel);border:1px solid var(--border);color:var(--text-muted);padding:.2rem .6rem;border-radius:2rem;}
+.heraldry-block-grid{display:grid;grid-template-columns:auto 1fr;gap:2rem;align-items:start;}
+@media(max-width:640px){.heraldry-block-grid{grid-template-columns:1fr;}}
+.coat-img-clickable{cursor:pointer;transition:transform .3s,box-shadow .3s;}
+.coat-img-clickable:hover{transform:scale(1.03);box-shadow:0 8px 32px rgba(0,0,0,.5);}
+
+/* THUMBNAIL in tl-body */
+.tl-thumb{width:100%;height:90px;object-fit:cover;border-radius:calc(var(--radius) - 2px);margin-top:.8rem;cursor:pointer;transition:transform .3s;display:block;}
+.tl-thumb:hover{transform:scale(1.02);}
+.tl-thumb-caption{font-family:'Inter',sans-serif;font-size:.62rem;color:var(--text-muted);margin-top:.3rem;font-style:italic;}
+
+/* GEO note-card thumbnail */
+.geo-note-card img.geo-thumb{width:100%;height:70px;object-fit:cover;border-radius:calc(var(--radius) - 2px);margin-top:.7rem;cursor:pointer;transition:transform .3s;display:block;}
+.geo-note-card img.geo-thumb:hover{transform:scale(1.02);}
+
+/* NOTABLE CARD: link on name */
+.notable-name a{color:inherit;text-decoration:none;border-bottom:1px solid rgba(201,168,76,.3);transition:border-color .2s;}
+.notable-name a:hover{border-color:var(--gold);}
+
+/* NOTABLE PEOPLE: links styled like source links */
+.notable-person a{color:var(--aegean-lt);text-decoration:none;word-break:break-word;}
+.notable-person a:hover{color:var(--gold);text-decoration:underline;}
+.notable-person a:visited{color:#5a8a9f;}
+
+/* AUDIO PLAY BUTTON */
+.audio-btn{display:inline-flex;align-items:center;justify-content:center;background:none;border:none;cursor:pointer;color:var(--gold);opacity:.7;transition:opacity .2s,transform .15s;padding:.15rem .3rem;vertical-align:middle;margin-left:.3rem;}
+.audio-btn:hover{opacity:1;transform:scale(1.15);}
+.audio-btn svg{width:18px;height:18px;fill:currentColor;}
+
+/* LIGHTBOX: external source link */
+.lightbox-source-link{display:inline-flex;align-items:center;gap:.4rem;margin-top:.6rem;font-family:'Inter',sans-serif;font-size:.72rem;color:var(--aegean-lt);text-decoration:none;border:1px solid rgba(58,122,159,.4);border-radius:2rem;padding:.3rem .8rem;transition:border-color .2s,color .2s;}
+.lightbox-source-link:hover{color:var(--gold-lt);border-color:var(--gold);}
+
+/* MOBILE: lightbox info button */
+.lightbox-info-btn{display:none;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;font-family:'Inter',sans-serif;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;padding:.3rem .8rem;border-radius:2rem;cursor:pointer;margin-top:.4rem;transition:background .2s;}
+.lightbox-info-btn:hover{background:rgba(255,255,255,.2);}
+@media(max-width:768px){
+  .lightbox-caption{display:none;}
+  .lightbox-caption.caption-shown{display:block;}
+  .lightbox-info-btn{display:inline-block;}
+}
+
+/* GALLERY STRIP: multiple images in timeline/sections */
+.img-gallery-strip{display:flex;gap:.6rem;margin-top:.7rem;overflow-x:auto;padding-bottom:.3rem;}
+.img-gallery-strip::-webkit-scrollbar{height:3px;}
+.img-gallery-strip::-webkit-scrollbar-thumb{background:var(--gold);border-radius:2px;}
+.gallery-thumb{flex-shrink:0;width:110px;height:75px;object-fit:cover;border-radius:calc(var(--radius) - 2px);cursor:pointer;transition:transform .25s,box-shadow .25s;border:1px solid var(--border);}
+.gallery-thumb:hover{transform:scale(1.04);box-shadow:0 4px 16px rgba(0,0,0,.4);border-color:var(--gold);}
+
+/* GEO / DIASPORA image thumbs */
+.flow-img-thumb{width:100%;height:80px;object-fit:cover;border-radius:calc(var(--radius)-2px);margin-top:.6rem;cursor:pointer;transition:transform .25s;display:block;border:1px solid var(--border);}
+.flow-img-thumb:hover{transform:scale(1.02);}
+
+/* ── NAVBAR ──────────────────────────────────────────────── */
+.main-nav {
+  position: fixed; top: 1.2rem; left: 50%; transform: translateX(-50%);
+  z-index: 2000; transition: opacity .4s, transform .4s;
+  pointer-events: all;
+}
+.main-nav.nav-hidden { opacity: 0; transform: translateX(-50%) translateY(-120%); pointer-events: none; }
+.nav-pill {
+  display: flex; align-items: center; gap: 1rem;
+  background: rgba(26,22,16,.72); backdrop-filter: blur(18px) saturate(1.4);
+  -webkit-backdrop-filter: blur(18px) saturate(1.4);
+  border: 1px solid rgba(201,168,76,.25); border-radius: 3rem;
+  padding: .55rem 1.1rem .55rem 1.2rem;
+  box-shadow: 0 8px 32px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.06);
+}
+[data-theme="light"] .nav-pill {
+  background: rgba(242,237,230,.82);
+  border-color: rgba(100,70,30,.22);
+  box-shadow: 0 8px 32px rgba(0,0,0,.15), inset 0 1px 0 rgba(255,255,255,.6);
+}
+.nav-brand { font-family: 'Cinzel', serif; font-size: .85rem; color: var(--gold); white-space: nowrap; letter-spacing: .06em; }
+.nav-brand-text { display: inline; }
+.nav-links { display: flex; align-items: center; gap: .1rem; }
+.nav-link {
+  font-family: 'Inter', sans-serif; font-size: .7rem; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--text-muted); text-decoration: none;
+  padding: .4rem .65rem; border-radius: 2rem; transition: color .2s, background .2s;
+  white-space: nowrap;
+}
+.nav-link:hover, .nav-link.active-section { color: var(--gold); background: rgba(201,168,76,.1); }
+.nav-theme-btn {
+  display: flex; align-items: center; gap: .4rem; background: rgba(201,168,76,.12);
+  border: 1px solid rgba(201,168,76,.3); border-radius: 2rem; cursor: pointer;
+  font-family: 'Inter', sans-serif; font-size: .68rem; color: var(--gold);
+  letter-spacing: .08em; text-transform: uppercase; padding: .35rem .75rem;
+  transition: background .2s, border-color .2s; white-space: nowrap;
+}
+.nav-theme-btn:hover { background: rgba(201,168,76,.22); border-color: var(--gold); }
+.nav-theme-label { display: inline; }
+
+/* NAV BUBBLE (compressed state) */
+.nav-bubble {
+  position: fixed; top: 1.1rem; right: 1.4rem; z-index: 2001;
+  width: 3rem; height: 3rem; border-radius: 50%;
+  background: rgba(26,22,16,.78); backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  border: 1px solid rgba(201,168,76,.3);
+  box-shadow: 0 4px 24px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.06);
+  cursor: pointer; font-size: 1.3rem; display: none; align-items: center; justify-content: center;
+  transition: transform .25s, box-shadow .25s, border-color .25s;
+}
+[data-theme="light"] .nav-bubble { background: rgba(242,237,230,.85); border-color: rgba(100,70,30,.3); }
+.nav-bubble:hover { transform: scale(1.08); border-color: var(--gold); box-shadow: 0 0 20px rgba(201,168,76,.3); }
+.nav-bubble-inner { pointer-events: none; line-height: 1; }
+
+/* BUBBLE DROPDOWN MENU */
+.nav-bubble-menu {
+  position: absolute; top: calc(100% + .6rem); right: 0;
+  background: rgba(26,22,16,.92); backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  border: 1px solid rgba(201,168,76,.25); border-radius: 1rem;
+  padding: .6rem; min-width: 180px;
+  box-shadow: 0 16px 48px rgba(0,0,0,.6);
+  opacity: 0; transform: scale(.9) translateY(-6px); transform-origin: top right;
+  pointer-events: none; transition: opacity .2s, transform .2s;
+  display: flex; flex-direction: column; gap: .2rem;
+}
+[data-theme="light"] .nav-bubble-menu { background: rgba(242,237,230,.95); border-color: rgba(100,70,30,.2); }
+.nav-bubble.open .nav-bubble-menu { opacity: 1; transform: scale(1) translateY(0); pointer-events: all; }
+.bubble-link {
+  font-family: 'Inter', sans-serif; font-size: .75rem; letter-spacing: .08em;
+  text-transform: uppercase; color: var(--text-muted); text-decoration: none;
+  padding: .5rem .8rem; border-radius: .6rem; transition: color .15s, background .15s;
+  display: block;
+}
+.bubble-link:hover { color: var(--gold); background: rgba(201,168,76,.1); }
+.bubble-theme-btn {
+  margin-top: .3rem; padding: .5rem .8rem; background: rgba(201,168,76,.1);
+  border: 1px solid rgba(201,168,76,.25); border-radius: .6rem; cursor: pointer;
+  font-family: 'Inter', sans-serif; font-size: .72rem; color: var(--gold);
+  letter-spacing: .06em; display: flex; align-items: center; gap: .4rem;
+  transition: background .2s; text-transform: uppercase;
+}
+.bubble-theme-btn:hover { background: rgba(201,168,76,.2); }
+
+/* MOBILE: bubble goes bottom-right, navbar visible at top */
+@media (max-width: 768px) {
+  .main-nav { display: block !important; }
+  .nav-bubble { display: none !important; }
+  .nav-bubble-menu { top: auto; bottom: calc(100% + .6rem); right: 0; transform-origin: bottom right; }
+  .nav-bubble.open .nav-bubble-menu { transform: scale(1) translateY(0); }
+}
+@media (min-width: 769px) {
+  /* Bubble shown only when nav is hidden */
+  .nav-bubble { display: none; }
+  .nav-bubble.visible { display: flex; }
+}
+
+/* ── HYPO MODAL (desktop) ─────────────────────────────────── */
+.hypo-modal-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,.88); z-index: 9998;
+  display: flex; align-items: center; justify-content: center; padding: 2rem;
+  opacity: 0; pointer-events: none; transition: opacity .3s;
+}
+.hypo-modal-overlay.open { opacity: 1; pointer-events: all; }
+.hypo-modal-inner {
+  position: relative; background: var(--bg-card);
+  border: 1px solid rgba(201,168,76,.3); border-radius: calc(var(--radius)*2);
+  max-width: 860px; width: 100%; max-height: 88vh; overflow-y: auto;
+  box-shadow: 0 24px 80px rgba(0,0,0,.7);
+  animation: modal-in .3s cubic-bezier(.34,1.56,.64,1) both;
+}
+@keyframes modal-in { from { transform: scale(.92) translateY(20px); opacity: 0; } to { transform: none; opacity: 1; } }
+.hypo-modal-close {
+  position: absolute; top: 1rem; right: 1rem; background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.2); color: var(--text-muted); width: 2rem; height: 2rem;
+  border-radius: 50%; cursor: pointer; font-size: .9rem; display: flex; align-items: center;
+  justify-content: center; transition: border-color .2s, color .2s; z-index: 2;
+}
+.hypo-modal-close:hover { border-color: var(--gold); color: var(--gold); }
+.hypo-modal-num {
+  position: absolute; top: 1.2rem; left: 1.8rem; font-family: 'Cinzel', serif;
+  font-size: 3.5rem; font-weight: 900; color: rgba(201,168,76,.12); line-height: 1; pointer-events: none;
+}
+.hypo-modal-layout { display: grid; grid-template-columns: 1fr 1fr; }
+.hypo-modal-left { position: relative; border-radius: calc(var(--radius)*2) 0 0 calc(var(--radius)*2); overflow: hidden; min-height: 340px; }
+.hypo-modal-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.hypo-modal-right { padding: 2rem 2rem 2rem 1.8rem; display: flex; flex-direction: column; gap: 1rem; }
+.hypo-modal-header { display: flex; align-items: flex-start; gap: .8rem; }
+.hypo-modal-icon { font-size: 2.2rem; line-height: 1; flex-shrink: 0; }
+.hypo-modal-title { font-family: 'Cinzel', serif; font-size: 1.2rem; color: var(--gold-lt); margin-bottom: .3rem; }
+.hypo-modal-subtitle { font-family: 'Inter', sans-serif; font-size: .68rem; letter-spacing: .15em; text-transform: uppercase; color: var(--text-muted); }
+.hypo-modal-bar-wrap { }
+.hypo-modal-bar-label { font-family: 'Inter', sans-serif; font-size: .65rem; letter-spacing: .1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: .4rem; display: flex; justify-content: space-between; }
+.hypo-modal-bar-label span:last-child { color: var(--gold); }
+.hypo-modal-bar { height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; }
+.hypo-modal-bar-fill { height: 100%; background: linear-gradient(to right, var(--gold), var(--gold-lt)); border-radius: 2px; width: 0; transition: width 1s cubic-bezier(.25,.46,.45,.94) .2s; }
+.hypo-modal-body { font-size: .95rem; line-height: 1.75; color: var(--text-muted); }
+.hypo-modal-detail { font-size: .88rem; line-height: 1.75; color: var(--text-muted); padding-top: .8rem; border-top: 1px solid var(--border); }
+/* Hide modal on mobile; card accordion still used */
+@media (max-width: 768px) { .hypo-modal-overlay { display: none !important; } }
+@media (max-width: 480px) { .hypo-modal-layout { grid-template-columns: 1fr; } .hypo-modal-left { min-height: 200px; border-radius: calc(var(--radius)*2) calc(var(--radius)*2) 0 0; } }
+
+/* ── TOOLTIPS ─────────────────────────────────────────────── */
+.tt {
+  position: relative; display: inline;
+  border-bottom: 1px dotted var(--gold); cursor: help; color: inherit;
+  font-style: inherit; font-weight: inherit;
+}
+/* Shared tooltip bubble rendered via JS into #ttBubble */
+#ttBubble {
+  position: fixed; z-index: 9999; max-width: 260px;
+  background: var(--bg-card); color: var(--text-main);
+  border: 1px solid rgba(201,168,76,.4); border-radius: var(--radius);
+  padding: .6rem .9rem; font-family: 'Inter', sans-serif; font-size: .74rem;
+  line-height: 1.5; box-shadow: 0 8px 24px rgba(0,0,0,.5);
+  opacity: 0; pointer-events: none; transition: opacity .2s;
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+}
+#ttBubble.tt-visible { opacity: 1; }
+#ttBubble::after {
+  content: ''; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+  border: 5px solid transparent; border-top-color: rgba(201,168,76,.4);
+}
+
+/* ── RADAR HIGHLIGHT ──────────────────────────────────────── */
+.lang-attr[data-radar-idx].radar-highlight { border-color: var(--gold); background: rgba(201,168,76,.06); }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav id="mainNav" class="main-nav" aria-label="Navegación principal">
+  <div class="nav-pill" id="navPill">
+    <span class="nav-brand">🏛️ <span class="nav-brand-text">Tripodi</span></span>
+    <div class="nav-links" id="navLinks">
+      <a href="#etym" class="nav-link">Origen</a>
+      <a href="#timeline" class="nav-link">Historia</a>
+      <a href="#hypo" class="nav-link">Hipótesis</a>
+      <a href="#oracle" class="nav-link">Oráculo</a>
+      <a href="#geo" class="nav-link">Geografía</a>
+      <a href="#diaspora" class="nav-link">Diáspora</a>
+      <a href="#heraldry" class="nav-link">Heráldica</a>
+      <a href="#linguis" class="nav-link">Lingüística</a>
+      <a href="#variants" class="nav-link">Variantes</a>
+      <a href="#notables" class="nav-link">Notables</a>
+      <a href="#closing" class="nav-link">Cierre</a>
+      <a href="#sources" class="nav-link">Fuentes</a>
+    </div>
+    <button class="nav-theme-btn" onclick="toggleTheme()" aria-label="Cambiar tema">
+      <span id="themeIcon">☀️</span>
+      <span id="themeLabel" class="nav-theme-label">Modo claro</span>
+    </button>
+  </div>
+</nav>
+<button id="navBubble" class="nav-bubble" onclick="toggleNavBubble()" aria-label="Menú" aria-expanded="false">
+  <span class="nav-bubble-inner">🏛️</span>
+  <div class="nav-bubble-menu" id="navBubbleMenu" role="menu">
+    <a href="#etym" class="bubble-link" onclick="closeBubbleMenu()">Origen</a>
+    <a href="#timeline" class="bubble-link" onclick="closeBubbleMenu()">Historia</a>
+    <a href="#hypo" class="bubble-link" onclick="closeBubbleMenu()">Hipótesis</a>
+    <a href="#oracle" class="bubble-link" onclick="closeBubbleMenu()">Oráculo</a>
+    <a href="#geo" class="bubble-link" onclick="closeBubbleMenu()">Geografía</a>
+    <a href="#diaspora" class="bubble-link" onclick="closeBubbleMenu()">Diáspora</a>
+    <a href="#heraldry" class="bubble-link" onclick="closeBubbleMenu()">Heráldica</a>
+    <a href="#linguis" class="bubble-link" onclick="closeBubbleMenu()">Lingüística</a>
+    <a href="#variants" class="bubble-link" onclick="closeBubbleMenu()">Variantes</a>
+    <a href="#notables" class="bubble-link" onclick="closeBubbleMenu()">Notables</a>
+    <a href="#closing" class="bubble-link" onclick="closeBubbleMenu()">Cierre</a>
+    <a href="#sources" class="bubble-link" onclick="closeBubbleMenu()">Fuentes</a>
+  </div>
+</button>
+
+<!-- HYPO MODAL (desktop) -->
+<div id="hypoModal" class="hypo-modal-overlay" onclick="closeHypoModal(event)">
+  <div class="hypo-modal-inner" onclick="event.stopPropagation()">
+    <button class="hypo-modal-close" onclick="closeHypoModal()">✕</button>
+    <div class="hypo-modal-num" id="hypoModalNum"></div>
+    <div class="hypo-modal-layout">
+      <div class="hypo-modal-left">
+        <img id="hypoModalImg" src="" alt="" class="hypo-modal-img">
+      </div>
+      <div class="hypo-modal-right">
+        <div class="hypo-modal-header">
+          <span class="hypo-modal-icon" id="hypoModalIcon"></span>
+          <div>
+            <div class="hypo-modal-title" id="hypoModalTitle"></div>
+            <div class="hypo-modal-subtitle" id="hypoModalSubtitle"></div>
+          </div>
+        </div>
+        <div class="hypo-modal-bar-wrap">
+          <div class="hypo-modal-bar-label"><span>Probabilidad histórica</span><span id="hypoModalPct"></span></div>
+          <div class="hypo-modal-bar"><div class="hypo-modal-bar-fill" id="hypoModalBarFill"></div></div>
+        </div>
+        <div class="hypo-modal-body" id="hypoModalBody"></div>
+        <div class="hypo-modal-detail" id="hypoModalDetail"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" class="lightbox-overlay" onclick="closeLightbox(event)">
+  <div class="lightbox-inner" onclick="event.stopPropagation()">
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <img id="lightboxImg" src="" alt="">
+    <button class="lightbox-info-btn" id="lightboxInfoBtn" onclick="toggleLightboxCaption()">mostrar info</button>
+    <div id="lightboxCaption" class="lightbox-caption"></div>
+    <a id="lightboxSourceLink" class="lightbox-source-link" href="#" target="_blank" rel="noopener" style="display:none;">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      Visitar fuente original
+    </a>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-stars"></div>
+  <p class="hero-eyebrow">Investigación genealógica, heráldica e histórica</p>
+  <div class="tripod-icon">🏛️</div>
+  <h1 class="hero-title">TRIPODI</h1>
+  <p class="hero-subtitle-greek">Τρίποδι · Trípodis · Tripodu</p>
+  <p class="hero-subtitle">Un apellido grabado en tablillas micénicas, que sentó a la Pitia sobre el humo de los dioses y que cruzó el Mediterráneo para arraigarse en el sur de Italia hace más de 2.700 años.</p>
+  <div class="hero-kpis">
+    <div class="kpi"><div class="kpi-num">2.700+</div><div class="kpi-label">Años de historia</div></div>
+    <div class="kpi"><div class="kpi-num">~17.000</div><div class="kpi-label">Personas en el mundo</div></div>
+    <div class="kpi"><div class="kpi-num">3</div><div class="kpi-label">Hipótesis de origen</div></div>
+    <div class="kpi"><div class="kpi-num">ΤΡΙ+ΠΟΔΙ</div><div class="kpi-label">Raíz griega</div></div>
+  </div>
+  <div class="scroll-cue"><div class="scroll-line"></div><span>Descubrir</span></div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- IMAGE 1: Calabria coast (Imagen_2.png) -->
+<div class="img-banner" onclick="toggleBannerCaption(this)" id="banner1">
+  <img src="imagenes/Imagen_2.png" alt="Costa de Calabria al atardecer, la cuna del apellido Tripodi" loading="lazy" onclick="openLightbox('imagenes/Imagen_2.png','<strong>Calabria, sur de Italia</strong> — La costa del Estrecho de Mesina, donde la formación rocosa «a tre piedi» (tres pies) pudo haber dado nombre al linaje. La antigua <em>Rhegion</em> griega (hoy Reggio Calabria) fue el epicentro histórico del apellido Tripodi desde el siglo VIII a.C.')">
+  <div class="img-caption">
+    <strong>Calabria, sur de Italia</strong> — La costa del Estrecho de Mesina, donde la formación rocosa "a tre piedi" (tres pies) pudo haber dado nombre al linaje. La antigua <em>Rhegion</em> griega (hoy Reggio Calabria) fue el epicentro histórico del apellido Tripodi desde el siglo VIII a.C.
+  </div>
+  <span class="img-caption-tap-hint">toca para leer</span>
+</div>
+
+<!-- ETYMOLOGY -->
+<section class="etym-hero" id="etym">
+  <div class="section fade-up">
+    <p class="section-eyebrow">Etimología</p>
+    <h2 class="section-title">La anatomía de un nombre antiguo</h2>
+    <p class="section-lead">El apellido Tripodi es un fósil lingüístico <span class="tt" data-tt="Relativo a la Grecia antigua, su lengua y su cultura. Del griego Hellas (Ἑλλάς).">helénico</span> casi intacto. Dos <span class="tt" data-tt="Unidad mínima de significado en lingüística; elemento que no puede dividirse sin perder significado. Por ejemplo, tri- o -podi.">morfemas</span> griegos que han sobrevivido más de 25 siglos sin apenas alterarse.</p>
+    <div class="etym-breakdown">
+      <div class="etym-part">
+        <div class="etym-greek">ΤΡΙ<button class="audio-btn" onclick="playAudio('audio/tri.mp3')" title="Escuchar pronunciación en griego" aria-label="Reproducir pronunciación de ΤΡΙ"><svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg></button></div>
+        <div class="etym-meaning">Prefijo griego</div>
+        <div class="etym-desc">Del griego <em>treis</em> (τρεῖς): tres. Prefijo numérico presente en toda la familia lingüística indoeuropea: tri-, tres, three.</div>
+      </div>
+      <div class="etym-plus">+</div>
+      <div class="etym-part">
+        <div class="etym-greek">ΠΟΔΙ<button class="audio-btn" onclick="playAudio('audio/podi.mp3')" title="Escuchar pronunciación en griego" aria-label="Reproducir pronunciación de ΠΟΔΙ"><svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg></button></div>
+        <div class="etym-meaning">Sustantivo griego</div>
+        <div class="etym-desc">Del griego <em>pous / podos</em> (πούς / ποδός): pie, pata. La misma raíz de <em>podología</em>, <em>podio</em> y el latín <em>pes/pedis</em>.</div>
+      </div>
+      <div class="etym-equals">=</div>
+      <div class="etym-part etym-result">
+        <div class="etym-greek">ΤΡΙΠΟΔΙ<button class="audio-btn" onclick="playAudio('audio/tripodi.mp3')" title="Escuchar pronunciación en griego" aria-label="Reproducir pronunciación de ΤΡΙΠΟΔΙ" style="color:#fff;"><svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg></button></div>
+        <div class="etym-meaning">Trípode · Tres pies</div>
+        <div class="etym-desc">Objeto que se sostiene sobre tres patas. Símbolo de equilibrio, estabilidad y poder sagrado en el mundo greco-romano.</div>
+      </div>
+    </div>
+    <div class="mycenae-note">
+      <strong>🏺 Dato extraordinario:</strong> La palabra "trípode" <strong>(ti-ri-po-de)</strong> fue hallada grabada en tablillas de arcilla de la antigua <strong>Micenas</strong> (c. 1450–1200 a.C.), escritas en <span class="tt" data-tt="Sistema de escritura silábico usado en la Grecia micénica (c. 1500–1200 a.C.), el más antiguo en lengua griega conocido. Descifrado en 1952 por Michael Ventris.">Lineal B</span>, el sistema de escritura más antiguo del mundo griego. Esto convierte a Tripodi en uno de los apellidos con la raíz documentada más antigua de la <span class="tt" data-tt="Ciencia que estudia el origen, la historia y el significado de los nombres propios de persona y de lugar.">onomástica</span> mediterránea. Como señala el artículo del Wikipedia italiano sobre el trípode: es el único soporte con la propiedad geométrica de garantizar la <span class="tt" data-tt="Propiedad geométrica por la cual todos los puntos de apoyo comparten el mismo plano. El trípode la garantiza en cualquier superficie irregular; una mesa de cuatro patas, no.">coplanaridad</span> de sus puntos de apoyo en cualquier superficie.
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- TIMELINE -->
+<section id="timeline">
+  <div class="section">
+    <p class="section-eyebrow fade-up">Historia</p>
+    <h2 class="section-title fade-up">El viaje a través de los siglos</h2>
+    <p class="section-lead fade-up">Desde las tablillas micénicas hasta la <span class="tt" data-tt="Dispersión de un pueblo o comunidad fuera de su territorio de origen. La diáspora italiana del s. XIX–XX fue una de las mayores migraciones de la historia moderna: más de 25 millones de personas entre 1880 y 1940.">diáspora</span> en América del Sur, la historia del trípode y su apellido atraviesa tres milenios.</p>
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-dot-wrap"><div class="tl-dot">🏺</div></div>
+        <div class="tl-body">
+          <div class="tl-date">c. 1450–1200 a.C.</div>
+          <div class="tl-title">Micenas: primera mención escrita</div>
+          <div class="tl-text">La palabra <em>ti-ri-po-de</em> (trípode) aparece en las tablillas de arcilla en <span class="tt" data-tt="Sistema de escritura silábico micénico (c. 1500–1200 a.C.), el más antiguo en lengua griega conocido. Descifrado en 1952 por Michael Ventris.">Lineal B</span>. Los trípodes ya son objetos de valor: premios, ofrendas y activos de palacio. El apellido aún no existe, pero su raíz está documentada 3.500 años atrás.</div>
+          <div class="img-gallery-strip">
+            <img class="gallery-thumb" src="https://es.wikipedia.org/wiki/Micenas#/media/Archivo:Linear_B_(Mycenaean_Greek)_NAMA_Tablette_7671.jpg" alt="Tablilla micénica Lineal B"
+              onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Linear_B_%28Mycenaean_Greek%29_NAMA_Tablette_7671.jpg/320px-Linear_B_%28Mycenaean_Greek%29_NAMA_Tablette_7671.jpg'"
+              onclick="openLightbox(this.src,'<strong>Tablilla micénica en Lineal B</strong> — Una de las tablillas de arcilla halladas en Micenas (c. 1450–1200 a.C.) donde aparece inscrita la palabra <em>ti-ri-po-de</em> (trípode). Museo Arqueológico Nacional de Atenas.','https://es.wikipedia.org/wiki/Micenas')">
+            <img class="gallery-thumb" src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/Linear_B_%28Mycenaean_Greek%29_NAMA_Tablette_7671.jpg/320px-Linear_B_%28Mycenaean_Greek%29_NAMA_Tablette_7671.jpg" alt="Tablilla Lineal B NAMA 7671"
+              onclick="openLightbox(this.src,'<strong>Tablilla micénica NAMA 7671 en Lineal B</strong> — Tablilla de contabilidad del palacio de Micenas. El silabograma <em>ti-ri-po-de</em> es la primera evidencia escrita de la raíz del apellido Tripodi, 3.500 años atrás.','https://es.wikipedia.org/wiki/Micenas')">
+          </div>
+          <div class="tl-thumb-caption">Tablilla micénica con escritura Lineal B · toca para ampliar · <a href="https://es.wikipedia.org/wiki/Micenas" target="_blank" rel="noopener" style="color:var(--aegean-lt);">Micenas – Wikipedia</a></div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot-wrap"><div class="tl-dot">📜</div></div>
+        <div class="tl-body">
+          <div class="tl-date">c. 800–700 a.C.</div>
+          <div class="tl-title">Hesíodo gana un trípode "de orejas"</div>
+          <div class="tl-text">El poeta Hesíodo cruza el Euripo y compite en los juegos fúnebres de Anfidamante, rey de Calcis. Su victoria con un himno le vale un <strong>trípode orecchiuto</strong> (de orejas/asas), que dedica a las Musas del Helicón. Este episodio, narrado en <em>Las obras y los días</em> (vv. 650–662), es uno de los primeros testimonios literarios del trípode como premio honorífico.</div>
+          <div class="img-gallery-strip">
+            <img class="gallery-thumb" src="https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1677817771i/29462339.jpg" alt="Los trabajos y los días de Hesíodo"
+              onclick="openLightbox(this.src,'<strong>Los trabajos y los días</strong> de Hesíodo — La obra donde el poeta narra, en los versos 650–662, cómo ganó un trípode «de orejas» al cantar un himno en los juegos fúnebres de Anfidamante, rey de Calcis. Lo dedicó a las Musas del Helicón.')">
+            <img class="gallery-thumb" src="imagenes/Hesiodo_gana_tripode.png" alt="Hesíodo gana el trípode"
+              onerror="this.style.display='none'"
+              onclick="openLightbox(this.src,'<strong>Hesíodo gana el trípode</strong> — Representación de Hesíodo recibiendo su trípode orecchiuto (de orejas/asas) como premio poético en los juegos de Anfidamante, c. 700 a.C.')">
+          </div>
+          <div class="tl-thumb-caption">Portada de «Los trabajos y los días» e ilustración de Hesíodo · toca para ampliar</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot-wrap"><div class="tl-dot">⚡</div></div>
+        <div class="tl-body">
+          <div class="tl-date">c. 800–400 a.C.</div>
+          <div class="tl-title">La Pitia y el trípode sagrado de Delfos</div>
+          <div class="tl-text">El <span class="tt" data-tt="Centro de consulta profética consagrado al dios Apolo en Delfos (Grecia). Funcionó desde el s. VIII a.C. hasta el s. IV d.C. y fue el más influyente del mundo antiguo.">Oráculo</span> de Delfos alcanza su auge. La <span class="tt" data-tt="Sacerdotisa del dios Apolo en Delfos. Inhalaba vapores volcánicos y entraba en trance para pronunciar los oráculos, que los sacerdotes transcribían en hexámetros.">Pitia</span> profetiza sentada sobre un trípode dorado sobre una grieta del monte Parnaso, inhalando vapores (<em>pneuma</em>) de <span class="tt" data-tt="Gas inorgánico (C₂H₄) que emerge de fracturas geológicas volcánicas. Estudios modernos confirmaron su presencia en Delfos; en concentraciones bajas induce estados alterados de consciencia.">etileno</span>. El trípode se vuelve el símbolo personal de <span class="tt" data-tt="Dios griego del Sol, la música, la poesía y la profecía. Patrón del Oráculo de Delfos y de las colonias fundadas en la Magna Grecia. El trípode era su atributo sagrado.">Apolo</span>. El mitema de <span class="tt" data-tt="Héroe griego de fuerza sobrehumana, hijo de Zeus. Llamado Heracles en griego; Hércules es su nombre latino. Protagonista de los Doce Trabajos.">Hércules</span> que <strong>le roba el trípode a Apolo</strong> aparece en <span class="tt" data-tt="Representaciones pintadas sobre cerámica griega (ánforas, cráteras, hidrias). Principal fuente de iconografía del mundo antiguo. Las escenas de Heracles y el trípode son muy frecuentes en piezas del siglo VI a.C.">pinturas vasculares</span> del período geométrico: Zeus tuvo que intervenir para pacificar a ambos dioses.</div>
+          <div class="img-gallery-strip">
+            <img class="gallery-thumb" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Hydria_Delphic_tripod_MNA_Inv10913.jpg/320px-Hydria_Delphic_tripod_MNA_Inv10913.jpg" alt="Trípode de Delfos, lucha Heracles y Apolo"
+              onclick="openLightbox(this.src,'<strong>El Trípode de Delfos</strong> — Heracles fue al oráculo para hacer una consulta, pero la respuesta que recibió no era de su agrado, por lo que robó el símbolo délfico. La escena muestra la lucha con Apolo por el trípode y su poder oracular. Museo Arqueológico de Madrid.','https://es.wikipedia.org/wiki/Tr%C3%ADpode_%28mueble%29')">
+            <img class="gallery-thumb" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Herakles_tripod_Louvre_F341.jpg/320px-Herakles_tripod_Louvre_F341.jpg" alt="Heracles y Apolo disputan el trípode délfico, Louvre"
+              onclick="openLightbox(this.src,'<strong>Disputa de Heracles y Apolo por el trípode délfico</strong> — Oinochoe ático de figuras negras, c. 520 a.C. Museo del Louvre, París.','https://es.wikipedia.org/wiki/Archivo:Herakles_tripod_Louvre_F341.jpg')">
+            <img class="gallery-thumb" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Ancient_Greek_tripod_-_KAMA.jpg/320px-Ancient_Greek_tripod_-_KAMA.jpg" alt="Trípode griego período geométrico"
+              onclick="openLightbox(this.src,'<strong>Trípode griego del período geométrico</strong>, c. 950–900 a.C. Museo Arqueológico del Cerámico, Atenas.','https://es.wikipedia.org/wiki/Tr%C3%ADpode_%28mueble%29')">
+            <img class="gallery-thumb" src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/39/Attic_geometric_tripod_Antikensammlung_Berlin_2.jpg/320px-Attic_geometric_tripod_Antikensammlung_Berlin_2.jpg" alt="Trípode de cerámica protoática"
+              onclick="openLightbox(this.src,'<strong>Trípode de cerámica protoática</strong>, c. 850 a.C. Antikensammlung, Berlín.','https://es.wikipedia.org/wiki/Tr%C3%ADpode_%28mueble%29')">
+          </div>
+          <div class="tl-thumb-caption">Trípodes griegos y escenas délficas · toca para ampliar · <a href="https://es.wikipedia.org/wiki/Tr%C3%ADpode_%28mueble%29" target="_blank" rel="noopener" style="color:var(--aegean-lt);">Trípode – Wikipedia</a></div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot-wrap"><div class="tl-dot">⚔️</div></div>
+        <div class="tl-body">
+          <div class="tl-date">479 a.C.</div>
+          <div class="tl-title">El Trípode de Platea: victoria sobre Persia</div>
+          <div class="tl-text">Tras la batalla de Platea, las ciudades griegas fundieron con <strong>la décima parte del botín persa</strong> un magnífico trípode: un caldero de oro sostenido por una columna de bronce con tres serpientes entrelazadas. Sus <span class="tt" data-tt="Vueltas o anillos de una espiral. En la Columna Serpentina, las tres serpientes entrelazadas forman espiras de bronce que portaban los nombres de 31 ciudades griegas.">espiras</span> llevaban inscritos los nombres de todas las <span class="tt" data-tt="Ciudad-Estado autónoma de la Grecia antigua. Cada polis tenía sus propias leyes, gobierno y cultos religiosos. Atenas, Esparta y Corinto eran las más influyentes.">polis</span> que combatieron a Persia. El caldero de oro fue saqueado por los <span class="tt" data-tt="Habitantes de Fócida, región de la Grecia central. Durante la Tercera Guerra Sagrada (356–346 a.C.) se apoderaron del santuario de Delfos y fundieron el caldero de oro para financiar sus tropas.">focenses</span>; la columna de serpientes fue trasladada por el emperador Constantino a Constantinopla, donde —dañada, sin cabezas— aún puede verse hoy en el Hipódromo (Atmeidan).</div>
+          <div class="img-gallery-strip">
+            <img class="gallery-thumb" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/58/Snake_column_Hippodrome_Constantinople_2007.jpg/320px-Snake_column_Hippodrome_Constantinople_2007.jpg" alt="Columna de las Serpientes, Hipódromo de Constantinopla"
+              onclick="openLightbox(this.src,'<strong>La Columna de las Serpientes</strong> (Yilanli Sütun) — El fuste de bronce del Trípode de Platea en el antiguo Hipódromo de Constantinopla, hoy Plaza Sultán Ahmet, Estambul. Trasladado desde Delfos por Constantino en el año 324 d.C.','https://es.wikipedia.org/wiki/Columna_de_las_Serpientes')">
+            <img class="gallery-thumb" src="https://static.wixstatic.com/media/37d0c7_8cfdd0fbc88a4d3c9f808d78d403d9b2~mv2.jpg/v1/fill/w_348,h_836,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/37d0c7_8cfdd0fbc88a4d3c9f808d78d403d9b2~mv2.jpg" alt="Trípode de Platea reconstrucción 1886"
+              onclick="openLightbox(this.src,'<strong>Trípode de Platea</strong> — Reconstrucción por Ernst Fabricius (1886). El trípode original sostenía un caldero de oro fundido con el botín persa de la batalla de Platea (479 a.C.).')">
+            <img class="gallery-thumb" src="https://preview.redd.it/the-serpent-column-plataean-tripod-of-constantinople-in-479-v0-h207u4a4ppr61.png?auto=webp&s=205c229775bcf76ed001870da78634935a83897a" alt="Columna Serpentina a través del tiempo"
+              onclick="openLightbox(this.src,'<strong>La Columna Serpentina / Trípode de Platea</strong> a través de los siglos: en el 479 a.C., en el siglo V, en el siglo XIV y en la actualidad.','https://www.thebyzantinelegacy.com/serpent-column')">
+          </div>
+          <div class="tl-thumb-caption">Columna Serpentina · toca para ampliar · <a href="https://www.thebyzantinelegacy.com/serpent-column" target="_blank" rel="noopener" style="color:var(--aegean-lt);">Más información sobre el Trípode de Platea</a></div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot-wrap"><div class="tl-dot">🎭</div></div>
+        <div class="tl-body">
+          <div class="tl-date">335 a.C.</div>
+          <div class="tl-title">El Monumento de Lisícrates y la "Calle de los Trípodes"</div>
+          <div class="tl-text">Lisícrates, <span class="tt" data-tt="Ciudadano rico que en la Atenas clásica financiaba un coro de teatro como servicio cívico (liturgia). El trípode era el premio que recibía si su coro ganaba en las Dionisias.">corego</span> ateniense victorioso en las Dionisias, erige un monumento para exhibir su trípode-premio. Toda una calle de Atenas, la <em>odos ton tripodon</em> (Calle de los Trípodes), se llena de estos monumentos. El de Lisícrates, fechado en 335 a.C., es el único que sobrevive hasta hoy, aunque el trípode de su cima ya no está.</div>
+          <div class="img-gallery-strip">
+            <img class="gallery-thumb" src="https://es.greekreporter.com/wp-content/uploads/sites/2/2021/10/Tripodon-ahora-e1633724247403.jpg" alt="Calle Tripodon hoy con Monumento a Lisícrates"
+              onclick="openLightbox(this.src,'<strong>Calle Tripodon hoy</strong> con el Monumento a Lisícrates a la izquierda. Del libro «Plaka a través del tiempo».','https://es.greekreporter.com/2021/10/09/calle-mas-antigua-atenas-europa/')">
+            <img class="gallery-thumb" src="https://es.greekreporter.com/wp-content/uploads/sites/2/2021/10/monumento-plaka.jpg" alt="Monumento de Lisícrates en 1900"
+              onclick="openLightbox(this.src,'<strong>El Monumento de Lisícrates</strong> tal como se veía en el año 1900. Del libro «Atenas a través del tiempo».','https://es.greekreporter.com/2021/10/09/calle-mas-antigua-atenas-europa/')">
+            <img class="gallery-thumb" src="https://es.greekreporter.com/wp-content/uploads/sites/2/2021/10/monumento-plaka-tiempo.jpg" alt="Monumento de Lisícrates, litografía 1789"
+              onclick="openLightbox(this.src,'<strong>El Monumento de Lisícrates</strong> anexo al monasterio de los capuchinos. Litografía, 1789. Del libro «Atenas a través del tiempo».','https://es.greekreporter.com/2021/10/09/calle-mas-antigua-atenas-europa/')">
+          </div>
+          <div class="tl-thumb-caption">Monumento de Lisícrates y la Calle de los Trípodes · toca para ampliar · <a href="https://es.greekreporter.com/2021/10/09/calle-mas-antigua-atenas-europa/" target="_blank" rel="noopener" style="color:var(--aegean-lt);">Más información</a></div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot-wrap"><div class="tl-dot">⛵</div></div>
+        <div class="tl-body">
+          <div class="tl-date">c. 750–500 a.C.</div>
+          <div class="tl-title">La Magna Grecia: los colonos llevan el nombre al sur de Italia</div>
+          <div class="tl-text">Colonos griegos fundan ciudades en las costas de Calabria, Campania y Sicilia. Nace la <em>Magna Grecia</em>. Con ellos viaja la lengua, la religión, los gremios y los apellidos. Locros Epicefirios, Regio (hoy Reggio Calabria) y Síbaris se convierten en centros culturales helénicos. El término <em>tripodion</em> comienza a usarse como apodo gremial o familiar.</div>
+          <div class="img-gallery-strip">
+            <img class="gallery-thumb" src="imagenes/Migración_grecia_italia.png" alt="Migración griega a Italia"
+              onerror="this.style.display='none'"
+              onclick="openLightbox(this.src,'<strong>Migración griega al sur de Italia</strong> — Las oleadas colonizadoras griegas que fundaron la Magna Grecia entre los siglos VIII y VI a.C., origen del apellido Tripodi en el sur de la península itálica.')">
+          </div>
+          <div class="tl-thumb-caption">Migración griega a Italia · toca para ampliar</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot-wrap"><div class="tl-dot">🕌</div></div>
+        <div class="tl-body">
+          <div class="tl-date">535–1071 d.C.</div>
+          <div class="tl-title">Bizancio preserva el griego en Calabria</div>
+          <div class="tl-text">El Imperio Bizantino reconquista el sur de Italia. Por más de cinco siglos, el griego vuelve a ser lengua oficial en Calabria y Sicilia. Los monasterios <span class="tt" data-tt="Monjes de rito oriental que siguen la regla de San Basilio el Grande (s. IV). En Calabria fundaron centenares de monasterios entre los siglos VII y XI, preservando la cultura y la lengua griega en el sur de Italia.">basilianos</span> florecen. Esta capa bizantina es clave para entender por qué Tripodi sobrevivió sin latinizarse plenamente, a diferencia de otros apellidos de la región.</div>
+          <div class="img-gallery-strip">
+            <img class="gallery-thumb" src="imagenes/Reconquista_calabria_y_sicilia_imperio_bizantino.png" alt="Reconquista de Calabria por Bizancio"
+              onerror="this.style.display='none'"
+              onclick="openLightbox(this.src,'<strong>Reconquista de Calabria y Sicilia por el Imperio Bizantino</strong> (535–1071 d.C.) — Bajo dominio bizantino, el griego volvió a ser lengua oficial en el sur de Italia durante más de cinco siglos, consolidando apellidos helénicos como Tripodi.')">
+          </div>
+          <div class="tl-thumb-caption">Imperio Bizantino en Calabria · toca para ampliar</div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot-wrap"><div class="tl-dot">📜</div></div>
+        <div class="tl-body">
+          <div class="tl-date">Siglo X — Sicilia</div>
+          <div class="tl-title">El <span class="tt" data-tt="Linaje o familia noble italiana con historia documentada y, frecuentemente, reconocimiento heráldico. Equivale aproximadamente al concepto de 'casa' o 'estirpe' nobiliaria.">casato</span> siciliano: los Tripodi como familia notable</div>
+          <div class="tl-text">Documentos italianos registran a los Tripodi (también llamados Tripodo) como un <em>antico ed assai notabile <span class="tt" data-tt="Linaje o familia noble italiana con historia documentada y reconocimiento heráldico.">casato</span> siciliano</em> con primera residencia en Messina. Desde el siglo XVII se propagan por todo el reino. La familia produjo <strong>terratenientes, caballeros, doctores en leyes, comisarios apostólicos, abogados fiscales y miembros de órdenes religiosas</strong>. El blasón original corresponde a la rama siciliana.</div>
+
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot-wrap"><div class="tl-dot">🚢</div></div>
+        <div class="tl-body">
+          <div class="tl-date">1880–1940</div>
+          <div class="tl-title">La gran diáspora: Argentina y los EE.UU.</div>
+          <div class="tl-text">La pobreza del <em><span class="tt" data-tt="'Mediodía' en italiano. Denominación geográfica y socioeconómica del sur de Italia (Campania, Basilicata, Calabria, Apulia, Sicilia, Cerdeña), históricamente más pobre que el norte.">Mezzogiorno</span></em> impulsa la emigración masiva. Miles de calabreses y sicilianos se embarcan hacia Buenos Aires, Rosario, Nueva York y Nueva Jersey. El apellido Tripodi aparece en manifiestos de pasajeros de esos años. En Argentina se convierte en uno de los apellidos calabreses más frecuentes, junto a Romeo, Greco, Mancuso y Morabito.</div>
+          <div class="img-gallery-strip">
+            <img class="gallery-thumb" src="imagenes/Diaspora_italiana.png" alt="Diáspora italiana"
+              onerror="this.style.display='none'"
+              onclick="openLightbox(this.src,'<strong>La gran diáspora italiana</strong> — Mapa de la emigración masiva italiana entre 1880 y 1940. Más de 4 millones de italianos emigraron, siendo los calabreses quienes más se dirigieron a Argentina y los EE.UU.','https://es.wikipedia.org/wiki/Emigraci%C3%B3n_italiana')">
+          </div>
+          <div class="tl-thumb-caption">Mapa de la diáspora italiana · toca para ampliar · <a href="https://es.wikipedia.org/wiki/Emigraci%C3%B3n_italiana" target="_blank" rel="noopener" style="color:var(--aegean-lt);">Emigración italiana – Wikipedia</a></div>
+        </div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-dot-wrap"><div class="tl-dot">🌍</div></div>
+        <div class="tl-body">
+          <div class="tl-date">Hoy</div>
+          <div class="tl-title">~17.000 Tripodis en el mundo</div>
+          <div class="tl-text">El apellido está presente en más de 20 países. Italia concentra la mayor proporción, seguida por Argentina, Estados Unidos, Canadá y Brasil. La variante <em>Tripodi</em> es la dominante; <em>Tripodo</em> y <em>Tripoddu</em> persisten en regiones específicas. Las bases de datos genealógicas digitalizadas permiten hoy reconstruir el árbol familiar.</div>
+          <div class="img-gallery-strip">
+            <img class="gallery-thumb" src="imagenes/tripodi_mundo.png" alt="Distribución de los Tripodi en el mundo"
+              onerror="this.style.display='none'"
+              onclick="openLightbox(this.src,'<strong>Los Tripodi en el mundo hoy</strong> — Distribución geográfica del apellido Tripodi en el siglo XXI, con presencia en más de 20 países.')">
+          </div>
+          <div class="tl-thumb-caption">Distribución global del apellido · toca para ampliar</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- HYPOTHESES -->
+<section class="hypo-section" id="hypo">
+  <div class="section">
+    <p class="section-eyebrow fade-up">Las tres hipótesis</p>
+    <h2 class="section-title fade-up">¿Por qué alguien se llamaría "Tres Pies"?</h2>
+    <p class="section-lead fade-up">En la <span class="tt" data-tt="Ciencia que estudia el origen, la historia y el significado de los nombres propios de persona y de lugar.">onomástica</span> mediterránea, los apellidos suelen surgir de la ocupación, el lugar de origen, o el vínculo con lo sagrado. Tripodi tiene argumentos sólidos para cada una. Hacé clic en cada tarjeta para expandirla.</p>
+
+    <div class="donut-wrap fade-up">
+      <canvas id="donutCanvas" width="200" height="200"></canvas>
+      <div class="donut-legend">
+        <div class="legend-item"><div class="legend-dot" style="background:#C9A84C"></div><span>Origen Gremial / Artesanal</span><span class="legend-pct">45%</span></div>
+        <div class="legend-item"><div class="legend-dot" style="background:#B85C2A"></div><span>Origen Topográfico / Geográfico</span><span class="legend-pct">35%</span></div>
+        <div class="legend-item"><div class="legend-dot" style="background:#2A5B7A"></div><span>Origen Sacro / Ritual</span><span class="legend-pct">20%</span></div>
+        <p style="font-size:.72rem;color:var(--text-muted);font-family:'Inter',sans-serif;margin-top:.5rem;">Peso relativo estimado según genealogistas mediterráneos.</p>
+      </div>
+    </div>
+
+    <div class="hypo-grid">
+      <div class="hypo-card" onclick="openHypoModal(this)">
+        <div class="hypo-num">01</div>
+        <div class="hypo-header"><div class="hypo-icon">⚒️</div><div><div class="hypo-title">Origen Gremial</div><div class="hypo-subtitle">Artesanos del bronce y el hierro</div></div></div>
+        <div class="hypo-bar-wrap"><div class="hypo-bar-label"><span>Probabilidad histórica</span><span style="color:var(--gold)">45%</span></div><div class="hypo-bar"><div class="hypo-bar-fill" style="--fill:45%"></div></div></div>
+        <div class="hypo-thumb-wrap">
+          <img class="hypo-thumb" src="imagenes/Imagen_3.png" alt="Trípode de bronce griego" onclick="event.stopPropagation();openLightbox('imagenes/Imagen_3.png','<strong>El trípode artesanal griego</strong> — Caldero de bronce sobre tres patas, el objeto que dio apellido a los primeros artesanos Tripodi de la Magna Grecia.')">
+          <div class="hypo-thumb-label">El objeto · toca para ampliar</div>
+        </div>
+        <div class="hypo-chevron"><svg width="14" height="8" viewBox="0 0 14 8" fill="none"><path d="M1 1l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="hypo-body">La hipótesis más sólida. En el Mediterráneo antiguo era común que los artesanos tomaran su herramienta o producto como apellido familiar (uso metonímico).</div>
+        <div class="hypo-detail">
+          El trípode era un objeto de enorme valor: soporte de calderos para cocinar, altar de sacrificios, premio en los Juegos Olímpicos, regalo de hospitalidad. Homero lo menciona repetidas veces en la Odisea como obsequio valioso entre nobles. Un herrero o fundidor de trípodes —especialistas muy apreciados— pudo haber sido llamado "el Tripodi" por su oficio.<br><br>
+          El mismo Ancestry.com clasifica Tripodi como "probable nombre ocupacional metonímico para un cocinero o para un fabricante de soportes" (del griego medieval <em>tripodion</em>, trípode). Los artesanos del sur de Italia heredaron las técnicas griegas de metalurgia. Hallazgos arqueológicos en Reggio Calabria y Locri confirman talleres de bronce activos desde el siglo VII a.C.<br><br>
+          Esta hipótesis es consistente con apellidos hermanos de la región: <em>Ferraro</em> (herrero), <em>Mastroianni</em> (maestro artesano), <em>Cannistrà</em> (cestero). Todos describen al fabricante por su producto.
+        </div>
+      </div>
+
+      <div class="hypo-card" onclick="openHypoModal(this)">
+        <div class="hypo-num">02</div>
+        <div class="hypo-header"><div class="hypo-icon">⛰️</div><div><div class="hypo-title">Origen Topográfico</div><div class="hypo-subtitle">Habitantes de tres cimas o tres colinas</div></div></div>
+        <div class="hypo-bar-wrap"><div class="hypo-bar-label"><span>Probabilidad histórica</span><span style="color:var(--gold)">35%</span></div><div class="hypo-bar"><div class="hypo-bar-fill" style="--fill:35%"></div></div></div>
+        <div class="hypo-thumb-wrap">
+          <img class="hypo-thumb" src="imagenes/Imagen_2.png" alt="Costa de Calabria con formación rocosa" onclick="event.stopPropagation();openLightbox('imagenes/Imagen_2.png','<strong>Calabria, sur de Italia</strong> — La formación rocosa «a tre piedi» sobre el mar, que ilustra el tipo de topónimo natural que pudo dar origen al apellido Tripodi.')">
+          <div class="hypo-thumb-label">El paisaje · toca para ampliar</div>
+        </div>
+        <div class="hypo-chevron"><svg width="14" height="8" viewBox="0 0 14 8" fill="none"><path d="M1 1l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="hypo-body">La segunda hipótesis. Calabria es una región de montañas abruptas. Promotorios o formaciones de "tres patas" pueden haber dado nombre a aldeas enteras.</div>
+        <div class="hypo-detail">
+          En la tradición onomástica griega e itálica, es común que un habitante tome el topónimo de su lugar como apellido. Un paraje con tres picos, tres promontorios o tres cerros que formen visualmente una silueta similar a un trípode pudo generar el nombre del asentamiento, y luego el de sus habitantes.<br><br>
+          La imagen de la costa calabresa que encabeza esta infografía lo ilustra con claridad: la formación rocosa "a tre piedi" (tres pies) sobre el mar, con el cartel identificatorio, sugiere exactamente este tipo de toponimia natural.<br><br>
+          La terminación del apellido es consistente con otros apellidos topográficos calabreses: <em>Scopelliti</em> (de <em>skopelos</em>, roca), <em>Ascioti</em> (del topónimo Ascea). La geografía extrema de Calabria —acantilados, colinas trilobuladas, promontorios sobre el Estrecho de Mesina— hacía inevitable este tipo de nomenclatura.
+        </div>
+      </div>
+
+      <div class="hypo-card" onclick="openHypoModal(this)">
+        <div class="hypo-num">03</div>
+        <div class="hypo-header"><div class="hypo-icon">🔮</div><div><div class="hypo-title">Origen Sacro</div><div class="hypo-subtitle">El trípode como símbolo divino de Apolo</div></div></div>
+        <div class="hypo-bar-wrap"><div class="hypo-bar-label"><span>Probabilidad histórica</span><span style="color:var(--gold)">20%</span></div><div class="hypo-bar"><div class="hypo-bar-fill" style="--fill:20%"></div></div></div>
+        <div class="hypo-thumb-wrap">
+          <img class="hypo-thumb" src="imagenes/Imagen_4.png" alt="La Pitia sobre el trípode sagrado" onclick="event.stopPropagation();openLightbox('imagenes/Imagen_4.png','<strong>La Pitia sobre el trípode</strong> — La sacerdotisa de Apolo en éxtasis profético. Para los devotos del culto apolíneo de la Magna Grecia, llevar el nombre «Tripodi» era un homenaje al símbolo más sagrado del dios.')">
+          <div class="hypo-thumb-label">El oráculo · toca para ampliar</div>
+        </div>
+        <div class="hypo-chevron"><svg width="14" height="8" viewBox="0 0 14 8" fill="none"><path d="M1 1l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="hypo-body">La más evocadora. El trípode era el símbolo personal del dios Apolo y de su <span class="tt" data-tt="Centro de consulta profética consagrado al dios Apolo en Delfos. Funcionó desde el s. VIII a.C. hasta el s. IV d.C. y fue el más influyente del mundo antiguo.">Oráculo</span> en Delfos, el centro espiritual del mundo griego.</div>
+        <div class="hypo-detail">
+          Guardianes del templo, sacerdotes o familias devotas de Apolo pudieron adoptar el trípode como símbolo familiar. Esta práctica de identificarse con el atributo de una deidad era común en las colonias griegas de la Magna Grecia, donde el culto apolíneo era especialmente fuerte. Las colonias fundadas bajo el patrocinio de Delfos —<span class="tt" data-tt="Ciudad de la Magna Grecia, hoy Locri Epizefiri (Calabria). Colonia griega fundada c. 680 a.C., famosa por ser la primera ciudad griega en codificar leyes escritas.">Locri</span>, <span class="tt" data-tt="Ciudad griega fundada c. 730 a.C., hoy Reggio Calabria. Epicentro del apellido Tripodi y cruce cultural entre Grecia, Roma y Bizancio.">Regio</span>, <span class="tt" data-tt="Colonia griega en Calabria, sede de la escuela filosófica de Pitágoras. Centro cultural helénico clave de la Magna Grecia.">Crotona</span>— mantenían vínculos directos con el Oráculo.<br><br>
+          El estudioso Martin Litchfield West vinculó el uso del trípode délfico con prácticas <span class="tt" data-tt="Relativo al chamanismo: tradición espiritual en la que el chamán entra en estado de trance para comunicarse con el mundo de los espíritus. West argumentó que la Pitia practicaba una forma análoga de trance inducido.">chamánicas</span> procedentes de Asia Central, señalando que el estado de trance de la Pitia era análogo al del chamán siberiano. Si el trípode era el nexo entre lo humano y lo divino, tomar su nombre era una forma de honor sagrado.<br><br>
+          Según Heródoto (Historias V, 59–61), los trípodes de victoria no podían retirarse de los santuarios —debían quedar consagrados al dios—, lo que subraya su dimensión sagrada e intransferible: el ideal perfecto para un nombre de familia que "permanece" de generación en generación.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- IMAGE 2: Tripode de bronce (Imagen_3.png) -->
+<div class="img-banner" onclick="toggleBannerCaption(this)" id="banner2">
+  <img src="imagenes/Imagen_3.png" alt="Trípode de bronce griego con decoración de grecas, sobre el fuego" loading="lazy" onclick="openLightbox('imagenes/Imagen_3.png','<strong>El trípode artesanal griego</strong> — Caldero de bronce con decoración de grecas sobre tres patas, tal como los fabricaban los artesanos de la Magna Grecia. Homero los menciona como premio y ofrenda en la Odisea; Hesíodo ganó uno «de orejas» en los juegos de Anfidamante. La hipótesis gremial sugiere que los <em>fabricantes</em> de estos objetos fueron los primeros en llevar el apellido Tripodi.')">
+  <div class="img-caption">
+    <strong>El trípode artesanal griego</strong> — Caldero de bronce con decoración de grecas sobre tres patas, tal como los fabricaban los artesanos de la Magna Grecia. Homero los menciona como prémio y ofrenda en la Odisea; Hesíodo ganó uno "de orejas" en los juegos de Anfidamante. La hipótesis gremial sugiere que los <em>fabricantes</em> de estos objetos fueron los primeros en llevar el apellido Tripodi.
+  </div>
+  <span class="img-caption-tap-hint">toca para leer</span>
+</div>
+
+<!-- ORACLE -->
+<section class="oracle-section" id="oracle">
+  <div class="section">
+    <p class="section-eyebrow fade-up">El Oráculo de Delfos</p>
+    <h2 class="section-title fade-up">La Pitia y el trípode: el objeto más sagrado de Grecia</h2>
+
+    <div class="oracle-grid">
+      <!-- IMAGE 3: La Pitia (Imagen_4 en contexto) -->
+      <div class="oracle-visual fade-up" style="position:relative;">
+        <div style="position:relative;width:min(360px,100%);">
+          <div class="oracle-ring oracle-ring-1" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);"></div>
+          <div class="oracle-ring oracle-ring-2" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);"></div>
+          <div class="side-img-wrap">
+            <img src="imagenes/Imagen_4.png" alt="La Pitia en el trípode del Oráculo de Delfos, con sacerdotes transcribiendo sus profecías" style="max-height:340px;object-fit:cover;object-position:center top;cursor:pointer;" onclick="openLightbox('imagenes/Imagen_4.png','<strong>La Pitia sobre el trípode</strong> — La sacerdotisa de Apolo en el adyton del templo de Delfos, inhalando los vapores de etileno de la fisura geológica bajo sus pies. Los sacerdotes transcriben sus profecías en verso. El trípode era el nexo entre lo mortal y lo divino.')">
+            <div class="side-img-caption"><strong>La Pitia sobre el trípode</strong> — La sacerdotisa de Apolo en el adyton del templo de Delfos, inhalando los vapores de etileno de la fisura geológica bajo sus pies. Los sacerdotes transcriben sus profecías en verso. El trípode era el nexo entre lo mortal y lo divino. <span style="color:var(--gold);font-size:.65rem;">↗ toca para ampliar</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fade-up">
+        <div class="oracle-quote">
+          "Sobre la boca [de la fisura] se eleva un alto trípode. Ascendiendo sobre él, la Pitia inhala el <em>pneuma</em> y luego pronuncia sus profecías en verso o en prosa."
+          <cite>— Estrabón, Geografía 9.3.5, c. 20 a.C.</cite>
+        </div>
+        <ul class="facts-list">
+          <li>El Oráculo de Delfos estuvo activo por más de <strong>1.000 años</strong>, del siglo VIII a.C. al siglo IV d.C.</li>
+          <li>La Pitia se sentaba sobre un <strong>trípode dorado</strong> encima de una fisura geológica que emitía vapores de <span class="tt" data-tt="Gas (C₂H₄) que emerge de fracturas geológicas volcánicas. En concentraciones bajas produce estados de alteración de consciencia. Confirmado por estudios geológicos modernos en Delfos.">etileno</span>, induciendo trance profético.</li>
+          <li>El trípode era el símbolo personal de <strong>Apolo</strong>. Según el mito, lo consagró al templo tras matar a la serpiente <span class="tt" data-tt="Enorme serpiente de la mitología griega que custodiaba el ombligo del mundo en Delfos. Apolo la mató con sus flechas y se apoderó del oráculo, dando su nombre a la sacerdotisa: la Pitia.">Pitón</span>.</li>
+          <li><strong>Hércules</strong> intentó robar el trípode délfico; Zeus tuvo que intervenir para pacificar a Apolo y al héroe.</li>
+          <li>El <strong>Trípode de <span class="tt" data-tt="Ciudad de Beocia (Grecia). En el 479 a.C. fue escenario de la batalla decisiva que expulsó al ejército persa de Grecia, poniendo fin a las Guerras Médicas.">Platea</span></strong> (479 a.C.), fundido con el botín persa, fue llevado por Constantino a Constantinopla, donde aún existe.</li>
+          <li>El estudioso <strong>Martin L. West</strong> vinculó el uso del trípode con prácticas <span class="tt" data-tt="Relativo al chamanismo: tradición espiritual en la que el chamán entra en trance para comunicarse con el mundo sobrenatural.">chamánicas</span> de Asia Central.</li>
+          <li>Las colonias de la Magna Grecia enviaban ofrendas votivas a Delfos regularmente.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- GEO -->
+<section class="geo-section" id="geo">
+  <div class="section">
+    <p class="section-eyebrow fade-up">Distribución geográfica</p>
+    <h2 class="section-title fade-up">El epicentro calabrés y su irradiación</h2>
+    <p class="section-lead fade-up">La distribución del apellido en Italia es una huella casi perfecta de la antigua Magna Grecia: concentrado en el extremo sur, diluyéndose hacia el norte.</p>
+    <div class="side-img-wrap fade-up" style="margin-bottom:2.5rem;cursor:pointer;" onclick="openLightbox('imagenes/Epicentro_calabres_y_su_irradiacion.png','<strong>Epicentro calabrés e irradiación del apellido Tripodi</strong> — El apellido nació en la antigua <em>Rhegion</em> (hoy Reggio Calabria) y desde allí se expandió hacia Messina y Sicilia, el norte de Italia y finalmente a América y el mundo durante la gran diáspora de los siglos XIX y XX.')">
+      <img src="imagenes/Epicentro_calabres_y_su_irradiacion.png" alt="Epicentro calabrés e irradiación del apellido Tripodi" onerror="this.closest('.side-img-wrap').style.display='none'">
+      <div class="side-img-caption"><strong>El epicentro calabrés y su irradiación</strong> — Distribución geográfica del apellido desde su núcleo en Reggio Calabria hacia Sicilia, el norte de Italia y la <span class="tt" data-tt="Dispersión de un pueblo o comunidad fuera de su territorio de origen.">diáspora</span> americana. <span style="color:var(--gold);font-size:.65rem;">↗ toca para ampliar</span></div>
+    </div>
+
+    <div class="geo-grid">
+      <div>
+        <div class="geo-bars fade-up">
+          <div class="geo-bar-item"><div class="geo-bar-name">Reggio Calabria</div><div class="geo-bar-track"><div class="geo-bar-fill" style="--pct:88%"></div></div><div class="geo-bar-val">88%</div></div>
+          <div class="geo-bar-item"><div class="geo-bar-name">Vibo Valentia</div><div class="geo-bar-track"><div class="geo-bar-fill" style="--pct:62%"></div></div><div class="geo-bar-val">62%</div></div>
+          <div class="geo-bar-item"><div class="geo-bar-name">Messina (Sicilia)</div><div class="geo-bar-track"><div class="geo-bar-fill" style="--pct:48%"></div></div><div class="geo-bar-val">48%</div></div>
+          <div class="geo-bar-item"><div class="geo-bar-name">Catanzaro</div><div class="geo-bar-track"><div class="geo-bar-fill" style="--pct:32%"></div></div><div class="geo-bar-val">32%</div></div>
+          <div class="geo-bar-item"><div class="geo-bar-name">Cosenza</div><div class="geo-bar-track"><div class="geo-bar-fill" style="--pct:24%"></div></div><div class="geo-bar-val">24%</div></div>
+          <div class="geo-bar-item"><div class="geo-bar-name">Catania (Sicilia)</div><div class="geo-bar-track"><div class="geo-bar-fill" style="--pct:18%"></div></div><div class="geo-bar-val">18%</div></div>
+          <div class="geo-bar-item"><div class="geo-bar-name">Nápoles / Salerno</div><div class="geo-bar-track"><div class="geo-bar-fill" style="--pct:12%"></div></div><div class="geo-bar-val">12%</div></div>
+          <div class="geo-bar-item"><div class="geo-bar-name">Norte de Italia</div><div class="geo-bar-track"><div class="geo-bar-fill" style="--pct:8%"></div></div><div class="geo-bar-val">8%</div></div>
+        </div>
+        <p style="font-size:.72rem;color:var(--text-muted);font-family:'Inter',sans-serif;margin-top:1rem;">Presencia relativa; 100% = densidad máxima en Reggio Calabria. Fuente: registros genealógicos italianos y bases onomásticas.</p>
+      </div>
+      <div class="geo-notes fade-up">
+        <div class="geo-note-card"><div class="geo-note-title">🗺️ ¿Por qué Reggio Calabria?</div><div class="geo-note-text">Reggio (la antigua <em>Rhegion</em> griega, fundada c. 730 a.C.) fue una de las primeras colonias de la Magna Grecia. Su posición en el Estrecho de Mesina la convirtió en cruce de culturas. La pervivencia del griego hasta los siglos XIV–XV garantizó que apellidos helénicos como Tripodi se conservaran casi intactos.</div></div>
+        <div class="geo-note-card"><div class="geo-note-title">🌊 El puente con Sicilia</div><div class="geo-note-text">El apellido cruzó el Estrecho de Mesina (apenas 3 km) naturalmente. Messina, la antigua <em>Zancle</em> griega, fue el punto de contacto histórico entre Calabria y Sicilia. Los documentos heráldicos registran a los Tripodi como <span class="tt" data-tt="Linaje o familia noble italiana con historia documentada y reconocimiento heráldico.">casato</span> siciliano con sede en Messina desde el siglo XVII.</div></div>
+        <div class="geo-note-card"><div class="geo-note-title">🔠 Apellidos hermanos griegos</div><div class="geo-note-text">Tripodi pertenece al grupo de apellidos calabreses de raíz griega: <em>Macrì</em> ("el largo"), <em>Laganà</em> ("hortelano"), <em>Foti</em> ("luz"), <em>Arcuri</em> ("oso"), <em>Scopelliti</em> ("roca"). Todos sobrevivieron bajo la sombrilla del griego medieval y el dialecto calabrés.</div></div>
+        <div class="geo-note-card"><div class="geo-note-title">🌍 En el mundo hoy</div><div class="geo-note-text">Aproximadamente <strong>17.256 personas</strong> llevan el apellido Tripodi en todo el mundo. Italia concentra la mayor parte; Argentina, EE.UU., Brasil y Canadá son los destinos más frecuentes de la <span class="tt" data-tt="Dispersión de un pueblo o comunidad fuera de su territorio de origen.">diáspora</span>.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- DIASPORA -->
+<section class="diaspora-section" id="diaspora">
+  <div class="section">
+    <p class="section-eyebrow fade-up">La diáspora</p>
+    <h2 class="section-title fade-up">De Calabria al mundo: cinco olas de migración</h2>
+    <p class="section-lead fade-up">La historia del apellido Tripodi fuera de Italia refleja los grandes movimientos migratorios del siglo XIX y XX.</p>
+    <div style="margin-top:3.5rem;">
+      <div class="flow-stages">
+        <div class="flow-stage"><div class="flow-connector"><div class="flow-node">🏛️</div><div class="flow-line"></div></div><div class="flow-body"><div class="flow-era">Siglos VIII a.C. – XVII d.C.</div><div class="flow-title">El origen: Calabria y Sicilia como raíz única</div><div class="flow-text">Por más de dos milenios, el apellido permanece concentrado en el extremo sur de Italia. Los documentos heráldicos registran la rama siciliana (Messina) y luego calabresa. La emigración es local: hacia Nápoles o el norte de Italia.</div></div></div>
+        <div class="flow-stage"><div class="flow-connector"><div class="flow-node">🚢</div><div class="flow-line"></div></div><div class="flow-body"><div class="flow-era">1880–1914</div><div class="flow-title">La gran emigración: Argentina y los EE.UU.</div><div class="flow-text">El <em><span class="tt" data-tt="'Mediodía' en italiano. Denominación del sur de Italia, históricamente más pobre que el norte y origen de las grandes olas migratorias del s. XIX–XX.">Mezzogiorno</span></em> pobre impulsa la emigración masiva. Más de 4 millones de italianos emigran. Los calabreses van a Argentina y los EE.UU. El apellido Tripodi aparece en los manifiestos de pasajeros de estos años.</div><div class="flow-destinations"><span class="dest-tag">🇦🇷 Buenos Aires</span><span class="dest-tag">🇦🇷 Rosario</span><span class="dest-tag">🇺🇸 Nueva York</span><span class="dest-tag">🇺🇸 Nueva Jersey</span></div></div></div>
+        <div class="flow-stage"><div class="flow-connector"><div class="flow-node">🌊</div><div class="flow-line"></div></div><div class="flow-body"><div class="flow-era">1918–1940</div><div class="flow-title">Entre guerras: Brasil y Venezuela</div><div class="flow-text">El período de entreguerras consolida las comunidades italianas en América del Sur. Tripodis llegan a São Paulo, Río de Janeiro y Caracas.</div><div class="flow-destinations"><span class="dest-tag">🇧🇷 São Paulo</span><span class="dest-tag">🇧🇷 Río de Janeiro</span><span class="dest-tag">🇻🇪 Caracas</span></div></div></div>
+        <div class="flow-stage"><div class="flow-connector"><div class="flow-node">✈️</div><div class="flow-line"></div></div><div class="flow-body"><div class="flow-era">1950–1980</div><div class="flow-title">La emigración económica europea</div><div class="flow-text">En la posguerra, miles de calabreses emigran al norte de Italia y a Europa: Bélgica, Alemania, Suiza, Francia. Tripodis aparecen en registros de trabajadores en las minas de carbón de Limburgo.</div><div class="flow-destinations"><span class="dest-tag">🇧🇪 Bélgica</span><span class="dest-tag">🇩🇪 Alemania</span><span class="dest-tag">🇨🇭 Suiza</span><span class="dest-tag">🇫🇷 Francia</span></div></div></div>
+        <div class="flow-stage"><div class="flow-connector"><div class="flow-node">🌐</div></div><div class="flow-body"><div class="flow-era">1980 – hoy</div><div class="flow-title">Globalización: identidad italiana transnacional</div><div class="flow-text">Las terceras y cuartas generaciones en Argentina, EE.UU. y Brasil redescubren su herencia italiana a través de bases de datos genealógicas. El apellido —que partió de una tablilla micénica— navega hoy en las redes sociales.</div><div class="flow-destinations"><span class="dest-tag">🇦🇷 Argentina</span><span class="dest-tag">🇺🇸 EE.UU.</span><span class="dest-tag">🇧🇷 Brasil</span><span class="dest-tag">🇨🇦 Canadá</span><span class="dest-tag">🇦🇺 Australia</span><span class="dest-tag">🌍 +15 países</span></div>
+          <img class="flow-img-thumb" src="imagenes/tripodi_mundo.png" alt="Tripodi en el mundo"
+            onerror="this.style.display='none'"
+            onclick="openLightbox(this.src,'<strong>Los Tripodi en el mundo hoy</strong> — Distribución global del apellido en el siglo XXI.')">
+        </div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- HERALDRY -->
+<section class="heraldry-section" id="heraldry">
+  <div class="section">
+    <p class="section-eyebrow fade-up">Heráldica</p>
+    <h2 class="section-title fade-up">Dos blasones, un mismo linaje</h2>
+    <p class="section-lead fade-up">El Heraldrys Institute of Rome registra <strong>dos dossiers heráldicos distintos</strong> para el apellido Tripodi: uno vinculado a la rama siciliana noble (<em>Notabili – Cavalieri</em>, Dossier 882605) y otro a una rama de origen boloñés (<em>Nobili</em>, Dossier 881544). La dualidad refleja la expansión del linaje desde Messina hacia distintas regiones de Italia a partir del siglo XVII.</p>
+
+    <div class="heraldry-dual fade-up">
+
+      <!-- BLASÓN 1: Sicilia / Messina (Dossier 882605) - el que ya existía -->
+      <div class="heraldry-block">
+        <div class="heraldry-block-header">
+          🛡️ Blasón I — Rama Siciliana
+          <span class="heraldry-block-badge">Dossier 882605 · Notabili – Cavalieri · Sicilia</span>
+        </div>
+        <div class="heraldry-block-grid">
+          <div class="coat-of-arms-wrap">
+            <img src="imagenes/Tripodi_heraldica1.png" alt="Escudo heráldico Tripodi - rama siciliana" class="coat-of-arms-img coat-img-clickable"
+              onclick="openLightbox('imagenes/Tripodi_heraldica1.png','<strong>Escudo Tripodi / Tripodo — Rama Siciliana</strong><br>Di verde all\'aquila bicipite di nero coronata d\'oro.<br><em>De sinople (verde), con el águila bicéfala de sable (negro), coronada de oro.</em><br>Fuente: Heraldrys Institute of Rome, Dossier 882605.')"
+              onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <div class="coat-placeholder" style="display:none;">
+              <div class="coat-pending">🛡️</div>
+              <div>Imagen a agregar:<br><em>Tripodi_heraldica1.png</em><br>en la carpeta <strong>/imagenes</strong></div>
+            </div>
+            <img src="imagenes/Tripodi_heraldica1a.png" alt="Escudo heráldico Tripodi - variante" class="coat-of-arms-img coat-img-clickable" style="margin-top:.5rem;"
+              onclick="openLightbox('imagenes/Tripodi_heraldica1a.png','<strong>Escudo Tripodi / Tripodo — Variante Siciliana</strong><br>Variante de color del blasón I (Dossier 882605). El águila bicéfala coronada sobre campo de sinople.<br>Fuente: Heraldrys Institute of Rome.')"
+              onerror="this.style.display='none';">
+            <div style="font-family:'Inter',sans-serif;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);text-align:center;max-width:180px;margin-top:.5rem;">Blasón de la familia<br><strong style="color:var(--gold);">Tripodo / Tripodi</strong><br>Messina · Sicilia · s. X–XVII</div>
+          </div>
+          <div>
+            <div class="blazon-text">
+              <strong style="font-style:normal;color:var(--gold);">Descripción heráldica (italiano):</strong><br>
+              <em>"Di verde all'aquila bicipite di nero coronata d'oro."</em>
+              <div class="blazon-translation">En español: <strong>De sinople (verde), con el águila bicéfala de sable (negro), coronada de oro.</strong></div>
+            </div>
+            <div class="heraldry-facts">
+              <div class="heraldry-fact">
+                <div class="heraldry-fact-title">🦅 El águila bicéfala</div>
+                <div class="heraldry-fact-text">El águila de dos cabezas es uno de los símbolos <span class="tt" data-tt="Perteneciente a la heráldica: disciplina que estudia y regula los escudos de armas y blasones de familias nobles e instituciones.">heráldicos</span> más poderosos del mundo occidental, asociado al Imperio Bizantino y al Sacro Imperio Romano Germánico. Su presencia en el blasón Tripodi es consistente con la herencia <span class="tt" data-tt="Relativo a la Grecia antigua (helénica). El Imperio Helénico-Bizantino fusionó la cultura griega clásica con el cristianismo oriental.">helénico</span>-bizantina del apellido y refleja el estatus nobiliario de la familia en el Reino de las Dos Sicilias.</div>
+              </div>
+              <div class="heraldry-fact">
+                <div class="heraldry-fact-title">🎖️ Rango nobiliario</div>
+                <div class="heraldry-fact-text">El dossier 882605 clasifica al linaje Tripodi / Tripodo dentro de la nobleza siciliana con el rango de <strong>Notabili – Cavalieri</strong> (Notables y Caballeros). La familia produjo terratenientes, doctores en leyes, comisarios apostólicos, abogados fiscales, militares y religiosos a lo largo de los siglos XVI al XVIII.</div>
+              </div>
+              <div class="heraldry-fact">
+                <div class="heraldry-fact-title">📍 Personajes documentados (Messina, s. XVI–XVIII)</div>
+                <div class="heraldry-fact-text">Tommaso (terrateniente, 1501) · Niccolò, caballero (1535) · Gio. Batta, doctor en leyes (1562) · Gio. Niccolò, doctor en leyes (1587) · D. Giacomo, comisario apostólico (1616) · Luigi, jurado en Noto (1645) · Tommaso Maria, abogado fiscal en Palermo (1672) · P. Antonio, Orden de los Menores Reformados (1684) · Vincenzo, terrateniente en Calabria (1711) · P. Alessandro, Clérigos Regulares en Reggio Calabria (1737).</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BLASÓN 2: Bolonia (Dossier 881544) - nuevo -->
+      <div class="heraldry-block">
+        <div class="heraldry-block-header">
+          🛡️ Blasón II — Rama Boloñesa
+          <span class="heraldry-block-badge">Dossier 881544 · Nobili · Bologna</span>
+        </div>
+        <div class="heraldry-block-grid">
+          <div class="coat-of-arms-wrap">
+            <img src="imagenes/Tripodi_heraldica2.png" alt="Escudo heráldico Tripodi - rama boloñesa" class="coat-of-arms-img coat-img-clickable"
+              onclick="openLightbox('imagenes/Tripodi_heraldica2.png','<strong>Escudo Tripodi — Rama Boloñesa</strong><br>Trinciato; d\'argento, ad una rosa di rosso, e di rosso ad una crocetta d\'argento; con la banda d\'oro attraversante sulla partizione.<br><em>Partido en diagonal: en la mitad superior de plata una rosa de gules; en la mitad inferior de gules una cruceta de plata; con una banda de oro atravesando la partición.</em><br>Fuente: Heraldrys Institute of Rome, Dossier 881544.')"
+              onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+            <div class="coat-placeholder" style="display:none;">
+              <div class="coat-pending">🛡️</div>
+              <div>Imagen a agregar:<br><em>Tripodi_heraldica2.png</em><br>en la carpeta <strong>/imagenes</strong></div>
+            </div>
+            <img src="imagenes/Tripodi_heraldica2a.png" alt="Escudo heráldico Tripodi Bologna variante" class="coat-of-arms-img coat-img-clickable" style="margin-top:.5rem;"
+              onclick="openLightbox('imagenes/Tripodi_heraldica2a.png','<strong>Escudo Tripodi — Variante Boloñesa</strong><br>Variante de color del blasón II (Dossier 881544).<br>Fuente: Heraldrys Institute of Rome.')"
+              onerror="this.style.display='none';">
+            <div style="font-family:'Inter',sans-serif;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);text-align:center;max-width:180px;margin-top:.5rem;">Blasón de la familia<br><strong style="color:var(--gold);">Tripodi</strong><br>Bologna · Italia</div>
+          </div>
+          <div>
+            <div class="blazon-text">
+              <strong style="font-style:normal;color:var(--gold);">Descripción heráldica (italiano):</strong><br>
+              <em>"Trinciato; d'argento, ad una rosa di rosso, e di rosso ad una crocetta d'argento; con la banda d'oro attraversante sulla partizione."</em>
+              <div class="blazon-translation">En español: <strong>Partido en diagonal (trinchado): en plata una rosa de gules; en gules una cruceta de plata; con una banda de oro atravesando la partición.</strong></div>
+            </div>
+            <div class="heraldry-facts">
+              <div class="heraldry-fact">
+                <div class="heraldry-fact-title">🌹 La rosa y la cruz en plata</div>
+                <div class="heraldry-fact-text">El blasón boloñés es completamente distinto al siciliano: un escudo trinchado (cortado en diagonal) con una rosa de gules sobre campo de plata en la mitad superior, y una cruceta de plata sobre gules en la inferior. La banda de oro que atraviesa diagonalmente la partición unifica el conjunto. La rosa es símbolo de nobleza y distinción; la cruzada de pureza y fe.</div>
+              </div>
+              <div class="heraldry-fact">
+                <div class="heraldry-fact-title">🏛️ Una familia antigua de Bolonia</div>
+                <div class="heraldry-fact-text">El dossier 881544 describe a los Tripodi como una familia "muy antigua y noble, originaria de Bolonia", cuyos nombres aparecen principalmente en contratos de compraventa de tierras y casas. Distintas ramas de la familia se propagaron por diversas regiones de Italia. El comendador G.B. di Crollalanza registra su blasonadura en su <em>Dizionario storico blasonico delle famiglie nobili e notabili italiane</em>.</div>
+              </div>
+              <div class="heraldry-fact">
+                <div class="heraldry-fact-title">❓ ¿Por qué dos blasones distintos?</div>
+                <div class="heraldry-fact-text">En la <span class="tt" data-tt="Disciplina que estudia y regula los escudos de armas y blasones de familias nobles e instituciones. Surgida en Europa medieval, codificó símbolos y colores con reglas estrictas.">heráldica</span> italiana, es frecuente que familias con el mismo apellido en diferentes regiones adoptasen blasones propios e independientes, sin relación entre sí. El águila bicéfala siciliana refleja la influencia del Imperio Bizantino y del Reino normando-aragonés; el escudo trinchado boloñés sigue la tradición heráldica del centro-norte de Italia. Ambas ramas llevan el mismo apellido pero representan linajes que divergieron hace siglos.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- LINGUISTICS -->
+<section class="linguis-section" id="linguis">
+  <div class="section">
+    <p class="section-eyebrow fade-up">Perfil lingüístico</p>
+    <h2 class="section-title fade-up">Un apellido que resistió la latinización</h2>
+    <p class="section-lead fade-up">Lo más notable de Tripodi es que sobrevivió sin transformarse. Mientras cientos de apellidos griegos del sur de Italia se latinizaron o deformaron, Tripodi llegó casi intacto al siglo XXI.</p>
+    <div class="linguis-grid">
+      <div class="lang-attrs fade-up">
+        <div class="lang-attr" data-radar-idx="0"><div><div class="lang-attr-label">Raíz griega pura</div><div class="lang-attr-desc">Del griego micénico al griego clásico y al griego medieval (koiné). Sin deformación latina significativa.</div></div><div class="lang-score">95</div></div>
+        <div class="lang-attr" data-radar-idx="1"><div><div class="lang-attr-label">Resiliencia histórica</div><div class="lang-attr-desc">Sobrevivió a Roma, los Normandos, los Árabes, los Aragoneses y la unificación italiana. 2.700+ años de continuidad.</div></div><div class="lang-score">90</div></div>
+        <div class="lang-attr" data-radar-idx="2"><div><div class="lang-attr-label">Influencia bizantina</div><div class="lang-attr-desc">El dominio de Bizancio (535–1071 d.C.) reforzó el griego en Calabria y consolidó el apellido en su forma actual.</div></div><div class="lang-score">70</div></div>
+        <div class="lang-attr" data-radar-idx="3"><div><div class="lang-attr-label">Fonética dialectal</div><div class="lang-attr-desc">La variante siciliana <em>Tripoddu</em> muestra la adaptación fonética local, pero la forma canónica no cambió.</div></div><div class="lang-score">65</div></div>
+        <div class="lang-attr" data-radar-idx="4"><div><div class="lang-attr-label">Latinización</div><div class="lang-attr-desc">Mínima. La terminación "-i" es el plural italiano estándar, la única latinización visible del apellido.</div></div><div class="lang-score">20</div></div>
+      </div>
+      <div id="radarWrap"><canvas id="radarCanvas" width="320" height="320"></canvas></div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- VARIANTS -->
+<section class="variants-section" id="variants" style="background:var(--bg-dark);">
+  <div class="section">
+    <p class="section-eyebrow fade-up">Variantes del apellido</p>
+    <h2 class="section-title fade-up">Una familia de nombres, una misma raíz</h2>
+    <p class="section-lead fade-up">Según la región y el dialecto local, el trípode adquirió distintas formas. Todas son reconocibles, todas comparten el mismo ADN helénico.</p>
+    <div class="variants-grid fade-up">
+      <div class="variant-pill"><div class="variant-name">Tripodi</div><div class="variant-note">Calabria · Forma principal</div></div>
+      <div class="variant-pill"><div class="variant-name">Tripodo</div><div class="variant-note">Sicilia / Reggio · Singular original</div></div>
+      <div class="variant-pill"><div class="variant-name">Tripoddu</div><div class="variant-note">Sicilia · Fonética local</div></div>
+      <div class="variant-pill"><div class="variant-name">Tripodina</div><div class="variant-note">Reg. Calabria / Norte Italia</div></div>
+      <div class="variant-pill"><div class="variant-name">Trípodi</div><div class="variant-note">Español · Acento en í</div></div>
+      <div class="variant-pill"><div class="variant-name">De Tripodi</div><div class="variant-note">Variante nobiliaria</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- NOTABLE PEOPLE -->
+<section class="notable-section" id="notables">
+  <div class="section">
+    <p class="section-eyebrow fade-up">Personajes notables</p>
+    <h2 class="section-title fade-up">Tripodis que dejaron huella</h2>
+    <p class="section-lead fade-up">A lo largo de los siglos, portadores de este apellido se destacaron en el derecho, la política, la Iglesia y el deporte, dispersos entre Sicilia, Calabria, Argentina y el mundo.</p>
+
+    <div class="notable-grid">
+
+      <!-- DERECHO -->
+      <div class="notable-card fade-up">
+        <div class="notable-emoji">⚖️</div>
+        <div class="notable-name">Derecho</div>
+        <div class="notable-role">Sicilia · Siglos XVI–XVII</div>
+        <div class="notable-desc">El casato Tripodi / Tripodo aportó destacados doctores en derecho y funcionarios al aparato judicial del Reino de las Dos Sicilias.</div>
+        <div class="notable-people">
+          <div class="notable-person">• <strong>Niccolò Tripodi</strong> (fl. 1535) — Caballero, activo en Messina. Primer miembro con rango nobiliario documentado.</div>
+          <div class="notable-person">• <strong>Gio. Batta Tripodi</strong> (fl. 1562) — Doctor <em>in utroque iure</em> (civil y canónico), Messina.</div>
+          <div class="notable-person">• <strong>Gio. Niccolò Tripodi</strong> (fl. 1587) — Doctor <em>in utroque iure</em>, Messina.</div>
+          <div class="notable-person">• <strong>Tommaso Maria Tripodi</strong> (fl. 1672) — Abogado fiscal en Palermo, en el Virreinato de Sicilia.</div>
+          <div class="notable-person">• <strong>Tommaso Tripodi</strong> (fl. 1501) — Propietario terriero en el Messinense, primer Tripodi en los registros sicilianos.</div>
+          <div class="notable-person">• <strong>Luigi Tripodi</strong> (fl. 1645) — Jurado municipal en Noto (Sicilia).</div>
+          <div class="notable-person">• <strong>D. Giacomo Tripodi</strong> (fl. 1616) — Comisario Apostólico en Terra del Lavoro.</div>
+          <div class="notable-person">• <strong>Vincenzo Tripodi</strong> (fl. 1711) — Propietario terriero en Calabria, primera mención en el continente.</div>
+        </div>
+      </div>
+
+      <!-- IGLESIA -->
+      <div class="notable-card fade-up">
+        <div class="notable-emoji">✝️</div>
+        <div class="notable-name">Iglesia</div>
+        <div class="notable-role">Iglesia Católica · Sicilia / Calabria · Siglos XVII–XVIII</div>
+        <div class="notable-desc">La familia Tripodi tuvo presencia significativa en órdenes religiosas y la jerarquía eclesiástica del Reino de Nápoles y Sicilia.</div>
+        <div class="notable-people">
+          <div class="notable-person">• <strong>P. Antonio Tripodi</strong> (fl. 1684) — Orden de los Menores Reformados (franciscanos), Messina.</div>
+          <div class="notable-person">• <strong>P. Alessandro Tripodi</strong> (fl. 1737) — Clérigos Regulares (teatinos), Reggio Calabria.</div>
+        </div>
+      </div>
+
+      <!-- POLÍTICA -->
+      <div class="notable-card fade-up">
+        <div class="notable-emoji">🏛️</div>
+        <div class="notable-name">Política</div>
+        <div class="notable-role">Italia · Siglos XX–XXI</div>
+        <div class="notable-desc">Portadores del apellido Tripodi que alcanzaron cargos públicos electivos en la Italia contemporánea.</div>
+        <div class="notable-people">
+          <div class="notable-person">• <strong><a href="https://www.esteri.it/en/ministero/viceministri_sottosegretari/maria-tripodi/" target="_blank" rel="noopener">Maria Tripodi</a></strong> (Melito di Porto Salvo, RC, 21/7/1982) — Subsecretaria de Estado de Asuntos Exteriores y Cooperación Internacional del Gobierno Meloni (desde octubre de 2022). Licenciada en Estudios Políticos Internacionales por La Sapienza y Máster en Seguridad Económica, Geopolítica e Inteligencia (SIOI, 2022). Diputada por Forza Italia en la XVIIIa Legislatura (2018–2022); líder del grupo FI en la Comisión de Defensa. Miembro de la Comisión Parlamentaria de investigación sobre la muerte de Giulio Regeni.</div>
+        </div>
+      </div>
+
+      <!-- MEDICINA -->
+      <div class="notable-card fade-up">
+        <div class="notable-emoji">🩺</div>
+        <div class="notable-name">Medicina</div>
+        <div class="notable-role">Argentina · Siglos XX–XXI</div>
+        <div class="notable-desc">Dos hermanas médicas argentinas que se destacaron en especialidades distintas y complementarias: la pediatría y la geriatría.</div>
+        <div class="notable-people">
+          <div class="notable-person">• <strong><a href="https://www.scielo.org.ar/scielo.php?script=sci_arttext&pid=S0325-00752007000200006" target="_blank" rel="noopener">Dra. María Rosa Tripodi</a></strong> — Médica pediatra argentina. Publicó investigación en <em>Archivos Argentinos de Pediatría</em> (SciELO, 2007), la revista oficial de la Sociedad Argentina de Pediatría, indexada en Medline. Con 3.829 visitas a su perfil en Imbiomed, es una de las médicas Tripodi más referenciadas en bases académicas latinoamericanas.</div>
+          <div class="notable-person">• <strong>Dra. Lidia Tripodi</strong> — Médica especialista en Clínica Médica, Geriatría, Perito y Médica Legista. Hermana de María Rosa. Combina la atención del adulto mayor con la práctica pericial, un perfil de doble incumbencia clínica y forense poco frecuente en Argentina.</div>
+        </div>
+      </div>
+
+      <!-- DEPORTE -->
+      <div class="notable-card fade-up">
+        <div class="notable-emoji">⚽</div>
+        <div class="notable-name">Deporte</div>
+        <div class="notable-role">Fútbol profesional · Argentina / Europa / Brasil</div>
+        <div class="notable-desc">Dos futbolistas profesionales argentinos de descendencia italiana que representaron al apellido Tripodi en canchas de cuatro continentes.</div>
+        <div class="notable-people">
+          <div class="notable-person">• <strong><a href="https://es.wikipedia.org/wiki/Emanuel_Tr%C3%ADpodi" target="_blank" rel="noopener">Emanuel Trípodi</a></strong> (Comodoro Rivadavia, 8/1/1981) — Arquero y DT. Jugó más de 15 años en el fútbol profesional argentino. Hazaña única: logró <strong>dos ascensos a Primera División en una misma temporada</strong> (2016/17) con Argentinos Juniors y Chacarita Juniors. Siendo arquero, convirtió un gol de arco a arco con el C.A.I. (2005). Desde 2025 dirige a Guillermo Brown de Puerto Madryn.</div>
+          <div class="notable-person">• <strong><a href="https://es.wikipedia.org/wiki/Mariano_Tr%C3%ADpodi" target="_blank" rel="noopener">Mariano Trípodi</a></strong> (Buenos Aires, 3/7/1987) — Delantero centro de doble nacionalidad (argentina e italiana). Surgido en Boca Juniors, jugó en <strong>1. FC Colonia</strong> (Alemania), <strong>Atlético Mineiro</strong> (Brasil), <strong>FC Vaduz</strong> (UEFA Europa League) y <strong>Tochigi SC</strong> (Japón).</div>
+        </div>
+      </div>
+
+      <!-- MÚSICA / ARTES -->
+      <div class="notable-card fade-up">
+        <div class="notable-emoji">🎹</div>
+        <div class="notable-name">Música</div>
+        <div class="notable-role">Tango · Argentina · Siglo XX</div>
+        <div class="notable-desc">Un nombre central del tango argentino clásico, referente de la "Generación del Cuarenta" y maestro de sucesivas camadas de músicos.</div>
+        <div class="notable-people">
+          <div class="notable-person">• <strong><a href="https://es.wikipedia.org/wiki/Orlando_Tripodi" target="_blank" rel="noopener">Orlando Trípodi</a></strong> (San Juan, 26/2/1927 – Buenos Aires, 12/8/1995) — Pianista, director, compositor y arreglista. Estudió con Vicente Scaramuzza. Integró la Orquesta Símbolo Osmar Maderna, la Orquesta de las Estrellas de Miguel Caló y el Octeto de Néstor Marconi. Realizó giras por Japón. Fue profesor en la Escuela de Música Popular de Avellaneda, formando a generaciones de pianistas de tango. Compuso los tangos <em>Negro viejo</em>, <em>Ninguno de los dos</em> y <em>Notas para el cielo</em>.</div>
+        </div>
+      </div>
+
+      <!-- CIENCIA Y ACADEMIA -->
+      <div class="notable-card fade-up">
+        <div class="notable-emoji">🔬</div>
+        <div class="notable-name">Ciencia y Academia</div>
+        <div class="notable-role">Neurociencias · Bioquímica · Italia y Argentina · Siglos XX–XXI</div>
+        <div class="notable-desc">Investigadores con el apellido Tripodi en instituciones científicas de primer nivel internacional.</div>
+        <div class="notable-people">
+          <div class="notable-person">• <strong><a href="https://mrclmb.ac.uk/research-leaders/marco-tripodi/" target="_blank" rel="noopener">Marco Tripodi</a></strong> — Neurocientífico, Group Leader en el <em>MRC Laboratory of Molecular Biology</em> (Cambridge, UK), una de las instituciones científicas más prestigiosas del mundo. Su laboratorio estudia los circuitos neuronales que controlan acciones orientadas a un objetivo —desde girar la cabeza ante un sonido hasta agarrar un objeto—, identificando «módulos espaciales» formados por neuronas genéticamente definidas en el colículo superior. Ha publicado en <em>Nature</em> (2024) y <em>Nature Methods</em> (2023). También desarrolló vectores virales transsinápticos no tóxicos para intervenciones terapéuticas de circuito específico. <a href="https://scholar.google.com/citations?user=ctE74tUAAAAJ&hl=it" target="_blank" rel="noopener">Ver publicaciones en Google Scholar</a>.</div>
+          <div class="notable-person">• <strong><a href="https://bicyt.conicet.gov.ar/fichas/p/valeria-paula-tripodi" target="_blank" rel="noopener">Valeria Paula Tripodi</a></strong> — Investigadora independiente del CONICET (UBA, Facultad de Farmacia y Bioquímica). Especialista en nanotecnologías analíticas aplicadas al diagnóstico; desarrolla técnicas de micro HPLC y electroforesis capilar para el estudio de deficiencia de Coenzima Q10.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- CLOSING -->
+<section class="closing-section" id="closing">
+  <div class="section">
+    <span class="closing-tripod">🏛️</span>
+    <h2 class="closing-title fade-up">Ser Tripodi</h2>
+    <p class="closing-text fade-up">
+      Llevar el apellido Tripodi es portar un fragmento vivo de la historia mediterránea. No es solo un nombre: es el eco de un artesano que forjó bronce en la Magna Grecia, el humo que ascendía bajo la Pitia en Delfos, la tablilla de arcilla que grabó una palabra hace 3.500 años. Es el trípode: el objeto de tres pies que no puede caer, que sostiene lo sagrado, que equilibra el peso del mundo antiguo sobre tres puntos fijos. Una metáfora perfecta de estabilidad, de herencia tripartita —griega, calabresa y de la <span class="tt" data-tt="Dispersión de un pueblo o comunidad fuera de su territorio de origen.">diáspora</span>— que sigue en pie.
+    </p>
+    <div class="closing-latin fade-up">Stabilis ut tripus — Firme como el trípode</div>
+    <div class="fade-up" style="margin-top:.4rem;font-family:'Inter',sans-serif;font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-muted);">Lema heráldico atribuido al linaje calabrés</div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- SOURCES -->
+<section class="sources-section" id="sources">
+  <div class="section">
+    <p class="section-eyebrow fade-up">Referencias y fuentes</p>
+    <h2 class="section-title fade-up">Bibliografía y fuentes consultadas</h2>
+    <p class="section-lead fade-up">Esta investigación genealógica, lingüística e histórica se apoyó en las siguientes fuentes académicas, enciclopédicas y documentales.</p>
+
+    <div class="sources-grid fade-up">
+      <div>
+        <div class="source-group-title">📚 Fuentes académicas y bibliográficas</div>
+
+        <div class="source-item">
+          <div class="source-num">1</div>
+          <div class="source-content">
+            De Felice, E. (1990). <em>Dizionario dei cognomi italiani.</em> Arnoldo Mondadori Editore. <span class="source-type">libro</span>
+          </div>
+        </div>
+
+        <div class="source-item">
+          <div class="source-num">2</div>
+          <div class="source-content">
+            West, M. L. (1983). <em>The Orphic Poems.</em> Oxford University Press. [Cita sobre prácticas chamánicas de la Pitia, p. 147] <span class="source-type">libro</span>
+          </div>
+        </div>
+
+        <div class="source-item">
+          <div class="source-num">3</div>
+          <div class="source-content">
+            Burkert, W. (1983). <em>Homo Necans.</em> Trad. Peter Bing. University of California Press. [p. 121, trípode délfico] <span class="source-type">libro</span>
+          </div>
+        </div>
+
+        <div class="source-item">
+          <div class="source-num">4</div>
+          <div class="source-content">
+            Estrabón (c. 20 a.C.). <em>Geografía</em>, libro IX, 3.5. [Descripción del trípode de la Pitia] <span class="source-type">fuente clásica</span>
+          </div>
+        </div>
+
+        <div class="source-item">
+          <div class="source-num">5</div>
+          <div class="source-content">
+            Heródoto (c. 440 a.C.). <em>Historias</em>, I, 92; I, 144; V, 59–61. [Trípodes como ofrendas y premios en la Grecia antigua] <span class="source-type">fuente clásica</span>
+          </div>
+        </div>
+
+        <div class="source-item">
+          <div class="source-num">6</div>
+          <div class="source-content">
+            Hesíodo (c. 700 a.C.). <em>Las obras y los días</em>, vv. 650–662. Trad. Graziano Arrighetti. Mondadori, 2007. [Premio del trípode orecchiuto] <span class="source-type">fuente clásica</span>
+          </div>
+        </div>
+
+        <div class="source-item">
+          <div class="source-num">7</div>
+          <div class="source-content">
+            Pavan, M. (2009). <em>Cognomi d'Italia: origine e diffusione.</em> Zanichelli Editore. <span class="source-type">libro</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="source-group-title">🌐 Fuentes digitales y genealógicas</div>
+
+        <div class="source-item">
+          <div class="source-num">8</div>
+          <div class="source-content">
+            Wikipedia (IT). <em>Tripode.</em> Última modificación: 6 maggio 2010.<br>
+            <a href="http://it.wikipedia.org/wiki/Tripode" target="_blank">it.wikipedia.org/wiki/Tripode</a> <span class="source-type">enciclopedia</span>
+          </div>
+        </div>
+
+        <div class="source-item">
+          <div class="source-num">9</div>
+          <div class="source-content">
+            Wikipedia (EN). <em>Tripodi (surname).</em> Consultado junio 2025.<br>
+            <a href="https://en.wikipedia.org/wiki/Tripodi" target="_blank">en.wikipedia.org/wiki/Tripodi</a> <span class="source-type">enciclopedia</span>
+          </div>
+        </div>
+
+        <div class="source-item">
+          <div class="source-num">10</div>
+          <div class="source-content">
+            Ancestry.com. <em>Tripodi Last Name Meaning &amp; History.</em><br>
+            <a href="https://www.ancestry.com/last-name-meaning/tripodi" target="_blank">ancestry.com/last-name-meaning/tripodi</a> <span class="source-type">genealogía</span>
+          </div>
+        </div>
+
+        <div class="source-item">
+          <div class="source-num">11</div>
+          <div class="source-content">
+            Geneanet. <em>Apellido TRIPODI — Distribución geográfica.</em><br>
+            <a href="https://es.geneanet.org/apellidos/TRIPODI" target="_blank">es.geneanet.org/apellidos/TRIPODI</a> <span class="source-type">genealogía</span>
+          </div>
+        </div>
+
+        <div class="source-item">
+          <div class="source-num">12</div>
+          <div class="source-content">
+            ancestrositalianos.com. <em>Apellidos Calabreses.</em> Publicado 1 sep. 2025.<br>
+            <a href="https://ancestrositalianos.com/apellidos-calabreses/" target="_blank">ancestrositalianos.com/apellidos-calabreses</a> <span class="source-type">web especializada</span>
+          </div>
+        </div>
+
+        <div class="source-item">
+          <div class="source-num">13</div>
+          <div class="source-content">
+            Britannica. <em>Delphic Oracle.</em> Encyclopaedia Britannica.<br>
+            <a href="https://www.britannica.com/topic/Delphic-oracle" target="_blank">britannica.com/topic/Delphic-oracle</a> <span class="source-type">enciclopedia</span>
+          </div>
+        </div>
+
+        <div class="source-item">
+          <div class="source-num">14</div>
+          <div class="source-content">
+            World History Encyclopedia. <em>Magna Grecia.</em><br>
+            <a href="https://www.worldhistory.org/trans/es/1-11373/magna-grecia/" target="_blank">worldhistory.org/magna-grecia</a> <span class="source-type">enciclopedia</span>
+          </div>
+        </div>
+
+        <div class="source-item">
+          <div class="source-num">15</div>
+          <div class="source-content">
+            Heraldrys Institute of Rome. <em>Dossier Heráldico Tripodi / Tripodo — Nobleza Siciliana.</em> Dossier 882605. Rango: Notabili – Cavalieri · Sicilia.<br>
+            <a href="https://www.heraldrysinstitute.com/lang/es/cognomi/Tripodi/idc/882605/" target="_blank">heraldrysinstitute.com · dossier 882605</a> <span class="source-type">heráldica</span>
+          </div>
+        </div>
+
+        <div class="source-item">
+          <div class="source-num">16</div>
+          <div class="source-content">
+            Heraldrys Institute of Rome. <em>Rastros Heráldicos Tripodi — Rama Boloñesa.</em> Dossier 881544. Rango: Nobili · Bologna. Blasón: <em>Trinciato; d'argento, ad una rosa di rosso, e di rosso ad una crocetta d'argento; con la banda d'oro attraversante sulla partizione.</em><br>
+            <a href="https://www.heraldrysinstitute.com/lang/es/cognomi/Tripodi/idc/881544/" target="_blank">heraldrysinstitute.com · dossier 881544</a> <span class="source-type">heráldica</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-text">
+    <div>Infografía interactiva sobre el origen del apellido Tripodi · Investigación genealógica, etimológica y heráldica</div>
+    <div>Fuentes: Wikipedia (IT/EN) · Ancestry.com · Geneanet · ancestrositalianos.com · Britannica · worldhistory.org · Heraldrys Institute of Rome (Dossiers 881544 y 882605)</div>
+    <div>De Felice (1990) · Pavan (2009) · Burkert (1983) · West (1983) · Estrabón · Heródoto · Hesíodo · Wikipedia (Emanuel Trípodi) · Wikipedia (Mariano Trípodi)</div>
+  </div>
+  <div class="footer-copy">
+    © 2026 Jorge Osvaldo Tripodi — Todos los derechos reservados
+  </div>
+</footer>
+
+<script>
+// AUDIO PLAYBACK
+function playAudio(src) {
+  const a = new Audio(src);
+  a.play();
+}
+
+function toggleTheme() {
+  const html = document.documentElement;
+  const isDark = html.getAttribute('data-theme') === 'dark';
+  const newTheme = isDark ? 'light' : 'dark';
+  html.setAttribute('data-theme', newTheme);
+  const icon = isDark ? '🌙' : '☀️';
+  const label = isDark ? 'Modo oscuro' : 'Modo claro';
+  ['themeIcon','themeIconBubble'].forEach(id => { const el = document.getElementById(id); if(el) el.textContent = icon; });
+  ['themeLabel','themeLabelBubble'].forEach(id => { const el = document.getElementById(id); if(el) el.textContent = label; });
+  redrawCharts();
+}
+
+// ── NAVBAR ───────────────────────────────────────────────────
+(function() {
+  const nav = document.getElementById('mainNav');
+  const bubble = document.getElementById('navBubble');
+  if (!nav || !bubble) return;
+
+  let lastY = 0, ticking = false, atTop = true;
+
+  function updateNav() {
+    const y = window.scrollY;
+    atTop = y < 80;
+
+    // En móviles, siempre mostrar el navbar y ocultar el bubble
+    if (window.innerWidth <= 768) {
+      nav.classList.remove('nav-hidden');
+      bubble.classList.remove('visible');
+      bubble.classList.remove('open');
+      return;
+    }
+
+    if (atTop) {
+      // Back at top: show full nav, hide bubble
+      nav.classList.remove('nav-hidden');
+      bubble.classList.remove('visible');
+      bubble.classList.remove('open');
+    } else {
+      // Scrolled: hide nav pill, show bubble
+      nav.classList.add('nav-hidden');
+      bubble.classList.add('visible');
+    }
+
+    // Active section highlight
+    const sections = document.querySelectorAll('section[id]');
+    let current = '';
+    sections.forEach(s => {
+      if (window.scrollY >= s.offsetTop - 120) current = s.id;
+    });
+    document.querySelectorAll('.nav-link').forEach(a => {
+      a.classList.toggle('active-section', a.getAttribute('href') === '#' + current);
+    });
+
+    lastY = y;
+    ticking = false;
+  }
+
+  window.addEventListener('scroll', () => { if (!ticking) { requestAnimationFrame(updateNav); ticking = true; } }, { passive: true });
+  updateNav();
+
+  // Smooth anchor scrolling
+  document.querySelectorAll('.nav-link, .bubble-link').forEach(a => {
+    a.addEventListener('click', e => {
+      const href = a.getAttribute('href');
+      if (href && href.startsWith('#')) {
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+})();
+
+function toggleNavBubble() {
+  const bubble = document.getElementById('navBubble');
+  if (!bubble) return;
+  const isOpen = bubble.classList.toggle('open');
+  bubble.setAttribute('aria-expanded', isOpen);
+  if (isOpen) {
+    // Close on outside click
+    setTimeout(() => {
+      document.addEventListener('click', closeBubbleOutside, { once: true });
+    }, 0);
+  }
+}
+function closeBubbleOutside(e) {
+  const bubble = document.getElementById('navBubble');
+  if (bubble && !bubble.contains(e.target)) closeBubbleMenu();
+}
+function closeBubbleMenu() {
+  const bubble = document.getElementById('navBubble');
+  if (bubble) { bubble.classList.remove('open'); bubble.setAttribute('aria-expanded', 'false'); }
+}
+
+// ── HYPO MODAL (desktop) ─────────────────────────────────────
+const hypoData = {
+  '01': {
+    icon: '🏺', title: 'El artesano del trípode', subtitle: 'Hipótesis ocupacional · La más probable',
+    pct: '60%', barWidth: '60%',
+    body: 'En la Magna Grecia de los siglos VI–IV a.C., el herrero o broncista que fabricaba trípodes era un artesano de alto estatus social. El trípode no era un utensilio doméstico ordinario: era un objeto ritual y de prestigio, premio en juegos atléticos, ofrenda en los grandes santuarios y símbolo de poder.',
+    detail: 'Los documentos medievales del Reino de Nápoles registran a artesanos y mercaderes del hierro y el bronce con el apodo "de tripodi" (del trípode), que con el tiempo se fosilizó como apellido hereditario. Esta hipótesis es la más respaldada por la evidencia histórica y la paralela formación de otros apellidos italianos de oficio: Ferrari (herrero), Fabbri (artesano), Calzolaio (zapatero).',
+    img: 'imagenes/Imagen_3.png'
+  },
+  '02': {
+    icon: '⛰️', title: 'La formación rocosa', subtitle: 'Hipótesis topográfica · Posible',
+    pct: '25%', barWidth: '25%',
+    body: 'Calabria y Sicilia tienen una geografía volcánica y costera singular, con formaciones rocosas que emergen del mar o de la tierra firme en grupos de tres. En el dialecto calabrés tardío, una formación "a tre piedi" (de tres pies) pudo dar nombre a un lugar, y de allí a la familia que lo habitaba.',
+    detail: 'Los apellidos topográficos son la segunda categoría más frecuente en la onomástica italiana meridional. Apellidos como Rocca, Montagna, Fiumara o Costa siguen el mismo patrón. Sin embargo, no se ha localizado ningún topónimo "Tripodi" documentado en fuentes medievales de Calabria o Sicilia, lo que limita el peso de esta hipótesis.',
+    img: 'imagenes/Imagen_2.png'
+  },
+  '03': {
+    icon: '🔮', title: 'El vínculo con Apolo', subtitle: 'Hipótesis votiva o cultual · Evocadora',
+    pct: '15%', barWidth: '15%',
+    body: 'Las colonias griegas del sur de Italia —Locri, Regio, Crotona— mantenían un lazo espiritual intenso con el Oráculo de Delfos, cuyo símbolo central era el trípode sagrado de la Pitia. Un nombre de devoción apolínea, adoptado como señal de protección divina, pudo cristalizar en apellido.',
+    detail: 'Esta hipótesis es la más difícil de documentar pero la más rica en resonancias culturales. El antropónimo griego "Tripodios" (del trípode) aparece en inscripciones de época helenística, lo que prueba que el trípode ya funcionaba como nombre propio en el mundo griego antes de que el apellido se estabilizara en la Calabria medieval.',
+    img: 'imagenes/Imagen_4.png'
+  }
+};
+
+function openHypoModal(cardEl) {
+  // On mobile, use accordion
+  if (window.innerWidth <= 768) { toggleHypo(cardEl); return; }
+
+  const num = cardEl.querySelector('.hypo-num')?.textContent?.trim();
+  if (!num || !hypoData[num]) return;
+  const d = hypoData[num];
+  const modal = document.getElementById('hypoModal');
+
+  document.getElementById('hypoModalNum').textContent = num;
+  document.getElementById('hypoModalIcon').textContent = d.icon;
+  document.getElementById('hypoModalTitle').textContent = d.title;
+  document.getElementById('hypoModalSubtitle').textContent = d.subtitle;
+  document.getElementById('hypoModalPct').textContent = d.pct;
+  document.getElementById('hypoModalBody').textContent = d.body;
+  document.getElementById('hypoModalDetail').textContent = d.detail;
+  const img = document.getElementById('hypoModalImg');
+  img.src = d.img; img.alt = d.title;
+  const fill = document.getElementById('hypoModalBarFill');
+  fill.style.width = '0';
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  requestAnimationFrame(() => { fill.style.width = d.barWidth; });
+}
+
+function closeHypoModal(e) {
+  if (e && e.target !== document.getElementById('hypoModal') && !e.target.classList.contains('hypo-modal-close')) return;
+  document.getElementById('hypoModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+function toggleHypo(card) {
+  const wasActive = card.classList.contains('active');
+  document.querySelectorAll('.hypo-card').forEach(c => c.classList.remove('active'));
+  if (!wasActive) card.classList.add('active');
+}
+
+// ── TOOLTIPS ────────────────────────────────────────────────
+(function() {
+  const bubble = document.createElement('div');
+  bubble.id = 'ttBubble';
+  document.body.appendChild(bubble);
+
+  let hideTimer = null;
+
+  function showTt(el) {
+    clearTimeout(hideTimer);
+    const def = el.getAttribute('data-tt');
+    if (!def) return;
+    bubble.textContent = def;
+    bubble.classList.add('tt-visible');
+    positionTt(el);
+  }
+
+  function hideTt() {
+    hideTimer = setTimeout(() => bubble.classList.remove('tt-visible'), 120);
+  }
+
+  function positionTt(el) {
+    const r = el.getBoundingClientRect();
+    const bw = 260, margin = 8;
+    let left = r.left + r.width / 2 - bw / 2;
+    left = Math.max(margin, Math.min(left, window.innerWidth - bw - margin));
+    const top = r.top - 8;
+    bubble.style.cssText = `left:${left}px;top:${top}px;transform:translateY(-100%);max-width:${bw}px;`;
+  }
+
+  function initTt() {
+    document.querySelectorAll('.tt').forEach(el => {
+      el.addEventListener('mouseenter', () => showTt(el));
+      el.addEventListener('mouseleave', hideTt);
+      el.addEventListener('focus', () => showTt(el));
+      el.addEventListener('blur', hideTt);
+      // Mobile: tap to toggle
+      el.addEventListener('click', e => {
+        e.stopPropagation();
+        if (bubble.classList.contains('tt-visible') && bubble._lastEl === el) {
+          hideTt();
+        } else {
+          bubble._lastEl = el;
+          showTt(el);
+        }
+      });
+      el.setAttribute('tabindex', '0');
+      el.setAttribute('role', 'note');
+    });
+    document.addEventListener('click', () => bubble.classList.remove('tt-visible'));
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initTt);
+  else initTt();
+})();
+
+// ── RADAR HIGHLIGHT on lang-attr hover ──────────────────────
+(function() {
+  // Radar draw fn must exist first — we hook after load
+  function hookRadarHighlight() {
+    const cards = document.querySelectorAll('.lang-attr[data-radar-idx]');
+    if (!cards.length) return;
+
+    cards.forEach(card => {
+      const idx = parseInt(card.getAttribute('data-radar-idx'));
+
+      function highlight() {
+        card.classList.add('radar-highlight');
+        drawRadarHighlight(idx);
+      }
+      function unhighlight() {
+        card.classList.remove('radar-highlight');
+        drawRadar();
+      }
+
+      card.addEventListener('mouseenter', highlight);
+      card.addEventListener('mouseleave', unhighlight);
+      card.addEventListener('touchstart', e => { e.preventDefault(); highlight(); }, { passive: false });
+      card.addEventListener('touchend', () => setTimeout(unhighlight, 900));
+    });
+  }
+
+  window.addEventListener('load', hookRadarHighlight);
+})();
+
+function drawRadarHighlight(highlightIdx) {
+  const c = document.getElementById('radarCanvas'); if (!c) return;
+  const ctx = c.getContext('2d');
+  const W = c.width, H = c.height, cx = W/2, cy = H/2;
+  const labels = ['Raíz\ngriega pura','Resiliencia\nhistórica','Influencia\nbizantina','Fonética\ndialectal','Latinización'];
+  const values = [0.95, 0.90, 0.70, 0.65, 0.20];
+  const n = labels.length, r = W * 0.36;
+  const isDark = document.documentElement.getAttribute('data-theme') !== 'light';
+  const gold = '#C9A84C', gridC = isDark ? 'rgba(255,255,255,.08)' : 'rgba(0,0,0,.1)';
+  const fillC = isDark ? 'rgba(201,168,76,.18)' : 'rgba(201,168,76,.22)';
+  const strokeC = gold;
+
+  function pt(angle, radius) {
+    return { x: cx + radius * Math.sin(angle), y: cy - radius * Math.cos(angle) };
+  }
+
+  ctx.clearRect(0, 0, W, H);
+
+  // Grid
+  for (let ring = 1; ring <= 4; ring++) {
+    ctx.beginPath();
+    for (let i = 0; i < n; i++) {
+      const p = pt(2*Math.PI*i/n, r * ring/4);
+      i === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y);
+    }
+    ctx.closePath();
+    ctx.strokeStyle = gridC; ctx.lineWidth = 1; ctx.stroke();
+  }
+
+  // Axes
+  for (let i = 0; i < n; i++) {
+    const p = pt(2*Math.PI*i/n, r);
+    ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(p.x, p.y);
+    ctx.strokeStyle = gridC; ctx.lineWidth = 1; ctx.stroke();
+  }
+
+  // Data fill
+  ctx.beginPath();
+  for (let i = 0; i < n; i++) {
+    const p = pt(2*Math.PI*i/n, r * values[i]);
+    i === 0 ? ctx.moveTo(p.x, p.y) : ctx.lineTo(p.x, p.y);
+  }
+  ctx.closePath();
+  ctx.fillStyle = fillC; ctx.fill();
+  ctx.strokeStyle = strokeC; ctx.lineWidth = 2; ctx.stroke();
+
+  // Points — highlight the active one
+  for (let i = 0; i < n; i++) {
+    const p = pt(2*Math.PI*i/n, r * values[i]);
+    ctx.beginPath();
+    const isHighlighted = i === highlightIdx;
+    ctx.arc(p.x, p.y, isHighlighted ? 7 : 4, 0, 2*Math.PI);
+    ctx.fillStyle = isHighlighted ? gold : (isDark ? '#1a1a10' : '#fff');
+    ctx.fill();
+    ctx.strokeStyle = gold;
+    ctx.lineWidth = isHighlighted ? 3 : 2;
+    ctx.stroke();
+
+    // Glow ring on highlight
+    if (isHighlighted) {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, 14, 0, 2*Math.PI);
+      ctx.strokeStyle = 'rgba(201,168,76,.4)';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+    }
+  }
+
+  // Labels
+  const labelPadding = [18, 18, 18, 18, 18];
+  ctx.fillStyle = isDark ? 'rgba(255,255,255,.7)' : 'rgba(0,0,0,.6)';
+  ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+  labels.forEach((label, i) => {
+    const angle = 2*Math.PI*i/n;
+    const p = pt(angle, r + labelPadding[i]);
+    ctx.font = `${i === highlightIdx ? 'bold ' : ''}11px Inter, sans-serif`;
+    ctx.fillStyle = i === highlightIdx ? gold : (isDark ? 'rgba(255,255,255,.7)' : 'rgba(0,0,0,.6)');
+    const parts = label.split('\n');
+    parts.forEach((part, j) => ctx.fillText(part, p.x, p.y + (j - (parts.length-1)/2) * 13));
+  });
+}
+
+
+// LIGHTBOX
+function openLightbox(src, caption, sourceUrl) {
+  const lb = document.getElementById('lightbox');
+  const img = document.getElementById('lightboxImg');
+  const cap = document.getElementById('lightboxCaption');
+  const srcLink = document.getElementById('lightboxSourceLink');
+  const infoBtn = document.getElementById('lightboxInfoBtn');
+  img.src = src;
+  cap.innerHTML = caption || '';
+  cap.classList.remove('caption-shown');
+  if (infoBtn) infoBtn.textContent = 'mostrar info';
+  if (sourceUrl) {
+    srcLink.href = sourceUrl;
+    srcLink.style.display = 'inline-flex';
+  } else {
+    srcLink.style.display = 'none';
+  }
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function toggleLightboxCaption() {
+  const cap = document.getElementById('lightboxCaption');
+  const btn = document.getElementById('lightboxInfoBtn');
+  const shown = cap.classList.toggle('caption-shown');
+  btn.textContent = shown ? 'ocultar info' : 'mostrar info';
+}
+
+function closeLightbox(e) {
+  if (e && e.target !== document.getElementById('lightbox') && !e.target.classList.contains('lightbox-close')) return;
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+  setTimeout(() => { document.getElementById('lightboxImg').src = ''; }, 350);
+}
+
+// Close lightbox with Escape key
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { document.getElementById('lightbox').classList.remove('open'); document.body.style.overflow = ''; } });
+
+// Mobile image banner caption toggle
+function toggleBannerCaption(banner) {
+  if (window.innerWidth > 768) return;
+  banner.classList.toggle('caption-visible');
+}
+
+// Intersection observers
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('.fade-up, .tl-item, .flow-stage, .hypo-card').forEach(el => observer.observe(el));
+
+const geoObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); geoObs.unobserve(e.target); } });
+}, { threshold: 0.2 });
+geoObs.observe(document.getElementById('geoSection'));
+
+const hypoObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.25 });
+document.querySelectorAll('.hypo-card').forEach(el => hypoObs.observe(el));
+
+// CHARTS
+function getColor(name) {
+  const dark = document.documentElement.getAttribute('data-theme') === 'dark';
+  return { text: dark ? '#EDE8DF' : '#1C1710', muted: dark ? '#9A9180' : '#6B5E4A', grid: dark ? 'rgba(201,168,76,0.15)' : 'rgba(100,70,30,0.12)', bg: dark ? 'rgba(33,30,24,0.92)' : 'rgba(255,255,255,0.95)' }[name];
+}
+
+function drawDonut() {
+  const c = document.getElementById('donutCanvas'); if (!c) return;
+  const ctx = c.getContext('2d'); ctx.clearRect(0,0,200,200);
+  const data=[45,35,20], colors=['#C9A84C','#B85C2A','#2A5B7A'], total=100;
+  const cx=100,cy=100,outerR=85,innerR=52;
+  let startAngle = -Math.PI/2;
+  data.forEach((val,i) => {
+    const angle = (val/total)*2*Math.PI;
+    ctx.beginPath(); ctx.moveTo(cx,cy); ctx.arc(cx,cy,outerR,startAngle,startAngle+angle); ctx.closePath();
+    ctx.fillStyle = colors[i]; ctx.fill(); startAngle += angle;
+  });
+  ctx.beginPath(); ctx.arc(cx,cy,innerR,0,2*Math.PI); ctx.fillStyle = getColor('bg'); ctx.fill();
+  ctx.fillStyle='#C9A84C'; ctx.font='bold 18px Cinzel,serif'; ctx.textAlign='center'; ctx.textBaseline='middle';
+  ctx.fillText('3',cx,cy-8); ctx.fillStyle=getColor('muted'); ctx.font='10px Inter,sans-serif'; ctx.fillText('TEORÍAS',cx,cy+10);
+}
+
+function drawRadar() {
+  const c = document.getElementById('radarCanvas'); if (!c) return;
+  const ctx = c.getContext('2d'); ctx.clearRect(0,0,320,320);
+  const cx=160,cy=160,r=105;
+  const labels=['Raíz Griega','Resiliencia','Inf. Bizantina','Fonética Dial.','Latinización'];
+  const values=[0.95,0.90,0.70,0.65,0.20];
+  const n=labels.length;
+  const pt = (angle, radius) => ({ x: cx + radius*Math.cos(angle-Math.PI/2), y: cy + radius*Math.sin(angle-Math.PI/2) });
+
+  for (let lv=1; lv<=4; lv++) {
+    ctx.beginPath();
+    for (let i=0;i<n;i++) { const p=pt((2*Math.PI*i)/n, r*lv/4); i===0?ctx.moveTo(p.x,p.y):ctx.lineTo(p.x,p.y); }
+    ctx.closePath(); ctx.strokeStyle=getColor('grid'); ctx.lineWidth=1; ctx.stroke();
+  }
+  for (let i=0;i<n;i++) {
+    const p=pt((2*Math.PI*i)/n,r);
+    ctx.beginPath(); ctx.moveTo(cx,cy); ctx.lineTo(p.x,p.y); ctx.strokeStyle=getColor('grid'); ctx.stroke();
+  }
+  ctx.beginPath();
+  values.forEach((val,i) => { const p=pt((2*Math.PI*i)/n,r*val); i===0?ctx.moveTo(p.x,p.y):ctx.lineTo(p.x,p.y); });
+  ctx.closePath(); ctx.fillStyle='rgba(201,168,76,0.2)'; ctx.fill(); ctx.strokeStyle='#C9A84C'; ctx.lineWidth=2; ctx.stroke();
+  values.forEach((val,i) => { const p=pt((2*Math.PI*i)/n,r*val); ctx.beginPath(); ctx.arc(p.x,p.y,4,0,2*Math.PI); ctx.fillStyle='#C9A84C'; ctx.fill(); });
+
+  // Labels con más espacio para evitar recortes
+  const labelPadding = [26,26,26,26,26];
+  ctx.fillStyle = getColor('text');
+  ctx.textAlign='center'; ctx.textBaseline='middle';
+  labels.forEach((label,i) => {
+    const angle = (2*Math.PI*i)/n;
+    const p = pt(angle, r + labelPadding[i]);
+    ctx.font = '11px Inter, sans-serif';
+    ctx.fillText(label, p.x, p.y);
+  });
+}
+
+function redrawCharts() { drawDonut(); drawRadar(); }
+window.addEventListener('load', () => { drawDonut(); drawRadar(); });
+
+// Redraw radar when it scrolls into view (fixes fade-up / opacity:0 paint issue)
+const radarObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { drawRadar(); radarObs.unobserve(e.target); } });
+}, { threshold: 0.1 });
+const radarWrap = document.getElementById('radarWrap');
+if (radarWrap) radarObs.observe(radarWrap);
+</script>
+</body>
+</html>
