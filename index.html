@@ -24,6 +24,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tripodi — Viaje al Origen de un Apellido Milenario</title>
+<link rel="icon" type="image/png" sizes="32x32" href="imagenes/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="imagenes/favicon-16x16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="imagenes/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
@@ -76,7 +79,8 @@ h1,h2,h3,.serif-display{font-family:'Cinzel',serif;}
 [data-theme="light"] .hero-bg{background:radial-gradient(ellipse at 50% 60%,#D4B88A 0%,#E8D9C0 60%,#F2EDE6 100%);}
 .hero-stars{position:absolute;inset:0;background-image:radial-gradient(1px 1px at 20% 30%,rgba(201,168,76,.4) 0,transparent 100%),radial-gradient(1px 1px at 70% 15%,rgba(201,168,76,.3) 0,transparent 100%),radial-gradient(1px 1px at 85% 65%,rgba(201,168,76,.2) 0,transparent 100%),radial-gradient(1.5px 1.5px at 60% 45%,rgba(255,255,255,.15) 0,transparent 100%);z-index:1;}
 [data-theme="light"] .hero-stars{display:none;}
-.tripod-icon{font-size:5rem;margin-bottom:1.5rem;position:relative;z-index:2;filter:drop-shadow(0 0 24px rgba(201,168,76,.5));animation:glow-pulse 3s ease-in-out infinite;}
+.tripod-icon{margin-bottom:1.5rem;position:relative;z-index:2;filter:drop-shadow(0 0 24px rgba(201,168,76,.5));animation:glow-pulse 3s ease-in-out infinite;}
+.tripod-icon img{width:180px; height:auto; display:block;}
 @keyframes glow-pulse{0%,100%{filter:drop-shadow(0 0 16px rgba(201,168,76,.4));}50%{filter:drop-shadow(0 0 36px rgba(201,168,76,.7));}}
 .hero-eyebrow{font-family:'Inter',sans-serif;font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;position:relative;z-index:2;}
 .hero-title{font-size:clamp(3rem,8vw,7rem);font-weight:900;line-height:1;letter-spacing:.04em;color:var(--gold-lt);text-shadow:0 2px 40px rgba(201,168,76,.3);position:relative;z-index:2;margin-bottom:.5rem;}
@@ -506,6 +510,7 @@ footer{background:var(--bg-panel);border-top:1px solid var(--border);padding:2.5
   box-shadow: 0 4px 24px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.06);
   cursor: pointer; font-size: 1.3rem; display: none; align-items: center; justify-content: center;
   transition: transform .25s, box-shadow .25s, border-color .25s;
+  animation: bubble-glow 2.8s ease-in-out infinite;
   /* Posición alineada con el margen interior derecho de las secciones */
   right: calc(50% - min(550px, 50vw) + 2rem);
 }
@@ -800,7 +805,7 @@ footer{background:var(--bg-panel);border-top:1px solid var(--border);padding:2.5
   <div class="hero-bg"></div>
   <div class="hero-stars"></div>
   <p class="hero-eyebrow">Investigación genealógica, heráldica e histórica</p>
-  <div class="tripod-icon">🏛️</div>
+  <div class="tripod-icon"><img src="imagenes/Tripode2.png" alt="Trípode griego sacrificial de bronce" loading="eager"></div>
   <h1 class="hero-title">TRIPODI</h1>
   <p class="hero-subtitle-greek">Τρίποδι · Trípodis · Tripodu</p>
   <p class="hero-subtitle">Un apellido grabado en tablillas micénicas, que sentó a la Pitia sobre el humo de los dioses y que cruzó el Mediterráneo para arraigarse en el sur de Italia hace más de 2.700 años.</p>
@@ -1723,12 +1728,15 @@ function toggleTheme() {
   // Smooth anchor scrolling
   document.querySelectorAll('.nav-link, .bubble-link').forEach(a => {
     a.addEventListener('click', e => {
+      e.stopPropagation();
       const href = a.getAttribute('href');
       if (href && href.startsWith('#')) {
         e.preventDefault();
         const target = document.querySelector(href);
         if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
+      // Close bubble menu if it's a bubble link
+      closeBubbleMenu();
     });
   });
 })();

@@ -28,18 +28,20 @@ Este proyecto es una página web educativa y cultural que presenta una investiga
 Tripodi/
 ├── index.html              # Página principal
 ├── README.md               # Documentación del proyecto
+├── LICENSE                 # Licencia del proyecto
 ├── audio/                  # Archivos de audio
 │   ├── podi.mp3
 │   ├── tri.mp3
 │   └── tripodi.mp3
 └── imagenes/               # Imágenes y recursos visuales
-    ├── Diaspora_italiana.png
-    ├── Epicentro_calabres_y_su_irradiacion.png
-    ├── Hesiodo_gana_tripode.png
-    ├── Tripodi_heraldica1.png
-    ├── Tripodi_heraldica2.png
-    ├── tripodi_mundo.png
-    └── info.txt
+    ├── apple-touch-icon.png
+    ├── favicon-16x16.png
+    ├── favicon-32x32.png
+    ├── favicon.zip
+    ├── Icono/
+    │   ├── Tripode.afphoto
+    │   └── Tripode_halo.png
+    └── (otras imágenes del contenido)
 ```
 
 ## 🚀 Cómo Usar
@@ -100,6 +102,10 @@ El sitio incluye investigación sobre:
 - **Texto alternativo** para todas las imágenes
 
 ## 📝 Changelog
+
+### Versión 1.1.1 - Iconos y recursos
+- Agregados favicons y apple-touch-icon para mejorar la identificación del sitio en pestañas y accesos directos
+- Actualizada la estructura de recursos en el README para reflejar los archivos actuales
 
 ### Versión 1.1.0 - Actualizaciones Recientes
 - Mejoras en la sección de historia:
