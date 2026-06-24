@@ -1,5 +1,25 @@
 <!DOCTYPE html>
 <html lang="es" data-theme="dark">
+<!-- 
+  ============================================================================
+  TRIPODI - SITIO WEB INTERACTIVO
+  ============================================================================
+  Archivo: index.html
+  Descripción: Sitio web interactivo sobre el origen, historia y genealogía del apellido Tripodi
+  Autor: Jorge Osvaldo Tripodi
+  Fecha: 2026
+  
+  ESTRUCTURA DEL ARCHIVO:
+  1. HEAD - Metadatos, fuentes y estilos CSS
+  2. BODY - Contenido principal del sitio
+     2.1. Navbar - Navegación principal
+     2.2. Hero - Sección principal con título y KPIs
+     2.3. Secciones de contenido (Etimología, Timeline, Hipótesis, etc.)
+     2.4. Footer - Pie de página
+  3. SCRIPT - JavaScript para funcionalidades interactivas
+  ============================================================================
+-->
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,15 +27,39 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
+/* ============================================================================
+   SECCIÓN 1: VARIABLES CSS Y SISTEMA DE TEMAS
+   ============================================================================
+   Define las variables CSS para los temas claro y oscuro, incluyendo colores,
+   fondos, textos y bordes.
+*/
+
+/* Variables para tema oscuro (por defecto) */
 :root {
-  --gold:#C9A84C; --gold-lt:#E8C96A; --ember:#B85C2A; --terracotta:#D4725A;
-  --aegean:#2A5B7A; --aegean-lt:#3A7A9F; --marble:#F2EDE6;
-  --bg-dark:#0E0C09; --bg-panel:#1A1610; --bg-card:#211E18;
-  --text-main:#EDE8DF; --text-muted:#9A9180; --border:rgba(201,168,76,0.2); --radius:8px;
+  --gold:#C9A84C;           /* Color dorado principal */
+  --gold-lt:#E8C96A;        /* Dorado claro */
+  --ember:#B85C2A;          /* Color ámbar/terracota */
+  --terracotta:#D4725A;     /* Terracota */
+  --aegean:#2A5B7A;         /* Azul egeo */
+  --aegean-lt:#3A7A9F;      /* Azul egeo claro */
+  --marble:#F2EDE6;         /* Color mármol */
+  --bg-dark:#0E0C09;        /* Fondo oscuro principal */
+  --bg-panel:#1A1610;       /* Fondo de paneles */
+  --bg-card:#211E18;        /* Fondo de tarjetas */
+  --text-main:#EDE8DF;      /* Texto principal */
+  --text-muted:#9A9180;     /* Texto secundario/atenuado */
+  --border:rgba(201,168,76,0.2); /* Color de bordes */
+  --radius:8px;             /* Radio de bordes */
 }
+
+/* Variables para tema claro */
 [data-theme="light"] {
-  --bg-dark:#F2EDE6; --bg-panel:#E8E0D4; --bg-card:#FFFFFF;
-  --text-main:#1C1710; --text-muted:#6B5E4A; --border:rgba(100,70,30,0.2);
+  --bg-dark:#F2EDE6;        /* Fondo claro principal */
+  --bg-panel:#E8E0D4;       /* Fondo de paneles claro */
+  --bg-card:#FFFFFF;        /* Fondo de tarjetas blanco */
+  --text-main:#1C1710;      /* Texto principal oscuro */
+  --text-muted:#6B5E4A;     /* Texto secundario */
+  --border:rgba(100,70,30,0.2); /* Bordes para tema claro */
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;font-size:16px;}
@@ -24,9 +68,7 @@ h1,h2,h3,.serif-display{font-family:'Cinzel',serif;}
 .sans{font-family:'Inter',sans-serif;}
 ::-webkit-scrollbar{width:6px;}::-webkit-scrollbar-track{background:var(--bg-dark);}::-webkit-scrollbar-thumb{background:var(--gold);border-radius:3px;}
 
-/* THEME TOGGLE */
-.theme-toggle{position:fixed;top:1.2rem;right:1.4rem;z-index:1000;background:var(--bg-card);border:1px solid var(--border);border-radius:2rem;padding:.4rem .8rem;cursor:pointer;font-family:'Inter',sans-serif;font-size:.75rem;color:var(--gold);letter-spacing:.08em;text-transform:uppercase;display:flex;align-items:center;gap:.5rem;transition:all .3s;}
-.theme-toggle:hover{border-color:var(--gold);}
+
 
 /* HERO */
 .hero{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem 6rem;overflow:hidden;}
@@ -450,10 +492,10 @@ footer{background:var(--bg-panel);border-top:1px solid var(--border);padding:2.5
 }
 .bubble-theme-btn:hover { background: rgba(201,168,76,.2); }
 
-/* MOBILE: bubble goes bottom-right, navbar hidden */
+/* MOBILE: bubble goes bottom-right, navbar visible at top */
 @media (max-width: 768px) {
-  .main-nav { display: none !important; }
-  .nav-bubble { display: flex !important; top: auto; bottom: 1.4rem; right: 1.4rem; }
+  .main-nav { display: block !important; }
+  .nav-bubble { display: none !important; }
   .nav-bubble-menu { top: auto; bottom: calc(100% + .6rem); right: 0; transform-origin: bottom right; }
   .nav-bubble.open .nav-bubble-menu { transform: scale(1) translateY(0); }
 }
@@ -546,8 +588,13 @@ footer{background:var(--bg-panel);border-top:1px solid var(--border);padding:2.5
       <a href="#hypo" class="nav-link">Hipótesis</a>
       <a href="#oracle" class="nav-link">Oráculo</a>
       <a href="#geo" class="nav-link">Geografía</a>
+      <a href="#diaspora" class="nav-link">Diáspora</a>
+      <a href="#heraldry" class="nav-link">Heráldica</a>
       <a href="#linguis" class="nav-link">Lingüística</a>
+      <a href="#variants" class="nav-link">Variantes</a>
       <a href="#notables" class="nav-link">Notables</a>
+      <a href="#closing" class="nav-link">Cierre</a>
+      <a href="#sources" class="nav-link">Fuentes</a>
     </div>
     <button class="nav-theme-btn" onclick="toggleTheme()" aria-label="Cambiar tema">
       <span id="themeIcon">☀️</span>
@@ -563,11 +610,13 @@ footer{background:var(--bg-panel);border-top:1px solid var(--border);padding:2.5
     <a href="#hypo" class="bubble-link" onclick="closeBubbleMenu()">Hipótesis</a>
     <a href="#oracle" class="bubble-link" onclick="closeBubbleMenu()">Oráculo</a>
     <a href="#geo" class="bubble-link" onclick="closeBubbleMenu()">Geografía</a>
+    <a href="#diaspora" class="bubble-link" onclick="closeBubbleMenu()">Diáspora</a>
+    <a href="#heraldry" class="bubble-link" onclick="closeBubbleMenu()">Heráldica</a>
     <a href="#linguis" class="bubble-link" onclick="closeBubbleMenu()">Lingüística</a>
+    <a href="#variants" class="bubble-link" onclick="closeBubbleMenu()">Variantes</a>
     <a href="#notables" class="bubble-link" onclick="closeBubbleMenu()">Notables</a>
-    <button class="bubble-theme-btn" onclick="toggleTheme();closeBubbleMenu()">
-      <span id="themeIconBubble">☀️</span><span id="themeLabelBubble">Modo claro</span>
-    </button>
+    <a href="#closing" class="bubble-link" onclick="closeBubbleMenu()">Cierre</a>
+    <a href="#sources" class="bubble-link" onclick="closeBubbleMenu()">Fuentes</a>
   </div>
 </button>
 
@@ -676,7 +725,9 @@ footer{background:var(--bg-panel);border-top:1px solid var(--border);padding:2.5
 <div class="section-divider"></div>
 
 <!-- TIMELINE -->
-<section id="timeline" style="background:var(--bg-dark);">
+<section id="timeline">
+  <div class="section">
+    <p class="section-eyebrow fade-up">Historia</p>
     <h2 class="section-title fade-up">El viaje a través de los siglos</h2>
     <p class="section-lead fade-up">Desde las tablillas micénicas hasta la <span class="tt" data-tt="Dispersión de un pueblo o comunidad fuera de su territorio de origen. La diáspora italiana del s. XIX–XX fue una de las mayores migraciones de la historia moderna: más de 25 millones de personas entre 1880 y 1940.">diáspora</span> en América del Sur, la historia del trípode y su apellido atraviesa tres milenios.</p>
     <div class="timeline">
@@ -971,7 +1022,7 @@ footer{background:var(--bg-panel);border-top:1px solid var(--border);padding:2.5
 <div class="section-divider"></div>
 
 <!-- GEO -->
-<section class="geo-section" id="geoSection">
+<section class="geo-section" id="geo">
   <div class="section">
     <p class="section-eyebrow fade-up">Distribución geográfica</p>
     <h2 class="section-title fade-up">El epicentro calabrés y su irradiación</h2>
@@ -1008,7 +1059,7 @@ footer{background:var(--bg-panel);border-top:1px solid var(--border);padding:2.5
 <div class="section-divider"></div>
 
 <!-- DIASPORA -->
-<section class="diaspora-section">
+<section class="diaspora-section" id="diaspora">
   <div class="section">
     <p class="section-eyebrow fade-up">La diáspora</p>
     <h2 class="section-title fade-up">De Calabria al mundo: cinco olas de migración</h2>
@@ -1032,7 +1083,7 @@ footer{background:var(--bg-panel);border-top:1px solid var(--border);padding:2.5
 <div class="section-divider"></div>
 
 <!-- HERALDRY -->
-<section class="heraldry-section">
+<section class="heraldry-section" id="heraldry">
   <div class="section">
     <p class="section-eyebrow fade-up">Heráldica</p>
     <h2 class="section-title fade-up">Dos blasones, un mismo linaje</h2>
@@ -1156,7 +1207,7 @@ footer{background:var(--bg-panel);border-top:1px solid var(--border);padding:2.5
 <div class="section-divider"></div>
 
 <!-- VARIANTS -->
-<section class="variants-section" style="background:var(--bg-dark);">
+<section class="variants-section" id="variants" style="background:var(--bg-dark);">
   <div class="section">
     <p class="section-eyebrow fade-up">Variantes del apellido</p>
     <h2 class="section-title fade-up">Una familia de nombres, una misma raíz</h2>
@@ -1278,7 +1329,7 @@ footer{background:var(--bg-panel);border-top:1px solid var(--border);padding:2.5
 <div class="section-divider"></div>
 
 <!-- CLOSING -->
-<section class="closing-section">
+<section class="closing-section" id="closing">
   <div class="section">
     <span class="closing-tripod">🏛️</span>
     <h2 class="closing-title fade-up">Ser Tripodi</h2>
@@ -1293,7 +1344,7 @@ footer{background:var(--bg-panel);border-top:1px solid var(--border);padding:2.5
 <div class="section-divider"></div>
 
 <!-- SOURCES -->
-<section class="sources-section">
+<section class="sources-section" id="sources">
   <div class="section">
     <p class="section-eyebrow fade-up">Referencias y fuentes</p>
     <h2 class="section-title fade-up">Bibliografía y fuentes consultadas</h2>
@@ -1474,6 +1525,14 @@ function toggleTheme() {
   function updateNav() {
     const y = window.scrollY;
     atTop = y < 80;
+
+    // En móviles, siempre mostrar el navbar y ocultar el bubble
+    if (window.innerWidth <= 768) {
+      nav.classList.remove('nav-hidden');
+      bubble.classList.remove('visible');
+      bubble.classList.remove('open');
+      return;
+    }
 
     if (atTop) {
       // Back at top: show full nav, hide bubble
