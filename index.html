@@ -139,6 +139,11 @@ h1,h2,h3,.serif-display{font-family:'Cinzel',serif;}
 /* HYPOTHESES */
 .hypo-section{background:var(--bg-panel);border-top:1px solid var(--border);}
 .hypo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.5rem;margin-top:3rem;}
+
+/* Mobile adjustments for hypothesis grid */
+@media(max-width:480px){
+  .hypo-grid{grid-template-columns:1fr; gap:1rem;}
+}
 .hypo-card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);overflow:visible;cursor:pointer;transition:all .35s;position:relative;}
 .hypo-card:hover,.hypo-card.active{border-color:var(--gold);transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.3);}
 .hypo-header{padding:1.5rem 1.5rem 1rem;display:flex;align-items:flex-start;gap:1rem;}
@@ -154,7 +159,7 @@ h1,h2,h3,.serif-display{font-family:'Cinzel',serif;}
 .hypo-body{padding:0 1.5rem 1.5rem;font-size:.92rem;line-height:1.75;color:var(--text-muted);}
 /* FIX: detail expanded correctly, no overflow clip */
 .hypo-detail{max-height:0;overflow:hidden;transition:max-height .5s ease,padding .3s ease;padding:0 1.5rem;font-size:.88rem;line-height:1.75;color:var(--text-muted);}
-.hypo-card.active .hypo-detail{max-height:600px;padding:1rem 1.5rem 1.5rem;border-top:1px solid var(--border);}
+.hypo-card.active .hypo-detail{max-height:1000px;padding:1rem 1.5rem 1.5rem;border-top:1px solid var(--border);}
 
 /* ORACLE */
 .oracle-section{background:var(--bg-dark);position:relative;overflow:hidden;}
@@ -224,10 +229,16 @@ h1,h2,h3,.serif-display{font-family:'Cinzel',serif;}
 .heraldry-section{background:var(--bg-dark);}
 .heraldry-grid{display:grid;grid-template-columns:auto 1fr;gap:3rem;align-items:start;margin-top:3rem;}
 @media(max-width:640px){.heraldry-grid{grid-template-columns:1fr;}}
-.coat-of-arms-wrap{display:flex;flex-direction:column;align-items:center;gap:1rem;flex-shrink:0;}
+.coat-of-arms-wrap{display:flex;flex-direction:column;align-items:center;gap:1rem;flex-shrink:0;width:100%;}
 .coat-of-arms-img{width:180px;height:auto;border-radius:var(--radius);border:1px solid var(--border);background:var(--bg-card);padding:.5rem;box-shadow:0 8px 32px rgba(0,0,0,.4);}
 .coat-placeholder{width:180px;height:220px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem;color:var(--text-muted);font-family:'Inter',sans-serif;font-size:.7rem;text-align:center;padding:1rem;}
 .coat-pending{font-size:2rem;margin-bottom:.5rem;}
+
+/* Mobile adjustments for coat of arms */
+@media(max-width:640px){
+  .coat-of-arms-img{width:100%;max-width:280px;}
+  .coat-placeholder{width:100%;max-width:280px;height:200px;}
+}
 .blazon-text{background:var(--bg-card);border:1px solid var(--border);border-left:3px solid var(--gold);padding:1.2rem 1.5rem;border-radius:0 var(--radius) var(--radius) 0;font-style:italic;font-size:1.05rem;line-height:1.8;color:var(--text-main);margin-bottom:1.5rem;}
 .blazon-translation{font-style:normal;font-size:.85rem;color:var(--text-muted);margin-top:.6rem;font-family:'Inter',sans-serif;}
 .heraldry-facts{display:flex;flex-direction:column;gap:1rem;}
@@ -252,7 +263,7 @@ h1,h2,h3,.serif-display{font-family:'Cinzel',serif;}
 
 /* VARIANTS */
 .variants-section{background:var(--bg-dark);}
-.variants-grid{display:flex;flex-wrap:wrap;gap:1rem;margin-top:2.5rem;}
+.variants-grid{display:flex;flex-wrap:wrap;gap:1rem;margin-top:2.5rem;justify-content:center;}
 .variant-pill{background:var(--bg-card);border:1px solid var(--border);border-radius:2rem;padding:.6rem 1.2rem;display:flex;flex-direction:column;align-items:center;gap:.2rem;cursor:default;transition:all .3s;}
 .variant-pill:hover{border-color:var(--gold);transform:scale(1.05);}
 .variant-name{font-family:'Cinzel',serif;font-size:1rem;color:var(--gold);}
@@ -297,7 +308,19 @@ footer{background:var(--bg-panel);border-top:1px solid var(--border);padding:2.5
 .legend-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0;}
 .legend-pct{font-family:'Cinzel',serif;font-size:1rem;color:var(--gold);margin-left:auto;}
 
-@media(max-width:640px){.section{padding:3rem 1.2rem;}.tl-body{padding:1rem;}.flow-body{padding:0 0 1.5rem 1rem;}.timeline::before{left:1.5rem;}}
+/* Mobile: Center donut chart */
+@media(max-width:768px){
+  .donut-wrap{justify-content:center;}
+}
+
+@media(max-width:640px){
+  .section{padding:3rem 1.2rem;}
+  .tl-body{padding:1rem;}
+  .flow-body{padding:0 0 1.5rem 1rem;}
+  .timeline::before{left:1.5rem;}
+  .tl-item{gap:1rem;}
+  .tl-dot-wrap{width:3rem;}
+}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important;}}
 
 /* LIGHTBOX */
@@ -307,8 +330,17 @@ footer{background:var(--bg-panel);border-top:1px solid var(--border);padding:2.5
 .lightbox-inner img{max-width:100%;max-height:80vh;object-fit:contain;border-radius:4px;box-shadow:0 0 60px rgba(0,0,0,.8);}
 .lightbox-caption{font-family:'Inter',sans-serif;font-size:.8rem;color:rgba(255,255,255,.75);text-align:center;max-width:600px;line-height:1.6;padding:0 1rem;}
 .lightbox-caption strong{color:var(--gold-lt);}
-.lightbox-close{position:absolute;top:-2.5rem;right:0;background:none;border:1px solid rgba(255,255,255,.3);color:#fff;width:2rem;height:2rem;border-radius:50%;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:border-color .2s;}
+.lightbox-close{position:absolute;top:-3.5rem;right:0;background:none;border:1px solid rgba(255,255,255,.3);color:#fff;width:2rem;height:2rem;border-radius:50%;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:border-color .2s;}
 .lightbox-close:hover{border-color:var(--gold);color:var(--gold);}
+
+/* Mobile lightbox improvements */
+@media(max-width:768px){
+  .lightbox-overlay{padding:.5rem;}
+  .lightbox-inner{max-width:95vw;max-height:95vh;gap:.5rem;}
+  .lightbox-inner img{max-height:75vh;}
+  .lightbox-caption{font-size:.7rem;max-width:90vw;padding:0 .5rem;}
+  .lightbox-close{top:-3rem;right:.5rem;}
+}
 
 /* IMAGE BANNER */
 .img-banner{width:100%;position:relative;overflow:hidden;height:720px;max-height:700px;--banner-y:60%;}
@@ -317,12 +349,29 @@ footer{background:var(--bg-panel);border-top:1px solid var(--border);padding:2.5
 .img-caption{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(0,0,0,.88) 0%,transparent 100%);padding:1.5rem 2rem .8rem;font-family:'Inter',sans-serif;font-size:.75rem;color:rgba(255,255,255,.85);letter-spacing:.1em;transition:opacity .3s;}
 .img-caption strong{color:var(--gold-lt);}
 [data-theme="light"] .img-caption{background:linear-gradient(to top,rgba(0,0,0,.7) 0%,transparent 100%);}
-/* Mobile: hide caption by default, show on tap */
+/* Mobile: banner adjustments */
 @media(max-width:768px){
   .img-banner{height:220px;}
   .img-caption{opacity:0;pointer-events:none;}
+  /* Remove caption toggle since we now open lightbox instead */
   .img-banner.caption-visible .img-caption{opacity:1;pointer-events:all;}
-  .img-caption-tap-hint{display:block;position:absolute;bottom:.6rem;right:.8rem;background:rgba(0,0,0,.55);color:rgba(255,255,255,.7);font-family:'Inter',sans-serif;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;padding:.25rem .5rem;border-radius:2rem;pointer-events:none;}
+  .img-caption-tap-hint{
+    display:block;
+    position:absolute;
+    bottom:.6rem;
+    right:.8rem;
+    background:rgba(201,168,76,.75); /* More visible gold background */
+    color:rgba(255,255,255,.95); /* Brighter text */
+    font-family:'Inter',sans-serif;
+    font-size:.6rem;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    padding:.3rem .7rem;
+    border-radius:2rem;
+    pointer-events:none;
+    box-shadow:0 2px 8px rgba(0,0,0,.3);
+    z-index:10;
+  }
 }
 @media(min-width:769px){.img-caption-tap-hint{display:none;}}
 
@@ -372,9 +421,9 @@ footer{background:var(--bg-panel);border-top:1px solid var(--border);padding:2.5
 .notable-person a:visited{color:#5a8a9f;}
 
 /* AUDIO PLAY BUTTON */
-.audio-btn{display:inline-flex;align-items:center;justify-content:center;background:none;border:none;cursor:pointer;color:var(--gold);opacity:.7;transition:opacity .2s,transform .15s;padding:.15rem .3rem;vertical-align:middle;margin-left:.3rem;}
+.audio-btn{display:inline-flex;align-items:center;justify-content:center;background:none;border:none;cursor:pointer;color:var(--gold);opacity:.7;transition:opacity .2s,transform .15s;padding:.5rem;vertical-align:middle;margin-left:.3rem;}
 .audio-btn:hover{opacity:1;transform:scale(1.15);}
-.audio-btn svg{width:18px;height:18px;fill:currentColor;}
+.audio-btn svg{width:28px;height:28px;fill:currentColor;}
 
 /* LIGHTBOX: external source link */
 .lightbox-source-link{display:inline-flex;align-items:center;gap:.4rem;margin-top:.6rem;font-family:'Inter',sans-serif;font-size:.72rem;color:var(--aegean-lt);text-decoration:none;border:1px solid rgba(58,122,159,.4);border-radius:2rem;padding:.3rem .8rem;transition:border-color .2s,color .2s;}
@@ -395,6 +444,13 @@ footer{background:var(--bg-panel);border-top:1px solid var(--border);padding:2.5
 .img-gallery-strip::-webkit-scrollbar-thumb{background:var(--gold);border-radius:2px;}
 .gallery-thumb{flex-shrink:0;width:110px;height:75px;object-fit:cover;border-radius:calc(var(--radius) - 2px);cursor:pointer;transition:transform .25s,box-shadow .25s;border:1px solid var(--border);}
 .gallery-thumb:hover{transform:scale(1.04);box-shadow:0 4px 16px rgba(0,0,0,.4);border-color:var(--gold);}
+
+/* Mobile adjustments for gallery strips */
+@media(max-width:768px){
+  .img-gallery-strip{display:grid;grid-template-columns:repeat(2, 1fr);gap:.4rem;overflow-x:visible;padding-bottom:0;}
+  .img-gallery-strip::-webkit-scrollbar{display:none;}
+  .gallery-thumb{flex-shrink:1;width:100%;height:60px;}
+}
 
 /* GEO / DIASPORA image thumbs */
 .flow-img-thumb{width:100%;height:80px;object-fit:cover;border-radius:calc(var(--radius)-2px);margin-top:.6rem;cursor:pointer;transition:transform .25s;display:block;border:1px solid var(--border);}
@@ -760,8 +816,8 @@ footer{background:var(--bg-panel);border-top:1px solid var(--border);padding:2.5
 <div class="section-divider"></div>
 
 <!-- IMAGE 1: Calabria coast (Imagen_2.png) -->
-<div class="img-banner" onclick="toggleBannerCaption(this)" id="banner1">
-  <img src="imagenes/Imagen_2.png" alt="Costa de Calabria al atardecer, la cuna del apellido Tripodi" loading="lazy" onclick="openLightbox('imagenes/Imagen_2.png','<strong>Calabria, sur de Italia</strong> — La costa del Estrecho de Mesina, donde la formación rocosa «a tre piedi» (tres pies) pudo haber dado nombre al linaje. La antigua <em>Rhegion</em> griega (hoy Reggio Calabria) fue el epicentro histórico del apellido Tripodi desde el siglo VIII a.C.')">
+<div class="img-banner" onclick="handleBannerClick(this, event)" id="banner1">
+  <img src="imagenes/Imagen_2.png" alt="Costa de Calabria al atardecer, la cuna del apellido Tripodi" loading="lazy">
   <div class="img-caption">
     <strong>Calabria, sur de Italia</strong> — La costa del Estrecho de Mesina, donde la formación rocosa "a tre piedi" (tres pies) pudo haber dado nombre al linaje. La antigua <em>Rhegion</em> griega (hoy Reggio Calabria) fue el epicentro histórico del apellido Tripodi desde el siglo VIII a.C.
   </div>
@@ -848,8 +904,10 @@ footer{background:var(--bg-panel);border-top:1px solid var(--border);padding:2.5
         <div class="tl-body">
           <div class="tl-date">c. 800–400 a.C.</div>
           <div class="tl-title">La Pitia y el trípode sagrado de Delfos</div>
-          <div class="tl-text">El <span class="tt" data-tt="Centro de consulta profética consagrado al dios Apolo en Delfos (Grecia). Funcionó desde el s. VIII a.C. hasta el s. IV d.C. y fue el más influyente del mundo antiguo.">Oráculo</span> de Delfos alcanza su auge. La <span class="tt" data-tt="Sacerdotisa del dios Apolo en Delfos. Inhalaba vapores volcánicos y entraba en trance para pronunciar los oráculos, que los sacerdotes transcribían en hexámetros.">Pitia</span> profetiza sentada sobre un trípode dorado sobre una grieta del monte Parnaso, inhalando vapores (<em>pneuma</em>) de <span class="tt" data-tt="Gas inorgánico (C₂H₄) que emerge de fracturas geológicas volcánicas. Estudios modernos confirmaron su presencia en Delfos; en concentraciones bajas induce estados alterados de consciencia.">etileno</span>. El trípode se vuelve el símbolo personal de <span class="tt" data-tt="Dios griego del Sol, la música, la poesía y la profecía. Patrón del Oráculo de Delfos y de las colonias fundadas en la Magna Grecia. El trípode era su atributo sagrado.">Apolo</span>. El mitema de <span class="tt" data-tt="Héroe griego de fuerza sobrehumana, hijo de Zeus. Llamado Heracles en griego; Hércules es su nombre latino. Protagonista de los Doce Trabajos.">Hércules</span> que <strong>le roba el trípode a Apolo</strong> aparece en <span class="tt" data-tt="Representaciones pintadas sobre cerámica griega (ánforas, cráteras, hidrias). Principal fuente de iconografía del mundo antiguo. Las escenas de Heracles y el trípode son muy frecuentes en piezas del siglo VI a.C.">pinturas vasculares</span> del período geométrico: Zeus tuvo que intervenir para pacificar a ambos dioses.</div>
+          <div class="tl-text">El <span class="tt" data-tt="Centro de consulta profética consagrado al dios Apolo en Delfos (Grecia). Funcionó desde el s. VIII a.C. hasta el s. IV d.C. y fue el más influyente del mundo antiguo.">Oráculo</span> de Delfos alcanza su auge. La <span class="tt" data-tt="Sacerdotisa del dios Apolo en Delfos. Inhalaba vapores volcánicos y entraba en trance para pronunciar los oráculos, que los sacerdotes transcribían en hexámetros.">Pitia</span> profetiza sentada sobre un trípode dorado sobre una grieta del monte Parnaso, inhalando vapores (<em><span class="tt" data-tt="Aire, respiración, espíritu o soplo divino en la filosofía y religión griegas. En el contexto de Delfos, se refiere a los vapores que la Pitia inhalaba para entrar en trance.">pneuma</span></em>) de <span class="tt" data-tt="Gas inorgánico (C₂H₄) que emerge de fracturas geológicas volcánicas. Estudios modernos confirmaron su presencia en Delfos; en concentraciones bajas induce estados alterados de consciencia.">etileno</span>. El trípode se vuelve el símbolo personal de <span class="tt" data-tt="Dios griego del Sol, la música, la poesía y la profecía. Patrón del Oráculo de Delfos y de las colonias fundadas en la Magna Grecia. El trípode era su atributo sagrado.">Apolo</span>. El mitema de <span class="tt" data-tt="Héroe griego de fuerza sobrehumana, hijo de Zeus. Llamado Heracles en griego; Hércules es su nombre latino. Protagonista de los Doce Trabajos.">Hércules</span> que <strong>le roba el trípode a Apolo</strong> aparece en <span class="tt" data-tt="Representaciones pintadas sobre cerámica griega (ánforas, cráteras, hidrias). Principal fuente de iconografía del mundo antiguo. Las escenas de Heracles y el trípode son muy frecuentes en piezas del siglo VI a.C.">pinturas vasculares</span> del período geométrico: <span class="tt" data-tt="Rey de los dioses olímpicos, dios del cielo y el trueno. Padre de Hércules y Apolo.">Zeus</span> tuvo que intervenir para pacificar a ambos dioses.</div>
           <div class="img-gallery-strip">
+            <img class="gallery-thumb" src="imagenes/Imagen_4.png" alt="La Pitia en el trípode del Oráculo de Delfos"
+              onclick="openLightbox(this.src,'<strong>La Pitia sobre el trípode</strong> — La sacerdotisa de Apolo en el adyton del templo de Delfos, inhalando los vapores de etileno de la fisura geológica bajo sus pies. Los sacerdotes transcriben sus profecías en verso. El trípode era el nexo entre lo mortal y lo divino.')">
             <img class="gallery-thumb" src="imagenes/Hydria_Delphic_tripod_MNA_Inv10913.jpg" alt="Hidria con escena délfica del trípode"
               onclick="openLightbox(this.src,'<strong>Hidria con escena délfica del trípode</strong> — Cerámica ática de figuras negras que muestra a Heracles y Apolo disputando el trípode sagrado de Delfos. Museo Arqueológico Nacional de Atenas.','https://es.wikipedia.org/wiki/Tr%C3%ADpode_%28mueble%29#/media/Archivo:Hydria_Delphic_tripod_MNA_Inv10913.jpg')">
             <img class="gallery-thumb" src="imagenes/Herakles_tripod_Louvre_F341.jpg" alt="Heracles y Apolo disputan el trípode délfico, Louvre"
@@ -1002,10 +1060,10 @@ footer{background:var(--bg-panel);border-top:1px solid var(--border);padding:2.5
           <div class="hypo-thumb-label">El objeto · toca para ampliar</div>
         </div>
         <div class="hypo-chevron"><svg width="14" height="8" viewBox="0 0 14 8" fill="none"><path d="M1 1l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div class="hypo-body">La hipótesis más sólida. En el Mediterráneo antiguo era común que los artesanos tomaran su herramienta o producto como apellido familiar (uso metonímico).</div>
+        <div class="hypo-body">La hipótesis más sólida. En el Mediterráneo antiguo era común que los artesanos tomaran su herramienta o producto como apellido familiar (uso <span class="tt" data-tt="Figura retórica que consiste en designar algo con el nombre de otra cosa con la que tiene una relación cercana o de contigüidad.">metonímico</span>).</div>
         <div class="hypo-detail">
           El trípode era un objeto de enorme valor: soporte de calderos para cocinar, altar de sacrificios, premio en los Juegos Olímpicos, regalo de hospitalidad. Homero lo menciona repetidas veces en la Odisea como obsequio valioso entre nobles. Un herrero o fundidor de trípodes —especialistas muy apreciados— pudo haber sido llamado "el Tripodi" por su oficio.<br><br>
-          El mismo Ancestry.com clasifica Tripodi como "probable nombre ocupacional metonímico para un cocinero o para un fabricante de soportes" (del griego medieval <em>tripodion</em>, trípode). Los artesanos del sur de Italia heredaron las técnicas griegas de metalurgia. Hallazgos arqueológicos en Reggio Calabria y Locri confirman talleres de bronce activos desde el siglo VII a.C.<br><br>
+          El mismo Ancestry.com clasifica Tripodi como "probable nombre ocupacional <span class="tt" data-tt="Figura retórica que consiste en designar algo con el nombre de otra cosa con la que tiene una relación cercana o de contigüidad.">metonímico</span> para un cocinero o para un fabricante de soportes" (del griego medieval <em>tripodion</em>, trípode). Los artesanos del sur de Italia heredaron las técnicas griegas de metalurgia. Hallazgos arqueológicos en Reggio Calabria y Locri confirman talleres de bronce activos desde el siglo VII a.C.<br><br>
           Esta hipótesis es consistente con apellidos hermanos de la región: <em>Ferraro</em> (herrero), <em>Mastroianni</em> (maestro artesano), <em>Cannistrà</em> (cestero). Todos describen al fabricante por su producto.
         </div>
       </div>
@@ -1019,11 +1077,11 @@ footer{background:var(--bg-panel);border-top:1px solid var(--border);padding:2.5
           <div class="hypo-thumb-label">El paisaje · toca para ampliar</div>
         </div>
         <div class="hypo-chevron"><svg width="14" height="8" viewBox="0 0 14 8" fill="none"><path d="M1 1l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div class="hypo-body">La segunda hipótesis. Calabria es una región de montañas abruptas. Promotorios o formaciones de "tres patas" pueden haber dado nombre a aldeas enteras.</div>
+        <div class="hypo-body">La segunda hipótesis. Calabria es una región de montañas abruptas. <span class="tt" data-tt="Promontorios o cabos: extensiones de tierra que se adentran en el mar.">Promontorios</span> o formaciones de "tres patas" pueden haber dado nombre a aldeas enteras.</div>
         <div class="hypo-detail">
           En la tradición onomástica griega e itálica, es común que un habitante tome el topónimo de su lugar como apellido. Un paraje con tres picos, tres promontorios o tres cerros que formen visualmente una silueta similar a un trípode pudo generar el nombre del asentamiento, y luego el de sus habitantes.<br><br>
           La imagen de la costa calabresa que encabeza esta infografía lo ilustra con claridad: la formación rocosa "a tre piedi" (tres pies) sobre el mar, con el cartel identificatorio, sugiere exactamente este tipo de toponimia natural.<br><br>
-          La terminación del apellido es consistente con otros apellidos topográficos calabreses: <em>Scopelliti</em> (de <em>skopelos</em>, roca), <em>Ascioti</em> (del topónimo Ascea). La geografía extrema de Calabria —acantilados, colinas trilobuladas, promontorios sobre el Estrecho de Mesina— hacía inevitable este tipo de nomenclatura.
+          La terminación del apellido es consistente con otros apellidos topográficos calabreses: <em>Scopelliti</em> (de <em>skopelos</em>, roca), <em>Ascioti</em> (del topónimo Ascea). La geografía extrema de Calabria —acantilados, colinas trilobuladas, <span class="tt" data-tt="Promontorios o cabos: extensiones de tierra que se adentran en el mar.">promontorios</span> sobre el Estrecho de Mesina— hacía inevitable este tipo de nomenclatura.
         </div>
       </div>
 
@@ -1036,9 +1094,9 @@ footer{background:var(--bg-panel);border-top:1px solid var(--border);padding:2.5
           <div class="hypo-thumb-label">El oráculo · toca para ampliar</div>
         </div>
         <div class="hypo-chevron"><svg width="14" height="8" viewBox="0 0 14 8" fill="none"><path d="M1 1l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div class="hypo-body">La más evocadora. El trípode era el símbolo personal del dios Apolo y de su <span class="tt" data-tt="Centro de consulta profética consagrado al dios Apolo en Delfos. Funcionó desde el s. VIII a.C. hasta el s. IV d.C. y fue el más influyente del mundo antiguo.">Oráculo</span> en Delfos, el centro espiritual del mundo griego.</div>
+        <div class="hypo-body">La más evocadora. El trípode era el símbolo personal del dios <span class="tt" data-tt="Dios griego del Sol, la música, la poesía y la profecía. Patrón del Oráculo de Delfos y de las colonias fundadas en la Magna Grecia. El trípode era su atributo sagrado.">Apolo</span> y de su <span class="tt" data-tt="Centro de consulta profética consagrado al dios Apolo en Delfos. Funcionó desde el s. VIII a.C. hasta el s. IV d.C. y fue el más influyente del mundo antiguo.">Oráculo</span> en Delfos, el centro espiritual del mundo griego.</div>
         <div class="hypo-detail">
-          Guardianes del templo, sacerdotes o familias devotas de Apolo pudieron adoptar el trípode como símbolo familiar. Esta práctica de identificarse con el atributo de una deidad era común en las colonias griegas de la Magna Grecia, donde el culto apolíneo era especialmente fuerte. Las colonias fundadas bajo el patrocinio de Delfos —<span class="tt" data-tt="Ciudad de la Magna Grecia, hoy Locri Epizefiri (Calabria). Colonia griega fundada c. 680 a.C., famosa por ser la primera ciudad griega en codificar leyes escritas.">Locri</span>, <span class="tt" data-tt="Ciudad griega fundada c. 730 a.C., hoy Reggio Calabria. Epicentro del apellido Tripodi y cruce cultural entre Grecia, Roma y Bizancio.">Regio</span>, <span class="tt" data-tt="Colonia griega en Calabria, sede de la escuela filosófica de Pitágoras. Centro cultural helénico clave de la Magna Grecia.">Crotona</span>— mantenían vínculos directos con el Oráculo.<br><br>
+          Guardianes del templo, sacerdotes o familias devotas de <span class="tt" data-tt="Dios griego del Sol, la música, la poesía y la profecía. Patrón del Oráculo de Delfos y de las colonias fundadas en la Magna Grecia. El trípode era su atributo sagrado.">Apolo</span> pudieron adoptar el trípode como símbolo familiar. Esta práctica de identificarse con el atributo de una deidad era común en las colonias griegas de la Magna Grecia, donde el culto apolíneo era especialmente fuerte. Las colonias fundadas bajo el patrocinio de Delfos —<span class="tt" data-tt="Ciudad de la Magna Grecia, hoy Locri Epizefiri (Calabria). Colonia griega fundada c. 680 a.C., famosa por ser la primera ciudad griega en codificar leyes escritas.">Locri</span>, <span class="tt" data-tt="Ciudad griega fundada c. 730 a.C., hoy Reggio Calabria. Epicentro del apellido Tripodi y cruce cultural entre Grecia, Roma y Bizancio.">Regio</span>, <span class="tt" data-tt="Colonia griega en Calabria, sede de la escuela filosófica de Pitágoras. Centro cultural helénico clave de la Magna Grecia.">Crotona</span>— mantenían vínculos directos con el Oráculo.<br><br>
           El estudioso Martin Litchfield West vinculó el uso del trípode délfico con prácticas <span class="tt" data-tt="Relativo al chamanismo: tradición espiritual en la que el chamán entra en estado de trance para comunicarse con el mundo de los espíritus. West argumentó que la Pitia practicaba una forma análoga de trance inducido.">chamánicas</span> procedentes de Asia Central, señalando que el estado de trance de la Pitia era análogo al del chamán siberiano. Si el trípode era el nexo entre lo humano y lo divino, tomar su nombre era una forma de honor sagrado.<br><br>
           Según Heródoto (Historias V, 59–61), los trípodes de victoria no podían retirarse de los santuarios —debían quedar consagrados al dios—, lo que subraya su dimensión sagrada e intransferible: el ideal perfecto para un nombre de familia que "permanece" de generación en generación.
         </div>
@@ -1050,8 +1108,8 @@ footer{background:var(--bg-panel);border-top:1px solid var(--border);padding:2.5
 <div class="section-divider"></div>
 
 <!-- IMAGE 2: Tripode de bronce (Imagen_3.png) -->
-<div class="img-banner" onclick="toggleBannerCaption(this)" id="banner2">
-  <img src="imagenes/Imagen_3.png" alt="Trípode de bronce griego con decoración de grecas, sobre el fuego" loading="lazy" onclick="openLightbox('imagenes/Imagen_3.png','<strong>El trípode artesanal griego</strong> — Caldero de bronce con decoración de grecas sobre tres patas, tal como los fabricaban los artesanos de la Magna Grecia. Homero los menciona como premio y ofrenda en la Odisea; Hesíodo ganó uno «de orejas» en los juegos de Anfidamante. La hipótesis gremial sugiere que los <em>fabricantes</em> de estos objetos fueron los primeros en llevar el apellido Tripodi.')">
+<div class="img-banner" onclick="handleBannerClick(this, event)" id="banner2">
+  <img src="imagenes/Imagen_3.png" alt="Trípode de bronce griego con decoración de grecas, sobre el fuego" loading="lazy">
   <div class="img-caption">
     <strong>El trípode artesanal griego</strong> — Caldero de bronce con decoración de grecas sobre tres patas, tal como los fabricaban los artesanos de la Magna Grecia. Homero los menciona como prémio y ofrenda en la Odisea; Hesíodo ganó uno "de orejas" en los juegos de Anfidamante. La hipótesis gremial sugiere que los <em>fabricantes</em> de estos objetos fueron los primeros en llevar el apellido Tripodi.
   </div>
@@ -1079,17 +1137,17 @@ footer{background:var(--bg-panel);border-top:1px solid var(--border);padding:2.5
 
       <div class="fade-up">
         <div class="oracle-quote">
-          "Sobre la boca [de la fisura] se eleva un alto trípode. Ascendiendo sobre él, la Pitia inhala el <em>pneuma</em> y luego pronuncia sus profecías en verso o en prosa."
+          "Sobre la boca [de la fisura] se eleva un alto trípode. Ascendiendo sobre él, la Pitia inhala el <em><span class="tt" data-tt="Aire, respiración, espíritu o soplo divino en la filosofía y religión griegas. En el contexto de Delfos, se refiere a los vapores que la Pitia inhalaba para entrar en trance.">pneuma</span></em> y luego pronuncia sus profecías en verso o en prosa."
           <cite>— Estrabón, Geografía 9.3.5, c. 20 a.C.</cite>
         </div>
         <ul class="facts-list">
           <li>El Oráculo de Delfos estuvo activo por más de <strong>1.000 años</strong>, del siglo VIII a.C. al siglo IV d.C.</li>
           <li>La Pitia se sentaba sobre un <strong>trípode dorado</strong> encima de una fisura geológica que emitía vapores de <span class="tt" data-tt="Gas (C₂H₄) que emerge de fracturas geológicas volcánicas. En concentraciones bajas produce estados de alteración de consciencia. Confirmado por estudios geológicos modernos en Delfos.">etileno</span>, induciendo trance profético.</li>
-          <li>El trípode era el símbolo personal de <strong>Apolo</strong>. Según el mito, lo consagró al templo tras matar a la serpiente <span class="tt" data-tt="Enorme serpiente de la mitología griega que custodiaba el ombligo del mundo en Delfos. Apolo la mató con sus flechas y se apoderó del oráculo, dando su nombre a la sacerdotisa: la Pitia.">Pitón</span>.</li>
-          <li><strong>Hércules</strong> intentó robar el trípode délfico; Zeus tuvo que intervenir para pacificar a Apolo y al héroe.</li>
+          <li>El trípode era el símbolo personal de <strong><span class="tt" data-tt="Dios griego del Sol, la música, la poesía y la profecía. Patrón del Oráculo de Delfos y de las colonias fundadas en la Magna Grecia. El trípode era su atributo sagrado.">Apolo</span></strong>. Según el mito, lo consagró al templo tras matar a la serpiente <span class="tt" data-tt="Enorme serpiente de la mitología griega que custodiaba el ombligo del mundo en Delfos. Apolo la mató con sus flechas y se apoderó del oráculo, dando su nombre a la sacerdotisa: la Pitia.">Pitón</span>.</li>
+          <li><strong><span class="tt" data-tt="Héroe griego de fuerza sobrehumana, hijo de Zeus. Llamado Heracles en griego; Hércules es su nombre latino. Protagonista de los Doce Trabajos.">Hércules</span></strong> intentó robar el trípode délfico; <span class="tt" data-tt="Rey de los dioses olímpicos, dios del cielo y el trueno. Padre de Hércules y Apolo.">Zeus</span> tuvo que intervenir para pacificar a <span class="tt" data-tt="Dios griego del Sol, la música, la poesía y la profecía. Patrón del Oráculo de Delfos y de las colonias fundadas en la Magna Grecia. El trípode era su atributo sagrado.">Apolo</span> y al héroe.</li>
           <li>El <strong>Trípode de <span class="tt" data-tt="Ciudad de Beocia (Grecia). En el 479 a.C. fue escenario de la batalla decisiva que expulsó al ejército persa de Grecia, poniendo fin a las Guerras Médicas.">Platea</span></strong> (479 a.C.), fundido con el botín persa, fue llevado por Constantino a Constantinopla, donde aún existe.</li>
           <li>El estudioso <strong>Martin L. West</strong> vinculó el uso del trípode con prácticas <span class="tt" data-tt="Relativo al chamanismo: tradición espiritual en la que el chamán entra en trance para comunicarse con el mundo sobrenatural.">chamánicas</span> de Asia Central.</li>
-          <li>Las colonias de la Magna Grecia enviaban ofrendas votivas a Delfos regularmente.</li>
+          <li>Las colonias de la Magna Grecia enviaban <span class="tt" data-tt="Regalos o dedicatorias a una deidad, como agradecimiento o petición.">ofrendas votivas</span> a Delfos regularmente.</li>
         </ul>
       </div>
     </div>
@@ -1104,6 +1162,7 @@ footer{background:var(--bg-panel);border-top:1px solid var(--border);padding:2.5
     <p class="section-eyebrow fade-up">Distribución geográfica</p>
     <h2 class="section-title fade-up">El epicentro calabrés y su irradiación</h2>
     <p class="section-lead fade-up">La distribución del apellido en Italia es una huella casi perfecta de la antigua Magna Grecia: concentrado en el extremo sur, diluyéndose hacia el norte.</p>
+    <div style="height: 2rem;"></div>
     <div class="side-img-wrap fade-up" style="margin-bottom:2.5rem;cursor:pointer;" onclick="openLightbox('imagenes/Epicentro_calabres_y_su_irradiacion.png','<strong>Epicentro calabrés e irradiación del apellido Tripodi</strong> — El apellido nació en la antigua <em>Rhegion</em> (hoy Reggio Calabria) y desde allí se expandió hacia Messina y Sicilia, el norte de Italia y finalmente a América y el mundo durante la gran diáspora de los siglos XIX y XX.')">
       <img src="imagenes/Epicentro_calabres_y_su_irradiacion.png" alt="Epicentro calabrés e irradiación del apellido Tripodi" onerror="this.closest('.side-img-wrap').style.display='none'">
       <div class="side-img-caption"><strong>El epicentro calabrés y su irradiación</strong> — Distribución geográfica del apellido desde su núcleo en Reggio Calabria hacia Sicilia, el norte de Italia y la <span class="tt" data-tt="Dispersión de un pueblo o comunidad fuera de su territorio de origen.">diáspora</span> americana. <span style="color:var(--gold);font-size:.65rem;">↗ toca para ampliar</span></div>
@@ -1885,10 +1944,29 @@ function closeLightbox(e) {
 // Close lightbox with Escape key
 document.addEventListener('keydown', e => { if (e.key === 'Escape') { document.getElementById('lightbox').classList.remove('open'); document.body.style.overflow = ''; } });
 
-// Mobile image banner caption toggle
-function toggleBannerCaption(banner) {
-  if (window.innerWidth > 768) return;
-  banner.classList.toggle('caption-visible');
+// Handle banner click - opens lightbox on mobile, does nothing on desktop
+function handleBannerClick(banner, event) {
+  // Prevent event from bubbling to parent elements
+  event.stopPropagation();
+  
+  // On mobile (<= 768px), open lightbox
+  if (window.innerWidth <= 768) {
+    const img = banner.querySelector('img');
+    const captionDiv = banner.querySelector('.img-caption');
+    
+    if (img && captionDiv) {
+      const src = img.src;
+      // Extract caption text from the caption div
+      let captionText = captionDiv.innerHTML;
+      
+      // Clean up caption text - remove extra whitespace
+      captionText = captionText.trim();
+      
+      // Open lightbox with image and caption
+      openLightbox(src, captionText);
+    }
+  }
+  // On desktop (> 768px), do nothing (hover effects work via CSS)
 }
 
 // Intersection observers

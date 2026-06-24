@@ -99,6 +99,27 @@ El sitio incluye investigación sobre:
 - **Etiquetas ARIA** para elementos interactivos
 - **Texto alternativo** para todas las imágenes
 
+## 📝 Changelog
+
+### Versión 1.1.0 - Actualizaciones Recientes
+- Mejoras en la sección de historia:
+  - Imágenes en cuadrículas de 2x2 en móviles, scroll horizontal en pantallas grandes
+  - Agregada imagen de la Pitia como primera imagen en la sección
+- Mejoras en la sección de hipótesis:
+  - Incrementado el espacio de las tarjetas expandidas para mostrar todo el texto
+  - Gráfico de donas centrado horizontalmente en móviles
+- Mejoras en la sección de etimología:
+  - Aumentado el tamaño de los botones de audio
+- Mejoras en la línea de tiempo para móviles:
+  - Círculos de hitos alineados y más compactos
+- Mejoras en la sección de heráldica para móviles:
+  - Imágenes de escudos aprovechan mejor el ancho disponible
+- Sección de variantes del apellido:
+  - Cápsulas centrada horizontalmente
+- Lightbox: Botón de cerrar movido más arriba
+- Tooltips agregados a más palabras clave (Apolo, Zeus, etc.)
+- Mejoras generales de diseño responsivo
+
 ## 📝 Licencia
 
 Este proyecto es de carácter educativo y cultural. Las imágenes y contenido están destinados a fines de investigación y preservación histórica.
