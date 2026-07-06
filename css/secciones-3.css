@@ -1,0 +1,173 @@
+/* ============================================================================
+   SECCIONES PARTE 3 Y FOOTER - TRIPODI
+   ============================================================================
+   Estilos específicos para Personajes Notables, Fuentes, Cierre y Footer.
+*/
+
+/* 1. Personajes Notables */
+.notable-section {
+  background: var(--bg-panel);
+  border-top: 1px solid var(--border);
+}
+.notable-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.2rem;
+  margin-top: 3rem;
+}
+.notable-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.4rem;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.notable-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(to right, var(--ember), var(--gold));
+  transform: scaleX(0);
+  transition: transform 0.3s;
+}
+.notable-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-3px);
+}
+.notable-card:hover::after {
+  transform: scaleX(1);
+}
+.notable-emoji {
+  font-size: 2rem;
+  margin-bottom: 0.8rem;
+}
+.notable-name {
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+  color: var(--gold-lt);
+  margin-bottom: 0.3rem;
+}
+.notable-name a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(201, 168, 76, 0.3);
+  transition: border-color 0.2s;
+}
+.notable-name a:hover {
+  border-color: var(--gold);
+}
+.notable-role {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.6rem;
+}
+.notable-desc {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+.notable-people {
+  margin-top: 0.6rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--border);
+}
+.notable-person {
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+  padding: 0.2rem 0;
+}
+.notable-person strong {
+  color: var(--text-main);
+  font-style: normal;
+}
+.notable-person a {
+  color: var(--aegean-lt);
+  text-decoration: none;
+  word-break: break-word;
+}
+.notable-person a:hover {
+  color: var(--gold);
+  text-decoration: underline;
+}
+.notable-person a:visited {
+  color: #5a8a9f;
+}
+
+/* 2. Fuentes y Referencias */
+.sources-section {
+  background: var(--bg-panel);
+  border-top: 1px solid var(--border);
+}
+.sources-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 2.5rem;
+}
+@media(max-width: 640px) {
+  .sources-grid { grid-template-columns: 1fr; }
+}
+.source-group-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+  color: var(--gold-lt);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+.source-item {
+  display: flex;
+  gap: 0.8rem;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid rgba(201,168,76,.08);
+}
+.source-item:last-child {
+  border-bottom: none;
+}
+.source-num {
+  font-family: 'Cinzel', serif;
+  font-size: 0.8rem;
+  color: var(--gold);
+  flex-shrink: 0;
+  width: 1.5rem;
+  text-align: right;
+  padding-top: 0.1rem;
+}
+.source-content {
+  font-size: 0.82rem;
+  line-height: 1.65;
+  color: var(--text-muted);
+}
+.source-content em {
+  color: var(--text-main);
+}
+.source-content a {
+  color: var(--aegean-lt);
+  text-decoration: none;
+  word-break: break-all;
+}
+.source-content a:hover {
+  color: var(--gold);
+  text-decoration: underline;
+}
+.source-content .source-type {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background: var(--bg-card);
+  padding: 0.1rem 0.4rem;
+  border-radius: 2px;
+  margin-left: 0.4rem;
+  vertical-align: middle;
+}
+
+

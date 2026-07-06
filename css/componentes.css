@@ -1,0 +1,137 @@
+/* ============================================================================
+   COMPONENTES DINÁMICOS - TRIPODI
+   ============================================================================
+   Estilos específicos para elementos interactivos como banners, galerías,
+   lightbox, modales, tooltips y botones de audio.
+*/
+
+/* 1. Banners de Imágenes */
+.img-banner {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  height: 720px;
+  max-height: 700px;
+  --banner-y: 60%;
+}
+.img-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center var(--banner-y);
+  display: block;
+  transition: transform 0.6s ease;
+  cursor: pointer;
+}
+.img-banner:hover img {
+  transform: scale(1.01);
+}
+.img-caption {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.88) 0%, transparent 100%);
+  padding: 1.5rem 2rem 0.8rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.85);
+  letter-spacing: 0.1em;
+  transition: opacity 0.3s;
+}
+.img-caption strong {
+  color: var(--gold-lt);
+}
+[data-theme="light"] .img-caption {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, transparent 100%);
+}
+
+@media(max-width: 768px) {
+  .img-banner { height: 220px; }
+  .img-caption { opacity: 0; pointer-events: none; }
+  .img-banner.caption-visible .img-caption { opacity: 1; pointer-events: all; }
+  .img-caption-tap-hint {
+    display: block;
+    position: absolute;
+    bottom: .6rem; right: .8rem;
+    background: rgba(201, 168, 76, 0.75);
+    color: rgba(255, 255, 255, 0.95);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.6rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    padding: .3rem .7rem;
+    border-radius: 2rem;
+    pointer-events: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,.3);
+    z-index: 10;
+  }
+}
+@media(min-width: 769px) {
+  .img-caption-tap-hint { display: none; }
+}
+
+/* 2. Galería de Imágenes en Timeline / Secciones */
+.img-gallery-strip {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 0.7rem;
+  overflow-x: auto;
+  padding-bottom: 0.3rem;
+}
+.img-gallery-strip::-webkit-scrollbar {
+  height: 3px;
+}
+.img-gallery-strip::-webkit-scrollbar-thumb {
+  background: var(--gold);
+  border-radius: 2px;
+}
+.gallery-thumb {
+  flex-shrink: 0;
+  width: 110px;
+  height: 75px;
+  object-fit: cover;
+  border-radius: calc(var(--radius) - 2px);
+  cursor: pointer;
+  transition: transform 0.25s, box-shadow 0.25s;
+  border: 1px solid var(--border);
+}
+.gallery-thumb:hover {
+  transform: scale(1.04);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  border-color: var(--gold);
+}
+@media(max-width: 768px) {
+  .img-gallery-strip {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.4rem;
+    overflow-x: visible;
+    padding-bottom: 0;
+  }
+  .img-gallery-strip::-webkit-scrollbar { display: none; }
+  .gallery-thumb { width: 100%; height: 60px; }
+}
+
+/* 3. Audio Playback */
+.audio-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--gold);
+  opacity: 0.7;
+  transition: opacity 0.2s, transform 0.15s;
+  padding: 0.5rem;
+  vertical-align: middle;
+  margin-left: 0.3rem;
+}
+.audio-btn:hover {
+  opacity: 1;
+  transform: scale(1.15);
+}
+.audio-btn svg {
+  width: 28px;
+  height: 28px;
+  fill: currentColor;
+}

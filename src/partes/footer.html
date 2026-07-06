@@ -1,0 +1,63 @@
+<!-- FOOTER -->
+<footer>
+  <div class="footer-text">
+    <div>Infografía interactiva sobre el origen del apellido Tripodi · Investigación genealógica, etimológica y heráldica</div>
+    <div>Fuentes: Wikipedia (IT/EN) · Ancestry.com · Geneanet · ancestrositalianos.com · Britannica · worldhistory.org · Heraldrys Institute of Rome (Dossiers 881544 y 882605)</div>
+    <div>De Felice (1990) · Pavan (2009) · Burkert (1983) · West (1983) · Estrabón · Heródoto · Hesíodo · Wikipedia (Emanuel Trípodi) · Wikipedia (Mariano Trípodi)</div>
+  </div>
+  <div class="footer-copy">
+    © 2026 Jorge Osvaldo Tripodi — Todos los derechos reservados
+  </div>
+</footer>
+
+<!-- HYPO MODAL (desktop) -->
+<div id="hypoModal" class="hypo-modal-overlay" onclick="closeHypoModal(event)">
+  <div class="hypo-modal-inner" onclick="event.stopPropagation()">
+    <button class="hypo-modal-close" onclick="closeHypoModal()">✕</button>
+    <div class="hypo-modal-num" id="hypoModalNum"></div>
+    <div class="hypo-modal-layout">
+      <div class="hypo-modal-left">
+        <img id="hypoModalImg" src="" alt="" class="hypo-modal-img">
+      </div>
+      <div class="hypo-modal-right">
+        <div class="hypo-modal-header">
+          <span class="hypo-modal-icon" id="hypoModalIcon"></span>
+          <div>
+            <h3 class="hypo-modal-title" id="hypoModalTitle"></h3>
+            <div class="hypo-modal-subtitle" id="hypoModalSubtitle"></div>
+          </div>
+        </div>
+        <div class="hypo-modal-bar-wrap">
+          <div class="hypo-modal-bar-label"><span>Probabilidad histórica</span><span id="hypoModalPct"></span></div>
+          <div class="hypo-modal-bar"><div class="hypo-modal-bar-fill" id="hypoModalBarFill"></div></div>
+        </div>
+        <div class="hypo-modal-body" id="hypoModalBody"></div>
+        <div class="hypo-modal-detail" id="hypoModalDetail"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" class="lightbox-overlay" onclick="closeLightbox(event)">
+  <div class="lightbox-inner" onclick="event.stopPropagation()">
+    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <img id="lightboxImg" src="" alt="">
+    <button class="lightbox-info-btn" id="lightboxInfoBtn" onclick="toggleLightboxCaption()">mostrar info</button>
+    <div id="lightboxCaption" class="lightbox-caption"></div>
+    <a id="lightboxSourceLink" class="lightbox-source-link" href="#" target="_blank" rel="noopener" style="display:none;">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      Visitar fuente original
+    </a>
+  </div>
+</div>
+
+<!-- Scripts modulares de interactividad (Ninguno supera las 200 líneas) -->
+<script src="js/tema.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/nav.js"></script>
+<script src="js/modal.js"></script>
+<script src="js/tooltips.js"></script>
+<script src="js/graficos.js"></script>
+</body>
+</html>

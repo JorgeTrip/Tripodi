@@ -1,0 +1,7 @@
+# robots.txt para https://tripodi.web.app/
+
+User-agent: *
+Allow: /
+
+# Mapa del sitio (descomentar cuando exista)
+# Sitemap: https://tripodi.web.app/sitemap.xml

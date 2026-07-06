@@ -1,0 +1,74 @@
+/* ============================================================================
+   CIERRE Y PIE DE PÁGINA - TRIPODI
+   ============================================================================
+   Estilos específicos para la conclusión del sitio y la firma.
+*/
+
+/* 1. Sección Cierre */
+.closing-section {
+  text-align: center;
+  background: var(--bg-dark);
+  position: relative;
+  overflow: hidden;
+}
+.closing-section::before {
+  content: 'ΤΡΙΠΟΔΙ';
+  position: absolute;
+  font-family: 'Cinzel', serif;
+  font-size: clamp(5rem, 15vw, 12rem);
+  font-weight: 900;
+  color: rgba(201,168,76,.04);
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+}
+.closing-tripod {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  display: block;
+}
+.closing-title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  color: var(--gold-lt);
+  margin-bottom: 1.2rem;
+}
+.closing-text {
+  max-width: 640px;
+  margin: 0 auto 2.5rem;
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: var(--text-muted);
+}
+.closing-latin {
+  font-family: 'Cinzel', serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+
+/* 2. Footer */
+footer {
+  background: var(--bg-panel);
+  border-top: 1px solid var(--border);
+  padding: 2.5rem 2rem;
+  text-align: center;
+}
+.footer-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  line-height: 2.2;
+}
+.footer-copy {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  font-family: 'Cinzel', serif;
+  font-size: 0.8rem;
+  color: var(--gold);
+  letter-spacing: 0.12em;
+}

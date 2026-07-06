@@ -1,0 +1,164 @@
+/* ============================================================================
+   INTERACCIONES Y DIÁLOGOS - TRIPODI
+   ============================================================================
+   Estilos específicos para Lightbox, Modales, Tooltips y animaciones hover.
+*/
+
+/* 1. Lightbox de Imágenes */
+.lightbox-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.92);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  padding: 1rem;
+}
+.lightbox-overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+.lightbox-inner {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+.lightbox-inner img {
+  max-width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 4px;
+  box-shadow: 0 0 60px rgba(0,0,0,0.8);
+}
+.lightbox-caption {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.75);
+  text-align: center;
+  max-width: 600px;
+  line-height: 1.6;
+  padding: 0 1rem;
+}
+.lightbox-caption strong {
+  color: var(--gold-lt);
+}
+.lightbox-close {
+  position: absolute;
+  top: -3.5rem; right: 0;
+  background: none;
+  border: 1px solid rgba(255,255,255,0.3);
+  color: #fff;
+  width: 2rem; height: 2rem;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border-color 0.2s;
+}
+.lightbox-close:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+.lightbox-source-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-top: 0.6rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.72rem;
+  color: var(--aegean-lt);
+  text-decoration: none;
+  border: 1px solid rgba(58, 122, 159, 0.4);
+  border-radius: 2rem;
+  padding: 0.3rem 0.8rem;
+  transition: border-color 0.2s, color 0.2s;
+}
+.lightbox-source-link:hover {
+  color: var(--gold-lt);
+  border-color: var(--gold);
+}
+.lightbox-info-btn {
+  display: none;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.25);
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.8rem;
+  border-radius: 2rem;
+  cursor: pointer;
+  margin-top: 0.4rem;
+  transition: background 0.2s;
+}
+.lightbox-info-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+@media(max-width: 768px) {
+  .lightbox-overlay { padding: 0.5rem; }
+  .lightbox-inner { max-width: 95vw; max-height: 95vh; gap: 0.5rem; }
+  .lightbox-inner img { max-height: 75vh; }
+  .lightbox-caption { display: none; font-size: 0.7rem; max-width: 90vw; padding: 0 0.5rem; }
+  .lightbox-caption.caption-shown { display: block; }
+  .lightbox-info-btn { display: inline-block; }
+  .lightbox-close { top: -3rem; right: 0.5rem; }
+}
+
+/* 2. Tooltips */
+.tt {
+  position: relative;
+  display: inline;
+  border-bottom: 1px dotted var(--gold);
+  cursor: help;
+  color: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+}
+#ttBubble {
+  position: fixed;
+  z-index: 9999;
+  max-width: 260px;
+  background: var(--bg-card);
+  color: var(--text-main);
+  border: 1px solid rgba(201, 168, 76, 0.4);
+  border-radius: var(--radius);
+  padding: 0.6rem 0.9rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.74rem;
+  line-height: 1.5;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+#ttBubble.tt-visible {
+  opacity: 1;
+}
+#ttBubble::after {
+  content: '';
+  position: absolute;
+  top: 100%; left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: rgba(201, 168, 76, 0.4);
+}
+
+/* 3. Radar Highlight */
+.lang-attr[data-radar-idx].radar-highlight {
+  border-color: var(--gold);
+  background: rgba(201, 168, 76, 0.06);
+}

@@ -1,0 +1,82 @@
+/* ============================================================================
+   VARIABLES Y ESTILOS GLOBALES - TRIPODI
+   ============================================================================
+   Define el sistema de diseño, variables CSS y estilos base.
+*/
+
+:root {
+  /* Paleta de colores temáticos */
+  --gold: #C9A84C;           /* Dorado principal */
+  --gold-lt: #E8C96A;        /* Dorado claro */
+  --ember: #B85C2A;          /* Ámbar/Terracota */
+  --terracotta: #D4725A;     /* Terracota */
+  --aegean: #2A5B7A;         /* Azul egeo */
+  --aegean-lt: #3A7A9F;      /* Azul egeo claro */
+  --marble: #F2EDE6;         /* Color mármol */
+  
+  /* Modo Oscuro ("Grises Pro" con tintes cálidos) */
+  --bg-dark: #0E0C09;        /* Fondo oscuro principal */
+  --bg-panel: #1A1610;       /* Fondo de paneles */
+  --bg-card: #211E18;        /* Fondo de tarjetas */
+  --text-main: #EDE8DF;      /* Texto principal */
+  --text-muted: #9A9180;     /* Texto secundario */
+  --border: rgba(201, 168, 76, 0.2);
+  --radius: 8px;
+}
+
+[data-theme="light"] {
+  /* Modo Claro ("Grises Pro" cálidos) */
+  --bg-dark: #F2EDE6;        /* Fondo claro principal */
+  --bg-panel: #E8E0D4;       /* Fondo de paneles claro */
+  --bg-card: #FFFFFF;        /* Fondo de tarjetas blanco */
+  --text-main: #1C1710;      /* Texto principal oscuro */
+  --text-muted: #6B5E4A;     /* Texto secundario */
+  --border: rgba(100, 70, 30, 0.2);
+}
+
+/* Reset y Base */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: 'Lora', Georgia, serif;
+  background: var(--bg-dark);
+  color: var(--text-main);
+  overflow-x: hidden;
+  transition: background 0.4s, color 0.4s;
+}
+
+h1, h2, h3, .serif-display {
+  font-family: 'Cinzel', serif;
+}
+
+.sans {
+  font-family: 'Inter', sans-serif;
+}
+
+/* Scrollbar Personalizado */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--gold);
+  border-radius: 3px;
+}
+
+@media(prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

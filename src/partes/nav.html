@@ -1,0 +1,51 @@
+<!-- NAVBAR -->
+<nav id="mainNav" class="main-nav" aria-label="Navegación principal">
+  <div class="nav-pill" id="navPill">
+    <span class="nav-brand">🏛️ <span class="nav-brand-text">Tripodi</span></span>
+    <div class="nav-links" id="navLinks">
+      <a href="#etym" class="nav-link">Origen</a>
+      <a href="#timeline" class="nav-link">Historia</a>
+      <a href="#hypo" class="nav-link">Hipótesis</a>
+      <a href="#oracle" class="nav-link">Oráculo</a>
+      <a href="#geo" class="nav-link">Geografía</a>
+      <a href="#diaspora" class="nav-link">Diáspora</a>
+      <a href="#heraldry" class="nav-link">Heráldica</a>
+      <a href="#linguis" class="nav-link">Lingüística</a>
+      <a href="#variants" class="nav-link">Variantes</a>
+      <a href="#notables" class="nav-link">Notables</a>
+      <a href="#closing" class="nav-link">Cierre</a>
+      <a href="#sources" class="nav-link">Fuentes</a>
+    </div>
+    <button class="nav-theme-btn" onclick="toggleTheme()" aria-label="Cambiar tema">
+      <span id="themeIcon">☀️</span>
+      <span id="themeLabel" class="nav-theme-label">Modo claro</span>
+    </button>
+  </div>
+</nav>
+
+<button id="navBubble" class="nav-bubble" onclick="toggleNavBubble()" aria-label="Menú" aria-expanded="false">
+  <span class="nav-bubble-inner">🏛️</span>
+  <div class="nav-bubble-menu" id="navBubbleMenu" role="menu">
+    <a href="#etym" class="bubble-link" onclick="closeBubbleMenu()">Origen</a>
+    <a href="#timeline" class="bubble-link" onclick="closeBubbleMenu()">Historia</a>
+    <a href="#hypo" class="bubble-link" onclick="closeBubbleMenu()">Hipótesis</a>
+    <a href="#oracle" class="bubble-link" onclick="closeBubbleMenu()">Oráculo</a>
+    <a href="#geo" class="bubble-link" onclick="closeBubbleMenu()">Geografía</a>
+    <a href="#diaspora" class="bubble-link" onclick="closeBubbleMenu()">Diáspora</a>
+    <a href="#heraldry" class="bubble-link" onclick="closeBubbleMenu()">Heráldica</a>
+    <a href="#linguis" class="bubble-link" onclick="closeBubbleMenu()">Lingüística</a>
+    <a href="#variants" class="bubble-link" onclick="closeBubbleMenu()">Variantes</a>
+    <a href="#notables" class="bubble-link" onclick="closeBubbleMenu()">Notables</a>
+    <a href="#closing" class="bubble-link" onclick="closeBubbleMenu()">Cierre</a>
+    <a href="#sources" class="bubble-link" onclick="closeBubbleMenu()">Fuentes</a>
+  </div>
+</button>
+
+<!-- BACK TO TOP FAB -->
+<button id="backToTopFab" class="back-to-top-fab" onclick="scrollToTop()" aria-label="Volver al inicio">
+  <span class="back-to-top-fab-inner">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M7 14L12 9L17 14" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </span>
+</button>
