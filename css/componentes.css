@@ -175,7 +175,7 @@
 
 /* Miniatura en Flujo de Diáspora */
 .flow-img-thumb {
-  width: 100%;
+  width: 110px;
   height: 80px;
   object-fit: cover;
   border-radius: calc(var(--radius) - 2px);

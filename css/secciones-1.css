@@ -168,19 +168,6 @@
   color: var(--text-muted);
 }
 
-/* 3. Hipótesis (Grid base) */
-.hypo-section {
-  background: var(--bg-panel);
-  border-top: 1px solid var(--border);
-}
-.hypo-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
-  margin-top: 3rem;
-}
-@media(max-width: 480px) {
-  .hypo-grid { grid-template-columns: 1fr; gap: 1rem; }
-}
+
 
 
