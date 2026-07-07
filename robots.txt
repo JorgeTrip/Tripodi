@@ -1,7 +1,7 @@
-# robots.txt para https://tripodi.web.app/
+# robots.txt para https://tripodi.netlify.app/
 
 User-agent: *
 Allow: /
 
 # Mapa del sitio
-Sitemap: https://tripodi.web.app/sitemap.xml
+Sitemap: https://tripodi.netlify.app/sitemap.xml
