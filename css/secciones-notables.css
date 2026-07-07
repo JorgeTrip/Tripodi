@@ -1,0 +1,150 @@
+/* ============================================================================
+   SECCIÓN PERSONAJES NOTABLES (ACORDEONES INTERACTIVOS) - TRIPODI
+   ============================================================================
+   Estilos específicos para la visualización de tarjetas de disciplinas
+   y la interacción de subtarjetas colapsables de biografías y fuentes.
+*/
+
+.notable-section {
+  background: var(--bg-dark);
+  position: relative;
+}
+
+/* Acordeón de Figuras Notables */
+.notable-people-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-top: 1.2rem;
+  width: 100%;
+}
+.person-accordion-item {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) - 2px);
+  overflow: hidden;
+  transition: border-color 0.25s, background-color 0.25s, box-shadow 0.25s;
+}
+[data-theme="light"] .person-accordion-item {
+  background: rgba(0, 0, 0, 0.015);
+}
+.person-accordion-item:hover {
+  border-color: rgba(201, 168, 76, 0.4);
+  background: rgba(255, 255, 255, 0.035);
+}
+[data-theme="light"] .person-accordion-item:hover {
+  background: rgba(0, 0, 0, 0.03);
+}
+.person-accordion-item.active {
+  border-color: var(--gold);
+  background: rgba(201, 168, 76, 0.03);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+[data-theme="light"] .person-accordion-item.active {
+  background: rgba(201, 168, 76, 0.05);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+}
+
+/* Cabecera del Acordeón */
+.person-accordion-header {
+  padding: 0.85rem 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  user-select: none;
+}
+.person-meta-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.person-accordion-name {
+  font-family: 'Lora', serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--text-main);
+  transition: color 0.2s;
+}
+.person-accordion-item:hover .person-accordion-name {
+  color: var(--gold);
+}
+.person-accordion-role {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+.person-accordion-chevron {
+  color: var(--text-muted);
+  transition: transform 0.3s ease, color 0.3s ease;
+  display: flex;
+  align-items: center;
+}
+.person-accordion-item.active .person-accordion-chevron {
+  transform: rotate(180deg);
+  color: var(--gold);
+}
+
+/* Cuerpo Desplegable */
+.person-accordion-body {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s;
+}
+.person-accordion-item.active .person-accordion-body {
+  max-height: 400px;
+  opacity: 1;
+}
+.person-accordion-content {
+  padding: 0 1.1rem 1.1rem;
+  border-top: 1px dashed rgba(201, 168, 76, 0.15);
+  margin-top: 0.2rem;
+}
+.person-desc {
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: var(--text-muted);
+  margin-top: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+/* Enlaces de Fuentes Separados */
+.person-sources {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid rgba(201, 168, 76, 0.08);
+}
+.sources-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-right: 0.4rem;
+}
+.source-link-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  color: var(--gold);
+  text-decoration: none;
+  background: rgba(201, 168, 76, 0.08);
+  border: 1px solid rgba(201, 168, 76, 0.2);
+  border-radius: 2rem;
+  padding: 0.2rem 0.6rem;
+  transition: border-color 0.2s, color 0.2s, background-color 0.2s;
+}
+.source-link-pill:hover {
+  background: rgba(201, 168, 76, 0.15);
+  border-color: var(--gold);
+  color: var(--gold-lt);
+}
+.source-link-pill svg {
+  opacity: 0.8;
+}
