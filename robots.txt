@@ -3,5 +3,5 @@
 User-agent: *
 Allow: /
 
-# Mapa del sitio (descomentar cuando exista)
-# Sitemap: https://tripodi.web.app/sitemap.xml
+# Mapa del sitio
+Sitemap: https://tripodi.web.app/sitemap.xml
