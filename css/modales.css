@@ -1,0 +1,112 @@
+/* ============================================================================
+   MODALES Y DIÁLOGOS FLOATING (LIGHTBOX Y DETALLE DE HIPÓTESIS)
+   ============================================================================
+   Estilos para el lightbox de imágenes de pantalla completa y la ventana modal
+   de hipótesis en resoluciones de escritorio.
+*/
+
+/* 1. Lightbox de Imágenes (Pantalla Completa) */
+.lightbox-overlay {
+  position: fixed; inset: 0; background: rgba(0, 0, 0, 0.92); z-index: 9999;
+  display: flex; align-items: center; justify-content: center; opacity: 0;
+  pointer-events: none; transition: opacity 0.3s ease; padding: 1rem;
+}
+.lightbox-overlay.open { opacity: 1; pointer-events: all; }
+.lightbox-inner {
+  position: relative; max-width: 90vw; max-height: 90vh;
+  display: flex; flex-direction: column; align-items: center; gap: 1rem;
+}
+.lightbox-inner img {
+  max-width: 100%; max-height: 80vh; object-fit: contain;
+  border-radius: 4px; box-shadow: 0 0 60px rgba(0,0,0,0.8);
+}
+.lightbox-caption {
+  font-family: 'Inter', sans-serif; font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.75); text-align: center;
+  max-width: 600px; line-height: 1.6; padding: 0 1rem;
+}
+.lightbox-caption strong { color: var(--gold-lt); }
+.lightbox-close {
+  position: absolute; top: -3.5rem; right: 0; background: none;
+  border: 1px solid rgba(255,255,255,0.3); color: #fff; width: 2rem; height: 2rem;
+  border-radius: 50%; cursor: pointer; font-size: 1rem; display: flex;
+  align-items: center; justify-content: center; transition: border-color 0.2s;
+}
+.lightbox-close:hover { border-color: var(--gold); color: var(--gold); }
+.lightbox-source-link {
+  display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 0.6rem;
+  font-family: 'Inter', sans-serif; font-size: 0.72rem; color: var(--aegean-lt);
+  text-decoration: none; border: 1px solid rgba(58, 122, 159, 0.4);
+  border-radius: 2rem; padding: 0.3rem 0.8rem; transition: border-color 0.2s, color 0.2s;
+}
+.lightbox-source-link:hover { color: var(--gold-lt); border-color: var(--gold); }
+.lightbox-info-btn {
+  background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25);
+  color: #fff; font-family: 'Inter', sans-serif; font-size: 0.65rem;
+  letter-spacing: 0.12em; text-transform: uppercase; padding: 0.3rem 0.8rem;
+  border-radius: 2rem; cursor: pointer; margin-top: 0.4rem; transition: background 0.2s;
+}
+.lightbox-info-btn:hover { background: rgba(255, 255, 255, 0.2); }
+
+@media(max-width: 768px) {
+  .lightbox-overlay { padding: 0.5rem; }
+  .lightbox-inner { max-width: 95vw; max-height: 95vh; gap: 0.5rem; }
+  .lightbox-inner img { max-height: 75vh; }
+  .lightbox-caption { display: none; font-size: 0.7rem; max-width: 90vw; padding: 0 0.5rem; }
+  .lightbox-caption.caption-shown { display: block; }
+  .lightbox-info-btn { display: inline-block; }
+  .lightbox-close { top: -3rem; right: 0.5rem; }
+}
+
+/* 2. Modal de Detalle de Hipótesis (Escritorio) */
+.hypo-modal-overlay {
+  position: fixed; inset: 0; background: rgba(0, 0, 0, 0.88); z-index: 9998;
+  display: flex; align-items: center; justify-content: center; padding: 2rem;
+  opacity: 0; pointer-events: none; transition: opacity 0.3s;
+}
+.hypo-modal-overlay.open { opacity: 1; pointer-events: all; }
+.hypo-modal-inner {
+  position: relative; background: var(--bg-card);
+  border: 1px solid rgba(201, 168, 76, 0.3); border-radius: calc(var(--radius) * 2);
+  max-width: 860px; width: 100%; max-height: 88vh; overflow-y: auto;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.7);
+  animation: modal-in 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+@keyframes modal-in {
+  from { transform: scale(0.92) translateY(20px); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+.hypo-modal-close {
+  position: absolute; top: 1rem; right: 1rem; background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2); color: var(--text-muted); width: 2rem; height: 2rem;
+  border-radius: 50%; cursor: pointer; font-size: 0.9rem; display: flex; align-items: center;
+  justify-content: center; transition: border-color 0.2s, color 0.2s; z-index: 2;
+}
+.hypo-modal-close:hover { border-color: var(--gold); color: var(--gold); }
+.hypo-modal-num {
+  position: absolute; top: 1.2rem; left: 1.8rem; font-family: 'Cinzel', serif;
+  font-size: 2.2rem; font-weight: 900; color: rgba(201, 168, 76, 0.15); line-height: 1;
+}
+.hypo-modal-layout { display: grid; grid-template-columns: 1fr 1fr; }
+.hypo-modal-left { position: relative; border-radius: calc(var(--radius) * 2) 0 0 calc(var(--radius) * 2); overflow: hidden; min-height: 340px; }
+.hypo-modal-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.hypo-modal-right { padding: 2rem 2rem 2rem 1.8rem; display: flex; flex-direction: column; gap: 1rem; }
+.hypo-modal-header { display: flex; align-items: flex-start; gap: 0.8rem; }
+.hypo-modal-icon { font-size: 2.2rem; line-height: 1; flex-shrink: 0; }
+.hypo-modal-title { font-family: 'Cinzel', serif; font-size: 1.2rem; color: var(--gold-lt); margin-bottom: 0.3rem; }
+.hypo-modal-subtitle { font-family: 'Inter', sans-serif; font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); }
+.hypo-modal-bar-wrap { }
+.hypo-modal-bar-label { font-family: 'Inter', sans-serif; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.4rem; display: flex; justify-content: space-between; }
+.hypo-modal-bar-label span:last-child { color: var(--gold); }
+.hypo-modal-bar { height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; }
+.hypo-modal-bar-fill { height: 100%; background: linear-gradient(to right, var(--gold), var(--gold-lt)); border-radius: 2px; width: 0; transition: width 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s; }
+.hypo-modal-body { font-size: 0.95rem; line-height: 1.75; color: var(--text-muted); }
+.hypo-modal-detail { font-size: 0.88rem; line-height: 1.75; color: var(--text-muted); padding-top: 0.8rem; border-top: 1px solid var(--border); }
+
+@media (max-width: 768px) {
+  .hypo-modal-overlay { display: none !important; }
+}
+@media (max-width: 480px) {
+  .hypo-modal-layout { grid-template-columns: 1fr; }
+  .hypo-modal-left { min-height: 200px; border-radius: calc(var(--radius) * 2) calc(var(--radius) * 2) 0 0; }
+}
