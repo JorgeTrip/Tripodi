@@ -172,8 +172,8 @@
 }
 .side-img-wrap img {
   width: 100%;
+  height: auto;
   display: block;
-  object-fit: cover;
 }
 .side-img-caption {
   background: var(--bg-card);
