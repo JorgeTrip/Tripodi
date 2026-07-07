@@ -1,0 +1,97 @@
+/* ============================================================================
+   NAVEGACIÓN ESCRITORIO - TRIPODI
+   ============================================================================
+   Estilos de la barra de navegación principal para pantallas grandes.
+*/
+
+.main-nav {
+  position: fixed;
+  top: 1.2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2000;
+  transition: opacity 0.4s, transform 0.4s;
+  pointer-events: all;
+}
+.main-nav.nav-hidden {
+  opacity: 0;
+  transform: translateX(-50%) translateY(-120%);
+  pointer-events: none;
+}
+.nav-pill {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(26,22,16,.72);
+  backdrop-filter: blur(18px) saturate(1.4);
+  -webkit-backdrop-filter: blur(18px) saturate(1.4);
+  border: 1px solid rgba(201,168,76,.25);
+  border-radius: 3rem;
+  padding: .55rem 1.1rem .55rem 1.2rem;
+  box-shadow: 0 8px 32px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.06);
+}
+[data-theme="light"] .nav-pill {
+  background: rgba(242,237,230,.82);
+  border-color: rgba(100,70,30,.22);
+  box-shadow: 0 8px 32px rgba(0,0,0,.15), inset 0 1px 0 rgba(255,255,255,.6);
+}
+.nav-brand {
+  font-family: 'Cinzel', serif;
+  font-size: .85rem;
+  color: var(--gold);
+  white-space: nowrap;
+  letter-spacing: .06em;
+}
+.nav-brand-text {
+  display: inline;
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: .1rem;
+}
+.nav-link {
+  font-family: 'Inter', sans-serif;
+  font-size: .7rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-decoration: none;
+  padding: .4rem .65rem;
+  border-radius: 2rem;
+  transition: color 0.2s, background 0.2s;
+  white-space: nowrap;
+}
+.nav-link:hover, .nav-link.active-section {
+  color: var(--gold);
+  background: rgba(201,168,76,.1);
+}
+.nav-theme-btn {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  background: rgba(201,168,76,.12);
+  border: 1px solid rgba(201,168,76,.3);
+  border-radius: 2rem;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-size: .68rem;
+  color: var(--gold);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: .35rem .75rem;
+  transition: background 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+.nav-theme-btn:hover {
+  background: rgba(201,168,76,.22);
+  border-color: var(--gold);
+}
+.nav-theme-label {
+  display: inline;
+}
+@media (max-width: 768px) {
+  .main-nav {
+    display: none !important;
+  }
+}

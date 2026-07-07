@@ -162,3 +162,31 @@
   border-color: var(--gold);
   background: rgba(201, 168, 76, 0.06);
 }
+
+/* 4. Imágenes Laterales con Pie de Foto */
+.side-img-wrap {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.4);
+}
+.side-img-wrap img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
+.side-img-caption {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-top: none;
+  padding: 0.7rem 1rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  border-radius: 0 0 var(--radius) var(--radius);
+}
+.side-img-caption strong {
+  color: var(--gold);
+}
+

@@ -183,32 +183,4 @@
   .hypo-grid { grid-template-columns: 1fr; gap: 1rem; }
 }
 
-/* 4. Oráculo de Delfos */
-.oracle-section {
-  background: var(--bg-dark);
-  position: relative;
-  overflow: hidden;
-}
-.oracle-section::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(ellipse at 30% 50%, rgba(42,91,122,.15) 0%, transparent 60%);
-  pointer-events: none;
-}
-.oracle-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-  align-items: center;
-  margin-top: 3rem;
-}
-@media(max-width: 768px) {
-  .oracle-grid { grid-template-columns: 1fr; }
-}
-.oracle-visual {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+

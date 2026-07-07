@@ -1,0 +1,141 @@
+/* ============================================================================
+   SECCIÓN ORÁCULO DE DELFOS - TRIPODI
+   ============================================================================
+   Estilos específicos para la sección del Oráculo de Delfos, las citas y
+   los datos interesantes en formato lista.
+*/
+
+.oracle-section {
+  background: var(--bg-dark);
+  position: relative;
+  overflow: hidden;
+}
+.oracle-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 30% 50%, rgba(42,91,122,.15) 0%, transparent 60%);
+  pointer-events: none;
+}
+.oracle-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  margin-top: 3rem;
+}
+@media(max-width: 768px) {
+  .oracle-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.oracle-visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.oracle-circle {
+  width: min(320px, 90%);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, rgba(42,91,122,0.3) 0%, var(--bg-card) 70%);
+  border: 1px solid var(--aegean-lt);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0 0 60px rgba(42, 91, 122, 0.2);
+}
+.oracle-img-circle {
+  width: min(320px, 90%);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--aegean-lt);
+  box-shadow: 0 0 60px rgba(42, 91, 122, 0.3);
+  position: relative;
+}
+.oracle-img-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+}
+.oracle-img-circle::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.5);
+}
+.oracle-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(58, 122, 159, 0.3);
+  animation: spin-slow linear infinite;
+}
+.oracle-ring-1 {
+  width: 110%;
+  aspect-ratio: 1;
+  animation-duration: 20s;
+}
+.oracle-ring-2 {
+  width: 125%;
+  aspect-ratio: 1;
+  animation-duration: 30s;
+  animation-direction: reverse;
+  border-style: dashed;
+}
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Cita Textual de Estrabón (Estilo Apple / Pergamino) */
+.oracle-quote {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--aegean-lt);
+  padding: 1.5rem;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  margin-bottom: 1.5rem;
+  font-style: italic;
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: var(--text-main);
+}
+.oracle-quote cite {
+  display: block;
+  margin-top: 0.8rem;
+  font-style: normal;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--aegean-lt);
+}
+
+/* Lista de Hechos Délicos (Formato lista sin bordes rústicos) */
+.facts-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.facts-list li {
+  display: block;
+  font-size: 0.92rem;
+  line-height: 1.75;
+  color: var(--text-muted);
+  padding: 0.55rem 0;
+  border-bottom: 1px solid rgba(201, 168, 76, 0.07);
+}
+.facts-list li:last-child {
+  border-bottom: none;
+}
+.facts-list li::before {
+  content: '⚡ ';
+  font-size: 0.75rem;
+  display: inline;
+}
