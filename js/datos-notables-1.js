@@ -82,7 +82,9 @@ const datosNotables1 = [
         contribucion: "Profesora ordinaria de Derecho Constitucional en la Università degli Studi del Piemonte Orientale. Autora de numerosas publicaciones sobre derecho constitucional, derechos fundamentales, bioética y derecho a la vida.",
         fuentes: [
           { nombre: "Upobook CV", url: "https://www.upobook.it/" },
-          { nombre: "Univda PDF", url: "https://www.univda.it/" }
+          { nombre: "Univda PDF", url: "https://www.univda.it/" },
+          { nombre: "Derecho Canónico", url: "https://www.derechocanonico.org/" },
+          { nombre: "Editoriale Scientifica", url: "https://www.editorialescientifica.com/" }
         ]
       },
       {
@@ -91,7 +93,7 @@ const datosNotables1 = [
         fechas: "N/D",
         pais: "Estados Unidos",
         contribucion: "Académico en teoría política estadounidense, enseña civismo en escuelas secundarias. Su investigación se centra en la teoría política y la educación.",
-        fuentes: [{ nombre: "LinkedIn Bio", url: "https://www.linkedin.com/in/andrew-tripodo" }]
+        fuentes: [{ nombre: "LinkedIn Program Director", url: "https://www.linkedin.com/in/andrew-tripodo" }]
       },
       {
         nombre: "Vincent Peter Tripodina",
@@ -99,7 +101,7 @@ const datosNotables1 = [
         fechas: "N/D",
         pais: "Australia",
         contribucion: "Socio y Jefe de Propiedad en Avant Law, especializado en derecho de propiedad.",
-        fuentes: [{ nombre: "Avant Law", url: "https://www.avantlaw.com.au/" }]
+        fuentes: [{ nombre: "Avant Law Partner", url: "https://www.avantlaw.com.au/" }]
       }
     ]
   },
