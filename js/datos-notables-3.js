@@ -2,7 +2,7 @@
    PERSONAJES NOTABLES - PARTE 3
    ============================================================================
    Datos de portadores notables del apellido para las disciplinas:
-   Artes, Ciencia y Otros.
+   Artes (que integra Música, Artes Plásticas y Otros como Cine y Fotografía).
 */
 
 const datosNotables3 = [
@@ -11,7 +11,30 @@ const datosNotables3 = [
     emoji: "🎨",
     personas: [
       {
+        nombre: "Orlando Trípodi",
+        subdisciplina: "Tango (Pianista y Compositor)",
+        fechas: "26/02/1927 – 12/08/1995",
+        pais: "Argentina",
+        contribucion: "Pianista, director, compositor y arreglista de tango. Referente de la 'Generación del Cuarenta' y maestro de músicos. Integró la Orquesta de Miguel Caló y el Octeto de Néstor Marconi.",
+        fuentes: [
+          { nombre: "Wikipedia ES", url: "https://es.wikipedia.org/wiki/Orlando_Tr%C3%ADpodi" },
+          { nombre: "Todotango Ficha", url: "https://www.todotango.com/" }
+        ]
+      },
+      {
+        nombre: "Julia Tripodo",
+        subdisciplina: "Música (Violonchelo)",
+        fechas: "n. 2005",
+        pais: "España/Italia/Argentina",
+        contribucion: "Violonchelista ítalo-argentina. Ha destacado por su virtuosismo y talento a nivel internacional, estudiando en la Escuela Superior de Música Reina Sofía y la Hochschule für Musik, Theater und Medien Hannover.",
+        fuentes: [
+          { nombre: "Escuela Reina Sofía", url: "https://www.escuelasofia.es/" },
+          { nombre: "Instagram Oficial", url: "https://www.instagram.com/juliatripodo/" }
+        ]
+      },
+      {
         nombre: "Giuseppe Tripodi",
+        subdisciplina: "Pintura",
         fechas: "n. 1950",
         pais: "Italia",
         contribucion: "Médico y pintor autodidacta, con múltiples exposiciones destacadas de su obra pictórica.",
@@ -19,6 +42,7 @@ const datosNotables3 = [
       },
       {
         nombre: "Ettore Tripodi",
+        subdisciplina: "Pintura y Arte Medieval",
         fechas: "n. 1985",
         pais: "Italia",
         contribucion: "Artista cuyas pinturas se caracterizan por una reinterpretación moderna y estilizada del arte medieval y del Renacimiento temprano.",
@@ -26,6 +50,7 @@ const datosNotables3 = [
       },
       {
         nombre: "Bruno Tripodi",
+        subdisciplina: "Cine y Videoarte",
         fechas: "N/D",
         pais: "Chile",
         contribucion: "Artista audiovisual que investiga la fusión de la cinematografía experimental con nuevas tecnologías digitales y videoarte.",
@@ -33,9 +58,10 @@ const datosNotables3 = [
       },
       {
         nombre: "María Victoria Tripodi",
+        subdisciplina: "Historia del Arte",
         fechas: "N/D",
         pais: "Argentina",
-        contribucion: "Licenciada en Historia de las Artes con especialización en Artes Visuales. Investigadora de renombre en temas de arte público, muralismo y procesos sociales de memoria.",
+        contribucion: "Licenciada en Historia de las Artes con especialización en Artes Visuales. Investigadora de renombre en temas de arte público, muralismo y de memoria.",
         fuentes: [
           { nombre: "CONICET Investigador", url: "https://www.conicet.gov.ar/" },
           { nombre: "Google Académico", url: "https://scholar.google.com/" }
@@ -43,6 +69,7 @@ const datosNotables3 = [
       },
       {
         nombre: "Sergio Tripodi",
+        subdisciplina: "Pintura Contemporánea",
         fechas: "n. 1981",
         pais: "Italia",
         contribucion: "Artista plástico y pintor contemporáneo autodidacta con trayectoria expositiva en Europa.",
@@ -50,6 +77,7 @@ const datosNotables3 = [
       },
       {
         nombre: "Diego Tripodi",
+        subdisciplina: "Ilustración y Cómics",
         fechas: "N/D",
         pais: "Argentina",
         contribucion: "Ilustrador, dibujante de historietas y cómics para editoriales nacionales e internacionales.",
@@ -57,75 +85,15 @@ const datosNotables3 = [
       },
       {
         nombre: "Antonio Tripodi",
+        subdisciplina: "Guión de Cómics",
         fechas: "N/D",
         pais: "Italia",
         contribucion: "Guionista y escritor de cómics de amplia trayectoria.",
         fuentes: [{ nombre: "Tebeosfera Ficha", url: "https://www.tebeosfera.com/" }]
-      }
-    ]
-  },
-  {
-    disciplina: "Ciencia y Academia",
-    emoji: "🔬",
-    personas: [
-      {
-        nombre: "Prof. Marco Tripodi",
-        fechas: "N/D",
-        pais: "Italia/Reino Unido",
-        contribucion: "Líder de grupo en el prestigioso MRC Laboratory of Molecular Biology de la Universidad de Cambridge. Su investigación de vanguardia se centra en los circuitos neuronales que rigen las acciones motoras y perceptivas.",
-        fuentes: [
-          { nombre: "MRC Cambridge", url: "https://www2.mrc-lmb.cam.ac.uk/" },
-          { nombre: "Google Scholar", url: "https://scholar.google.com/" }
-        ]
       },
-      {
-        nombre: "Prof. Francesca Tripodi",
-        fechas: "N/D",
-        pais: "Estados Unidos",
-        contribucion: "Socióloga, académica de medios y Profesora Asociada en la SILS. Investigadora Principal en el Centro de Tecnología de la Información y Vida Pública (CITAP) de la Universidad de Carolina del Norte en Chapel Hill. Estudia la confianza pública, la desinformación y las redes sociales.",
-        fuentes: [
-          { nombre: "UNC Chapel Hill", url: "https://sils.unc.edu/" },
-          { nombre: "Data & Society", url: "https://datasociety.net/" }
-        ]
-      },
-      {
-        nombre: "Giuseppina Tripodi",
-        fechas: "N/D",
-        pais: "Italia",
-        contribucion: "Colaboradora científica directa y cercana de la Premio Nobel de Medicina Rita Levi-Montalcini durante más de 40 años. Coautora de importantes obras históricas como el libro 'Las Pioneras: Las mujeres que cambiaron la sociedad y la ciencia'.",
-        fuentes: [
-          { nombre: "Treccani Publicación", url: "https://www.treccani.it/" },
-          { nombre: "Nobel Prize Record", url: "https://www.nobelprize.org/" }
-        ]
-      },
-      {
-        nombre: "Prof. Egon Tripodi",
-        fechas: "N/D",
-        pais: "Alemania",
-        contribucion: "Profesor Asistente de Economía en la Hertie School de Berlín. Su campo de investigación incluye la economía del comportamiento, economía pública y diseño de incentivos políticos.",
-        fuentes: [
-          { nombre: "Hertie School", url: "https://www.hertie-school.org/" },
-          { nombre: "Google Scholar", url: "https://scholar.google.com/" }
-        ]
-      },
-      {
-        nombre: "Dr. Vincenzo Tripodi",
-        fechas: "N/D",
-        pais: "Italia",
-        contribucion: "Investigador Senior en el Consiglio Nazionale delle Ricerche (CNR) de Italia. Experto especializado en geología estructural y tectónica activa.",
-        fuentes: [
-          { nombre: "CNR Perfil", url: "https://www.cnr.it/" },
-          { nombre: "ResearchGate Bio", url: "https://www.researchgate.net/" }
-        ]
-      }
-    ]
-  },
-  {
-    disciplina: "Otros",
-    emoji: "📸",
-    personas: [
       {
         nombre: "Gianfranco Tripodo",
+        subdisciplina: "Fotografía Documental",
         fechas: "n. 1981",
         pais: "Filipinas/España",
         contribucion: "Fotógrafo documental y retratista de renombre con sede en Madrid. Sus retratos y reportajes han sido publicados en la prestigiosa revista TIME y distinguidos con premios de la organización World Press Photo.",
@@ -136,6 +104,7 @@ const datosNotables3 = [
       },
       {
         nombre: "Vincenzo Tripodo",
+        subdisciplina: "Cine y Dirección",
         fechas: "n. 1968",
         pais: "Italia",
         contribucion: "Director, guionista y productor de cine independiente y piezas documentales históricas.",

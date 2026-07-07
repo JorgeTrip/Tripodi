@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
       header.innerHTML = `
         <div class="person-meta-left">
           <span class="person-accordion-name">${persona.nombre}</span>
-          <span class="person-accordion-role">${persona.pais} · ${persona.fechas}</span>
+          <span class="person-accordion-role">${persona.subdisciplina} · ${persona.pais} · ${persona.fechas}</span>
         </div>
         <div class="person-accordion-chevron">
           <svg width="10" height="6" viewBox="0 0 10 6" fill="none"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
