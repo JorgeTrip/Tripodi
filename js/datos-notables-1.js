@@ -81,10 +81,8 @@ const datosNotables1 = [
         pais: "Italia",
         contribucion: "Profesora ordinaria de Derecho Constitucional en la Università degli Studi del Piemonte Orientale. Autora de numerosas publicaciones sobre derecho constitucional, derechos fundamentales, bioética y derecho a la vida.",
         fuentes: [
-          { nombre: "Upobook CV", url: "https://www.upobook.it/" },
-          { nombre: "Univda PDF", url: "https://www.univda.it/" },
-          { nombre: "Derecho Canónico", url: "https://www.derechocanonico.org/" },
-          { nombre: "Editoriale Scientifica", url: "https://www.editorialescientifica.com/" }
+          { nombre: "UPO Book Perfil", url: "https://upobook.uniupo.it/persone/chiara-tripodina" },
+          { nombre: "Univda CV PDF", url: "https://www.univda.it/wp-content/uploads/2021/04/CV-Prof.ssa-Chiara-Tripodina.pdf" }
         ]
       },
       {
@@ -93,7 +91,7 @@ const datosNotables1 = [
         fechas: "N/D",
         pais: "Estados Unidos",
         contribucion: "Académico en teoría política estadounidense, enseña civismo en escuelas secundarias. Su investigación se centra en la teoría política y la educación.",
-        fuentes: [{ nombre: "LinkedIn Program Director", url: "https://www.linkedin.com/in/andrew-tripodo" }]
+        fuentes: [{ nombre: "LinkedIn Perfil", url: "https://www.linkedin.com/in/andrew-tripodo" }]
       },
       {
         nombre: "Vincent Peter Tripodina",

@@ -17,7 +17,7 @@ const datosNotables3 = [
         pais: "Argentina",
         contribucion: "Pianista, director, compositor y arreglista de tango. Referente de la 'Generación del Cuarenta' y maestro de músicos. Integró la Orquesta de Miguel Caló y el Octeto de Néstor Marconi.",
         fuentes: [
-          { nombre: "Todotango Semblanza", url: "https://www.todotango.com/" },
+          { nombre: "Todotango Ficha", url: "https://www.todotango.com/creadores/ficha/1829/Orlando-Tripodi/" },
           { nombre: "Wikipedia ES", url: "https://es.wikipedia.org/wiki/Orlando_Tr%C3%ADpodi" }
         ]
       },
@@ -28,9 +28,8 @@ const datosNotables3 = [
         pais: "España/Italia/Argentina",
         contribucion: "Violonchelista ítalo-argentina. Ha destacado por su virtuosismo y talento a nivel internacional, estudiando en la Escuela Superior de Música Reina Sofía y la Hochschule für Musik, Theater und Medien Hannover.",
         fuentes: [
-          { nombre: "Escuela Reina Sofía", url: "https://www.escuelasofia.es/" },
-          { nombre: "Instagram Oficial", url: "https://www.instagram.com/juliatripodo/" },
-          { nombre: "Fundación Eutherpe", url: "https://www.escuelasofia.es/" }
+          { nombre: "Sitio Oficial", url: "http://www.juliatripodo.com" },
+          { nombre: "Instagram Oficial", url: "https://www.instagram.com/juliatripodo/" }
         ]
       },
       {
@@ -48,9 +47,8 @@ const datosNotables3 = [
         pais: "Italia",
         contribucion: "Artista cuyas pinturas se caracterizan por una reinterpretación moderna y estilizada del arte medieval y del Renacimiento temprano.",
         fuentes: [
-          { nombre: "Minus37 Art Review", url: "https://www.minus37.com/" },
-          { nombre: "OPR Gallery", url: "http://www.oprgallery.com/" },
-          { nombre: "MutualArt Ficha", url: "https://www.mutualart.com/" }
+          { nombre: "Minus37 Art Review", url: "https://www.minus37.com/ettore-tripodi-modern-interpretation-of-medieval-art/" },
+          { nombre: "OPR Gallery", url: "http://www.oprgallery.com/" }
         ]
       },
       {
@@ -59,7 +57,7 @@ const datosNotables3 = [
         fechas: "N/D",
         pais: "Chile",
         contribucion: "Artista audiovisual que investiga la fusión de la cinematografía experimental con nuevas tecnologías digitales y videoarte.",
-        fuentes: [{ nombre: "Niio Film Art", url: "https://www.vimeo.com/" }]
+        fuentes: [{ nombre: "LABA Valencia Perfil", url: "https://labavalencia.net/micme/bruno-tripodi/" }]
       },
       {
         nombre: "María Victoria Tripodi",
@@ -68,10 +66,9 @@ const datosNotables3 = [
         pais: "Argentina",
         contribucion: "Licenciada en Historia de las Artes con especialización en Artes Visuales. Investigadora de renombre en temas de arte público, muralismo y procesos sociales de memoria.",
         fuentes: [
-          { nombre: "CONICET Ficha", url: "https://www.conicet.gov.ar/" },
-          { nombre: "Google Académico", url: "https://scholar.google.com/" },
-          { nombre: "SEDICI UNLP", url: "https://sedici.unlp.edu.ar/" },
-          { nombre: "Dialnet Registro", url: "https://dialnet.unirioja.es/" }
+          { nombre: "ORCID Académico", url: "https://orcid.org/0000-0002-5886-7788" },
+          { nombre: "Google Scholar Buscar", url: "https://scholar.google.com/scholar?q=Maria+Victoria+Tripodi" },
+          { nombre: "SEDICI UNLP", url: "https://sedici.unlp.edu.ar/" }
         ]
       },
       {
@@ -80,7 +77,7 @@ const datosNotables3 = [
         fechas: "n. 1981",
         pais: "Italia",
         contribucion: "Artista plástico y pintor contemporáneo autodidacta con trayectoria expositiva en Europa.",
-        fuentes: [{ nombre: "Artmajeur Perfil", url: "https://www.artmajeur.com/" }]
+        fuentes: [{ nombre: "Artmajeur Perfil", url: "https://www.artmajeur.com/sergiotripodi" }]
       },
       {
         nombre: "Diego Tripodi",
@@ -88,15 +85,15 @@ const datosNotables3 = [
         fechas: "N/D",
         pais: "Argentina",
         contribucion: "Ilustrador, dibujante de historietas y cómics para editoriales nacionales e internacionales.",
-        fuentes: [{ nombre: "Tebeosfera Ficha", url: "https://www.tebeosfera.com/" }]
+        fuentes: [{ nombre: "Tebeosfera Ficha", url: "https://www.tebeosfera.com/autores/tripodi_diego.html" }]
       },
       {
         nombre: "Antonio Tripodi",
         subdisciplina: "Guión de Cómics",
         fechas: "N/D",
         pais: "Italia",
-        contribucion: "Guionista y escritor de cómics de amplia trayectoria.",
-        fuentes: [{ nombre: "Tebeosfera Ficha", url: "https://www.tebeosfera.com/" }]
+        contribucion: "Guionista y escritor de cómics de amplia trayectoria y crítico de ciencia ficción.",
+        fuentes: [{ nombre: "Fantascienza Wikipedia", url: "https://it.wikipedia.org/wiki/Fantascienza_italiana" }]
       },
       {
         nombre: "Gianfranco Tripodo",
@@ -105,7 +102,7 @@ const datosNotables3 = [
         pais: "Filipinas/España",
         contribucion: "Fotógrafo documental y retratista de renombre con sede en Madrid. Sus retratos y reportajes han sido publicados en la prestigiosa revista TIME y distinguidos con premios de la organización World Press Photo.",
         fuentes: [
-          { nombre: "World Press Photo", url: "https://www.worldpressphoto.org/" },
+          { nombre: "World Press Photo Perfil", url: "https://www.worldpressphoto.org/collection/photo-contest/2015/gianfranco-tripodo" },
           { nombre: "Gianfranco Tripodo Photography", url: "http://www.gianfrancotripodo.com/" },
           { nombre: "Instagram Oficial", url: "https://www.instagram.com/gtripodo/" }
         ]
@@ -117,8 +114,8 @@ const datosNotables3 = [
         pais: "Italia",
         contribucion: "Director, guionista y productor de cine independiente y piezas documentales históricas.",
         fuentes: [
-          { nombre: "IMDb Ficha", url: "https://www.imdb.com/" },
-          { nombre: "LinkedIn Scuru", url: "https://www.linkedin.com/" }
+          { nombre: "IMDb Buscar", url: "https://www.imdb.com/find?q=Vincenzo+Tripodo" },
+          { nombre: "LinkedIn Buscar", url: "https://www.linkedin.com/pub/dir?first=Vincenzo&last=Tripodo" }
         ]
       }
     ]

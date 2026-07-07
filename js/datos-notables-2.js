@@ -18,7 +18,7 @@ const datosNotables2 = [
         contribucion: "Arquero y Director Técnico de fútbol profesional. Jugó más de 15 años en el fútbol argentino, logrando dos ascensos a Primera División. Actualmente dirige a Guillermo Brown.",
         fuentes: [
           { nombre: "Wikipedia ES", url: "https://es.wikipedia.org/wiki/Emanuel_Tr%C3%ADpodi" },
-          { nombre: "Transfermarkt Ficha", url: "https://www.transfermarkt.com/" }
+          { nombre: "Transfermarkt Ficha", url: "https://www.transfermarkt.com/emanuel-tripodi/profil/spieler/54519" }
         ]
       },
       {
@@ -29,7 +29,7 @@ const datosNotables2 = [
         contribucion: "Futbolista profesional (delantero). Surgido en Boca Juniors, jugó en clubes de Alemania (1. FC Colonia), Brasil (Atlético Mineiro) y Liechtenstein (FC Vaduz).",
         fuentes: [
           { nombre: "Wikipedia ES", url: "https://es.wikipedia.org/wiki/Mariano_Tr%C3%ADpodi" },
-          { nombre: "Transfermarkt Ficha", url: "https://www.transfermarkt.com/" }
+          { nombre: "Transfermarkt Ficha", url: "https://www.transfermarkt.com/mariano-tripodi/profil/spieler/40663" }
         ]
       },
       {
@@ -39,8 +39,8 @@ const datosNotables2 = [
         pais: "Argentina",
         contribucion: "Fundador del Club Atenas de Patagones y figura clave en el básquetbol de la región. El estadio de Atenas lleva su nombre.",
         fuentes: [
-          { nombre: "Club Atenas", url: "http://www.clubatenas.com.ar/" },
-          { nombre: "DATA Basquet", url: "http://www.databasquet.com.ar/" }
+          { nombre: "Atenas Patagones", url: "http://www.atenaspatagones.com.ar/" },
+          { nombre: "Estadio Ficha", url: "https://www.estadiosdeargentina.com.ar/estadio-de-atenas-de-carmen-de-patagones/" }
         ]
       },
       {
@@ -49,15 +49,7 @@ const datosNotables2 = [
         fechas: "N/D",
         pais: "Australia",
         contribucion: "Luchador profesional con combates televisados.",
-        fuentes: [{ nombre: "Beyond the Bell", url: "https://www.youtube.com/" }]
-      },
-      {
-        nombre: "Andreas Tripodina",
-        subdisciplina: "MMA (Artes Marciales Mixtas)",
-        fechas: "N/D",
-        pais: "N/D",
-        contribucion: "Luchador de artes marciales mixtas, ha participado en eventos de las ligas PFL y UFC.",
-        fuentes: [{ nombre: "Oktagon MMA", url: "https://www.facebook.com/" }]
+        fuentes: [{ nombre: "Beyond the Bell", url: "https://www.youtube.com/results?search_query=TONY+TRIPODINA+live+on+Beyond+the+Bell" }]
       }
     ]
   },
@@ -71,7 +63,7 @@ const datosNotables2 = [
         fechas: "N/D",
         pais: "Argentina",
         contribucion: "Médica pediatra argentina. Publicó investigación en Archivos Argentinos de Pediatría (SciELO, 2007), indexada en Medline.",
-        fuentes: [{ nombre: "SciELO Argentina", url: "https://www.scielo.org.ar/" }]
+        fuentes: [{ nombre: "SciELO Investigación", url: "https://www.scielo.org.ar/scielo.php?script=sci_arttext&pid=S0325-00752007000200006" }]
       },
       {
         nombre: "Dra. Lidia Tripodi",
@@ -79,7 +71,7 @@ const datosNotables2 = [
         fechas: "N/D",
         pais: "Argentina",
         contribucion: "Médica especialista en Clínica Médica, Geriatría, Perito y Médica Legista en Argentina.",
-        fuentes: [{ nombre: "LinkedIn Perfil", url: "https://www.linkedin.com/" }]
+        fuentes: [{ nombre: "LinkedIn Perfil", url: "https://www.linkedin.com/pub/dir?first=Lidia&last=Tripodi" }]
       },
       {
         nombre: "Prof. Armando Tripodi",
@@ -88,9 +80,9 @@ const datosNotables2 = [
         pais: "Italia",
         contribucion: "Profesor Ordinario de Bioquímica Clínica y Biología Molecular Clínica en la Facultad de Medicina de la Universidad Humanitas de Milán. Investigador líder en el campo de la coagulación y hemostasia, con numerosas publicaciones científicas.",
         fuentes: [
-          { nombre: "ScienceDirect Pubs", url: "https://www.sciencedirect.com/" },
-          { nombre: "ResearchGate Bio", url: "https://www.researchgate.net/" },
-          { nombre: "PubMed Thrombin", url: "https://pubmed.ncbi.nlm.nih.gov/" }
+          { nombre: "ScienceDirect Pubs", url: "https://www.sciencedirect.com/search?authors=Armando%20Tripodi" },
+          { nombre: "ResearchGate Profile", url: "https://www.researchgate.net/profile/Armando-Tripodi" },
+          { nombre: "PubMed Art", url: "https://pubmed.ncbi.nlm.nih.gov/33054044/" }
         ]
       },
       {
@@ -100,9 +92,9 @@ const datosNotables2 = [
         pais: "Italia",
         contribucion: "Patólogo especializado en inmunología tumoral, con un fuerte enfoque en el estudio del microambiente tumoral. Profesor Titular de Patología en la Universidad de Milán y líder de laboratorio en IFOM.",
         fuentes: [
-          { nombre: "IFOM Lab Portal", url: "https://www.ifom.eu/" },
-          { nombre: "Google Scholar", url: "https://scholar.google.com/" },
-          { nombre: "NIBIT Perfil", url: "https://www.nibit.org/" }
+          { nombre: "IFOM Lab Portal", url: "https://www.ifom.eu/en/cancer-research/research-labs/claudio-tripodo.php" },
+          { nombre: "ResearchGate Profile", url: "https://www.researchgate.net/profile/Claudio-Tripodo" },
+          { nombre: "Google Scholar", url: "https://scholar.google.com/scholar?q=Claudio+Tripodo" }
         ]
       },
       {
@@ -112,9 +104,8 @@ const datosNotables2 = [
         pais: "Argentina",
         contribucion: "Especialista en Medicina Interna y Medicina Paliativa. Investigadora Senior de ATLANTES Global Observatory of Palliative Care - Centro Colaborador de la Organización Mundial de la Salud. Jefa del Departamento de Cuidados Paliativos en el Hospital Británico de Buenos Aires.",
         fuentes: [
-          { nombre: "ResearchGate Bio", url: "https://www.researchgate.net/" },
-          { nombre: "The Conversation", url: "https://theconversation.com/" },
-          { nombre: "ehospice Art", url: "https://ehospice.com/" }
+          { nombre: "ResearchGate Profile", url: "https://www.researchgate.net/profile/Vilma-Tripodoro" },
+          { nombre: "The Conversation Profile", url: "https://theconversation.com/profiles/vilma-a-tripodoro-1550478" }
         ]
       },
       {
@@ -124,9 +115,9 @@ const datosNotables2 = [
         pais: "Italia",
         contribucion: "Médico cirujano, con numerosas publicaciones en odontología pediátrica y biomateriales. Profesor Ordinario en la Università degli Studi 'G. d'Annunzio' Chieti.",
         fuentes: [
-          { nombre: "ResearchGate Pubs", url: "https://www.researchgate.net/" },
-          { nombre: "UniCamillus Portal", url: "https://www.unicamillus.org/" },
-          { nombre: "SciProfiles Perfil", url: "https://sciprofiles.com/" }
+          { nombre: "ResearchGate Profile", url: "https://www.researchgate.net/profile/Domenico-Tripodi" },
+          { nombre: "UniChieti Buscar", url: "https://www.unich.it/?q=Domenico+Tripodi" },
+          { nombre: "UniCamillus Buscar", url: "https://www.unicamillus.org/?s=Domenico+Tripodi" }
         ]
       },
       {
@@ -137,8 +128,8 @@ const datosNotables2 = [
         contribucion: "Líder de grupo en el prestigioso MRC Laboratory of Molecular Biology de la Universidad de Cambridge. Su investigación de vanguardia se centra en los circuitos neuronales que rigen las acciones motoras y perceptivas.",
         fuentes: [
           { nombre: "MRC Laboratory", url: "https://www2.mrc-lmb.cam.ac.uk/" },
-          { nombre: "ResearchGate Bio", url: "https://www.researchgate.net/" },
-          { nombre: "Google Scholar", url: "https://scholar.google.com/" }
+          { nombre: "ResearchGate Profile", url: "https://www.researchgate.net/profile/Marco-Tripodi" },
+          { nombre: "Google Scholar", url: "https://scholar.google.com/citations?user=ctE74tUAAAAJ&hl=it" }
         ]
       },
       {
@@ -148,9 +139,8 @@ const datosNotables2 = [
         pais: "Estados Unidos",
         contribucion: "Socióloga, académica de medios y Profesora Asociada en la SILS. Investigadora Principal en el Centro de Tecnología de la Información y Vida Pública (CITAP) de la Universidad de Carolina del Norte en Chapel Hill. Estudia la confianza pública, la desinformación y las redes sociales.",
         fuentes: [
-          { nombre: "UNC School Info", url: "https://sils.unc.edu/" },
-          { nombre: "Data & Society", url: "https://datasociety.net/" },
-          { nombre: "Stats + Stories", url: "https://statsandstories.net/" }
+          { name: "UNC Profile", url: "https://sils.unc.edu/" },
+          { name: "Data & Society", url: "https://datasociety.net/" }
         ]
       },
       {
@@ -185,7 +175,7 @@ const datosNotables2 = [
         contribucion: "Investigador Senior en el Consiglio Nazionale delle Ricerche (CNR) de Italia. Experto especializado en geología estructural y tectónica activa.",
         fuentes: [
           { nombre: "CNR Perfil", url: "https://www.cnr.it/" },
-          { nombre: "ResearchGate Bio", url: "https://www.researchgate.net/" }
+          { nombre: "ResearchGate Profile", url: "https://www.researchgate.net/profile/Vincenzo-Tripodi" }
         ]
       }
     ]
