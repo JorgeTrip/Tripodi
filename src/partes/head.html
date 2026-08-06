@@ -40,14 +40,17 @@
   <link rel="apple-touch-icon" sizes="180x180" href="imagenes/apple-touch-icon.png">
   
   <!-- Precarga de imagen crítica Hero (LCP) -->
-  <link rel="preload" as="image" href="imagenes/Tripode2.webp" type="image/webp">
+  <link rel="preload" as="image" href="imagenes/Tripode2.webp" type="image/webp" fetchpriority="high">
 
-  <!-- Google Fonts Optimizado -->
+  <!-- Google Fonts Asíncrono (No bloqueante) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  </noscript>
   
-  <!-- Hoja de Estilos CSS Consolidada y Optimizada (Carga en 1 sola petición HTTP) -->
-  <link rel="stylesheet" href="css/estilos.min.css">
+  <!-- Estilos CSS Inyectados Inline (0 peticiones HTTP bloqueantes) -->
+  <!-- CSS_INLINE_PLACEHOLDER -->
 </head>
 <body>

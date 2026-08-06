@@ -39,6 +39,9 @@ def optimizar_imagenes():
             print(f"Error al instalar Pillow: {e}")
             return
 
+    dir_thumbs = os.path.join(dir_imagenes, "thumbs")
+    os.makedirs(dir_thumbs, exist_ok=True)
+
     excluir = ["favicon-16x16.png", "favicon-32x32.png", "apple-touch-icon.png"]
     total_original = 0
     total_nuevo = 0
@@ -89,6 +92,16 @@ def optimizar_imagenes():
                         os.remove(tmp_filepath)
                         total_nuevo += tam_orig
                         print(f"Conservado original: {filename} ({tam_orig//1024}KB)")
+
+                    # Generar miniatura liviana en imagenes/thumbs/
+                    thumb_filepath = os.path.join(dir_thumbs, f"{nombre_base}.webp")
+                    if max(w, h) > 320:
+                        ratio_thumb = 320 / float(max(w, h))
+                        dims_thumb = (int(w * ratio_thumb), int(h * ratio_thumb))
+                        img_thumb = img.resize(dims_thumb, Image.Resampling.LANCZOS)
+                    else:
+                        img_thumb = img
+                    img_thumb.save(thumb_filepath, "WEBP", quality=70, method=6)
 
             except Exception as e:
                 print(f"Error procesando {filename}: {e}")

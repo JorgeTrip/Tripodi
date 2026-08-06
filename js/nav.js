@@ -75,21 +75,25 @@ function closeBubbleMenu() {
       backToTopFab.classList.add('visible');
     }
 
-    // Resaltar sección activa en el menú de navegación
-    const sections = document.querySelectorAll('section[id]');
-    let current = '';
-    sections.forEach(s => {
-      if (window.scrollY >= s.offsetTop - 120) {
-        current = s.id;
-      }
-    });
-    
-    document.querySelectorAll('.nav-link').forEach(a => {
-      a.classList.toggle('active-section', a.getAttribute('href') === '#' + current);
-    });
-
     ticking = false;
   }
+
+  // Observer para el resaltado de sección activa sin provocar reprocesamiento forzado (Forced Reflow)
+  document.addEventListener('DOMContentLoaded', () => {
+    const navLinks = document.querySelectorAll('.nav-link');
+    const secObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          navLinks.forEach(a => {
+            a.classList.toggle('active-section', a.getAttribute('href') === '#' + id);
+          });
+        }
+      });
+    }, { rootMargin: '-20% 0px -60% 0px' });
+
+    document.querySelectorAll('section[id]').forEach(sec => secObserver.observe(sec));
+  });
 
   window.addEventListener('scroll', () => {
     if (!ticking) {
@@ -100,7 +104,6 @@ function closeBubbleMenu() {
   
   function initNav() {
     updateNav();
-    setTimeout(updateNav, 100);
   }
   
   if (document.readyState === 'loading') {

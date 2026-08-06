@@ -37,10 +37,11 @@ function compilarCss() {
 
   fs.writeFileSync(cssSalida, cssConsolidado, 'utf8');
   console.log(`  CSS compilado correctamente en: ${cssSalida}`);
+  return cssConsolidado;
 }
 
 function compilar() {
-  compilarCss();
+  const css = compilarCss();
 
   const partesDir = path.join(__dirname, 'src', 'partes');
   const salidaPath = path.join(__dirname, 'index.html');
@@ -76,11 +77,15 @@ function compilar() {
     
     try {
       console.log(`  Procesando fragmento: ${archivo}`);
-      const contenido = fs.readFileSync(filePath, 'utf8');
-      
-      const lineas = contenido.split('\n').length;
+      const contenidoOriginal = fs.readFileSync(filePath, 'utf8');
+      const lineas = contenidoOriginal.split('\n').length;
       if (lineas > 200) {
         console.warn(`[ADVERTENCIA] El archivo ${archivo} tiene ${lineas} líneas, superando el límite de 200 líneas.`);
+      }
+
+      let contenido = contenidoOriginal;
+      if (archivo === 'head.html') {
+        contenido = contenido.replace('<!-- CSS_INLINE_PLACEHOLDER -->', `<style>\n${css}\n</style>`);
       }
       
       htmlConsolidado += contenido + '\n';
