@@ -6,14 +6,8 @@ OPTIMIZADOR DE IMÁGENES A WEBP
 ============================================================================
 Script: optimizar_imagenes.py
 Creador: Jorge O. Tripodi
-Fecha: 2026
-Descripción: Utilidad en Python para automatizar la conversión y compresión 
-             de imágenes gigantes (PNG, JPG, JPEG) al formato WebP de alto 
-             rendimiento para la web.
-
-Este script fue diseñado para integrarse en el flujo de publicación del sitio,
-permitiendo mantener el repositorio liviano y maximizar la velocidad de carga
-móvil del portal.
+Descripción: Utilidad para automatizar la compresión y redimensionado de
+             imágenes en formato WebP de alto rendimiento.
 ============================================================================
 """
 
@@ -22,84 +16,85 @@ import sys
 
 def optimizar_imagenes():
     """
-    Escanea la carpeta de imágenes del proyecto y convierte todos los archivos
-    PNG, JPG y JPEG al formato optimizado WebP.
-    
-    Esta función se encarga de:
-    1. Validar la existencia de la carpeta 'imagenes'.
-    2. Comprobar e instalar la biblioteca Pillow (PIL) en tiempo de ejecución.
-    3. Excluir elementos críticos del sistema (como favicons).
-    4. Procesar las imágenes aplicando compresión controlada (calidad 80).
+    Escanea la carpeta de imágenes y optimiza imágenes PNG, JPG y WebP.
+    Aplica compresión WebP y redimensionado inteligente.
     """
-    # Se define la ruta base de forma relativa a la ubicación del script
-    # para asegurar la portabilidad si se ejecuta desde distintos directorios.
     directorio_base = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     dir_imagenes = os.path.join(directorio_base, "imagenes")
     
     print(f"Buscando imágenes en: {dir_imagenes}")
     if not os.path.exists(dir_imagenes):
-        print("Error: No se encontró la carpeta 'imagenes'. Verifica la estructura del proyecto.")
+        print("Error: No se encontró la carpeta 'imagenes'.")
         return
         
-    # Se realiza una importación diferida de Pillow (PIL)
-    # Si no está instalada localmente en la máquina del usuario, el script
-    # intenta instalarla de forma transparente mediante pip para evitar bloqueos.
     try:
         from PIL import Image
     except ImportError:
-        print("La biblioteca 'Pillow' no está instalada en el sistema.")
-        print("Intentando instalar Pillow automáticamente...")
+        print("La biblioteca 'Pillow' no está instalada.")
         import subprocess
         try:
-            # Se ejecuta el instalador pip en un proceso secundario seguro
             subprocess.check_call([sys.executable, "-m", "pip", "install", "Pillow"])
             from PIL import Image
-            print("Pillow instalada y cargada correctamente.")
         except Exception as e:
-            print(f"Error al instalar Pillow de forma automática: {e}")
-            print("Por favor, ejecuta 'pip install Pillow' manualmente en tu terminal y vuelve a correr el script.")
+            print(f"Error al instalar Pillow: {e}")
             return
 
-    # Lista de archivos a omitir (exclusiones de sistema)
-    # Los favicons e íconos de Apple Touch deben quedarse en formato PNG nativo
-    # para mantener compatibilidad absoluta con motores antiguos de navegadores.
     excluir = ["favicon-16x16.png", "favicon-32x32.png", "apple-touch-icon.png"]
+    total_original = 0
+    total_nuevo = 0
 
-    # Extensiones de formato rasterizado a procesar
-    extensiones_compatibles = (".png", ".jpg", ".jpeg")
-    
     for filename in os.listdir(dir_imagenes):
-        if filename in excluir:
-            print(f"Omitiendo (exclusión de sistema): {filename}")
+        if filename in excluir or filename.endswith(".zip") or filename.endswith(".tmp"):
             continue
             
         filepath = os.path.join(dir_imagenes, filename)
-        
-        # Se procesan únicamente archivos que coincidan con las extensiones compatibles
-        if os.path.isfile(filepath) and filename.lower().endswith(extensiones_compatibles):
-            nombre_sin_ext, ext = os.path.splitext(filename)
-            nuevo_filename = f"{nombre_sin_ext}.webp"
-            nuevo_filepath = os.path.join(dir_imagenes, nuevo_filename)
-            
+        if not os.path.isfile(filepath):
+            continue
+
+        ext = filename.lower()
+        if ext.endswith((".png", ".jpg", ".jpeg", ".webp")):
             try:
-                tamano_original = os.path.getsize(filepath)
-                print(f"Procesando: {filename} ({tamano_original / 1024 / 1024:.2f} MB)...")
+                tam_orig = os.path.getsize(filepath)
+                total_original += tam_orig
                 
-                # Se abre la imagen y se realiza la conversión
                 with Image.open(filepath) as img:
-                    # Se guarda en formato WEBP.
-                    # Se utiliza quality=80 que representa el punto de equilibrio óptimo 
-                    # entre reducción de peso y fidelidad cromática visual.
-                    # method=6 fuerza a la biblioteca a usar la compresión WebP más lenta
-                    # pero con el menor tamaño de archivo resultante posible.
-                    img.save(nuevo_filepath, "WEBP", quality=80, method=6)
+                    w, h = img.size
+                    max_dim = 1200
                     
-                tamano_nuevo = os.path.getsize(nuevo_filepath)
-                ahorro = (1 - (tamano_nuevo / tamano_original)) * 100
-                print(f"  -> Creado: {nuevo_filename} ({tamano_nuevo / 1024 / 1024:.2f} MB) - Ahorro: {ahorro:.1f}%")
-                
+                    if filename.startswith(("Tripode2", "Tripodi_heraldica")):
+                        max_dim = 600
+                    elif filename.startswith(("Imagen_2", "Epicentro")):
+                        max_dim = 1400
+
+                    if max(w, h) > max_dim:
+                        ratio = max_dim / float(max(w, h))
+                        nuevas_dims = (int(w * ratio), int(h * ratio))
+                        img = img.resize(nuevas_dims, Image.Resampling.LANCZOS)
+
+                    nombre_base, _ = os.path.splitext(filename)
+                    nuevo_filepath = os.path.join(dir_imagenes, f"{nombre_base}.webp")
+                    tmp_filepath = nuevo_filepath + ".tmp"
+                    
+                    img.save(tmp_filepath, "WEBP", quality=75, method=6)
+                    tam_nuevo = os.path.getsize(tmp_filepath)
+                    
+                    if tam_nuevo < tam_orig or ext != ".webp":
+                        if os.path.exists(nuevo_filepath) and nuevo_filepath != filepath:
+                            os.remove(filepath)
+                        os.replace(tmp_filepath, nuevo_filepath)
+                        total_nuevo += tam_nuevo
+                        ahorro = (1 - (tam_nuevo / tam_orig)) * 100
+                        print(f"Optimizado: {filename} -> {os.path.basename(nuevo_filepath)} ({tam_orig//1024}KB -> {tam_nuevo//1024}KB, -{ahorro:.1f}%)")
+                    else:
+                        os.remove(tmp_filepath)
+                        total_nuevo += tam_orig
+                        print(f"Conservado original: {filename} ({tam_orig//1024}KB)")
+
             except Exception as e:
-                print(f"  Error al procesar la imagen {filename}: {e}")
+                print(f"Error procesando {filename}: {e}")
+
+    print(f"\nResumen: Original: {total_original//1024} KB -> Nuevo: {total_nuevo//1024} KB")
 
 if __name__ == "__main__":
     optimizar_imagenes()
+

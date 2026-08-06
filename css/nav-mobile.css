@@ -1,10 +1,8 @@
 /* ============================================================================
    NAVEGACIÓN MÓVIL Y FLOTANTE - TRIPODI
    ============================================================================
-   Estilos de menú burbuja responsivo y botón flotante de retorno superior.
 */
 
-/* Botón Burbuja Colapsado (Menú Móvil) */
 .nav-bubble {
   position: fixed;
   top: 1.1rem;
@@ -44,7 +42,6 @@
   50% { box-shadow: 0 6px 28px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.06), 0 0 18px rgba(201,168,76,.45); }
 }
 
-/* Burbuja Dropdown Menú */
 .nav-bubble-menu {
   position: absolute;
   top: calc(100% + .6rem);
@@ -112,7 +109,6 @@
   background: rgba(201,168,76,.2);
 }
 
-/* Botón volver arriba (Back to top FAB) */
 .back-to-top-fab {
   position: fixed;
   z-index: 2000;
@@ -156,7 +152,6 @@
   50% { transform: translateY(-4px); }
 }
 
-/* Adaptación responsiva móvil */
 @media (max-width: 768px) {
   .nav-bubble {
     display: flex !important;
@@ -173,41 +168,16 @@
     margin: 0;
     padding: 0;
   }
-  [data-theme="light"] .nav-bubble {
-    background: rgba(242,237,230,.7);
-    border-color: rgba(100,70,30,.28);
-  }
-  .nav-bubble-menu {
-    top: auto;
-    bottom: calc(100% + .6rem);
-    right: 0;
-    transform-origin: bottom right;
-  }
-  .nav-bubble.open .nav-bubble-menu {
-    transform: scale(1) translateY(0);
-  }
-  .back-to-top-fab {
-    position: fixed;
-    right: 1.2rem;
-    bottom: 5rem;
-    left: auto;
-    top: auto;
-    width: 3rem;
-    height: 3rem;
-  }
+  [data-theme="light"] .nav-bubble { background: rgba(242,237,230,.7); border-color: rgba(100,70,30,.28); }
+  .nav-bubble-menu { top: auto; bottom: calc(100% + .6rem); right: 0; transform-origin: bottom right; }
+  .nav-bubble.open .nav-bubble-menu { transform: scale(1) translateY(0); }
+  .back-to-top-fab { position: fixed; right: 1.2rem; bottom: 5rem; left: auto; top: auto; width: 3rem; height: 3rem; }
 }
 
 @media (min-width: 769px) {
-  .nav-bubble {
-    display: none;
-  }
-  .nav-bubble.visible {
-    display: flex;
-  }
-  .back-to-top-fab {
-    top: 5rem;
-    bottom: auto;
-    right: calc(50% - min(550px, 50vw) + 2rem);
-    left: auto;
-  }
+  .nav-bubble { display: none; }
+  .nav-bubble.visible { display: flex; }
+  .back-to-top-fab { top: 5rem; bottom: auto; right: calc(50% - min(550px, 50vw) + 2rem); left: auto; }
 }
+
+

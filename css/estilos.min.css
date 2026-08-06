@@ -1,0 +1,2407 @@
+/* --- variables.css --- */
+/* ============================================================================
+   VARIABLES Y ESTILOS GLOBALES - TRIPODI
+   ============================================================================
+   Define el sistema de diseño, variables CSS y estilos base.
+*/
+
+:root {
+  /* Paleta de colores temáticos */
+  --gold: #C9A84C;           /* Dorado principal */
+  --gold-lt: #E8C96A;        /* Dorado claro */
+  --ember: #B85C2A;          /* Ámbar/Terracota */
+  --terracotta: #D4725A;     /* Terracota */
+  --aegean: #2A5B7A;         /* Azul egeo */
+  --aegean-lt: #5A9EC6;      /* Azul egeo claro (optimizado para contraste WCAG AA) */
+  --marble: #F2EDE6;         /* Color mármol */
+  
+  /* Modo Oscuro ("Grises Pro" con tintes cálidos) */
+  --bg-dark: #0E0C09;        /* Fondo oscuro principal */
+  --bg-panel: #1A1610;       /* Fondo de paneles */
+  --bg-card: #211E18;        /* Fondo de tarjetas */
+  --text-main: #EDE8DF;      /* Texto principal */
+  --text-muted: #9A9180;     /* Texto secundario */
+  --border: rgba(201, 168, 76, 0.2);
+  --radius: 8px;
+}
+
+[data-theme="light"] {
+  /* Modo Claro ("Grises Pro" cálidos) */
+  --bg-dark: #F2EDE6;        /* Fondo claro principal */
+  --bg-panel: #E8E0D4;       /* Fondo de paneles claro */
+  --bg-card: #FFFFFF;        /* Fondo de tarjetas blanco */
+  --text-main: #1C1710;      /* Texto principal oscuro */
+  --text-muted: #6B5E4A;     /* Texto secundario */
+  --border: rgba(100, 70, 30, 0.2);
+}
+
+/* Reset y Base */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: 'Lora', Georgia, serif;
+  background: var(--bg-dark);
+  color: var(--text-main);
+  overflow-x: hidden;
+  transition: background 0.4s, color 0.4s;
+}
+
+h1, h2, h3, .serif-display {
+  font-family: 'Cinzel', serif;
+}
+
+.sans {
+  font-family: 'Inter', sans-serif;
+}
+
+/* Scrollbar Personalizado */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--gold);
+  border-radius: 3px;
+}
+
+@media(prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* --- layout.css --- */
+/* ============================================================================
+   ESTRUCTURA Y NAVEGACIÓN - TRIPODI
+   ============================================================================
+   Estilos para el layout general, secciones base, hero y barra de navegación.
+*/
+
+/* Secciones Base */
+.section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 5rem 2rem;
+}
+.section-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
+  opacity: 0.35;
+}
+.section-eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.8rem;
+}
+.section-title {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  color: var(--text-main);
+  margin-bottom: 1.2rem;
+  line-height: 1.15;
+}
+.section-lead {
+  font-size: 1.1rem;
+  line-height: 1.85;
+  color: var(--text-muted);
+  max-width: 680px;
+}
+
+/* Sección Hero */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 4rem 2rem 6rem;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 70%, #2A1A08 0%, #0E0C09 70%);
+  z-index: 0;
+}
+[data-theme="light"] .hero-bg {
+  background: radial-gradient(ellipse at 50% 60%, #D4B88A 0%, #E8D9C0 60%, #F2EDE6 100%);
+}
+.hero-stars {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(1px 1px at 20% 30%, rgba(201,168,76,.4) 0, transparent 100%),
+                    radial-gradient(1px 1px at 70% 15%, rgba(201,168,76,.3) 0, transparent 100%),
+                    radial-gradient(1px 1px at 85% 65%, rgba(201,168,76,.2) 0, transparent 100%),
+                    radial-gradient(1.5px 1.5px at 60% 45%, rgba(255,255,255,.15) 0, transparent 100%);
+  z-index: 1;
+}
+[data-theme="light"] .hero-stars {
+  display: none;
+}
+.tripod-icon {
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 2;
+  filter: drop-shadow(0 0 24px rgba(201,168,76,.5));
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+.tripod-icon img {
+  width: 180px;
+  height: auto;
+  display: block;
+}
+@keyframes glow-pulse {
+  0%, 100% { filter: drop-shadow(0 0 16px rgba(201,168,76,.4)); }
+  50% { filter: drop-shadow(0 0 36px rgba(201,168,76,.7)); }
+}
+.hero-eyebrow {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 2;
+}
+.hero-title {
+  font-size: clamp(3rem, 8vw, 7rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  color: var(--gold-lt);
+  text-shadow: 0 2px 40px rgba(201,168,76,0.3);
+  position: relative;
+  z-index: 2;
+  margin-bottom: 0.5rem;
+}
+[data-theme="light"] .hero-title {
+  color: var(--ember);
+  text-shadow: none;
+}
+.hero-subtitle-greek {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(1rem, 2.5vw, 1.6rem);
+  color: var(--text-muted);
+  letter-spacing: 0.12em;
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 2;
+}
+.hero-subtitle {
+  max-width: 640px;
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: var(--text-main);
+  opacity: 0.85;
+  position: relative;
+  z-index: 2;
+  margin-bottom: 2.5rem;
+}
+.hero-kpis {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  margin-bottom: 3rem;
+}
+.kpi {
+  text-align: center;
+}
+.kpi-num {
+  font-family: 'Cinzel', serif;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+}
+.kpi-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: 0.3rem;
+}
+.scroll-cue {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--text-muted);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  animation: float 2s ease-in-out infinite;
+}
+@keyframes float {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(6px); }
+}
+.scroll-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+}
+
+@media(max-width: 640px) {
+  .section {
+    padding: 3rem 1.2rem;
+  }
+}
+
+/* --- nav-desktop.css --- */
+/* ============================================================================
+   NAVEGACIÓN ESCRITORIO - TRIPODI
+   ============================================================================
+   Estilos de la barra de navegación principal para pantallas grandes.
+*/
+
+.main-nav {
+  position: fixed;
+  top: 1.2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2000;
+  transition: opacity 0.4s, transform 0.4s;
+  pointer-events: all;
+}
+.main-nav.nav-hidden {
+  opacity: 0;
+  transform: translateX(-50%) translateY(-120%);
+  pointer-events: none;
+}
+.nav-pill {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(26,22,16,.72);
+  backdrop-filter: blur(18px) saturate(1.4);
+  -webkit-backdrop-filter: blur(18px) saturate(1.4);
+  border: 1px solid rgba(201,168,76,.25);
+  border-radius: 3rem;
+  padding: .55rem 1.1rem .55rem 1.2rem;
+  box-shadow: 0 8px 32px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.06);
+}
+[data-theme="light"] .nav-pill {
+  background: rgba(242,237,230,.82);
+  border-color: rgba(100,70,30,.22);
+  box-shadow: 0 8px 32px rgba(0,0,0,.15), inset 0 1px 0 rgba(255,255,255,.6);
+}
+.nav-brand {
+  font-family: 'Cinzel', serif;
+  font-size: .85rem;
+  color: var(--gold);
+  white-space: nowrap;
+  letter-spacing: .06em;
+}
+.nav-brand-text {
+  display: inline;
+}
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: .1rem;
+}
+.nav-link {
+  font-family: 'Inter', sans-serif;
+  font-size: .7rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-decoration: none;
+  padding: .4rem .65rem;
+  border-radius: 2rem;
+  transition: color 0.2s, background 0.2s;
+  white-space: nowrap;
+}
+.nav-link:hover, .nav-link.active-section {
+  color: var(--gold);
+  background: rgba(201,168,76,.1);
+}
+.nav-theme-btn {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  background: rgba(201,168,76,.12);
+  border: 1px solid rgba(201,168,76,.3);
+  border-radius: 2rem;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-size: .68rem;
+  color: var(--gold);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: .35rem .75rem;
+  transition: background 0.2s, border-color 0.2s;
+  white-space: nowrap;
+}
+.nav-theme-btn:hover {
+  background: rgba(201,168,76,.22);
+  border-color: var(--gold);
+}
+.nav-theme-label {
+  display: inline;
+}
+@media (max-width: 768px) {
+  .main-nav {
+    display: none !important;
+  }
+}
+
+/* --- nav-mobile.css --- */
+/* ============================================================================
+   NAVEGACIÓN MÓVIL Y FLOTANTE - TRIPODI
+   ============================================================================
+*/
+
+.nav-bubble {
+  position: fixed;
+  top: 1.1rem;
+  z-index: 2001;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: rgba(26,22,16,.78);
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  border: 1px solid rgba(201,168,76,.3);
+  box-shadow: 0 4px 24px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.06);
+  cursor: pointer;
+  font-size: 1.3rem;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+  animation: bubble-glow 2.8s ease-in-out infinite;
+  right: calc(50% - min(550px, 50vw) + 2rem);
+}
+[data-theme="light"] .nav-bubble {
+  background: rgba(242,237,230,.85);
+  border-color: rgba(100,70,30,.3);
+}
+.nav-bubble:hover {
+  transform: scale(1.08);
+  border-color: var(--gold);
+  box-shadow: 0 0 20px rgba(201,168,76,.3);
+}
+.nav-bubble-inner {
+  pointer-events: none;
+  line-height: 1;
+}
+@keyframes bubble-glow {
+  0%, 100% { box-shadow: 0 4px 24px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.06), 0 0 0 rgba(201,168,76,0); }
+  50% { box-shadow: 0 6px 28px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.06), 0 0 18px rgba(201,168,76,.45); }
+}
+
+.nav-bubble-menu {
+  position: absolute;
+  top: calc(100% + .6rem);
+  right: 0;
+  background: rgba(26,22,16,.92);
+  backdrop-filter: blur(20px) saturate(1.4);
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  border: 1px solid rgba(201,168,76,.25);
+  border-radius: 1rem;
+  padding: .6rem;
+  min-width: 180px;
+  box-shadow: 0 16px 48px rgba(0,0,0,.6);
+  opacity: 0;
+  transform: scale(.9) translateY(-6px);
+  transform-origin: top right;
+  pointer-events: none;
+  transition: opacity 0.2s, transform 0.2s;
+  display: flex;
+  flex-direction: column;
+  gap: .2rem;
+}
+[data-theme="light"] .nav-bubble-menu {
+  background: rgba(242,237,230,.95);
+  border-color: rgba(100,70,30,.2);
+}
+.nav-bubble.open .nav-bubble-menu {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  pointer-events: all;
+}
+.bubble-link {
+  font-family: 'Inter', sans-serif;
+  font-size: .75rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-decoration: none;
+  padding: .5rem .8rem;
+  border-radius: .6rem;
+  transition: color 0.15s, background 0.15s;
+  display: block;
+}
+.bubble-link:hover {
+  color: var(--gold);
+  background: rgba(201,168,76,.1);
+}
+.bubble-theme-btn {
+  margin-top: .3rem;
+  padding: .5rem .8rem;
+  background: rgba(201,168,76,.1);
+  border: 1px solid rgba(201,168,76,.25);
+  border-radius: .6rem;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-size: .72rem;
+  color: var(--gold);
+  letter-spacing: .06em;
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  transition: background 0.2s;
+  text-transform: uppercase;
+}
+.bubble-theme-btn:hover {
+  background: rgba(201,168,76,.2);
+}
+
+.back-to-top-fab {
+  position: fixed;
+  z-index: 2000;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: rgba(26,22,16,.78);
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  border: 1px solid rgba(201,168,76,.3);
+  box-shadow: 0 4px 24px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.06);
+  cursor: pointer;
+  font-size: 1.3rem;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s, opacity 0.3s;
+  opacity: 0;
+}
+[data-theme="light"] .back-to-top-fab {
+  background: rgba(242,237,230,.85);
+  border-color: rgba(100,70,30,.3);
+}
+.back-to-top-fab:hover {
+  transform: scale(1.08);
+  border-color: var(--gold);
+  box-shadow: 0 0 20px rgba(201,168,76,.3);
+}
+.back-to-top-fab.visible {
+  display: flex;
+  opacity: 1;
+}
+.back-to-top-fab-inner {
+  pointer-events: none;
+  line-height: 1;
+  animation: chevron-float 2s ease-in-out infinite;
+  color: var(--gold);
+}
+@keyframes chevron-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+@media (max-width: 768px) {
+  .nav-bubble {
+    display: flex !important;
+    position: fixed;
+    top: auto;
+    bottom: 1.2rem;
+    right: 1.2rem;
+    left: auto;
+    background: rgba(26,22,16,.55);
+    border-color: rgba(201,168,76,.35);
+    animation: bubble-glow 2.8s ease-in-out infinite;
+    width: 3rem;
+    height: 3rem;
+    margin: 0;
+    padding: 0;
+  }
+  [data-theme="light"] .nav-bubble { background: rgba(242,237,230,.7); border-color: rgba(100,70,30,.28); }
+  .nav-bubble-menu { top: auto; bottom: calc(100% + .6rem); right: 0; transform-origin: bottom right; }
+  .nav-bubble.open .nav-bubble-menu { transform: scale(1) translateY(0); }
+  .back-to-top-fab { position: fixed; right: 1.2rem; bottom: 5rem; left: auto; top: auto; width: 3rem; height: 3rem; }
+}
+
+@media (min-width: 769px) {
+  .nav-bubble { display: none; }
+  .nav-bubble.visible { display: flex; }
+  .back-to-top-fab { top: 5rem; bottom: auto; right: calc(50% - min(550px, 50vw) + 2rem); left: auto; }
+}
+
+
+
+/* --- secciones-1.css --- */
+/* ============================================================================
+   SECCIONES PARTE 1 - TRIPODI
+   ============================================================================
+   Estilos específicos para Etimología, Timeline, Hipótesis y Oráculo.
+*/
+
+/* 1. Etimología */
+.etym-hero {
+  background: var(--bg-panel);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.etym-breakdown {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+  gap: 1rem;
+  align-items: center;
+  margin-top: 3rem;
+  text-align: center;
+}
+@media(max-width: 640px) {
+  .etym-breakdown { grid-template-columns: 1fr; gap: 0.5rem; }
+  .etym-plus { display: none; }
+}
+.etym-part {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.8rem 1.2rem;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s;
+}
+.etym-part:hover {
+  border-color: var(--gold);
+}
+.etym-part::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--gold);
+}
+.etym-greek {
+  font-family: 'Cinzel', serif;
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+.etym-meaning {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.8rem;
+}
+.etym-desc {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--text-main);
+  opacity: 0.8;
+}
+.etym-plus, .etym-equals {
+  font-family: 'Cinzel', serif;
+  font-size: 2rem;
+  color: var(--gold);
+  opacity: 0.4;
+}
+.etym-result {
+  background: linear-gradient(135deg, var(--ember), #8B3A1A);
+  border: none;
+}
+.etym-result::before {
+  background: var(--gold-lt);
+}
+.etym-result .etym-greek { color: #fff; font-size: 2.8rem; }
+.etym-result .etym-meaning { color: rgba(255,255,255,0.6); }
+.etym-result .etym-desc { color: rgba(255,255,255,0.85); }
+.mycenae-note {
+  margin-top: 2.5rem;
+  background: var(--bg-card);
+  border-left: 3px solid var(--gold);
+  padding: 1.2rem 1.5rem;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  font-style: italic;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+.mycenae-note strong { color: var(--gold); font-style: normal; }
+
+/* 2. Timeline */
+.timeline {
+  position: relative;
+  margin-top: 3.5rem;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 2.5rem; top: 0; bottom: 0;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+}
+.tl-item {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  position: relative;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease;
+}
+.tl-item.visible {
+  opacity: 1;
+  transform: none;
+}
+.tl-dot-wrap {
+  flex-shrink: 0;
+  width: 5rem;
+  display: flex;
+  justify-content: center;
+}
+.tl-dot {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 2px solid var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 2;
+}
+.tl-body {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.4rem 1.6rem;
+  flex: 1;
+  transition: border-color 0.3s;
+}
+.tl-body:hover {
+  border-color: var(--gold);
+}
+.tl-date {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.4rem;
+}
+.tl-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.1rem;
+  color: var(--text-main);
+  margin-bottom: 0.6rem;
+}
+.tl-text {
+  font-size: 0.92rem;
+  line-height: 1.75;
+  color: var(--text-muted);
+}
+
+
+
+
+
+/* --- secciones-hipotesis.css --- */
+/* SECCIÓN DE HIPÓTESIS - TRIPODI
+   Estilos específicos para el diseño de tarjetas (acordeones interactivos),
+   barras de probabilidad y el gráfico circular (donut) con su leyenda. */
+
+.hypo-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: visible;
+  cursor: pointer;
+  transition: all 0.35s;
+  position: relative;
+}
+.hypo-card:hover, .hypo-card.active {
+  border-color: var(--gold);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+}
+.hypo-header {
+  padding: 1.5rem 1.5rem 1rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+.hypo-icon { font-size: 2.5rem; line-height: 1; flex-shrink: 0; }
+.hypo-num {
+  font-family: 'Cinzel', serif;
+  font-size: 3rem;
+  font-weight: 900;
+  color: var(--border);
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
+  line-height: 1;
+}
+.hypo-title { font-family: 'Cinzel', serif; font-size: 1.1rem; color: var(--gold-lt); margin-bottom: 0.3rem; }
+.hypo-subtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.hypo-bar-wrap { padding: 0 1.5rem; margin-bottom: 1rem; }
+.hypo-bar-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.4rem;
+  display: flex;
+  justify-content: space-between;
+}
+.hypo-bar { height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; }
+.hypo-bar-fill {
+  height: 100%;
+  background: linear-gradient(to right, var(--gold), var(--gold-lt));
+  border-radius: 2px;
+  width: 0;
+  transition: width 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.hypo-card.visible .hypo-bar-fill { width: var(--fill); }
+.hypo-body { padding: 0 1.5rem 1.5rem; font-size: 0.92rem; line-height: 1.75; color: var(--text-muted); }
+.hypo-detail {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease, padding 0.3s ease;
+  padding: 0 1.5rem;
+  font-size: 0.88rem;
+  line-height: 1.75;
+  color: var(--text-muted);
+}
+.hypo-card.active .hypo-detail {
+  max-height: 1000px;
+  padding: 1rem 1.5rem 1.5rem;
+  border-top: 1px solid var(--border);
+}
+
+/* Miniatura de Imagen e Indicadores Internos */
+.hypo-thumb-wrap { padding: 0 1.5rem 0.75rem; }
+.hypo-thumb {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  border-radius: calc(var(--radius) - 2px);
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+  display: block;
+}
+.hypo-thumb:hover {
+  transform: scale(1.02);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+.hypo-thumb-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-top: 0.4rem;
+  text-align: center;
+}
+.hypo-chevron {
+  position: absolute;
+  bottom: 0.8rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--gold);
+  opacity: 0.5;
+  transition: transform 0.3s, opacity 0.3s;
+}
+.hypo-card.active .hypo-chevron {
+  transform: translateX(-50%) rotate(180deg);
+  opacity: 1;
+}
+
+/* Contenedores y Grilla Base de la Sección */
+.hypo-section { background: var(--bg-panel); border-top: 1px solid var(--border); }
+.hypo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+@media(max-width: 480px) {
+  .hypo-grid { grid-template-columns: 1fr; gap: 1rem; }
+}
+
+/* GRÁFICOS CANVASES DE DONUT */
+.donut-wrap { display: flex; align-items: center; justify-content: center; gap: 2.5rem; margin-top: 3rem; flex-wrap: wrap; }
+#donutCanvas { flex-shrink: 0; width: 200px; height: 200px; }
+.donut-legend { display: flex; flex-direction: column; gap: 0.8rem; width: 100%; max-width: 320px; }
+.legend-item { display: flex; align-items: center; gap: 0.8rem; font-size: 0.9rem; color: var(--text-muted); }
+.legend-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+.legend-pct { font-family: 'Cinzel', serif; font-size: 1rem; color: var(--gold); margin-left: auto; }
+
+
+/* --- secciones-oracle.css --- */
+/* ============================================================================
+   SECCIÓN ORÁCULO DE DELFOS - TRIPODI
+   ============================================================================
+   Estilos específicos para la sección del Oráculo de Delfos, las citas y
+   los datos interesantes en formato lista.
+*/
+
+.oracle-section {
+  background: var(--bg-dark);
+  position: relative;
+  overflow: hidden;
+}
+.oracle-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 30% 50%, rgba(42,91,122,.15) 0%, transparent 60%);
+  pointer-events: none;
+}
+.oracle-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  margin-top: 3rem;
+}
+@media(max-width: 768px) {
+  .oracle-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.oracle-visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.oracle-circle {
+  width: min(320px, 90%);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, rgba(42,91,122,0.3) 0%, var(--bg-card) 70%);
+  border: 1px solid var(--aegean-lt);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0 0 60px rgba(42, 91, 122, 0.2);
+}
+.oracle-img-circle {
+  width: min(320px, 90%);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--aegean-lt);
+  box-shadow: 0 0 60px rgba(42, 91, 122, 0.3);
+  position: relative;
+}
+.oracle-img-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 20%;
+}
+.oracle-img-circle::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.5);
+}
+.oracle-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(58, 122, 159, 0.3);
+  animation: spin-slow linear infinite;
+}
+.oracle-ring-1 {
+  width: 110%;
+  aspect-ratio: 1;
+  animation-duration: 20s;
+}
+.oracle-ring-2 {
+  width: 125%;
+  aspect-ratio: 1;
+  animation-duration: 30s;
+  animation-direction: reverse;
+  border-style: dashed;
+}
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Cita Textual de Estrabón (Estilo Apple / Pergamino) */
+.oracle-quote {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--aegean-lt);
+  padding: 1.5rem;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  margin-bottom: 1.5rem;
+  font-style: italic;
+  font-size: 1.05rem;
+  line-height: 1.75;
+  color: var(--text-main);
+}
+.oracle-quote cite {
+  display: block;
+  margin-top: 0.8rem;
+  font-style: normal;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--aegean-lt);
+}
+
+/* Lista de Hechos Délicos (Formato lista sin bordes rústicos) */
+.facts-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.facts-list li {
+  display: block;
+  font-size: 0.92rem;
+  line-height: 1.75;
+  color: var(--text-muted);
+  padding: 0.55rem 0;
+  border-bottom: 1px solid rgba(201, 168, 76, 0.07);
+}
+.facts-list li:last-child {
+  border-bottom: none;
+}
+.facts-list li::before {
+  content: '⚡ ';
+  font-size: 0.75rem;
+  display: inline;
+}
+
+/* --- secciones-2.css --- */
+/* ============================================================================
+   SECCIONES PARTE 2 Y FOOTER - TRIPODI
+   ============================================================================
+   Estilos específicos para Geografía, Diáspora, Lingüística, Variantes,
+   Personajes Notables, Fuentes, Cierre y Pie de página.
+*/
+
+/* 1. Geografía */
+.geo-section {
+  background: var(--bg-panel);
+  border-top: 1px solid var(--border);
+}
+.geo-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin-top: 3rem;
+  align-items: start;
+}
+@media(max-width: 768px) {
+  .geo-grid { grid-template-columns: 1fr; }
+}
+.geo-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.geo-bar-item {
+  display: grid;
+  grid-template-columns: 160px 1fr 3rem;
+  gap: 1rem;
+  align-items: center;
+}
+@media(max-width: 500px) {
+  .geo-bar-item { grid-template-columns: 100px 1fr 2.5rem; }
+}
+.geo-bar-name {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  color: var(--text-main);
+  text-align: right;
+  line-height: 1.3;
+}
+.geo-bar-track {
+  height: 6px;
+  background: var(--border);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.geo-bar-fill {
+  height: 100%;
+  border-radius: 3px;
+  width: 0;
+  transition: width 1.4s cubic-bezier(.25,.46,.45,.94);
+  background: linear-gradient(to right, var(--ember), var(--gold));
+}
+.geo-section.visible .geo-bar-fill {
+  width: var(--pct);
+}
+.geo-bar-val {
+  font-family: 'Cinzel', serif;
+  font-size: 0.85rem;
+  color: var(--gold);
+}
+.geo-notes {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+.geo-note-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.2rem 1.4rem;
+}
+.geo-note-title {
+  font-family: 'Cinzel', serif;
+  font-size: 0.95rem;
+  color: var(--gold-lt);
+  margin-bottom: 0.5rem;
+}
+.geo-note-text {
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: var(--text-muted);
+}
+
+/* 2. Diáspora */
+.diaspora-section {
+  background: var(--bg-dark);
+}
+.flow-stages {
+  display: flex;
+  flex-direction: column;
+}
+.flow-stage {
+  display: grid;
+  grid-template-columns: 5rem 1fr;
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: all 0.6s ease;
+}
+.flow-stage.visible {
+  opacity: 1;
+  transform: none;
+}
+.flow-connector {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.flow-node {
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  background: var(--bg-card);
+  border: 2px solid var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+  z-index: 2;
+}
+.flow-line {
+  flex: 1;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--gold), rgba(201,168,76,.2));
+  min-height: 2rem;
+}
+.flow-body {
+  padding: 0 0 2rem 1.5rem;
+}
+.flow-era {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.3rem;
+}
+.flow-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.1rem;
+  color: var(--text-main);
+  margin-bottom: 0.5rem;
+}
+.flow-text {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+.flow-destinations {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.8rem;
+}
+.dest-tag {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  padding: 0.25rem 0.65rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 2rem;
+  color: var(--text-muted);
+}
+
+
+/* --- secciones-linguis.css --- */
+/* ============================================================================
+   SECCIÓN LINGÜÍSTICA Y VARIANTES - TRIPODI
+   ============================================================================
+*/
+
+/* 1. Lingüística */
+.linguis-section {
+  background: var(--bg-panel);
+  border-top: 1px solid var(--border);
+}
+.linguis-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin-top: 3rem;
+  align-items: center;
+}
+@media(max-width: 768px) {
+  .linguis-grid { grid-template-columns: 1fr; }
+}
+.lang-attrs {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.lang-attr {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 1rem;
+  align-items: center;
+  padding: 1rem 1.2rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  transition: border-color 0.3s;
+}
+.lang-attr:hover {
+  border-color: var(--gold);
+}
+.lang-attr-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-main);
+  margin-bottom: 0.3rem;
+}
+.lang-attr-desc {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+.lang-score {
+  font-family: 'Cinzel', serif;
+  font-size: 1.4rem;
+  color: var(--gold);
+  font-weight: 700;
+}
+#radarWrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 2. Variantes del apellido */
+.variants-section {
+  background: var(--bg-dark);
+}
+.variants-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 2.5rem;
+  justify-content: center;
+}
+.variant-pill {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 2rem;
+  padding: 0.6rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  cursor: default;
+  transition: all 0.3s;
+}
+.variant-pill:hover {
+  border-color: var(--gold);
+  transform: scale(1.05);
+}
+.variant-name {
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+  color: var(--gold);
+}
+.variant-note {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+}
+
+/* --- secciones-3.css --- */
+/* ============================================================================
+   SECCIONES PARTE 3 Y FOOTER - TRIPODI
+   ============================================================================
+   Estilos específicos para Personajes Notables, Fuentes, Cierre y Footer.
+*/
+
+/* 1. Personajes Notables */
+.notable-section {
+  background: var(--bg-panel);
+  border-top: 1px solid var(--border);
+}
+.notable-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.2rem;
+  margin-top: 3rem;
+}
+.notable-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.4rem;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.notable-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(to right, var(--ember), var(--gold));
+  transform: scaleX(0);
+  transition: transform 0.3s;
+}
+.notable-card:hover {
+  border-color: var(--gold);
+  transform: translateY(-3px);
+}
+.notable-card:hover::after {
+  transform: scaleX(1);
+}
+.notable-emoji {
+  font-size: 2rem;
+  margin-bottom: 0.8rem;
+}
+.notable-name {
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+  color: var(--gold-lt);
+  margin-bottom: 0.3rem;
+}
+.notable-name a {
+  color: inherit;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(201, 168, 76, 0.3);
+  transition: border-color 0.2s;
+}
+.notable-name a:hover {
+  border-color: var(--gold);
+}
+.notable-role {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.6rem;
+}
+.notable-desc {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+}
+.notable-people {
+  margin-top: 0.6rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--border);
+}
+.notable-person {
+  font-size: 0.8rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+  padding: 0.2rem 0;
+}
+.notable-person strong {
+  color: var(--text-main);
+  font-style: normal;
+}
+.notable-person a {
+  color: var(--aegean-lt);
+  text-decoration: none;
+  word-break: break-word;
+}
+.notable-person a:hover {
+  color: var(--gold);
+  text-decoration: underline;
+}
+.notable-person a:visited {
+  color: #5a8a9f;
+}
+
+/* 2. Fuentes y Referencias */
+.sources-section {
+  background: var(--bg-panel);
+  border-top: 1px solid var(--border);
+}
+.sources-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 2.5rem;
+}
+@media(max-width: 640px) {
+  .sources-grid { grid-template-columns: 1fr; }
+}
+.source-group-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1rem;
+  color: var(--gold-lt);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+.source-item {
+  display: flex;
+  gap: 0.8rem;
+  padding: 0.8rem 0;
+  border-bottom: 1px solid rgba(201,168,76,.08);
+}
+.source-item:last-child {
+  border-bottom: none;
+}
+.source-num {
+  font-family: 'Cinzel', serif;
+  font-size: 0.8rem;
+  color: var(--gold);
+  flex-shrink: 0;
+  width: 1.5rem;
+  text-align: right;
+  padding-top: 0.1rem;
+}
+.source-content {
+  font-size: 0.82rem;
+  line-height: 1.65;
+  color: var(--text-muted);
+}
+.source-content em {
+  color: var(--text-main);
+}
+.source-content a {
+  color: var(--aegean-lt);
+  text-decoration: none;
+  word-break: break-all;
+}
+.source-content a:hover {
+  color: var(--gold);
+  text-decoration: underline;
+}
+.source-content .source-type {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background: var(--bg-card);
+  padding: 0.1rem 0.4rem;
+  border-radius: 2px;
+  margin-left: 0.4rem;
+  vertical-align: middle;
+}
+
+
+
+/* --- secciones-notables.css --- */
+/* ============================================================================
+   SECCIÓN PERSONAJES NOTABLES (ACORDEONES INTERACTIVOS) - TRIPODI
+   ============================================================================
+   Estilos específicos para la visualización de tarjetas de disciplinas
+   y la interacción de subtarjetas colapsables de biografías y fuentes.
+*/
+
+.notable-section {
+  background: var(--bg-dark);
+  position: relative;
+}
+
+/* Acordeón de Figuras Notables */
+.notable-people-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-top: 1.2rem;
+  width: 100%;
+}
+.person-accordion-item {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) - 2px);
+  overflow: hidden;
+  transition: border-color 0.25s, background-color 0.25s, box-shadow 0.25s;
+}
+[data-theme="light"] .person-accordion-item {
+  background: rgba(0, 0, 0, 0.015);
+}
+.person-accordion-item:hover {
+  border-color: rgba(201, 168, 76, 0.4);
+  background: rgba(255, 255, 255, 0.035);
+}
+[data-theme="light"] .person-accordion-item:hover {
+  background: rgba(0, 0, 0, 0.03);
+}
+.person-accordion-item.active {
+  border-color: var(--gold);
+  background: rgba(201, 168, 76, 0.03);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+[data-theme="light"] .person-accordion-item.active {
+  background: rgba(201, 168, 76, 0.05);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+}
+
+/* Cabecera del Acordeón */
+.person-accordion-header {
+  padding: 0.85rem 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  user-select: none;
+}
+.person-meta-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.person-accordion-name {
+  font-family: 'Lora', serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--text-main);
+  transition: color 0.2s;
+}
+.person-accordion-item:hover .person-accordion-name {
+  color: var(--gold);
+}
+.person-accordion-role {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+.person-accordion-chevron {
+  color: var(--text-muted);
+  transition: transform 0.3s ease, color 0.3s ease;
+  display: flex;
+  align-items: center;
+}
+.person-accordion-item.active .person-accordion-chevron {
+  transform: rotate(180deg);
+  color: var(--gold);
+}
+
+/* Cuerpo Desplegable */
+.person-accordion-body {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.3s;
+}
+.person-accordion-item.active .person-accordion-body {
+  max-height: 400px;
+  opacity: 1;
+}
+.person-accordion-content {
+  padding: 0 1.1rem 1.1rem;
+  border-top: 1px dashed rgba(201, 168, 76, 0.15);
+  margin-top: 0.2rem;
+}
+.person-desc {
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: var(--text-muted);
+  margin-top: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+/* Enlaces de Fuentes Separados */
+.person-sources {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid rgba(201, 168, 76, 0.08);
+}
+.sources-label {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-right: 0.4rem;
+}
+.source-link-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  color: var(--gold);
+  text-decoration: none;
+  background: rgba(201, 168, 76, 0.08);
+  border: 1px solid rgba(201, 168, 76, 0.2);
+  border-radius: 2rem;
+  padding: 0.2rem 0.6rem;
+  transition: border-color 0.2s, color 0.2s, background-color 0.2s;
+}
+.source-link-pill:hover {
+  background: rgba(201, 168, 76, 0.15);
+  border-color: var(--gold);
+  color: var(--gold-lt);
+}
+.source-link-pill svg {
+  opacity: 0.8;
+}
+
+/* --- heraldica.css --- */
+/* ============================================================================
+   SECCIÓN HERÁLDICA - TRIPODI
+   ============================================================================
+   Estilos específicos para la sección de escudos de armas familiares y blasones.
+*/
+
+.heraldry-dual {
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+  margin-top: 3rem;
+}
+.heraldry-block {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem;
+}
+.heraldry-block-header {
+  font-family: 'Cinzel', serif;
+  font-size: 1.15rem;
+  color: var(--gold-lt);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+.heraldry-block-badge {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  padding: 0.2rem 0.6rem;
+  border-radius: 2rem;
+}
+.heraldry-block-grid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2rem;
+  align-items: start;
+}
+@media(max-width: 640px) {
+  .heraldry-block-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.coat-of-arms-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  flex-shrink: 0;
+  width: 100%;
+}
+.coat-of-arms-img {
+  width: 180px;
+  height: auto;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg-card);
+  padding: 0.5rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+.coat-placeholder {
+  width: 180px;
+  height: 220px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  color: var(--text-muted);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  text-align: center;
+  padding: 1rem;
+}
+.coat-pending {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+@media(max-width: 640px) {
+  .coat-of-arms-img { width: 100%; max-width: 280px; }
+  .coat-placeholder { width: 100%; max-width: 280px; height: 200px; }
+}
+
+/* Descripción del Blasón Heráldico */
+.blazon-text {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--gold);
+  padding: 1.2rem 1.5rem;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  font-style: italic;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--text-main);
+  margin-bottom: 1.5rem;
+}
+.blazon-translation {
+  font-style: normal;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-top: 0.6rem;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Detalles Heráldicos */
+.heraldry-facts {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.heraldry-fact {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.2rem 1.4rem;
+}
+.heraldry-fact-title {
+  font-family: 'Cinzel', serif;
+  font-size: 0.95rem;
+  color: var(--gold-lt);
+  margin-bottom: 0.5rem;
+}
+.heraldry-fact-text {
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: var(--text-muted);
+}
+.coat-img-clickable {
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.coat-img-clickable:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+/* --- footer.css --- */
+/* ============================================================================
+   CIERRE Y PIE DE PÁGINA - TRIPODI
+   ============================================================================
+   Estilos específicos para la conclusión del sitio y la firma.
+*/
+
+/* 1. Sección Cierre */
+.closing-section {
+  text-align: center;
+  background: var(--bg-dark);
+  position: relative;
+  overflow: hidden;
+}
+.closing-section::before {
+  content: 'ΤΡΙΠΟΔΙ';
+  position: absolute;
+  font-family: 'Cinzel', serif;
+  font-size: clamp(5rem, 15vw, 12rem);
+  font-weight: 900;
+  color: rgba(201,168,76,.04);
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+}
+.closing-tripod {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  display: block;
+}
+.closing-title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  color: var(--gold-lt);
+  margin-bottom: 1.2rem;
+}
+.closing-text {
+  max-width: 640px;
+  margin: 0 auto 2.5rem;
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: var(--text-muted);
+}
+.closing-latin {
+  font-family: 'Cinzel', serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+
+/* 2. Footer */
+footer {
+  background: var(--bg-panel);
+  border-top: 1px solid var(--border);
+  padding: 2.5rem 2rem;
+  text-align: center;
+}
+.footer-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  line-height: 2.2;
+}
+.footer-copy {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  font-family: 'Cinzel', serif;
+  font-size: 0.8rem;
+  color: var(--gold);
+  letter-spacing: 0.12em;
+}
+
+/* --- componentes.css --- */
+/* ============================================================================
+   COMPONENTES DINÁMICOS - TRIPODI
+   ============================================================================
+   Estilos específicos para elementos interactivos como banners, galerías,
+   lightbox, modales, tooltips y botones de audio.
+*/
+
+/* 1. Banners de Imágenes */
+.img-banner {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  height: 720px;
+  max-height: 700px;
+  --banner-y: 60%;
+}
+.img-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center var(--banner-y);
+  display: block;
+  transition: transform 0.6s ease;
+  cursor: pointer;
+}
+.img-banner:hover img {
+  transform: scale(1.01);
+}
+.img-caption {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.88) 0%, transparent 100%);
+  padding: 1.5rem 2rem 0.8rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.85);
+  letter-spacing: 0.1em;
+  transition: opacity 0.3s;
+}
+.img-caption strong {
+  color: var(--gold-lt);
+}
+[data-theme="light"] .img-caption {
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, transparent 100%);
+}
+
+@media(max-width: 768px) {
+  .img-banner { height: 220px; }
+  .img-caption { opacity: 0; pointer-events: none; }
+  .img-banner.caption-visible .img-caption { opacity: 1; pointer-events: all; }
+  .img-caption-tap-hint {
+    display: block;
+    position: absolute;
+    bottom: .6rem; right: .8rem;
+    background: rgba(201, 168, 76, 0.75);
+    color: rgba(255, 255, 255, 0.95);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.6rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    padding: .3rem .7rem;
+    border-radius: 2rem;
+    pointer-events: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,.3);
+    z-index: 10;
+  }
+}
+@media(min-width: 769px) {
+  .img-caption-tap-hint { display: none; }
+}
+
+/* 2. Galería de Imágenes en Timeline / Secciones */
+.img-gallery-strip {
+  display: flex;
+  gap: 0.6rem;
+  margin-top: 0.7rem;
+  overflow-x: auto;
+  padding-bottom: 0.3rem;
+}
+.img-gallery-strip::-webkit-scrollbar {
+  height: 3px;
+}
+.img-gallery-strip::-webkit-scrollbar-thumb {
+  background: var(--gold);
+  border-radius: 2px;
+}
+.gallery-thumb {
+  flex-shrink: 0;
+  width: 110px;
+  height: 75px;
+  object-fit: cover;
+  border-radius: calc(var(--radius) - 2px);
+  cursor: pointer;
+  transition: transform 0.25s, box-shadow 0.25s;
+  border: 1px solid var(--border);
+}
+.gallery-thumb:hover {
+  transform: scale(1.04);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+  border-color: var(--gold);
+}
+@media(max-width: 768px) {
+  .img-gallery-strip {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.4rem;
+    overflow-x: visible;
+    padding-bottom: 0;
+  }
+  .img-gallery-strip::-webkit-scrollbar { display: none; }
+  .gallery-thumb { width: 100%; height: 60px; }
+}
+
+/* 3. Audio Playback */
+.audio-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--gold);
+  opacity: 0.7;
+  transition: opacity 0.2s, transform 0.15s;
+  padding: 0.5rem;
+  vertical-align: middle;
+  margin-left: 0.3rem;
+}
+.audio-btn:hover {
+  opacity: 1;
+  transform: scale(1.15);
+}
+.audio-btn svg {
+  width: 28px;
+  height: 28px;
+  fill: currentColor;
+}
+
+/* 4. Miniaturas de Imágenes en Secciones y Tarjetas */
+.tl-thumb {
+  width: 100%;
+  height: 90px;
+  object-fit: cover;
+  border-radius: calc(var(--radius) - 2px);
+  margin-top: 0.8rem;
+  cursor: pointer;
+  transition: transform 0.3s;
+  display: block;
+}
+.tl-thumb:hover {
+  transform: scale(1.02);
+}
+.tl-thumb-caption {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.62rem;
+  color: var(--text-muted);
+  margin-top: 0.3rem;
+  font-style: italic;
+}
+
+/* Miniatura en Tarjeta Geográfica */
+.geo-note-card img.geo-thumb {
+  width: 100%;
+  height: 70px;
+  object-fit: cover;
+  border-radius: calc(var(--radius) - 2px);
+  margin-top: 0.7rem;
+  cursor: pointer;
+  transition: transform 0.3s;
+  display: block;
+}
+.geo-note-card img.geo-thumb:hover {
+  transform: scale(1.02);
+}
+
+/* Miniatura en Flujo de Diáspora */
+.flow-img-thumb {
+  width: 110px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: calc(var(--radius) - 2px);
+  margin-top: 0.6rem;
+  cursor: pointer;
+  transition: transform 0.25s;
+  display: block;
+  border: 1px solid var(--border);
+}
+.flow-img-thumb:hover {
+  transform: scale(1.02);
+}
+
+
+/* --- interacciones.css --- */
+/* ============================================================================
+   INTERACCIONES Y DIÁLOGOS - TRIPODI
+   ============================================================================
+   Estilos específicos para Lightbox, Modales, Tooltips y animaciones hover.
+*/
+
+
+
+/* 2. Tooltips */
+.tt {
+  position: relative;
+  display: inline;
+  border-bottom: 1px dotted var(--gold);
+  cursor: help;
+  color: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+}
+#ttBubble {
+  position: fixed;
+  z-index: 9999;
+  max-width: 260px;
+  background: var(--bg-card);
+  color: var(--text-main);
+  border: 1px solid rgba(201, 168, 76, 0.4);
+  border-radius: var(--radius);
+  padding: 0.6rem 0.9rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.74rem;
+  line-height: 1.5;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+#ttBubble.tt-visible {
+  opacity: 1;
+}
+#ttBubble::after {
+  content: '';
+  position: absolute;
+  top: 100%; left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: rgba(201, 168, 76, 0.4);
+}
+
+/* 3. Radar Highlight */
+.lang-attr[data-radar-idx].radar-highlight {
+  border-color: var(--gold);
+  background: rgba(201, 168, 76, 0.06);
+}
+
+/* 4. Imágenes Laterales con Pie de Foto */
+.side-img-wrap {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.4);
+}
+.side-img-wrap img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.side-img-caption {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-top: none;
+  padding: 0.7rem 1rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+  border-radius: 0 0 var(--radius) var(--radius);
+}
+.side-img-caption strong {
+  color: var(--gold);
+}
+
+
+/* --- modales.css --- */
+/* ============================================================================
+   MODALES Y DIÁLOGOS FLOATING (LIGHTBOX Y DETALLE DE HIPÓTESIS)
+   ============================================================================
+   Estilos para el lightbox de imágenes de pantalla completa y la ventana modal
+   de hipótesis en resoluciones de escritorio.
+*/
+
+/* 1. Lightbox de Imágenes (Pantalla Completa) */
+.lightbox-overlay {
+  position: fixed; inset: 0; background: rgba(0, 0, 0, 0.92); z-index: 9999;
+  display: flex; align-items: center; justify-content: center; opacity: 0;
+  pointer-events: none; transition: opacity 0.3s ease; padding: 1rem;
+}
+.lightbox-overlay.open { opacity: 1; pointer-events: all; }
+.lightbox-inner {
+  position: relative; max-width: 90vw; max-height: 90vh;
+  display: flex; flex-direction: column; align-items: center; gap: 1rem;
+}
+.lightbox-inner img {
+  max-width: 100%; max-height: 80vh; object-fit: contain;
+  border-radius: 4px; box-shadow: 0 0 60px rgba(0,0,0,0.8);
+}
+.lightbox-caption {
+  font-family: 'Inter', sans-serif; font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.75); text-align: center;
+  max-width: 600px; line-height: 1.6; padding: 0 1rem;
+}
+.lightbox-caption strong { color: var(--gold-lt); }
+.lightbox-close {
+  position: absolute; top: -3.5rem; right: 0; background: none;
+  border: 1px solid rgba(255,255,255,0.3); color: #fff; width: 2rem; height: 2rem;
+  border-radius: 50%; cursor: pointer; font-size: 1rem; display: flex;
+  align-items: center; justify-content: center; transition: border-color 0.2s;
+}
+.lightbox-close:hover { border-color: var(--gold); color: var(--gold); }
+.lightbox-source-link {
+  display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 0.6rem;
+  font-family: 'Inter', sans-serif; font-size: 0.72rem; color: var(--aegean-lt);
+  text-decoration: none; border: 1px solid rgba(58, 122, 159, 0.4);
+  border-radius: 2rem; padding: 0.3rem 0.8rem; transition: border-color 0.2s, color 0.2s;
+}
+.lightbox-source-link:hover { color: var(--gold-lt); border-color: var(--gold); }
+.lightbox-info-btn {
+  background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.25);
+  color: #fff; font-family: 'Inter', sans-serif; font-size: 0.65rem;
+  letter-spacing: 0.12em; text-transform: uppercase; padding: 0.3rem 0.8rem;
+  border-radius: 2rem; cursor: pointer; margin-top: 0.4rem; transition: background 0.2s;
+}
+.lightbox-info-btn:hover { background: rgba(255, 255, 255, 0.2); }
+
+@media(max-width: 768px) {
+  .lightbox-overlay { padding: 0.5rem; }
+  .lightbox-inner { max-width: 95vw; max-height: 95vh; gap: 0.5rem; }
+  .lightbox-inner img { max-height: 75vh; }
+  .lightbox-caption { display: none; font-size: 0.7rem; max-width: 90vw; padding: 0 0.5rem; }
+  .lightbox-caption.caption-shown { display: block; }
+  .lightbox-info-btn { display: inline-block; }
+  .lightbox-close { top: -3rem; right: 0.5rem; }
+}
+
+/* 2. Modal de Detalle de Hipótesis (Escritorio) */
+.hypo-modal-overlay {
+  position: fixed; inset: 0; background: rgba(0, 0, 0, 0.88); z-index: 9998;
+  display: flex; align-items: center; justify-content: center; padding: 2rem;
+  opacity: 0; pointer-events: none; transition: opacity 0.3s;
+}
+.hypo-modal-overlay.open { opacity: 1; pointer-events: all; }
+.hypo-modal-inner {
+  position: relative; background: var(--bg-card);
+  border: 1px solid rgba(201, 168, 76, 0.3); border-radius: calc(var(--radius) * 2);
+  max-width: 860px; width: 100%; max-height: 88vh; overflow-y: auto;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.7);
+  animation: modal-in 0.3s cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+@keyframes modal-in {
+  from { transform: scale(0.92) translateY(20px); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+.hypo-modal-close {
+  position: absolute; top: 1rem; right: 1rem; background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.2); color: var(--text-muted); width: 2rem; height: 2rem;
+  border-radius: 50%; cursor: pointer; font-size: 0.9rem; display: flex; align-items: center;
+  justify-content: center; transition: border-color 0.2s, color 0.2s; z-index: 2;
+}
+.hypo-modal-close:hover { border-color: var(--gold); color: var(--gold); }
+.hypo-modal-num {
+  position: absolute; top: 1.2rem; left: 1.8rem; font-family: 'Cinzel', serif;
+  font-size: 2.2rem; font-weight: 900; color: rgba(201, 168, 76, 0.15); line-height: 1;
+}
+.hypo-modal-layout { display: grid; grid-template-columns: 1fr 1fr; }
+.hypo-modal-left { position: relative; border-radius: calc(var(--radius) * 2) 0 0 calc(var(--radius) * 2); overflow: hidden; min-height: 340px; }
+.hypo-modal-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.hypo-modal-right { padding: 2rem 2rem 2rem 1.8rem; display: flex; flex-direction: column; gap: 1rem; }
+.hypo-modal-header { display: flex; align-items: flex-start; gap: 0.8rem; }
+.hypo-modal-icon { font-size: 2.2rem; line-height: 1; flex-shrink: 0; }
+.hypo-modal-title { font-family: 'Cinzel', serif; font-size: 1.2rem; color: var(--gold-lt); margin-bottom: 0.3rem; }
+.hypo-modal-subtitle { font-family: 'Inter', sans-serif; font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); }
+.hypo-modal-bar-wrap { }
+.hypo-modal-bar-label { font-family: 'Inter', sans-serif; font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.4rem; display: flex; justify-content: space-between; }
+.hypo-modal-bar-label span:last-child { color: var(--gold); }
+.hypo-modal-bar { height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; }
+.hypo-modal-bar-fill { height: 100%; background: linear-gradient(to right, var(--gold), var(--gold-lt)); border-radius: 2px; width: 0; transition: width 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s; }
+.hypo-modal-body { font-size: 0.95rem; line-height: 1.75; color: var(--text-muted); }
+.hypo-modal-detail { font-size: 0.88rem; line-height: 1.75; color: var(--text-muted); padding-top: 0.8rem; border-top: 1px solid var(--border); }
+
+@media (max-width: 768px) {
+  .hypo-modal-overlay { display: none !important; }
+}
+@media (max-width: 480px) {
+  .hypo-modal-layout { grid-template-columns: 1fr; }
+  .hypo-modal-left { min-height: 200px; border-radius: calc(var(--radius) * 2) calc(var(--radius) * 2) 0 0; }
+}
+
+/* --- comentarios.css --- */
+/* ============================================================================
+   SECCIÓN DE COMENTARIOS Y CALIFICACIÓN - TRIPODI
+   ============================================================================
+*/
+
+.comentarios-section {
+  padding: 4rem 1.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.rating-container {
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  margin: 1.5rem 0 2rem 0;
+  text-align: center;
+}
+
+.rating-label {
+  font-size: 1rem;
+  color: var(--text-muted);
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.rating-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.stars-wrapper {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 0.1rem;
+}
+
+.star-btn {
+  background: transparent;
+  border: none;
+  font-size: 2.5rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.2s, transform 0.1s;
+  line-height: 1;
+}
+
+.star-btn:hover {
+  transform: scale(1.1);
+  color: var(--gold-lt);
+}
+
+.star-btn.active {
+  color: var(--gold);
+}
+
+.rating-feedback {
+  min-height: 1.5rem;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-family: 'Inter', sans-serif;
+}
+
+.rating-feedback.success {
+  color: var(--gold);
+}
+
+.rating-submit {
+  background: var(--gold);
+  color: var(--bg-dark);
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, opacity 0.2s;
+  margin-top: 0.5rem;
+}
+
+.rating-submit:hover:not(:disabled) {
+  background: var(--gold-lt);
+}
+
+.rating-submit:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.comentarios-divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--border), transparent);
+  margin: 3rem 0;
+}
+
+.comentarios-form-container {
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem;
+}
+
+.comentarios-form-label {
+  font-size: 1rem;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+
+.comentarios-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+.form-label { font-size: 0.9rem; color: var(--text-muted); font-weight: 500; }
+.required { color: var(--ember); }
+
+.form-input, .form-textarea {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 0.75rem 1rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  color: var(--text-main);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-input:focus, .form-textarea:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.1);
+}
+
+.form-input::placeholder, .form-textarea::placeholder { color: var(--text-muted); opacity: 0.6; }
+.form-textarea { resize: vertical; min-height: 120px; }
+
+.form-submit {
+  background: var(--gold);
+  color: var(--bg-dark);
+  border: none;
+  padding: 0.85rem 2rem;
+  border-radius: var(--radius);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, opacity 0.2s;
+  align-self: flex-start;
+}
+
+.form-submit:hover { background: var(--gold-lt); }
+.form-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.form-feedback { min-height: 1.5rem; font-size: 0.9rem; font-family: 'Inter', sans-serif; margin-top: 0.5rem; }
+.form-feedback.success { color: var(--gold); }
+.form-feedback.error { color: var(--ember); }
+
+@media (max-width: 768px) {
+  .comentarios-section { padding: 3rem 1rem; }
+  .rating-container, .comentarios-form-container { padding: 1.5rem; }
+  .star-btn { font-size: 2rem; }
+  .form-input, .form-textarea { font-size: 0.9rem; }
+}
+
+
+

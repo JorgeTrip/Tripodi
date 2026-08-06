@@ -39,26 +39,16 @@
   <link rel="icon" type="image/png" sizes="16x16" href="imagenes/favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="imagenes/apple-touch-icon.png">
   
-  <!-- Google Fonts -->
+  <!-- Precarga de imagen crítica Hero (LCP) -->
+  <link rel="preload" as="image" href="imagenes/Tripode2.webp" type="image/webp">
+
+  <!-- Google Fonts Optimizado -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   
-  <!-- Hojas de Estilo CSS Modulares (Cumpliendo la Regla de Hierro) -->
-  <link rel="stylesheet" href="css/variables.css">
-  <link rel="stylesheet" href="css/layout.css">
-  <link rel="stylesheet" href="css/nav-desktop.css">
-  <link rel="stylesheet" href="css/nav-mobile.css">
-  <link rel="stylesheet" href="css/secciones-1.css">
-  <link rel="stylesheet" href="css/secciones-hipotesis.css">
-  <link rel="stylesheet" href="css/secciones-oracle.css">
-  <link rel="stylesheet" href="css/secciones-2.css">
-  <link rel="stylesheet" href="css/secciones-3.css">
-  <link rel="stylesheet" href="css/secciones-notables.css">
-  <link rel="stylesheet" href="css/heraldica.css">
-  <link rel="stylesheet" href="css/footer.css">
-  <link rel="stylesheet" href="css/componentes.css">
-  <link rel="stylesheet" href="css/interacciones.css">
-  <link rel="stylesheet" href="css/modales.css">
+  <!-- Hoja de Estilos CSS Consolidada y Optimizada (Carga en 1 sola petición HTTP) -->
+  <link rel="stylesheet" href="css/estilos.min.css">
 </head>
 <body>
 
@@ -90,18 +80,18 @@
 <button id="navBubble" class="nav-bubble" onclick="toggleNavBubble()" aria-label="Menú" aria-expanded="false">
   <span class="nav-bubble-inner">🏛️</span>
   <div class="nav-bubble-menu" id="navBubbleMenu" role="menu">
-    <a href="#etym" class="bubble-link" onclick="closeBubbleMenu()">Origen</a>
-    <a href="#timeline" class="bubble-link" onclick="closeBubbleMenu()">Historia</a>
-    <a href="#hypo" class="bubble-link" onclick="closeBubbleMenu()">Hipótesis</a>
-    <a href="#oracle" class="bubble-link" onclick="closeBubbleMenu()">Oráculo</a>
-    <a href="#geo" class="bubble-link" onclick="closeBubbleMenu()">Geografía</a>
-    <a href="#diaspora" class="bubble-link" onclick="closeBubbleMenu()">Diáspora</a>
-    <a href="#heraldry" class="bubble-link" onclick="closeBubbleMenu()">Heráldica</a>
-    <a href="#linguis" class="bubble-link" onclick="closeBubbleMenu()">Lingüística</a>
-    <a href="#variants" class="bubble-link" onclick="closeBubbleMenu()">Variantes</a>
-    <a href="#notables" class="bubble-link" onclick="closeBubbleMenu()">Notables</a>
-    <a href="#closing" class="bubble-link" onclick="closeBubbleMenu()">Cierre</a>
-    <a href="#sources" class="bubble-link" onclick="closeBubbleMenu()">Fuentes</a>
+    <a href="#etym" class="bubble-link" role="menuitem" onclick="closeBubbleMenu()">Origen</a>
+    <a href="#timeline" class="bubble-link" role="menuitem" onclick="closeBubbleMenu()">Historia</a>
+    <a href="#hypo" class="bubble-link" role="menuitem" onclick="closeBubbleMenu()">Hipótesis</a>
+    <a href="#oracle" class="bubble-link" role="menuitem" onclick="closeBubbleMenu()">Oráculo</a>
+    <a href="#geo" class="bubble-link" role="menuitem" onclick="closeBubbleMenu()">Geografía</a>
+    <a href="#diaspora" class="bubble-link" role="menuitem" onclick="closeBubbleMenu()">Diáspora</a>
+    <a href="#heraldry" class="bubble-link" role="menuitem" onclick="closeBubbleMenu()">Heráldica</a>
+    <a href="#linguis" class="bubble-link" role="menuitem" onclick="closeBubbleMenu()">Lingüística</a>
+    <a href="#variants" class="bubble-link" role="menuitem" onclick="closeBubbleMenu()">Variantes</a>
+    <a href="#notables" class="bubble-link" role="menuitem" onclick="closeBubbleMenu()">Notables</a>
+    <a href="#closing" class="bubble-link" role="menuitem" onclick="closeBubbleMenu()">Cierre</a>
+    <a href="#sources" class="bubble-link" role="menuitem" onclick="closeBubbleMenu()">Fuentes</a>
   </div>
 </button>
 
@@ -120,7 +110,7 @@
   <div class="hero-stars"></div>
   <p class="hero-eyebrow">Investigación genealógica, heráldica e histórica</p>
   <div class="tripod-icon">
-    <img src="imagenes/Tripode2.webp" alt="Trípode griego sacrificial de bronce" loading="eager" width="180" height="220">
+    <img src="imagenes/Tripode2.webp" alt="Trípode griego sacrificial de bronce" loading="eager" fetchpriority="high" width="180" height="220" decoding="async">
   </div>
   <h1 class="hero-title">TRIPODI</h1>
   <p class="hero-subtitle-greek">Τρίποδι · Trípodis · Tripodu</p>
@@ -138,7 +128,7 @@
 
 <!-- IMAGEN 1: Costa de Calabria (Imagen_2.webp) -->
 <div class="img-banner" onclick="handleBannerClick(this, event)" id="banner1">
-  <img src="imagenes/Imagen_2.webp" alt="Costa de Calabria al atardecer, la cuna del apellido Tripodi" loading="lazy" width="1920" height="720">
+  <img src="imagenes/Imagen_2.webp" alt="Costa de Calabria al atardecer, la cuna del apellido Tripodi" loading="lazy" width="1920" height="720" decoding="async">
   <div class="img-caption">
     <strong>Calabria, sur de Italia</strong> — La costa del Estrecho de Mesina, donde la formación rocosa "a tre piedi" (tres pies) pudo haber dado nombre al linaje. La antigua <em>Rhegion</em> griega (hoy Reggio Calabria) fue el epicentro histórico del apellido Tripodi desde el siglo VIII a.C.
   </div>
@@ -193,9 +183,9 @@
           <div class="tl-title">Micenas: primera mención escrita</div>
           <div class="tl-text">La palabra <em>ti-ri-po-de</em> (trípode) aparece en las tablillas de arcilla en <span class="tt" data-tt="Sistema de escritura silábico micénico (c. 1500–1200 a.C.), el más antiguo en lengua griega conocido. Descifrado en 1952 por Michael Ventris.">Lineal B</span>. Los trípodes ya son objetos de valor: premios, ofrendas y activos de palacio. El apellido aún no existe, pero su raíz está documentada 3.500 años atrás.</div>
           <div class="img-gallery-strip">
-            <img class="gallery-thumb" src="imagenes/Lions-Gate-Mycenae.webp" alt="Puerta de los Leones de Micenas" width="110" height="75"
+            <img class="gallery-thumb" loading="lazy" decoding="async" src="imagenes/Lions-Gate-Mycenae.webp" alt="Puerta de los Leones de Micenas" width="110" height="75"
               onclick="openLightbox(this.src,'<strong>Puerta de los Leones de Micenas</strong> — La entrada monumental de la ciudadela de Micenas (c. 1250 a.C.), construida con grandes bloques de piedra y coronada por el relieve de dos leones enfrentados.','https://es.wikipedia.org/wiki/Micenas#/media/Archivo:Lions-Gate-Mycenae.jpg')">
-            <img class="gallery-thumb" src="imagenes/Linear_B_(Mycenaean_Greek)_NAMA_Tablette_7671.webp" alt="Tablilla micénica Lineal B NAMA 7671" width="110" height="75"
+            <img class="gallery-thumb" loading="lazy" decoding="async" src="imagenes/Linear_B_(Mycenaean_Greek)_NAMA_Tablette_7671.webp" alt="Tablilla micénica Lineal B NAMA 7671" width="110" height="75"
               onclick="openLightbox(this.src,'<strong>Tablilla micénica NAMA 7671 en Lineal B</strong> — Tablilla de contabilidad del palacio de Micenas. El silabograma <em>ti-ri-po-de</em> es la primera evidencia escrita de la raíz del apellido Tripodi.','https://es.wikipedia.org/wiki/Micenas#/media/Archivo:Linear_B_(Mycenaean_Greek)_NAMA_Tablette_7671.jpg')">
           </div>
           <div class="tl-thumb-caption">Tablilla micénica con escritura Lineal B · toca para ampliar · <a href="https://es.wikipedia.org/wiki/Micenas" target="_blank" rel="noopener" style="color:var(--aegean-lt);">Micenas – Wikipedia</a></div>
@@ -209,9 +199,9 @@
           <div class="tl-title">Hesíodo gana un trípode "de orejas"</div>
           <div class="tl-text">El poeta Hesíodo compite en los juegos fúnebres de Anfidamante, rey de Calcis. Su victoria con un himno le vale un <strong>trípode orecchiuto</strong> (de orejas/asas), que dedica a las Musas del Helicón. Este episodio, narrado en <em>Las obras y los días</em> (vv. 650–662), es uno de los primeros testimonios literarios del trípode como premio.</div>
           <div class="img-gallery-strip">
-            <img class="gallery-thumb" src="https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1677817771i/29462339.jpg" alt="Los trabajos y los días de Hesíodo" width="110" height="75"
+            <img class="gallery-thumb" loading="lazy" decoding="async" src="https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1677817771i/29462339.jpg" alt="Los trabajos y los días de Hesíodo" width="110" height="75"
               onclick="openLightbox(this.src,'<strong>Los trabajos y los días</strong> de Hesíodo — La obra donde el poeta narra cómo ganó un trípode «de orejas» al cantar un himno.')">
-            <img class="gallery-thumb" src="imagenes/Hesiodo_gana_tripode.webp" alt="Hesíodo gana el trípode" width="110" height="75"
+            <img class="gallery-thumb" loading="lazy" decoding="async" src="imagenes/Hesiodo_gana_tripode.webp" alt="Hesíodo gana el trípode" width="110" height="75"
               onclick="openLightbox(this.src,'<strong>Hesíodo gana el trípode</strong> — Representación de Hesíodo recibiendo su trípode orecchiuto (de orejas/asas) como premio poético, c. 700 a.C.')">
           </div>
           <div class="tl-thumb-caption">Portada e ilustración de Hesíodo · toca para ampliar</div>
@@ -225,15 +215,15 @@
           <div class="tl-title">La Pitia y el trípode sagrado de Delfos</div>
           <div class="tl-text">El <span class="tt" data-tt="Centro de consulta profética consagrado al dios Apolo en Delfos (Grecia). Funcionó desde el s. VIII a.C. hasta el s. IV d.C.">Oráculo</span> de Delfos alcanza su auge. La <span class="tt" data-tt="Sacerdotisa del dios Apolo en Delfos. Inhalaba vapores volcánicos y entraba en trance para pronunciar los oráculos.">Pitia</span> profetiza sentada sobre un trípode dorado, inhalando vapores de <span class="tt" data-tt="Gas inorgánico (C₂H₄) que emerge de fracturas geológicas volcánicas. En Delfos induce estados alterados de consciencia.">etileno</span>. El trípode se vuelve el símbolo de <span class="tt" data-tt="Dios griego del Sol, la música, la poesía y la profecía. El trípode era su atributo sagrado.">Apolo</span>. El mitema de Hércules robando el trípode a Apolo aparece en cerámicas del siglo VI a.C.</div>
           <div class="img-gallery-strip">
-            <img class="gallery-thumb" src="imagenes/Imagen_4.webp" alt="La Pitia en el trípode del Oráculo de Delfos" width="110" height="75"
+            <img class="gallery-thumb" loading="lazy" decoding="async" src="imagenes/Imagen_4.webp" alt="La Pitia en el trípode del Oráculo de Delfos" width="110" height="75"
               onclick="openLightbox(this.src,'<strong>La Pitia sobre el trípode</strong> — La sacerdotisa de Apolo en el templo de Delfos, inhalando los vapores de etileno de la fisura geológica bajo sus pies.')">
-            <img class="gallery-thumb" src="imagenes/Hydria_Delphic_tripod_MNA_Inv10913.webp" alt="Hidria con escena délfica del trípode" width="110" height="75"
+            <img class="gallery-thumb" loading="lazy" decoding="async" src="imagenes/Hydria_Delphic_tripod_MNA_Inv10913.webp" alt="Hidria con escena délfica del trípode" width="110" height="75"
               onclick="openLightbox(this.src,'<strong>Hidria con escena délfica del trípode</strong> — Cerámica ática de figuras negras que muestra a Heracles y Apolo disputando el trípode sagrado.','https://es.wikipedia.org/wiki/Tr%C3%ADpode_%28mueble%29#/media/Archivo:Hydria_Delphic_tripod_MNA_Inv10913.jpg')">
-            <img class="gallery-thumb" src="imagenes/Herakles_tripod_Louvre_F341.webp" alt="Heracles y Apolo disputan el trípode délfico, Louvre" width="110" height="75"
+            <img class="gallery-thumb" loading="lazy" decoding="async" src="imagenes/Herakles_tripod_Louvre_F341.webp" alt="Heracles y Apolo disputan el trípode délfico, Louvre" width="110" height="75"
               onclick="openLightbox(this.src,'<strong>Disputa de Heracles y Apolo por el trípode délfico</strong> — Oinochoe ático de figuras negras, c. 520 a.C. Museo del Louvre, París.','https://es.wikipedia.org/wiki/Archivo:Herakles_tripod_Louvre_F341.jpg')">
-            <img class="gallery-thumb" src="imagenes/Ancient_Greek_tripod_-_KAMA.webp" alt="Trípode griego período geométrico" width="110" height="75"
+            <img class="gallery-thumb" loading="lazy" decoding="async" src="imagenes/Ancient_Greek_tripod_-_KAMA.webp" alt="Trípode griego período geométrico" width="110" height="75"
               onclick="openLightbox(this.src,'<strong>Trípode griego del período geométrico</strong>, c. 950–900 a.C. Museo Arqueológico del Cerámico, Atenas.','https://es.wikipedia.org/wiki/Tr%C3%ADpode_%28mueble%29#/media/Archivo:Ancient_Greek_tripod_-_KAMA.jpg')">
-            <img class="gallery-thumb" src="imagenes/Attic_geometric_tripod_Antikensammlung_Berlin_2.webp" alt="Trípode de cerámica protoática" width="110" height="75"
+            <img class="gallery-thumb" loading="lazy" decoding="async" src="imagenes/Attic_geometric_tripod_Antikensammlung_Berlin_2.webp" alt="Trípode de cerámica protoática" width="110" height="75"
               onclick="openLightbox(this.src,'<strong>Trípode de cerámica protoática</strong>, c. 850 a.C. Antikensammlung, Berlín.','https://es.wikipedia.org/wiki/Tr%C3%ADpode_%28mueble%29#/media/Archivo:Attic_geometric_tripod_Antikensammlung_Berlin_2.jpg')">
           </div>
           <div class="tl-thumb-caption">Trípodes griegos y escenas délficas · toca para ampliar · <a href="https://es.wikipedia.org/wiki/Tr%C3%ADpode_%28mueble%29" target="_blank" rel="noopener" style="color:var(--aegean-lt);">Trípode – Wikipedia</a></div>
@@ -247,11 +237,11 @@
           <div class="tl-title">El Trípode de Platea: victoria sobre Persia</div>
           <div class="tl-text">Las ciudades griegas funden un trípode de oro con el botín persa. Se sostiene sobre la Columna Serpentina de bronce con los nombres inscritos de las 31 <span class="tt" data-tt="Ciudad-Estado autónoma de la Grecia antigua. Cada polis tenía sus propias leyes y gobierno.">polis</span> combatientes. Constantino lo trasladó a Constantinopla, donde hoy permanece en el Hipódromo de Estambul.</div>
           <div class="img-gallery-strip">
-            <img class="gallery-thumb" src="imagenes/Snake_column_Hippodrome_Constantinople_2007.webp" alt="Columna de las Serpientes, Hipódromo de Constantinopla" width="110" height="75"
+            <img class="gallery-thumb" loading="lazy" decoding="async" src="imagenes/Snake_column_Hippodrome_Constantinople_2007.webp" alt="Columna de las Serpientes, Hipódromo de Constantinopla" width="110" height="75"
               onclick="openLightbox(this.src,'<strong>La Columna de las Serpientes</strong> — El fuste de bronce del Trípode de Platea en el antiguo Hipódromo de Constantinopla, hoy Estambul. Trasladado en el 324 d.C.','https://es.wikipedia.org/wiki/Columna_de_las_Serpientes#/media/Archivo:Snake_column_Hippodrome_Constantinople_2007.jpg')">
-            <img class="gallery-thumb" src="https://static.wixstatic.com/media/37d0c7_8cfdd0fbc88a4d3c9f808d78d403d9b2~mv2.jpg/v1/fill/w_348,h_836,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/37d0c7_8cfdd0fbc88a4d3c9f808d78d403d9b2~mv2.jpg" alt="Trípode de Platea reconstrucción 1886" width="110" height="75"
+            <img class="gallery-thumb" loading="lazy" decoding="async" src="https://static.wixstatic.com/media/37d0c7_8cfdd0fbc88a4d3c9f808d78d403d9b2~mv2.jpg/v1/fill/w_348,h_836,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/37d0c7_8cfdd0fbc88a4d3c9f808d78d403d9b2~mv2.jpg" alt="Trípode de Platea reconstrucción 1886" width="110" height="75"
               onclick="openLightbox(this.src,'<strong>Trípode de Platea</strong> — Reconstrucción por Ernst Fabricius (1886). El trípode original sostenía un caldero de oro fundido.')">
-            <img class="gallery-thumb" src="https://preview.redd.it/the-serpent-column-plataean-tripod-of-constantinople-in-479-v0-h207u4a4ppr61.png?auto=webp&s=205c229775bcf76ed001870da78634935a83897a" alt="Columna Serpentina a través del tiempo" width="110" height="75"
+            <img class="gallery-thumb" loading="lazy" decoding="async" src="https://preview.redd.it/the-serpent-column-plataean-tripod-of-constantinople-in-479-v0-h207u4a4ppr61.png?auto=webp&s=205c229775bcf76ed001870da78634935a83897a" alt="Columna Serpentina a través del tiempo" width="110" height="75"
               onclick="openLightbox(this.src,'<strong>La Columna Serpentina / Trípode de Platea</strong> a través de los siglos.','https://www.thebyzantinelegacy.com/serpent-column')">
           </div>
           <div class="tl-thumb-caption">Columna Serpentina · toca para ampliar · <a href="https://www.thebyzantinelegacy.com/serpent-column" target="_blank" rel="noopener" style="color:var(--aegean-lt);">Trípode de Platea</a></div>
@@ -265,11 +255,11 @@
           <div class="tl-title">El Monumento de Lisícrates y la "Calle de los Trípodes"</div>
           <div class="tl-text">Lisícrates, <span class="tt" data-tt="Ciudadano rico que en la Atenas clásica financiaba un coro de teatro como servicio cívico. El trípode era el premio si su coro ganaba.">corego</span> ateniense victorioso, erige un monumento para exhibir su trípode-premio. La <em>odos ton tripodon</em> (Calle de los Trípodes) de Atenas se llena de estos monumentos. El de Lisícrates sobrevive hasta hoy.</div>
           <div class="img-gallery-strip">
-            <img class="gallery-thumb" src="https://es.greekreporter.com/wp-content/uploads/sites/2/2021/10/Tripodon-ahora-e1633724247403.jpg" alt="Calle Tripodon hoy con Monumento a Lisícrates" width="110" height="75"
+            <img class="gallery-thumb" loading="lazy" decoding="async" src="https://es.greekreporter.com/wp-content/uploads/sites/2/2021/10/Tripodon-ahora-e1633724247403.jpg" alt="Calle Tripodon hoy con Monumento a Lisícrates" width="110" height="75"
               onclick="openLightbox(this.src,'<strong>Calle Tripodon hoy</strong> con el Monumento a Lisícrates a la izquierda.')">
-            <img class="gallery-thumb" src="https://es.greekreporter.com/wp-content/uploads/sites/2/2021/10/monumento-plaka.jpg" alt="Monumento de Lisícrates en 1900" width="110" height="75"
+            <img class="gallery-thumb" loading="lazy" decoding="async" src="https://es.greekreporter.com/wp-content/uploads/sites/2/2021/10/monumento-plaka.jpg" alt="Monumento de Lisícrates en 1900" width="110" height="75"
               onclick="openLightbox(this.src,'<strong>El Monumento de Lisícrates</strong> tal como se veía en el año 1900.')">
-            <img class="gallery-thumb" src="https://es.greekreporter.com/wp-content/uploads/sites/2/2021/10/monumento-plaka-tiempo.jpg" alt="Monumento de Lisícrates, litografía 1789" width="110" height="75"
+            <img class="gallery-thumb" loading="lazy" decoding="async" src="https://es.greekreporter.com/wp-content/uploads/sites/2/2021/10/monumento-plaka-tiempo.jpg" alt="Monumento de Lisícrates, litografía 1789" width="110" height="75"
               onclick="openLightbox(this.src,'<strong>El Monumento de Lisícrates</strong> anexo al monasterio de los capuchinos en 1789.')">
           </div>
           <div class="tl-thumb-caption">Monumento de Lisícrates y la Calle de los Trípodes · toca para ampliar</div>
@@ -283,7 +273,7 @@
           <div class="tl-title">La Magna Grecia: los colonos llevan el nombre a Italia</div>
           <div class="tl-text">Colonos griegos fundan ciudades en las costas de Calabria, Campania y Sicilia. Con ellos viajan la lengua y las deidades. El término <em>tripodion</em> comienza a usarse como apodo familiar en centros como <em>Rhegion</em>.</div>
           <div class="img-gallery-strip">
-            <img class="gallery-thumb" src="imagenes/Migración_grecia_italia.webp" alt="Migración griega a Italia" width="110" height="75"
+            <img class="gallery-thumb" loading="lazy" decoding="async" src="imagenes/Migración_grecia_italia.webp" alt="Migración griega a Italia" width="110" height="75"
               onclick="openLightbox(this.src,'<strong>Migración griega al sur de Italia</strong> — Las oleadas colonizadoras que fundaron la Magna Grecia, origen del apellido Tripodi.')">
           </div>
           <div class="tl-thumb-caption">Migración griega a Italia · toca para ampliar</div>
@@ -297,7 +287,7 @@
           <div class="tl-title">Bizancio preserva el griego en Calabria</div>
           <div class="tl-text">El Imperio Bizantino gobierna el sur de Italia. El griego vuelve a ser lengua oficial por 5 siglos. Monjes <span class="tt" data-tt="Monjes de rito oriental que siguen la regla de San Basilio. Preservaron la lengua griega en el sur de Italia.">basilianos</span> fundan monasterios. Esta herencia bizantina es clave para la continuidad del apellido Tripodi sin latinización completa.</div>
           <div class="img-gallery-strip">
-            <img class="gallery-thumb" src="imagenes/Reconquista_calabria_y_sicilia_imperio_bizantino.webp" alt="Reconquista de Calabria por Bizancio" width="110" height="75"
+            <img class="gallery-thumb" loading="lazy" decoding="async" src="imagenes/Reconquista_calabria_y_sicilia_imperio_bizantino.webp" alt="Reconquista de Calabria por Bizancio" width="110" height="75"
               onclick="openLightbox(this.src,'<strong>Reconquista de Calabria y Sicilia por el Imperio Bizantino</strong> (535–1071 d.C.) — Consolidó apellidos helénicos como Tripodi en Calabria.')">
           </div>
           <div class="tl-thumb-caption">Imperio Bizantino en Calabria · toca para ampliar</div>
@@ -320,7 +310,7 @@
           <div class="tl-title">La gran diáspora: Argentina y los EE.UU.</div>
           <div class="tl-text">La emigración masiva del <em>Mezzogiorno</em> lleva a miles de portadores del apellido hacia Buenos Aires, Rosario, Nueva York y Nueva Jersey. En Argentina se convierte en uno de los apellidos de origen calabrés más característicos.</div>
           <div class="img-gallery-strip">
-            <img class="gallery-thumb" src="imagenes/Diaspora_italiana.webp" alt="Diáspora italiana" width="110" height="75"
+            <img class="gallery-thumb" loading="lazy" decoding="async" src="imagenes/Diaspora_italiana.webp" alt="Diáspora italiana" width="110" height="75"
               onclick="openLightbox(this.src,'<strong>La gran diáspora italiana</strong> — Emigración masiva entre 1880 y 1940.','https://es.wikipedia.org/wiki/Emigraci%C3%B3n_italiana')">
           </div>
           <div class="tl-thumb-caption">Mapa de la diáspora italiana · toca para ampliar · <a href="https://es.wikipedia.org/wiki/Emigraci%C3%B3n_italiana" target="_blank" rel="noopener" style="color:var(--aegean-lt);">Emigración italiana – Wikipedia</a></div>
@@ -334,7 +324,7 @@
           <div class="tl-title">~17.000 Tripodis en el mundo</div>
           <div class="tl-text">El apellido está presente en más de 20 países. Italia concentra la mayor cantidad, seguida de Argentina, Estados Unidos y Brasil.</div>
           <div class="img-gallery-strip">
-            <img class="gallery-thumb" src="imagenes/tripodi_mundo.webp" alt="Distribución de los Tripodi en el mundo" width="110" height="75"
+            <img class="gallery-thumb" loading="lazy" decoding="async" src="imagenes/tripodi_mundo.webp" alt="Distribución de los Tripodi en el mundo" width="110" height="75"
               onclick="openLightbox(this.src,'<strong>Los Tripodi en el mundo hoy</strong> — Distribución geográfica en el siglo XXI.')">
           </div>
           <div class="tl-thumb-caption">Distribución global del apellido · toca para ampliar</div>
@@ -376,7 +366,7 @@
         </div>
         <div class="hypo-bar-wrap"><div class="hypo-bar-label"><span>Probabilidad histórica</span><span style="color:var(--gold)">45%</span></div><div class="hypo-bar"><div class="hypo-bar-fill" style="--fill:45%"></div></div></div>
         <div class="hypo-thumb-wrap">
-          <img class="hypo-thumb" src="imagenes/Imagen_3.webp" alt="Trípode de bronce griego" width="270" height="100" onclick="event.stopPropagation();openLightbox('imagenes/Imagen_3.webp','<strong>El trípode artesanal griego</strong> — Caldero de bronce sobre tres patas, el objeto que dio apellido a los primeros artesanos de la Magna Grecia.')">
+          <img class="hypo-thumb" loading="lazy" decoding="async" src="imagenes/Imagen_3.webp" alt="Trípode de bronce griego" width="270" height="100" onclick="event.stopPropagation();openLightbox('imagenes/Imagen_3.webp','<strong>El trípode artesanal griego</strong> — Caldero de bronce sobre tres patas, el objeto que dio apellido a los primeros artesanos de la Magna Grecia.')">
           <div class="hypo-thumb-label">El objeto · toca para ampliar</div>
         </div>
         <div class="hypo-chevron"><svg width="14" height="8" viewBox="0 0 14 8" fill="none"><path d="M1 1l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
@@ -399,7 +389,7 @@
         </div>
         <div class="hypo-bar-wrap"><div class="hypo-bar-label"><span>Probabilidad histórica</span><span style="color:var(--gold)">35%</span></div><div class="hypo-bar"><div class="hypo-bar-fill" style="--fill:35%"></div></div></div>
         <div class="hypo-thumb-wrap">
-          <img class="hypo-thumb" src="imagenes/Imagen_2.webp" alt="Costa de Calabria con formación rocosa" width="270" height="100" onclick="event.stopPropagation();openLightbox('imagenes/Imagen_2.webp','<strong>Calabria, sur de Italia</strong> — La formación rocosa «a tre piedi» sobre el mar, que ilustra el tipo de topónimo natural que pudo dar origen al apellido Tripodi.')">
+          <img class="hypo-thumb" loading="lazy" decoding="async" src="imagenes/Imagen_2.webp" alt="Costa de Calabria con formación rocosa" width="270" height="100" onclick="event.stopPropagation();openLightbox('imagenes/Imagen_2.webp','<strong>Calabria, sur de Italia</strong> — La formación rocosa «a tre piedi» sobre el mar, que ilustra el tipo de topónimo natural que pudo dar origen al apellido Tripodi.')">
           <div class="hypo-thumb-label">El paisaje · toca para ampliar</div>
         </div>
         <div class="hypo-chevron"><svg width="14" height="8" viewBox="0 0 14 8" fill="none"><path d="M1 1l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
@@ -422,7 +412,7 @@
         </div>
         <div class="hypo-bar-wrap"><div class="hypo-bar-label"><span>Probabilidad histórica</span><span style="color:var(--gold)">20%</span></div><div class="hypo-bar"><div class="hypo-bar-fill" style="--fill:20%"></div></div></div>
         <div class="hypo-thumb-wrap">
-          <img class="hypo-thumb" src="imagenes/Imagen_4.webp" alt="La Pitia sobre el trípode sagrado" width="270" height="100" onclick="event.stopPropagation();openLightbox('imagenes/Imagen_4.webp','<strong>La Pitia sobre el trípode</strong> — La sacerdotisa de Apolo en éxtasis profético. Para los devotos del culto apolíneo, llevar el nombre «Tripodi» era un homenaje al dios.')">
+          <img class="hypo-thumb" loading="lazy" decoding="async" src="imagenes/Imagen_4.webp" alt="La Pitia sobre el trípode sagrado" width="270" height="100" onclick="event.stopPropagation();openLightbox('imagenes/Imagen_4.webp','<strong>La Pitia sobre el trípode</strong> — La sacerdotisa de Apolo en éxtasis profético. Para los devotos del culto apolíneo, llevar el nombre «Tripodi» era un homenaje al dios.')">
           <div class="hypo-thumb-label">El oráculo · toca para ampliar</div>
         </div>
         <div class="hypo-chevron"><svg width="14" height="8" viewBox="0 0 14 8" fill="none"><path d="M1 1l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
@@ -442,7 +432,7 @@
 <!-- IMAGEN 2: Tripode de bronce (Imagen_3.webp) -->
 <div class="img-banner" onclick="handleBannerClick(this, event)" id="banner2">
   <img src="imagenes/Imagen_3.webp" alt="Trípode de bronce griego con decoración de grecas, sobre el fuego"
-    loading="lazy" width="1920" height="720">
+    loading="lazy" decoding="async" width="1920" height="720">
   <div class="img-caption">
     <strong>El trípode artesanal griego</strong> — Caldero de bronce con decoración de grecas sobre tres patas, tal como
     los fabricaban los artesanos de la Magna Grecia. Homero los menciona como premio y ofrenda en la Odisea; Hesíodo
@@ -467,7 +457,7 @@
           <div class="oracle-ring oracle-ring-2"
             style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);"></div>
           <div class="side-img-wrap">
-            <img src="imagenes/Imagen_4.webp"
+            <img src="imagenes/Imagen_4.webp" loading="lazy" decoding="async"
               alt="La Pitia en el trípode del Oráculo de Delfos, con sacerdotes transcribiendo sus profecías"
               style="max-height:340px;object-fit:cover;object-position:center top;cursor:pointer;" width="340"
               height="340"
@@ -532,7 +522,7 @@
     <div style="height: 2rem;"></div>
     
     <div class="side-img-wrap fade-up" style="margin-bottom:2.5rem;cursor:pointer;" onclick="openLightbox('imagenes/Epicentro_calabres_y_su_irradiacion.webp','<strong>Epicentro calabrés e irradiación del apellido Tripodi</strong> — El apellido nació en la antigua <em>Rhegion</em> (hoy Reggio Calabria) y desde allí se expandió hacia Messina y Sicilia, el norte de Italia y finalmente a América con la diáspora. El mapa del portal Cognomix muestra la alta densidad en Reggio Calabria.')">
-      <img src="imagenes/Epicentro_calabres_y_su_irradiacion.webp" alt="Mapa de distribución que muestra la densidad del apellido Tripodi en la provincia de Reggio Calabria" loading="lazy" width="1100" style="height: auto;">
+      <img src="imagenes/Epicentro_calabres_y_su_irradiacion.webp" alt="Mapa de distribución que muestra la densidad del apellido Tripodi en la provincia de Reggio Calabria" loading="lazy" decoding="async" width="1100" height="600" style="height: auto;">
       <div class="side-img-caption"><strong>Mapa de distribución del apellido en Italia</strong> — Densidad de familias Tripodi. Se observa una concentración absoluta en la punta de la bota italiana (Calabria) y en la vecina provincia de Messina (Sicilia). <span style="color:var(--gold);font-size:.65rem;">↗ toca para ampliar</span></div>
     </div>
 
@@ -581,7 +571,7 @@
           <div class="flow-era">1880–1910</div>
           <h3 class="flow-title">La partida desde Calabria</h3>
           <div class="flow-text">Familias de Reggio Calabria y Messina se embarcan en los puertos de Nápoles y Génova. Viajan en tercera clase de vapores transatlánticos huyendo de la crisis del sur italiano.</div>
-          <img class="flow-img-thumb" src="imagenes/Diaspora_italiana.webp" alt="Vapor de emigrantes italianos cruzando el Atlántico" width="110" height="80" onclick="openLightbox('imagenes/Diaspora_italiana.webp','<strong>Vapor de emigrantes italianos</strong> — Cruce transatlántico hacia el continente americano.')">
+          <img class="flow-img-thumb" loading="lazy" decoding="async" src="imagenes/Diaspora_italiana.webp" alt="Vapor de emigrantes italianos cruzando el Atlántico" width="110" height="80" onclick="openLightbox('imagenes/Diaspora_italiana.webp','<strong>Vapor de emigrantes italianos</strong> — Cruce transatlántico hacia el continente americano.')">
         </div>
       </div>
 
@@ -709,7 +699,7 @@
         </h3>
         <div class="heraldry-block-grid">
           <div class="coat-of-arms-wrap">
-            <img class="coat-of-arms-img coat-img-clickable" src="imagenes/Tripodi_heraldica1.webp" alt="Escudo heráldico de la rama calabresa/siciliana del apellido Tripodi" loading="lazy" width="180" height="220" onclick="openLightbox(this.src,'<strong>Escudo de la rama Calabria/Sicilia</strong> — León rampante de oro sosteniendo un trípode de bronce sobre fondo de gules. El león simboliza fuerza y bravura; el trípode representa la estabilidad ancestral de la familia.')">
+            <img class="coat-of-arms-img coat-img-clickable" src="imagenes/Tripodi_heraldica1.webp" alt="Escudo heráldico de la rama calabresa/siciliana del apellido Tripodi" loading="lazy" decoding="async" width="180" height="220" onclick="openLightbox(this.src,'<strong>Escudo de la rama Calabria/Sicilia</strong> — León rampante de oro sosteniendo un trípode de bronce sobre fondo de gules. El león simboliza fuerza y bravura; el trípode representa la estabilidad ancestral de la familia.')">
             <div class="tl-thumb-caption">Blasón principal · Calabria</div>
           </div>
           <div>
@@ -740,7 +730,7 @@
         </h3>
         <div class="heraldry-block-grid">
           <div class="coat-of-arms-wrap">
-            <img class="coat-of-arms-img coat-img-clickable" src="imagenes/Tripodi_heraldica2.webp" alt="Escudo heráldico boloñés del apellido Tripodi" loading="lazy" width="180" height="220" onclick="openLightbox(this.src,'<strong>Escudo de la rama boloñesa</strong> — Escudo partido en diagonal con una rosa roja en la mitad superior de plata y una cruceta de plata sobre campo de gules en la inferior, con banda de oro atravesando.')">
+            <img class="coat-of-arms-img coat-img-clickable" src="imagenes/Tripodi_heraldica2.webp" alt="Escudo heráldico boloñés del apellido Tripodi" loading="lazy" decoding="async" width="180" height="220" onclick="openLightbox(this.src,'<strong>Escudo de la rama boloñesa</strong> — Escudo partido en diagonal con una rosa roja en la mitad superior de plata y una cruceta de plata sobre campo de gules en la inferior, con banda de oro atravesando.')">
             <div class="tl-thumb-caption">Blasón boloñés · Bolonia</div>
           </div>
           <div>
@@ -1023,16 +1013,16 @@
 </div>
 
 <!-- Scripts modulares de interactividad (Ninguno supera las 200 líneas) -->
-<script src="js/tema.js"></script>
-<script src="js/audio.js"></script>
-<script src="js/nav.js"></script>
-<script src="js/modal.js"></script>
-<script src="js/tooltips.js"></script>
-<script src="js/graficos.js"></script>
-<script src="js/datos-notables-1.js"></script>
-<script src="js/datos-notables-2.js"></script>
-<script src="js/datos-notables-3.js"></script>
-<script src="js/notables.js"></script>
+<script src="js/tema.js" defer></script>
+<script src="js/audio.js" defer></script>
+<script src="js/nav.js" defer></script>
+<script src="js/modal.js" defer></script>
+<script src="js/tooltips.js" defer></script>
+<script src="js/graficos.js" defer></script>
+<script src="js/datos-notables-1.js" defer></script>
+<script src="js/datos-notables-2.js" defer></script>
+<script src="js/datos-notables-3.js" defer></script>
+<script src="js/notables.js" defer></script>
 </body>
 </html>
 

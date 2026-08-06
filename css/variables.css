@@ -11,7 +11,7 @@
   --ember: #B85C2A;          /* Ámbar/Terracota */
   --terracotta: #D4725A;     /* Terracota */
   --aegean: #2A5B7A;         /* Azul egeo */
-  --aegean-lt: #3A7A9F;      /* Azul egeo claro */
+  --aegean-lt: #5A9EC6;      /* Azul egeo claro (optimizado para contraste WCAG AA) */
   --marble: #F2EDE6;         /* Color mármol */
   
   /* Modo Oscuro ("Grises Pro" con tintes cálidos) */

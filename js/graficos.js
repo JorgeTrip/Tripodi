@@ -155,10 +155,8 @@ function redrawCharts() {
   drawRadar();
 }
 
-// Inicialización de los gráficos
 window.addEventListener('load', redrawCharts);
 
-// Redibujar radar cuando se hace scroll y entra en pantalla (corrige problemas de fade-up)
 document.addEventListener('DOMContentLoaded', () => {
   const radarObs = new IntersectionObserver(entries => {
     entries.forEach(e => {
@@ -170,12 +168,9 @@ document.addEventListener('DOMContentLoaded', () => {
   }, { threshold: 0.1 });
   
   const radarWrap = document.getElementById('radarWrap');
-  if (radarWrap) {
-    radarObs.observe(radarWrap);
-  }
+  if (radarWrap) radarObs.observe(radarWrap);
 });
 
-// Resaltado de radar interactivo al pasar el cursor sobre las tarjetas de perfil lingüístico
 (function() {
   const cards = document.querySelectorAll('.lang-attr[data-radar-idx]');
   if (!cards.length) return;
@@ -185,20 +180,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const idx = parseInt(card.getAttribute('data-radar-idx'), 10);
     if (Number.isNaN(idx)) return;
 
-    function highlight() {
-      card.classList.add('radar-highlight');
-      drawRadar(idx);
-    }
-    function unhighlight() {
-      card.classList.remove('radar-highlight');
-      drawRadar();
-    }
-    function tapHighlight() {
+    const highlight = () => { card.classList.add('radar-highlight'); drawRadar(idx); };
+    const unhighlight = () => { card.classList.remove('radar-highlight'); drawRadar(); };
+    const tapHighlight = () => {
       if (window.innerWidth > 768) return;
       highlight();
       clearTimeout(unhighlightTimer);
       unhighlightTimer = setTimeout(unhighlight, 900);
-    }
+    };
 
     card.addEventListener('mouseenter', highlight);
     card.addEventListener('mouseleave', unhighlight);
@@ -207,3 +196,4 @@ document.addEventListener('DOMContentLoaded', () => {
     card.addEventListener('click', tapHighlight);
   });
 })();
+
