@@ -44,14 +44,15 @@ function closeBubbleMenu() {
   const backToTopFab = document.getElementById('backToTopFab');
   if (!nav || !bubble || !backToTopFab) return;
 
+  const mobileQuery = window.matchMedia('(max-width: 768px)');
   let ticking = false;
 
   function updateNav() {
     const y = window.scrollY;
     const atTop = y < 80;
 
-    // Dispositivos móviles (ancho de pantalla <= 768px)
-    if (window.innerWidth <= 768) {
+    // Dispositivos móviles (ancho de pantalla <= 768px sin forzar reflow)
+    if (mobileQuery.matches) {
       nav.classList.add('nav-hidden');
       bubble.classList.add('visible');
       if (y > 300) {

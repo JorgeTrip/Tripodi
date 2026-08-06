@@ -62,12 +62,14 @@ def optimizar_imagenes():
                 
                 with Image.open(filepath) as img:
                     w, h = img.size
-                    max_dim = 1200
+                    max_dim = 1000
                     
-                    if filename.startswith(("Tripode2", "Tripodi_heraldica")):
-                        max_dim = 600
+                    if filename.startswith("Tripode2"):
+                        max_dim = 360
+                    elif filename.startswith("Tripodi_heraldica"):
+                        max_dim = 500
                     elif filename.startswith(("Imagen_2", "Epicentro")):
-                        max_dim = 1400
+                        max_dim = 1000
 
                     if max(w, h) > max_dim:
                         ratio = max_dim / float(max(w, h))
@@ -78,7 +80,8 @@ def optimizar_imagenes():
                     nuevo_filepath = os.path.join(dir_imagenes, f"{nombre_base}.webp")
                     tmp_filepath = nuevo_filepath + ".tmp"
                     
-                    img.save(tmp_filepath, "WEBP", quality=75, method=6)
+                    qual = 70 if filename.startswith("Imagen_2") else 75
+                    img.save(tmp_filepath, "WEBP", quality=qual, method=6)
                     tam_nuevo = os.path.getsize(tmp_filepath)
                     
                     if tam_nuevo < tam_orig or ext != ".webp":
@@ -93,15 +96,15 @@ def optimizar_imagenes():
                         total_nuevo += tam_orig
                         print(f"Conservado original: {filename} ({tam_orig//1024}KB)")
 
-                    # Generar miniatura liviana en imagenes/thumbs/
+                    # Generar miniatura ultra-liviana (220px) en imagenes/thumbs/
                     thumb_filepath = os.path.join(dir_thumbs, f"{nombre_base}.webp")
-                    if max(w, h) > 320:
-                        ratio_thumb = 320 / float(max(w, h))
+                    if max(w, h) > 220:
+                        ratio_thumb = 220 / float(max(w, h))
                         dims_thumb = (int(w * ratio_thumb), int(h * ratio_thumb))
                         img_thumb = img.resize(dims_thumb, Image.Resampling.LANCZOS)
                     else:
                         img_thumb = img
-                    img_thumb.save(thumb_filepath, "WEBP", quality=70, method=6)
+                    img_thumb.save(thumb_filepath, "WEBP", quality=65, method=6)
 
             except Exception as e:
                 print(f"Error procesando {filename}: {e}")

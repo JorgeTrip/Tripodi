@@ -1,14 +1,29 @@
 <!DOCTYPE html>
 <html lang="es" data-theme="dark">
 <head>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0V1JQMEVP6"></script>
+  <!-- Google tag (gtag.js) - Carga diferida post-arranque (0ms TBT) -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
 
-    gtag('config', 'G-0V1JQMEVP6');
+    function cargarGA() {
+      if (window.gaCargado) return;
+      window.gaCargado = true;
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-0V1JQMEVP6';
+      document.head.appendChild(s);
+      gtag('config', 'G-0V1JQMEVP6');
+    }
+
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(function() { setTimeout(cargarGA, 2500); });
+    } else {
+      setTimeout(cargarGA, 3500);
+    }
+    window.addEventListener('scroll', cargarGA, { once: true, passive: true });
+    window.addEventListener('touchstart', cargarGA, { once: true, passive: true });
   </script>
 
   <meta charset="UTF-8">
