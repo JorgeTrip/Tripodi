@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
         formDataPublico.append('enlace_para_aprobar_directo', 'https://tripodi.netlify.app/?moderar=true#comentarios');
         formDataPublico.append('estado_firestore', 'Guardado en Firestore como PENDIENTE. Entra al enlace superior para aprobarlo.');
 
-        await fetch(formulario.action || 'https://formspree.io/f/xbjnodgq', {
+        await fetch(formulario.action || 'https://formspree.io/f/xzdnplpd', {
           method: 'POST',
           body: formDataPublico,
           headers: { 'Accept': 'application/json' }
@@ -88,11 +88,24 @@ document.addEventListener('DOMContentLoaded', () => {
         mensajeFeedback.className = 'form-feedback success';
       } else {
         // Enviar confidencialmente por Formspree al correo del autor
+        // Respaldo en Firestore con tipo 'privado' para garantizar almacenamiento íntegro
+        try {
+          await guardarComentarioFirestore({
+            nombre: nombre,
+            pais: pais,
+            mensaje: mensaje,
+            calificacion: calificacion,
+            tipo: 'privado'
+          });
+        } catch (eFirestore) {
+          console.warn('Respaldo en Firestore no crítico omitido:', eFirestore);
+        }
+
         const formDataPrivado = new FormData(formulario);
         formDataPrivado.append('tipo_mensaje', 'MENSAJE PRIVADO CONFIDENCIAL (No publicar)');
         formDataPrivado.append('calificacion_estrellas', `${calificacion} de 5 estrellas`);
 
-        const respuesta = await fetch(formulario.action || 'https://formspree.io/f/xbjnodgq', {
+        const respuesta = await fetch(formulario.action || 'https://formspree.io/f/xzdnplpd', {
           method: 'POST',
           body: formDataPrivado,
           headers: { 'Accept': 'application/json' }
