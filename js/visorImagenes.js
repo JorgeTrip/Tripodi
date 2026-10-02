@@ -23,7 +23,9 @@ function abrirVisorImagen(rutaImagen, textoPie, urlFuente) {
   
   if (!visor || !imagen || !contenedorPie) return;
 
-  imagen.src = rutaImagen;
+  // Si la ruta proviene de una miniatura (thumbs), cargar la versión en alta resolución
+  const rutaHd = rutaImagen.replace('/thumbs/', '/').replace('\\thumbs\\', '/');
+  imagen.src = rutaHd;
   
   // Sanitización mediante DOMParser para prevenir vulnerabilidades SAST (SEC-004)
   contenedorPie.textContent = '';
