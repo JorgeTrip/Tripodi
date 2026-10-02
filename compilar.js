@@ -1,30 +1,51 @@
+/**
+ * ============================================================================
+ * COMPILADOR MODULAR ESTÁTICO - TRIPODI
+ * ============================================================================
+ * Orquesta la concatenación automatizada de las hojas de estilo modulares (CSS)
+ * y los fragmentos semánticos HTML (src/partes/) para producir los artefactos
+ * unificados y optimizados de distribución ('index.html' y 'estilos.min.css').
+ * 
+ * ARQUITECTURA:
+ * El desarrollo se mantiene desacoplado en archivos pequeños (<200 líneas),
+ * mientras que en compilación se genera una sola entrega para optimizar métricas
+ * de rendimiento web (Core Web Vitals, 0 peticiones HTTP críticas bloqueantes).
+ */
+
 const fs = require('fs');
 const path = require('path');
 
+/**
+ * Concatena y empaqueta los submódulos CSS en un único archivo consolidado.
+ * 
+ * @returns {string} Código CSS completo compilado.
+ */
 function compilarCss() {
   const cssDir = path.join(__dirname, 'css');
   const cssSalida = path.join(cssDir, 'estilos.min.css');
+  
   const ordenCss = [
     'variables.css',
-    'layout.css',
-    'nav-desktop.css',
-    'nav-mobile.css',
-    'secciones-1.css',
-    'secciones-hipotesis.css',
-    'secciones-oracle.css',
-    'secciones-2.css',
-    'secciones-linguis.css',
-    'secciones-3.css',
-    'secciones-notables.css',
+    'maquetacion.css',
+    'navegacionEscritorio.css',
+    'navegacionMovil.css',
+    'secciones1.css',
+    'seccionHipotesis.css',
+    'seccionOraculo.css',
+    'secciones2.css',
+    'seccionLinguistica.css',
+    'secciones3.css',
+    'seccionNotables.css',
     'heraldica.css',
-    'footer.css',
+    'piePagina.css',
     'componentes.css',
     'interacciones.css',
     'modales.css',
+    'muroTestimonios.css',
     'comentarios.css'
   ];
 
-  console.log('Concatenando archivos CSS...');
+  console.log('Concatenando módulos CSS...');
   let cssConsolidado = '';
 
   for (const archivo of ordenCss) {
@@ -32,6 +53,8 @@ function compilarCss() {
     if (fs.existsSync(filePath)) {
       const contenido = fs.readFileSync(filePath, 'utf8');
       cssConsolidado += `/* --- ${archivo} --- */\n` + contenido + '\n';
+    } else {
+      console.warn(`[ADVERTENCIA] No se encontró el archivo CSS: ${archivo}`);
     }
   }
 
@@ -40,29 +63,36 @@ function compilarCss() {
   return cssConsolidado;
 }
 
-function compilar() {
+/**
+ * Une secuencialmente los fragmentos HTML inyectando el CSS compilado inline
+ * en la cabecera para máxima velocidad de entrega inicial.
+ * 
+ * @returns {void}
+ */
+function compilarHtml() {
   const css = compilarCss();
 
   const partesDir = path.join(__dirname, 'src', 'partes');
   const salidaPath = path.join(__dirname, 'index.html');
 
   const ordenPartes = [
-    'head.html',
-    'nav.html',
-    'hero.html',
+    'cabecera.html',
+    'navegacion.html',
+    'portada.html',
     'etimologia.html',
-    'timeline.html',
+    'cronologia.html',
     'hipotesis.html',
-    'oracle.html',
-    'geo.html',
+    'oraculo.html',
+    'geografia.html',
     'diaspora.html',
-    'linguistics.html',
+    'linguistica.html',
     'heraldica.html',
     'notables.html',
-    'variants.html',
-    'closing.html',
-    'sources.html',
-    'footer.html'
+    'variantes.html',
+    'cierre.html',
+    'comentarios.html',
+    'fuentes.html',
+    'piePagina.html'
   ];
 
   console.log('\nIniciando compilación modular de HTML...');
@@ -84,7 +114,7 @@ function compilar() {
       }
 
       let contenido = contenidoOriginal;
-      if (archivo === 'head.html') {
+      if (archivo === 'cabecera.html') {
         contenido = contenido.replace('<!-- CSS_INLINE_PLACEHOLDER -->', `<style>\n${css}\n</style>`);
       }
       
@@ -104,5 +134,4 @@ function compilar() {
   }
 }
 
-compilar();
-
+compilarHtml();

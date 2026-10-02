@@ -1,0 +1,95 @@
+/* ============================================================================
+   MURO DE TESTIMONIOS Y VALORACIONES - TRIPODI
+   ============================================================================
+   Muestra las tarjetas testimoniales con diseño de alta fidelidad estilo Magna Grecia,
+   avatares circulares en degradé áureo, tipografía Lora y estrellas doradas.
+*/
+
+.muro-testimonios-wrap {
+  margin: 2.5rem 0 3.5rem 0;
+}
+
+.muro-testimonios-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.testimonio-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.75rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(8px);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.testimonio-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(201, 168, 76, 0.4);
+}
+
+.testimonio-header {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 0.85rem;
+}
+
+.testimonio-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(201, 168, 76, 0.3), rgba(201, 168, 76, 0.1));
+  border: 1px solid var(--gold);
+  color: var(--gold-lt);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.testimonio-nombre {
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  color: var(--text-main);
+  font-size: 0.95rem;
+}
+
+.testimonio-pais {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  font-family: 'Inter', sans-serif;
+}
+
+.testimonio-estrellas {
+  display: flex;
+  gap: 0.2rem;
+  color: var(--gold);
+  font-size: 1.1rem;
+  margin-bottom: 0.85rem;
+}
+
+.estrella-inactiva { color: rgba(255, 255, 255, 0.15); }
+
+.testimonio-cuerpo {
+  font-family: 'Lora', serif;
+  font-style: italic;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--text-main);
+  flex-grow: 1;
+  margin-bottom: 1rem;
+}
+
+.testimonio-pie {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-family: 'Inter', sans-serif;
+  text-align: right;
+}

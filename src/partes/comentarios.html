@@ -1,0 +1,92 @@
+<!-- SECCIÓN DE TESTIMONIOS Y COMENTARIOS -->
+<section class="comentarios-section" id="comentarios">
+  <div class="section">
+    <p class="section-eyebrow fade-up">Comunidad y memoria</p>
+    <h2 class="section-title fade-up">Testimonios y aportes familiares</h2>
+    <p class="section-lead fade-up">Un espacio de encuentro para descendientes y estudiosos del linaje Tripodi en el mundo. Lee las vivencias compartidas o deja tu propia huella familiar.</p>
+
+    <!-- Muro de Testimonios Exhibidos -->
+    <div class="muro-testimonios-wrap">
+      <div id="muroTestimonios" class="muro-testimonios-grid">
+        <!-- Se cargan dinámicamente desde js/testimonios.js -->
+      </div>
+    </div>
+
+    <!-- Formulario Integrado con Selección de Destino -->
+    <div class="comentarios-form-container">
+      <h3 class="comentarios-form-titulo">Comparte tu mensaje o testimonio</h3>
+      <p class="comentarios-form-bajada">Elige si deseas enviar una consulta confidencial al autor o dejar tu huella en el muro público.</p>
+
+      <form action="https://formspree.io/f/xbjnodgq" method="POST" class="comentarios-form">
+        <!-- Selector de Destino (Privado vs Público) -->
+        <div class="form-destino-wrapper">
+          <label class="destino-opcion">
+            <input type="radio" name="tipoDestino" value="privado" checked>
+            <span class="destino-tarjeta">
+              <span class="destino-icono">🔒</span>
+              <span class="destino-texto">
+                <strong>Mensaje privado al autor</strong>
+                <small>Llega directamente a su casilla de correo</small>
+              </span>
+            </span>
+          </label>
+
+          <label class="destino-opcion">
+            <input type="radio" name="tipoDestino" value="publico">
+            <span class="destino-tarjeta">
+              <span class="destino-icono">🌐</span>
+              <span class="destino-texto">
+                <strong>Publicar en este muro</strong>
+                <small>Visible a los visitantes tras revisión</small>
+              </span>
+            </span>
+          </label>
+        </div>
+
+        <!-- Calificación con estrellas doradas -->
+        <div class="calificacion-box">
+          <span class="calificacion-etiqueta">¿Cómo valoras esta investigación?</span>
+          <div class="stars-wrapper" role="radiogroup" aria-label="Calificación de 1 a 5 estrellas">
+            <button type="button" class="star-btn active" data-rating="1" aria-label="1 estrella">★</button>
+            <button type="button" class="star-btn active" data-rating="2" aria-label="2 estrellas">★</button>
+            <button type="button" class="star-btn active" data-rating="3" aria-label="3 estrellas">★</button>
+            <button type="button" class="star-btn active" data-rating="4" aria-label="4 estrellas">★</button>
+            <button type="button" class="star-btn active" data-rating="5" aria-label="5 estrellas">★</button>
+          </div>
+          <input type="hidden" name="calificacion" id="calificacionSeleccionada" value="5">
+        </div>
+
+        <div class="form-fila-doble">
+          <div class="form-group">
+            <label for="nombre" class="form-label">Nombre y Apellido <span class="required">*</span></label>
+            <input type="text" id="nombre" name="nombre" class="form-input" placeholder="Ej: Alessandro Tripodi" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="pais" class="form-label">Ciudad y País de residencia</label>
+            <input type="text" id="pais" name="pais" class="form-input" placeholder="Ej: Reggio Calabria / Buenos Aires">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email" class="form-label">Correo electrónico (privado, no se publica)</label>
+          <input type="email" id="email" name="email" class="form-input" placeholder="correo@ejemplo.com">
+        </div>
+
+        <div class="form-group">
+          <label for="comentario" class="form-label">Mensaje o historia familiar <span class="required">*</span></label>
+          <textarea id="comentario" name="comentario" class="form-textarea" placeholder="Relata tu testimonio familiar, orígenes de tus antepasados o mensaje al autor..." required></textarea>
+        </div>
+
+        <div id="formFeedback" class="form-feedback" aria-live="polite"></div>
+        
+        <div class="form-pie-acciones">
+          <button type="submit" class="form-submit">Enviar</button>
+          <button type="button" id="botonModerarComentarios" class="btn-moderacion-discreto" title="Panel de moderación para el autor">⚙️ Moderar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>

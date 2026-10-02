@@ -13,9 +13,9 @@
 </footer>
 
 <!-- VENTANA MODAL DE HIPÓTESIS (ESCRITORIO) -->
-<div id="hypoModal" class="hypo-modal-overlay" onclick="closeHypoModal(event)">
+<div id="hypoModal" class="hypo-modal-overlay" onclick="cerrarModalHipotesis(event)">
   <div class="hypo-modal-inner" onclick="event.stopPropagation()">
-    <button class="hypo-modal-close" onclick="closeHypoModal()">✕</button>
+    <button class="hypo-modal-close" onclick="cerrarModalHipotesis()">✕</button>
     <div class="hypo-modal-num" id="hypoModalNum"></div>
     <div class="hypo-modal-layout">
       <div class="hypo-modal-left">
@@ -41,11 +41,11 @@
 </div>
 
 <!-- VENTANA DE VISUALIZACIÓN (LIGHTBOX) -->
-<div id="lightbox" class="lightbox-overlay" onclick="closeLightbox(event)">
+<div id="lightbox" class="lightbox-overlay" onclick="cerrarVisorImagen(event)">
   <div class="lightbox-inner" onclick="event.stopPropagation()">
-    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <button class="lightbox-close" onclick="cerrarVisorImagen()">✕</button>
     <img id="lightboxImg" src="" alt="">
-    <button class="lightbox-info-btn" id="lightboxInfoBtn" onclick="toggleLightboxCaption()">mostrar info</button>
+    <button class="lightbox-info-btn" id="lightboxInfoBtn" onclick="alternarPieDeFoto()">mostrar info</button>
     <div id="lightboxCaption" class="lightbox-caption"></div>
     <a id="lightboxSourceLink" class="lightbox-source-link" href="#" target="_blank" rel="noopener" style="display:none;">
       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
@@ -54,16 +54,21 @@
   </div>
 </div>
 
-<!-- Scripts modulares de interactividad (Ninguno supera las 200 líneas) -->
+<!-- Scripts modulares de interactividad (Todos por debajo de 200 líneas) -->
 <script src="js/tema.js" defer></script>
 <script src="js/audio.js" defer></script>
-<script src="js/nav.js" defer></script>
-<script src="js/modal.js" defer></script>
+<script src="js/navegacion.js" defer></script>
+<script src="js/modalHipotesis.js" defer></script>
+<script src="js/visorImagenes.js" defer></script>
 <script src="js/tooltips.js" defer></script>
+<script src="js/graficoDonut.js" defer></script>
+<script src="js/graficoRadar.js" defer></script>
 <script src="js/graficos.js" defer></script>
-<script src="js/datos-notables-1.js" defer></script>
-<script src="js/datos-notables-2.js" defer></script>
-<script src="js/datos-notables-3.js" defer></script>
+<script src="js/datosNotables1.js" defer></script>
+<script src="js/datosNotables2.js" defer></script>
+<script src="js/datosNotables3.js" defer></script>
 <script src="js/notables.js" defer></script>
+<script type="module" src="js/testimonios.js"></script>
+<script type="module" src="js/formularioComentarios.js"></script>
 </body>
 </html>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es" data-theme="dark">
 <head>
-  <!-- Google tag (gtag.js) - Carga diferida post-arranque (0ms TBT) -->
+  <!-- Google tag (gtag.js) - Carga diferida post-arranque para garantizar 0ms de Total Blocking Time (TBT) -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -10,10 +10,10 @@
     function cargarGA() {
       if (window.gaCargado) return;
       window.gaCargado = true;
-      var s = document.createElement('script');
-      s.async = true;
-      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-0V1JQMEVP6';
-      document.head.appendChild(s);
+      var scriptAnalitica = document.createElement('script');
+      scriptAnalitica.async = true;
+      scriptAnalitica.src = 'https://www.googletagmanager.com/gtag/js?id=G-0V1JQMEVP6';
+      document.head.appendChild(scriptAnalitica);
       gtag('config', 'G-0V1JQMEVP6');
     }
 
@@ -33,21 +33,21 @@
   <title>Tripodi — Viaje al Origen de un Apellido Milenario</title>
   <meta name="description" content="Investigación histórica, genealógica y heráldica del apellido Tripodi. Explora su etimología, origen en la Magna Grecia, su distribución geográfica y personajes célebres.">
   <meta name="keywords" content="Tripodi, apellido Tripodi, genealogía Tripodi, origen Tripodi, heráldica Tripodi, apellido calabrés">
-  <link rel="canonical" href="https://tripodi.web.app/">
+  <link rel="canonical" href="https://tripodi.netlify.app/">
   
-  <!-- Open Graph / Facebook (Visualización Premium al compartir) -->
+  <!-- Open Graph / Redes Sociales (URL canónica y recurso absoluto para visualización óptima) -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://tripodi.netlify.app/">
   <meta property="og:title" content="Tripodi — Viaje al Origen de un Apellido Milenario">
   <meta property="og:description" content="Investigación histórica, genealógica y heráldica del apellido Tripodi. Explora su etimología, origen en la Magna Grecia, su distribución geográfica y personajes célebres.">
-  <meta property="og:image" content="imagenes/Epicentro_calabres_y_su_irradiacion.webp">
+  <meta property="og:image" content="https://tripodi.netlify.app/imagenes/Epicentro_calabres_y_su_irradiacion.webp">
 
   <!-- Tarjetas de Twitter (Metadatos) -->
   <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:url" content="https://tripodi.netlify.app/">
   <meta property="twitter:title" content="Tripodi — Viaje al Origen de un Apellido Milenario">
   <meta property="twitter:description" content="Investigación histórica, genealógica y heráldica del apellido Tripodi. Explora su etimología, origen en la Magna Grecia, su distribución geográfica y personajes célebres.">
-  <meta property="twitter:image" content="imagenes/Epicentro_calabres_y_su_irradiacion.webp">
+  <meta property="twitter:image" content="https://tripodi.netlify.app/imagenes/Epicentro_calabres_y_su_irradiacion.webp">
 
   <!-- Favicons y WebApp -->
   <link rel="icon" type="image/png" sizes="32x32" href="imagenes/favicon-32x32.png">
@@ -57,7 +57,7 @@
   <!-- Precarga de imagen crítica Hero (LCP) -->
   <link rel="preload" as="image" href="imagenes/Tripode2.webp" type="image/webp" fetchpriority="high">
 
-  <!-- Google Fonts Asíncrono (No bloqueante) -->
+  <!-- Google Fonts Asíncrono (No bloqueante para optimizar First Contentful Paint) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
@@ -65,7 +65,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   </noscript>
   
-  <!-- Estilos CSS Inyectados Inline (0 peticiones HTTP bloqueantes) -->
+  <!-- Estilos CSS Inyectados Inline en compilación para 0 peticiones HTTP bloqueantes -->
   <!-- CSS_INLINE_PLACEHOLDER -->
 </head>
 <body>

@@ -1,33 +1,45 @@
 /**
- * GESTIÓN DE TEMAS - TRIPODI
- * Controla el cambio de tema claro/oscuro del sitio web.
+ * ============================================================================
+ * GESTIÓN DE TEMAS VISUALES - TRIPODI
+ * ============================================================================
+ * Controla la conmutación entre el tema oscuro (predeterminado por diseño)
+ * y el tema claro, persistiendo los atributos en el nodo raíz del documento
+ * y notificando a los motores de renderizado Canvas para sincronizar colores.
  */
 
-function toggleTheme() {
-  const html = document.documentElement;
-  const isDark = html.getAttribute('data-theme') === 'dark';
-  const newTheme = isDark ? 'light' : 'dark';
+/**
+ * Conmuta el tema visual del documento HTML entre 'dark' y 'light'.
+ * Actualiza los íconos de la interfaz (navbar de escritorio y menú burbuja móvil)
+ * y dispara el redibujado de los gráficos Canvas si se encuentran presentes.
+ * 
+ * @returns {void}
+ */
+function alternarTema() {
+  const elementoHtml = document.documentElement;
+  const esOscuro = elementoHtml.getAttribute('data-theme') === 'dark';
+  const nuevoTema = esOscuro ? 'light' : 'dark';
   
-  html.setAttribute('data-theme', newTheme);
+  elementoHtml.setAttribute('data-theme', nuevoTema);
   
-  const icon = isDark ? '🌙' : '☀️';
-  const label = isDark ? 'Modo oscuro' : 'Modo claro';
+  const icono = esOscuro ? '🌙' : '☀️';
+  const etiqueta = esOscuro ? 'Modo oscuro' : 'Modo claro';
   
-  // Actualizar íconos y textos en navbar normal y burbuja de móviles
-  const ids = ['themeIcon', 'themeIconBubble'];
-  ids.forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.textContent = icon;
+  // Sincronizar íconos en la barra de escritorio y en la botonera flotante móvil
+  const identificadoresIconos = ['themeIcon', 'themeIconBubble'];
+  identificadoresIconos.forEach(id => {
+    const elemento = document.getElementById(id);
+    if (elemento) elemento.textContent = icono;
   });
   
-  const labels = ['themeLabel', 'themeLabelBubble'];
-  labels.forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.textContent = label;
+  // Sincronizar etiquetas de texto accesibles
+  const identificadoresEtiquetas = ['themeLabel', 'themeLabelBubble'];
+  identificadoresEtiquetas.forEach(id => {
+    const elemento = document.getElementById(id);
+    if (elemento) elemento.textContent = etiqueta;
   });
   
-  // Volver a dibujar los gráficos Canvas con los colores del nuevo tema
-  if (typeof redrawCharts === 'function') {
-    redrawCharts();
+  // Re-renderizar los gráficos interactivos Canvas con la nueva paleta de contraste
+  if (typeof redibujarGraficos === 'function') {
+    redibujarGraficos();
   }
 }

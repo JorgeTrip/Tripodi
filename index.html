@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es" data-theme="dark">
 <head>
-  <!-- Google tag (gtag.js) - Carga diferida post-arranque (0ms TBT) -->
+  <!-- Google tag (gtag.js) - Carga diferida post-arranque para garantizar 0ms de Total Blocking Time (TBT) -->
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -10,10 +10,10 @@
     function cargarGA() {
       if (window.gaCargado) return;
       window.gaCargado = true;
-      var s = document.createElement('script');
-      s.async = true;
-      s.src = 'https://www.googletagmanager.com/gtag/js?id=G-0V1JQMEVP6';
-      document.head.appendChild(s);
+      var scriptAnalitica = document.createElement('script');
+      scriptAnalitica.async = true;
+      scriptAnalitica.src = 'https://www.googletagmanager.com/gtag/js?id=G-0V1JQMEVP6';
+      document.head.appendChild(scriptAnalitica);
       gtag('config', 'G-0V1JQMEVP6');
     }
 
@@ -33,21 +33,21 @@
   <title>Tripodi — Viaje al Origen de un Apellido Milenario</title>
   <meta name="description" content="Investigación histórica, genealógica y heráldica del apellido Tripodi. Explora su etimología, origen en la Magna Grecia, su distribución geográfica y personajes célebres.">
   <meta name="keywords" content="Tripodi, apellido Tripodi, genealogía Tripodi, origen Tripodi, heráldica Tripodi, apellido calabrés">
-  <link rel="canonical" href="https://tripodi.web.app/">
+  <link rel="canonical" href="https://tripodi.netlify.app/">
   
-  <!-- Open Graph / Facebook (Visualización Premium al compartir) -->
+  <!-- Open Graph / Redes Sociales (URL canónica y recurso absoluto para visualización óptima) -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://tripodi.netlify.app/">
   <meta property="og:title" content="Tripodi — Viaje al Origen de un Apellido Milenario">
   <meta property="og:description" content="Investigación histórica, genealógica y heráldica del apellido Tripodi. Explora su etimología, origen en la Magna Grecia, su distribución geográfica y personajes célebres.">
-  <meta property="og:image" content="imagenes/Epicentro_calabres_y_su_irradiacion.webp">
+  <meta property="og:image" content="https://tripodi.netlify.app/imagenes/Epicentro_calabres_y_su_irradiacion.webp">
 
   <!-- Tarjetas de Twitter (Metadatos) -->
   <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:url" content="https://tripodi.netlify.app/">
   <meta property="twitter:title" content="Tripodi — Viaje al Origen de un Apellido Milenario">
   <meta property="twitter:description" content="Investigación histórica, genealógica y heráldica del apellido Tripodi. Explora su etimología, origen en la Magna Grecia, su distribución geográfica y personajes célebres.">
-  <meta property="twitter:image" content="imagenes/Epicentro_calabres_y_su_irradiacion.webp">
+  <meta property="twitter:image" content="https://tripodi.netlify.app/imagenes/Epicentro_calabres_y_su_irradiacion.webp">
 
   <!-- Favicons y WebApp -->
   <link rel="icon" type="image/png" sizes="32x32" href="imagenes/favicon-32x32.png">
@@ -57,7 +57,7 @@
   <!-- Precarga de imagen crítica Hero (LCP) -->
   <link rel="preload" as="image" href="imagenes/Tripode2.webp" type="image/webp" fetchpriority="high">
 
-  <!-- Google Fonts Asíncrono (No bloqueante) -->
+  <!-- Google Fonts Asíncrono (No bloqueante para optimizar First Contentful Paint) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
@@ -65,7 +65,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Lora:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   </noscript>
   
-  <!-- Estilos CSS Inyectados Inline (0 peticiones HTTP bloqueantes) -->
+  <!-- Estilos CSS Inyectados Inline en compilación para 0 peticiones HTTP bloqueantes -->
   <style>
 /* --- variables.css --- */
 /* ============================================================================
@@ -151,7 +151,7 @@ h1, h2, h3, .serif-display {
   }
 }
 
-/* --- layout.css --- */
+/* --- maquetacion.css --- */
 /* ============================================================================
    ESTRUCTURA Y NAVEGACIÓN - TRIPODI
    ============================================================================
@@ -344,7 +344,7 @@ h1, h2, h3, .serif-display {
   }
 }
 
-/* --- nav-desktop.css --- */
+/* --- navegacionEscritorio.css --- */
 /* ============================================================================
    NAVEGACIÓN ESCRITORIO - TRIPODI
    ============================================================================
@@ -443,7 +443,7 @@ h1, h2, h3, .serif-display {
   }
 }
 
-/* --- nav-mobile.css --- */
+/* --- navegacionMovil.css --- */
 /* ============================================================================
    NAVEGACIÓN MÓVIL Y FLOTANTE - TRIPODI
    ============================================================================
@@ -628,7 +628,7 @@ h1, h2, h3, .serif-display {
 
 
 
-/* --- secciones-1.css --- */
+/* --- secciones1.css --- */
 /* ============================================================================
    SECCIONES PARTE 1 - TRIPODI
    ============================================================================
@@ -803,7 +803,7 @@ h1, h2, h3, .serif-display {
 
 
 
-/* --- secciones-hipotesis.css --- */
+/* --- seccionHipotesis.css --- */
 /* SECCIÓN DE HIPÓTESIS - TRIPODI
    Estilos específicos para el diseño de tarjetas (acordeones interactivos),
    barras de probabilidad y el gráfico circular (donut) con su leyenda. */
@@ -942,7 +942,7 @@ h1, h2, h3, .serif-display {
 .legend-pct { font-family: 'Cinzel', serif; font-size: 1rem; color: var(--gold); margin-left: auto; }
 
 
-/* --- secciones-oracle.css --- */
+/* --- seccionOraculo.css --- */
 /* ============================================================================
    SECCIÓN ORÁCULO DE DELFOS - TRIPODI
    ============================================================================
@@ -1085,7 +1085,7 @@ h1, h2, h3, .serif-display {
   display: inline;
 }
 
-/* --- secciones-2.css --- */
+/* --- secciones2.css --- */
 /* ============================================================================
    SECCIONES PARTE 2 Y FOOTER - TRIPODI
    ============================================================================
@@ -1255,7 +1255,7 @@ h1, h2, h3, .serif-display {
 }
 
 
-/* --- secciones-linguis.css --- */
+/* --- seccionLinguistica.css --- */
 /* ============================================================================
    SECCIÓN LINGÜÍSTICA Y VARIANTES - TRIPODI
    ============================================================================
@@ -1358,7 +1358,7 @@ h1, h2, h3, .serif-display {
   letter-spacing: 0.05em;
 }
 
-/* --- secciones-3.css --- */
+/* --- secciones3.css --- */
 /* ============================================================================
    SECCIONES PARTE 3 Y FOOTER - TRIPODI
    ============================================================================
@@ -1533,7 +1533,7 @@ h1, h2, h3, .serif-display {
 
 
 
-/* --- secciones-notables.css --- */
+/* --- seccionNotables.css --- */
 /* ============================================================================
    SECCIÓN PERSONAJES NOTABLES (ACORDEONES INTERACTIVOS) - TRIPODI
    ============================================================================
@@ -1834,7 +1834,7 @@ h1, h2, h3, .serif-display {
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
 }
 
-/* --- footer.css --- */
+/* --- piePagina.css --- */
 /* ============================================================================
    CIERRE Y PIE DE PÁGINA - TRIPODI
    ============================================================================
@@ -2301,129 +2301,216 @@ footer {
   .hypo-modal-left { min-height: 200px; border-radius: calc(var(--radius) * 2) calc(var(--radius) * 2) 0 0; }
 }
 
-/* --- comentarios.css --- */
+/* --- muroTestimonios.css --- */
 /* ============================================================================
-   SECCIÓN DE COMENTARIOS Y CALIFICACIÓN - TRIPODI
+   MURO DE TESTIMONIOS Y VALORACIONES - TRIPODI
    ============================================================================
+   Muestra las tarjetas testimoniales con diseño de alta fidelidad estilo Magna Grecia,
+   avatares circulares en degradé áureo, tipografía Lora y estrellas doradas.
 */
 
-.comentarios-section {
-  padding: 4rem 1.5rem;
-  max-width: 900px;
-  margin: 0 auto;
+.muro-testimonios-wrap {
+  margin: 2.5rem 0 3.5rem 0;
 }
 
-.rating-container {
-  background: var(--bg-panel);
+.muro-testimonios-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+}
+
+.testimonio-card {
+  background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 1.5rem;
-  margin: 1.5rem 0 2rem 0;
-  text-align: center;
-}
-
-.rating-label {
-  font-size: 1rem;
-  color: var(--text-muted);
-  margin-bottom: 0.5rem;
-  font-weight: 500;
-}
-
-.rating-form {
+  padding: 1.75rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(8px);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 0.25rem;
+  transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
-.stars-wrapper {
+.testimonio-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(201, 168, 76, 0.4);
+}
+
+.testimonio-header {
   display: flex;
-  gap: 0.5rem;
-  margin-bottom: 0.1rem;
+  align-items: center;
+  gap: 0.85rem;
+  margin-bottom: 0.85rem;
 }
 
-.star-btn {
-  background: transparent;
-  border: none;
-  font-size: 2.5rem;
-  color: var(--text-muted);
-  cursor: pointer;
-  padding: 0;
-  transition: color 0.2s, transform 0.1s;
-  line-height: 1;
-}
-
-.star-btn:hover {
-  transform: scale(1.1);
+.testimonio-avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(201, 168, 76, 0.3), rgba(201, 168, 76, 0.1));
+  border: 1px solid var(--gold);
   color: var(--gold-lt);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: 1.1rem;
 }
 
-.star-btn.active {
-  color: var(--gold);
+.testimonio-nombre {
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  color: var(--text-main);
+  font-size: 0.95rem;
 }
 
-.rating-feedback {
-  min-height: 1.5rem;
-  font-size: 0.9rem;
+.testimonio-pais {
+  font-size: 0.8rem;
   color: var(--text-muted);
   font-family: 'Inter', sans-serif;
 }
 
-.rating-feedback.success {
+.testimonio-estrellas {
+  display: flex;
+  gap: 0.2rem;
   color: var(--gold);
+  font-size: 1.1rem;
+  margin-bottom: 0.85rem;
 }
 
-.rating-submit {
-  background: var(--gold);
-  color: var(--bg-dark);
-  border: none;
-  padding: 0.75rem 2rem;
-  border-radius: var(--radius);
-  font-size: 0.9rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.2s, opacity 0.2s;
-  margin-top: 0.5rem;
+.estrella-inactiva { color: rgba(255, 255, 255, 0.15); }
+
+.testimonio-cuerpo {
+  font-family: 'Lora', serif;
+  font-style: italic;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--text-main);
+  flex-grow: 1;
+  margin-bottom: 1rem;
 }
 
-.rating-submit:hover:not(:disabled) {
-  background: var(--gold-lt);
+.testimonio-pie {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-family: 'Inter', sans-serif;
+  text-align: right;
 }
 
-.rating-submit:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
+/* --- comentarios.css --- */
+/* ============================================================================
+   SECCIÓN DE FORMULARIO DE COMENTARIOS Y APORTES - TRIPODI
+   ============================================================================
+   Estructura modular del formulario híbrido con selector de destino,
+   calificación áurea e inputs accesibles con glassmorphism.
+*/
+
+.comentarios-section {
+  background: var(--bg-panel);
+  border-top: 1px solid var(--border);
 }
 
-.comentarios-divider {
-  height: 1px;
-  background: linear-gradient(to right, transparent, var(--border), transparent);
-  margin: 3rem 0;
-}
-
+/* --- FORMULARIO INTEGRADO --- */
 .comentarios-form-container {
   background: var(--bg-panel);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 2rem;
+  padding: 2.25rem;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(12px);
 }
 
-.comentarios-form-label {
-  font-size: 1rem;
+.comentarios-form-titulo {
+  font-family: 'Cinzel', serif;
+  font-size: 1.35rem;
+  color: var(--gold-lt);
+  margin-bottom: 0.35rem;
+  text-align: center;
+}
+
+.comentarios-form-bajada {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
   color: var(--text-muted);
-  margin-bottom: 1.5rem;
-  font-weight: 500;
+  text-align: center;
+  margin-bottom: 2rem;
 }
 
 .comentarios-form {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1.35rem;
 }
 
-.form-group { display: flex; flex-direction: column; gap: 0.5rem; }
-.form-label { font-size: 0.9rem; color: var(--text-muted); font-weight: 500; }
-.required { color: var(--ember); }
+/* Selector de Destino */
+.form-destino-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.destino-opcion input { display: none; }
+
+.destino-tarjeta {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 1rem 1.25rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-card);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.destino-tarjeta:hover { border-color: rgba(201, 168, 76, 0.4); }
+
+.destino-opcion input:checked + .destino-tarjeta {
+  border-color: var(--gold);
+  background: rgba(201, 168, 76, 0.08);
+  box-shadow: 0 0 0 1px var(--gold);
+}
+
+.destino-icono { font-size: 1.5rem; }
+
+.destino-texto { display: flex; flex-direction: column; }
+.destino-texto strong { font-size: 0.9rem; color: var(--text-main); }
+.destino-texto small { font-size: 0.75rem; color: var(--text-muted); }
+
+/* Calificación con estrellas */
+.calificacion-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 1.25rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.calificacion-etiqueta { font-size: 0.9rem; color: var(--text-muted); font-weight: 500; }
+.stars-wrapper { display: flex; gap: 0.35rem; }
+.star-btn {
+  background: transparent;
+  border: none;
+  font-size: 1.85rem;
+  color: rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.15s, transform 0.15s;
+  line-height: 1;
+}
+.star-btn.active { color: var(--gold); }
+.star-btn:hover { transform: scale(1.15); color: var(--gold-lt); }
+
+.form-fila-doble { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+.form-label { font-size: 0.85rem; color: var(--text-muted); font-weight: 500; }
+.required { color: var(--gold); }
 
 .form-input, .form-textarea {
   background: var(--bg-card);
@@ -2439,40 +2526,54 @@ footer {
 .form-input:focus, .form-textarea:focus {
   outline: none;
   border-color: var(--gold);
-  box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.1);
+  box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.15);
 }
 
-.form-input::placeholder, .form-textarea::placeholder { color: var(--text-muted); opacity: 0.6; }
-.form-textarea { resize: vertical; min-height: 120px; }
+.form-textarea { resize: vertical; min-height: 110px; }
+
+.form-pie-acciones {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+}
 
 .form-submit {
   background: var(--gold);
-  color: var(--bg-dark);
+  color: #1a160d;
   border: none;
-  padding: 0.85rem 2rem;
+  padding: 0.85rem 2.25rem;
   border-radius: var(--radius);
   font-size: 0.95rem;
-  font-weight: 600;
+  font-weight: 700;
+  font-family: 'Inter', sans-serif;
   cursor: pointer;
-  transition: background 0.2s, opacity 0.2s;
-  align-self: flex-start;
+  transition: background 0.2s, transform 0.1s;
 }
 
-.form-submit:hover { background: var(--gold-lt); }
-.form-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+.form-submit:hover { background: var(--gold-lt); transform: translateY(-1px); }
+.btn-moderacion-discreto {
+  background: transparent;
+  border: 1px dashed var(--border);
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  padding: 0.4rem 0.75rem;
+  border-radius: var(--radius);
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s, color 0.2s;
+}
+.btn-moderacion-discreto:hover { opacity: 1; color: var(--gold-lt); border-color: var(--gold); }
 
-.form-feedback { min-height: 1.5rem; font-size: 0.9rem; font-family: 'Inter', sans-serif; margin-top: 0.5rem; }
-.form-feedback.success { color: var(--gold); }
-.form-feedback.error { color: var(--ember); }
+.form-feedback { min-height: 1.5rem; font-size: 0.9rem; font-family: 'Inter', sans-serif; }
+.form-feedback.success { color: var(--gold-lt); }
+.form-feedback.error { color: #e57373; }
 
 @media (max-width: 768px) {
-  .comentarios-section { padding: 3rem 1rem; }
-  .rating-container, .comentarios-form-container { padding: 1.5rem; }
-  .star-btn { font-size: 2rem; }
-  .form-input, .form-textarea { font-size: 0.9rem; }
+  .comentarios-section { padding: 3rem 1rem 2rem 1rem; }
+  .comentarios-form-container { padding: 1.5rem 1.25rem; }
+  .form-destino-wrapper, .form-fila-doble { grid-template-columns: 1fr; }
 }
-
-
 
 
 </style>
@@ -2495,35 +2596,37 @@ footer {
       <a href="#variants" class="nav-link">Variantes</a>
       <a href="#notables" class="nav-link">Notables</a>
       <a href="#closing" class="nav-link">Cierre</a>
+      <a href="#comentarios" class="nav-link">Comunidad</a>
       <a href="#sources" class="nav-link">Fuentes</a>
     </div>
-    <button class="nav-theme-btn" onclick="toggleTheme()" aria-label="Cambiar tema">
+    <button class="nav-theme-btn" onclick="alternarTema()" aria-label="Cambiar tema">
       <span id="themeIcon">☀️</span>
       <span id="themeLabel" class="nav-theme-label">Modo claro</span>
     </button>
   </div>
 </nav>
 
-<button id="navBubble" class="nav-bubble" onclick="toggleNavBubble()" aria-label="Menú" aria-expanded="false">
+<button id="navBubble" class="nav-bubble" onclick="alternarMenuBurbuja()" aria-label="Menú" aria-expanded="false">
   <span class="nav-bubble-inner">🏛️</span>
   <div class="nav-bubble-menu" id="navBubbleMenu" role="menu">
-    <a href="#etym" class="bubble-link" role="menuitem" onclick="closeBubbleMenu()">Origen</a>
-    <a href="#timeline" class="bubble-link" role="menuitem" onclick="closeBubbleMenu()">Historia</a>
-    <a href="#hypo" class="bubble-link" role="menuitem" onclick="closeBubbleMenu()">Hipótesis</a>
-    <a href="#oracle" class="bubble-link" role="menuitem" onclick="closeBubbleMenu()">Oráculo</a>
-    <a href="#geo" class="bubble-link" role="menuitem" onclick="closeBubbleMenu()">Geografía</a>
-    <a href="#diaspora" class="bubble-link" role="menuitem" onclick="closeBubbleMenu()">Diáspora</a>
-    <a href="#heraldry" class="bubble-link" role="menuitem" onclick="closeBubbleMenu()">Heráldica</a>
-    <a href="#linguis" class="bubble-link" role="menuitem" onclick="closeBubbleMenu()">Lingüística</a>
-    <a href="#variants" class="bubble-link" role="menuitem" onclick="closeBubbleMenu()">Variantes</a>
-    <a href="#notables" class="bubble-link" role="menuitem" onclick="closeBubbleMenu()">Notables</a>
-    <a href="#closing" class="bubble-link" role="menuitem" onclick="closeBubbleMenu()">Cierre</a>
-    <a href="#sources" class="bubble-link" role="menuitem" onclick="closeBubbleMenu()">Fuentes</a>
+    <a href="#etym" class="bubble-link" role="menuitem" onclick="cerrarMenuBurbuja()">Origen</a>
+    <a href="#timeline" class="bubble-link" role="menuitem" onclick="cerrarMenuBurbuja()">Historia</a>
+    <a href="#hypo" class="bubble-link" role="menuitem" onclick="cerrarMenuBurbuja()">Hipótesis</a>
+    <a href="#oracle" class="bubble-link" role="menuitem" onclick="cerrarMenuBurbuja()">Oráculo</a>
+    <a href="#geo" class="bubble-link" role="menuitem" onclick="cerrarMenuBurbuja()">Geografía</a>
+    <a href="#diaspora" class="bubble-link" role="menuitem" onclick="cerrarMenuBurbuja()">Diáspora</a>
+    <a href="#heraldry" class="bubble-link" role="menuitem" onclick="cerrarMenuBurbuja()">Heráldica</a>
+    <a href="#linguis" class="bubble-link" role="menuitem" onclick="cerrarMenuBurbuja()">Lingüística</a>
+    <a href="#variants" class="bubble-link" role="menuitem" onclick="cerrarMenuBurbuja()">Variantes</a>
+    <a href="#notables" class="bubble-link" role="menuitem" onclick="cerrarMenuBurbuja()">Notables</a>
+    <a href="#closing" class="bubble-link" role="menuitem" onclick="cerrarMenuBurbuja()">Cierre</a>
+    <a href="#comentarios" class="bubble-link" role="menuitem" onclick="cerrarMenuBurbuja()">Comunidad</a>
+    <a href="#sources" class="bubble-link" role="menuitem" onclick="cerrarMenuBurbuja()">Fuentes</a>
   </div>
 </button>
 
 <!-- BOTÓN FLOTANTE VOLVER ARRIBA -->
-<button id="backToTopFab" class="back-to-top-fab" onclick="scrollToTop()" aria-label="Volver al inicio">
+<button id="backToTopFab" class="back-to-top-fab" onclick="desplazarAlInicio()" aria-label="Volver al inicio">
   <span class="back-to-top-fab-inner">
     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M7 14L12 9L17 14" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -2554,7 +2657,7 @@ footer {
 <div class="section-divider"></div>
 
 <!-- IMAGEN 1: Costa de Calabria (Imagen_2.webp) -->
-<div class="img-banner" onclick="handleBannerClick(this, event)" id="banner1">
+<div class="img-banner" onclick="manejarClicBanner(this, event)" id="banner1">
   <img src="imagenes/Imagen_2.webp" alt="Costa de Calabria al atardecer, la cuna del apellido Tripodi" loading="lazy" width="1920" height="720" decoding="async">
   <div class="img-caption">
     <strong>Calabria, sur de Italia</strong> — La costa del Estrecho de Mesina, donde la formación rocosa "a tre piedi" (tres pies) pudo haber dado nombre al linaje. La antigua <em>Rhegion</em> griega (hoy Reggio Calabria) fue el epicentro histórico del apellido Tripodi desde el siglo VIII a.C.
@@ -2570,19 +2673,19 @@ footer {
     <p class="section-lead">El apellido Tripodi es un fósil lingüístico <span class="tt" data-tt="Relativo a la Grecia antigua, su lengua y su cultura. Del griego Hellas (Ἑλλάás).">helénico</span> casi intacto. Dos <span class="tt" data-tt="Unidad mínima de significado en lingüística; elemento que no puede dividirse sin perder significado. Por ejemplo, tri- o -podi.">morfemas</span> griegos que han sobrevivido más de 25 siglos sin apenas alterarse.</p>
     <div class="etym-breakdown">
       <div class="etym-part">
-        <div class="etym-greek">ΤΡΙ<button class="audio-btn" onclick="playAudio('audio/tri.mp3')" title="Escuchar pronunciación en griego" aria-label="Reproducir pronunciación de ΤΡΙ"><svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg></button></div>
+        <div class="etym-greek">ΤΡΙ<button class="audio-btn" onclick="reproducirAudio('audio/tri.mp3')" title="Escuchar pronunciación en griego" aria-label="Reproducir pronunciación de ΤΡΙ"><svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg></button></div>
         <div class="etym-meaning">Prefijo griego</div>
         <div class="etym-desc">Del griego <em>treis</em> (τρεῖς): tres. Prefijo numérico presente en toda la familia lingüística indoeuropea: tri-, tres, three.</div>
       </div>
       <div class="etym-plus">+</div>
       <div class="etym-part">
-        <div class="etym-greek">ΠΟΔΙ<button class="audio-btn" onclick="playAudio('audio/podi.mp3')" title="Escuchar pronunciación en griego" aria-label="Reproducir pronunciación de ΠΟΔΙ"><svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg></button></div>
+        <div class="etym-greek">ΠΟΔΙ<button class="audio-btn" onclick="reproducirAudio('audio/podi.mp3')" title="Escuchar pronunciación en griego" aria-label="Reproducir pronunciación de ΠΟΔΙ"><svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg></button></div>
         <div class="etym-meaning">Sustantivo griego</div>
         <div class="etym-desc">Del griego <em>pous / podos</em> (πούς / ποδός): pie, pata. La misma raíz de <em>podología</em>, <em>podio</em> y el latín <em>pes/pedis</em>.</div>
       </div>
       <div class="etym-plus">=</div>
       <div class="etym-part etym-result">
-        <div class="etym-greek">ΤΡΙΠΟΔΙ<button class="audio-btn" onclick="playAudio('audio/tripodi.mp3')" title="Escuchar pronunciación en griego" aria-label="Reproducir pronunciación de ΤΡΙΠΟΔΙ" style="color:#fff;"><svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg></button></div>
+        <div class="etym-greek">ΤΡΙΠΟΔΙ<button class="audio-btn" onclick="reproducirAudio('audio/tripodi.mp3')" title="Escuchar pronunciación en griego" aria-label="Reproducir pronunciación de ΤΡΙΠΟΔΙ" style="color:#fff;"><svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg></button></div>
         <div class="etym-meaning">Trípode · Tres pies</div>
         <div class="etym-desc">Objeto que se sostiene sobre tres patas. Símbolo de equilibrio, estabilidad y poder sagrado en el mundo greco-romano.</div>
       </div>
@@ -2611,9 +2714,9 @@ footer {
           <div class="tl-text">La palabra <em>ti-ri-po-de</em> (trípode) aparece en las tablillas de arcilla en <span class="tt" data-tt="Sistema de escritura silábico micénico (c. 1500–1200 a.C.), el más antiguo en lengua griega conocido. Descifrado en 1952 por Michael Ventris.">Lineal B</span>. Los trípodes ya son objetos de valor: premios, ofrendas y activos de palacio. El apellido aún no existe, pero su raíz está documentada 3.500 años atrás.</div>
           <div class="img-gallery-strip">
             <img class="gallery-thumb" loading="lazy" decoding="async" src="imagenes/thumbs/Lions-Gate-Mycenae.webp" alt="Puerta de los Leones de Micenas" width="110" height="75"
-              onclick="openLightbox(this.src,'<strong>Puerta de los Leones de Micenas</strong> — La entrada monumental de la ciudadela de Micenas (c. 1250 a.C.), construida con grandes bloques de piedra y coronada por el relieve de dos leones enfrentados.','https://es.wikipedia.org/wiki/Micenas#/media/Archivo:Lions-Gate-Mycenae.jpg')">
+              onclick="abrirVisorImagen(this.src,'<strong>Puerta de los Leones de Micenas</strong> — La entrada monumental de la ciudadela de Micenas (c. 1250 a.C.), construida con grandes bloques de piedra y coronada por el relieve de dos leones enfrentados.','https://es.wikipedia.org/wiki/Micenas#/media/Archivo:Lions-Gate-Mycenae.jpg')">
             <img class="gallery-thumb" loading="lazy" decoding="async" src="imagenes/thumbs/Linear_B_(Mycenaean_Greek)_NAMA_Tablette_7671.webp" alt="Tablilla micénica Lineal B NAMA 7671" width="110" height="75"
-              onclick="openLightbox(this.src,'<strong>Tablilla micénica NAMA 7671 en Lineal B</strong> — Tablilla de contabilidad del palacio de Micenas. El silabograma <em>ti-ri-po-de</em> es la primera evidencia escrita de la raíz del apellido Tripodi.','https://es.wikipedia.org/wiki/Micenas#/media/Archivo:Linear_B_(Mycenaean_Greek)_NAMA_Tablette_7671.jpg')">
+              onclick="abrirVisorImagen(this.src,'<strong>Tablilla micénica NAMA 7671 en Lineal B</strong> — Tablilla de contabilidad del palacio de Micenas. El silabograma <em>ti-ri-po-de</em> es la primera evidencia escrita de la raíz del apellido Tripodi.','https://es.wikipedia.org/wiki/Micenas#/media/Archivo:Linear_B_(Mycenaean_Greek)_NAMA_Tablette_7671.jpg')">
           </div>
           <div class="tl-thumb-caption">Tablilla micénica con escritura Lineal B · toca para ampliar · <a href="https://es.wikipedia.org/wiki/Micenas" target="_blank" rel="noopener" style="color:var(--aegean-lt);">Micenas – Wikipedia</a></div>
         </div>
@@ -2627,9 +2730,9 @@ footer {
           <div class="tl-text">El poeta Hesíodo compite en los juegos fúnebres de Anfidamante, rey de Calcis. Su victoria con un himno le vale un <strong>trípode orecchiuto</strong> (de orejas/asas), que dedica a las Musas del Helicón. Este episodio, narrado en <em>Las obras y los días</em> (vv. 650–662), es uno de los primeros testimonios literarios del trípode como premio.</div>
           <div class="img-gallery-strip">
             <img class="gallery-thumb" loading="lazy" decoding="async" src="https://m.media-amazon.com/images/S/compressed.photo.goodreads.com/books/1677817771i/29462339.jpg" alt="Los trabajos y los días de Hesíodo" width="110" height="75"
-              onclick="openLightbox(this.src,'<strong>Los trabajos y los días</strong> de Hesíodo — La obra donde el poeta narra cómo ganó un trípode «de orejas» al cantar un himno.')">
+              onclick="abrirVisorImagen(this.src,'<strong>Los trabajos y los días</strong> de Hesíodo — La obra donde el poeta narra cómo ganó un trípode «de orejas» al cantar un himno.')">
             <img class="gallery-thumb" loading="lazy" decoding="async" src="imagenes/thumbs/Hesiodo_gana_tripode.webp" alt="Hesíodo gana el trípode" width="110" height="75"
-              onclick="openLightbox(this.src,'<strong>Hesíodo gana el trípode</strong> — Representación de Hesíodo recibiendo su trípode orecchiuto (de orejas/asas) como premio poético, c. 700 a.C.')">
+              onclick="abrirVisorImagen(this.src,'<strong>Hesíodo gana el trípode</strong> — Representación de Hesíodo recibiendo su trípode orecchiuto (de orejas/asas) como premio poético, c. 700 a.C.')">
           </div>
           <div class="tl-thumb-caption">Portada e ilustración de Hesíodo · toca para ampliar</div>
         </div>
@@ -2643,15 +2746,15 @@ footer {
           <div class="tl-text">El <span class="tt" data-tt="Centro de consulta profética consagrado al dios Apolo en Delfos (Grecia). Funcionó desde el s. VIII a.C. hasta el s. IV d.C.">Oráculo</span> de Delfos alcanza su auge. La <span class="tt" data-tt="Sacerdotisa del dios Apolo en Delfos. Inhalaba vapores volcánicos y entraba en trance para pronunciar los oráculos.">Pitia</span> profetiza sentada sobre un trípode dorado, inhalando vapores de <span class="tt" data-tt="Gas inorgánico (C₂H₄) que emerge de fracturas geológicas volcánicas. En Delfos induce estados alterados de consciencia.">etileno</span>. El trípode se vuelve el símbolo de <span class="tt" data-tt="Dios griego del Sol, la música, la poesía y la profecía. El trípode era su atributo sagrado.">Apolo</span>. El mitema de Hércules robando el trípode a Apolo aparece en cerámicas del siglo VI a.C.</div>
           <div class="img-gallery-strip">
             <img class="gallery-thumb" loading="lazy" decoding="async" src="imagenes/thumbs/Imagen_4.webp" alt="La Pitia en el trípode del Oráculo de Delfos" width="110" height="75"
-              onclick="openLightbox(this.src,'<strong>La Pitia sobre el trípode</strong> — La sacerdotisa de Apolo en el templo de Delfos, inhalando los vapores de etileno de la fisura geológica bajo sus pies.')">
+              onclick="abrirVisorImagen(this.src,'<strong>La Pitia sobre el trípode</strong> — La sacerdotisa de Apolo en el templo de Delfos, inhalando los vapores de etileno de la fisura geológica bajo sus pies.')">
             <img class="gallery-thumb" loading="lazy" decoding="async" src="imagenes/thumbs/Hydria_Delphic_tripod_MNA_Inv10913.webp" alt="Hidria con escena délfica del trípode" width="110" height="75"
-              onclick="openLightbox(this.src,'<strong>Hidria con escena délfica del trípode</strong> — Cerámica ática de figuras negras que muestra a Heracles y Apolo disputando el trípode sagrado.','https://es.wikipedia.org/wiki/Tr%C3%ADpode_%28mueble%29#/media/Archivo:Hydria_Delphic_tripod_MNA_Inv10913.jpg')">
+              onclick="abrirVisorImagen(this.src,'<strong>Hidria con escena délfica del trípode</strong> — Cerámica ática de figuras negras que muestra a Heracles y Apolo disputando el trípode sagrado.','https://es.wikipedia.org/wiki/Tr%C3%ADpode_%28mueble%29#/media/Archivo:Hydria_Delphic_tripod_MNA_Inv10913.jpg')">
             <img class="gallery-thumb" loading="lazy" decoding="async" src="imagenes/thumbs/Herakles_tripod_Louvre_F341.webp" alt="Heracles y Apolo disputan el trípode délfico, Louvre" width="110" height="75"
-              onclick="openLightbox(this.src,'<strong>Disputa de Heracles y Apolo por el trípode délfico</strong> — Oinochoe ático de figuras negras, c. 520 a.C. Museo del Louvre, París.','https://es.wikipedia.org/wiki/Archivo:Herakles_tripod_Louvre_F341.jpg')">
+              onclick="abrirVisorImagen(this.src,'<strong>Disputa de Heracles y Apolo por el trípode délfico</strong> — Oinochoe ático de figuras negras, c. 520 a.C. Museo del Louvre, París.','https://es.wikipedia.org/wiki/Archivo:Herakles_tripod_Louvre_F341.jpg')">
             <img class="gallery-thumb" loading="lazy" decoding="async" src="imagenes/thumbs/Ancient_Greek_tripod_-_KAMA.webp" alt="Trípode griego período geométrico" width="110" height="75"
-              onclick="openLightbox(this.src,'<strong>Trípode griego del período geométrico</strong>, c. 950–900 a.C. Museo Arqueológico del Cerámico, Atenas.','https://es.wikipedia.org/wiki/Tr%C3%ADpode_%28mueble%29#/media/Archivo:Ancient_Greek_tripod_-_KAMA.jpg')">
+              onclick="abrirVisorImagen(this.src,'<strong>Trípode griego del período geométrico</strong>, c. 950–900 a.C. Museo Arqueológico del Cerámico, Atenas.','https://es.wikipedia.org/wiki/Tr%C3%ADpode_%28mueble%29#/media/Archivo:Ancient_Greek_tripod_-_KAMA.jpg')">
             <img class="gallery-thumb" loading="lazy" decoding="async" src="imagenes/thumbs/Attic_geometric_tripod_Antikensammlung_Berlin_2.webp" alt="Trípode de cerámica protoática" width="110" height="75"
-              onclick="openLightbox(this.src,'<strong>Trípode de cerámica protoática</strong>, c. 850 a.C. Antikensammlung, Berlín.','https://es.wikipedia.org/wiki/Tr%C3%ADpode_%28mueble%29#/media/Archivo:Attic_geometric_tripod_Antikensammlung_Berlin_2.jpg')">
+              onclick="abrirVisorImagen(this.src,'<strong>Trípode de cerámica protoática</strong>, c. 850 a.C. Antikensammlung, Berlín.','https://es.wikipedia.org/wiki/Tr%C3%ADpode_%28mueble%29#/media/Archivo:Attic_geometric_tripod_Antikensammlung_Berlin_2.jpg')">
           </div>
           <div class="tl-thumb-caption">Trípodes griegos y escenas délficas · toca para ampliar · <a href="https://es.wikipedia.org/wiki/Tr%C3%ADpode_%28mueble%29" target="_blank" rel="noopener" style="color:var(--aegean-lt);">Trípode – Wikipedia</a></div>
         </div>
@@ -2665,11 +2768,11 @@ footer {
           <div class="tl-text">Las ciudades griegas funden un trípode de oro con el botín persa. Se sostiene sobre la Columna Serpentina de bronce con los nombres inscritos de las 31 <span class="tt" data-tt="Ciudad-Estado autónoma de la Grecia antigua. Cada polis tenía sus propias leyes y gobierno.">polis</span> combatientes. Constantino lo trasladó a Constantinopla, donde hoy permanece en el Hipódromo de Estambul.</div>
           <div class="img-gallery-strip">
             <img class="gallery-thumb" loading="lazy" decoding="async" src="imagenes/thumbs/Snake_column_Hippodrome_Constantinople_2007.webp" alt="Columna de las Serpientes, Hipódromo de Constantinopla" width="110" height="75"
-              onclick="openLightbox(this.src,'<strong>La Columna de las Serpientes</strong> — El fuste de bronce del Trípode de Platea en el antiguo Hipódromo de Constantinopla, hoy Estambul. Trasladado en el 324 d.C.','https://es.wikipedia.org/wiki/Columna_de_las_Serpientes#/media/Archivo:Snake_column_Hippodrome_Constantinople_2007.jpg')">
+              onclick="abrirVisorImagen(this.src,'<strong>La Columna de las Serpientes</strong> — El fuste de bronce del Trípode de Platea en el antiguo Hipódromo de Constantinopla, hoy Estambul. Trasladado en el 324 d.C.','https://es.wikipedia.org/wiki/Columna_de_las_Serpientes#/media/Archivo:Snake_column_Hippodrome_Constantinople_2007.jpg')">
             <img class="gallery-thumb" loading="lazy" decoding="async" src="https://static.wixstatic.com/media/37d0c7_8cfdd0fbc88a4d3c9f808d78d403d9b2~mv2.jpg/v1/fill/w_348,h_836,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/37d0c7_8cfdd0fbc88a4d3c9f808d78d403d9b2~mv2.jpg" alt="Trípode de Platea reconstrucción 1886" width="110" height="75"
-              onclick="openLightbox(this.src,'<strong>Trípode de Platea</strong> — Reconstrucción por Ernst Fabricius (1886). El trípode original sostenía un caldero de oro fundido.')">
+              onclick="abrirVisorImagen(this.src,'<strong>Trípode de Platea</strong> — Reconstrucción por Ernst Fabricius (1886). El trípode original sostenía un caldero de oro fundido.')">
             <img class="gallery-thumb" loading="lazy" decoding="async" src="https://preview.redd.it/the-serpent-column-plataean-tripod-of-constantinople-in-479-v0-h207u4a4ppr61.png?auto=webp&s=205c229775bcf76ed001870da78634935a83897a" alt="Columna Serpentina a través del tiempo" width="110" height="75"
-              onclick="openLightbox(this.src,'<strong>La Columna Serpentina / Trípode de Platea</strong> a través de los siglos.','https://www.thebyzantinelegacy.com/serpent-column')">
+              onclick="abrirVisorImagen(this.src,'<strong>La Columna Serpentina / Trípode de Platea</strong> a través de los siglos.','https://www.thebyzantinelegacy.com/serpent-column')">
           </div>
           <div class="tl-thumb-caption">Columna Serpentina · toca para ampliar · <a href="https://www.thebyzantinelegacy.com/serpent-column" target="_blank" rel="noopener" style="color:var(--aegean-lt);">Trípode de Platea</a></div>
         </div>
@@ -2683,11 +2786,11 @@ footer {
           <div class="tl-text">Lisícrates, <span class="tt" data-tt="Ciudadano rico que en la Atenas clásica financiaba un coro de teatro como servicio cívico. El trípode era el premio si su coro ganaba.">corego</span> ateniense victorioso, erige un monumento para exhibir su trípode-premio. La <em>odos ton tripodon</em> (Calle de los Trípodes) de Atenas se llena de estos monumentos. El de Lisícrates sobrevive hasta hoy.</div>
           <div class="img-gallery-strip">
             <img class="gallery-thumb" loading="lazy" decoding="async" src="https://es.greekreporter.com/wp-content/uploads/sites/2/2021/10/Tripodon-ahora-e1633724247403.jpg" alt="Calle Tripodon hoy con Monumento a Lisícrates" width="110" height="75"
-              onclick="openLightbox(this.src,'<strong>Calle Tripodon hoy</strong> con el Monumento a Lisícrates a la izquierda.')">
+              onclick="abrirVisorImagen(this.src,'<strong>Calle Tripodon hoy</strong> con el Monumento a Lisícrates a la izquierda.')">
             <img class="gallery-thumb" loading="lazy" decoding="async" src="https://es.greekreporter.com/wp-content/uploads/sites/2/2021/10/monumento-plaka.jpg" alt="Monumento de Lisícrates en 1900" width="110" height="75"
-              onclick="openLightbox(this.src,'<strong>El Monumento de Lisícrates</strong> tal como se veía en el año 1900.')">
+              onclick="abrirVisorImagen(this.src,'<strong>El Monumento de Lisícrates</strong> tal como se veía en el año 1900.')">
             <img class="gallery-thumb" loading="lazy" decoding="async" src="https://es.greekreporter.com/wp-content/uploads/sites/2/2021/10/monumento-plaka-tiempo.jpg" alt="Monumento de Lisícrates, litografía 1789" width="110" height="75"
-              onclick="openLightbox(this.src,'<strong>El Monumento de Lisícrates</strong> anexo al monasterio de los capuchinos en 1789.')">
+              onclick="abrirVisorImagen(this.src,'<strong>El Monumento de Lisícrates</strong> anexo al monasterio de los capuchinos en 1789.')">
           </div>
           <div class="tl-thumb-caption">Monumento de Lisícrates y la Calle de los Trípodes · toca para ampliar</div>
         </div>
@@ -2701,7 +2804,7 @@ footer {
           <div class="tl-text">Colonos griegos fundan ciudades en las costas de Calabria, Campania y Sicilia. Con ellos viajan la lengua y las deidades. El término <em>tripodion</em> comienza a usarse como apodo familiar en centros como <em>Rhegion</em>.</div>
           <div class="img-gallery-strip">
             <img class="gallery-thumb" loading="lazy" decoding="async" src="imagenes/thumbs/Migración_grecia_italia.webp" alt="Migración griega a Italia" width="110" height="75"
-              onclick="openLightbox(this.src,'<strong>Migración griega al sur de Italia</strong> — Las oleadas colonizadoras que fundaron la Magna Grecia, origen del apellido Tripodi.')">
+              onclick="abrirVisorImagen(this.src,'<strong>Migración griega al sur de Italia</strong> — Las oleadas colonizadoras que fundaron la Magna Grecia, origen del apellido Tripodi.')">
           </div>
           <div class="tl-thumb-caption">Migración griega a Italia · toca para ampliar</div>
         </div>
@@ -2715,7 +2818,7 @@ footer {
           <div class="tl-text">El Imperio Bizantino gobierna el sur de Italia. El griego vuelve a ser lengua oficial por 5 siglos. Monjes <span class="tt" data-tt="Monjes de rito oriental que siguen la regla de San Basilio. Preservaron la lengua griega en el sur de Italia.">basilianos</span> fundan monasterios. Esta herencia bizantina es clave para la continuidad del apellido Tripodi sin latinización completa.</div>
           <div class="img-gallery-strip">
             <img class="gallery-thumb" loading="lazy" decoding="async" src="imagenes/thumbs/Reconquista_calabria_y_sicilia_imperio_bizantino.webp" alt="Reconquista de Calabria por Bizancio" width="110" height="75"
-              onclick="openLightbox(this.src,'<strong>Reconquista de Calabria y Sicilia por el Imperio Bizantino</strong> (535–1071 d.C.) — Consolidó apellidos helénicos como Tripodi en Calabria.')">
+              onclick="abrirVisorImagen(this.src,'<strong>Reconquista de Calabria y Sicilia por el Imperio Bizantino</strong> (535–1071 d.C.) — Consolidó apellidos helénicos como Tripodi en Calabria.')">
           </div>
           <div class="tl-thumb-caption">Imperio Bizantino en Calabria · toca para ampliar</div>
         </div>
@@ -2738,7 +2841,7 @@ footer {
           <div class="tl-text">La emigración masiva del <em>Mezzogiorno</em> lleva a miles de portadores del apellido hacia Buenos Aires, Rosario, Nueva York y Nueva Jersey. En Argentina se convierte en uno de los apellidos de origen calabrés más característicos.</div>
           <div class="img-gallery-strip">
             <img class="gallery-thumb" loading="lazy" decoding="async" src="imagenes/thumbs/Diaspora_italiana.webp" alt="Diáspora italiana" width="110" height="75"
-              onclick="openLightbox(this.src,'<strong>La gran diáspora italiana</strong> — Emigración masiva entre 1880 y 1940.','https://es.wikipedia.org/wiki/Emigraci%C3%B3n_italiana')">
+              onclick="abrirVisorImagen(this.src,'<strong>La gran diáspora italiana</strong> — Emigración masiva entre 1880 y 1940.','https://es.wikipedia.org/wiki/Emigraci%C3%B3n_italiana')">
           </div>
           <div class="tl-thumb-caption">Mapa de la diáspora italiana · toca para ampliar · <a href="https://es.wikipedia.org/wiki/Emigraci%C3%B3n_italiana" target="_blank" rel="noopener" style="color:var(--aegean-lt);">Emigración italiana – Wikipedia</a></div>
         </div>
@@ -2752,7 +2855,7 @@ footer {
           <div class="tl-text">El apellido está presente en más de 20 países. Italia concentra la mayor cantidad, seguida de Argentina, Estados Unidos y Brasil.</div>
           <div class="img-gallery-strip">
             <img class="gallery-thumb" loading="lazy" decoding="async" src="imagenes/thumbs/tripodi_mundo.webp" alt="Distribución de los Tripodi en el mundo" width="110" height="75"
-              onclick="openLightbox(this.src,'<strong>Los Tripodi en el mundo hoy</strong> — Distribución geográfica en el siglo XXI.')">
+              onclick="abrirVisorImagen(this.src,'<strong>Los Tripodi en el mundo hoy</strong> — Distribución geográfica en el siglo XXI.')">
           </div>
           <div class="tl-thumb-caption">Distribución global del apellido · toca para ampliar</div>
         </div>
@@ -2782,7 +2885,7 @@ footer {
     </div>
 
     <div class="hypo-grid">
-      <div class="hypo-card" onclick="openHypoModal(this)">
+      <div class="hypo-card" onclick="abrirModalHipotesis(this)">
         <div class="hypo-num">01</div>
         <div class="hypo-header">
           <div class="hypo-icon">⚒️</div>
@@ -2793,7 +2896,7 @@ footer {
         </div>
         <div class="hypo-bar-wrap"><div class="hypo-bar-label"><span>Probabilidad histórica</span><span style="color:var(--gold)">45%</span></div><div class="hypo-bar"><div class="hypo-bar-fill" style="--fill:45%"></div></div></div>
         <div class="hypo-thumb-wrap">
-          <img class="hypo-thumb" loading="lazy" decoding="async" src="imagenes/thumbs/Imagen_3.webp" alt="Trípode de bronce griego" width="270" height="100" onclick="event.stopPropagation();openLightbox('imagenes/Imagen_3.webp','<strong>El trípode artesanal griego</strong> — Caldero de bronce sobre tres patas, el objeto que dio apellido a los primeros artesanos de la Magna Grecia.')">
+          <img class="hypo-thumb" loading="lazy" decoding="async" src="imagenes/thumbs/Imagen_3.webp" alt="Trípode de bronce griego" width="270" height="100" onclick="event.stopPropagation();abrirVisorImagen('imagenes/Imagen_3.webp','<strong>El trípode artesanal griego</strong> — Caldero de bronce sobre tres patas, el objeto que dio apellido a los primeros artesanos de la Magna Grecia.')">
           <div class="hypo-thumb-label">El objeto · toca para ampliar</div>
         </div>
         <div class="hypo-chevron"><svg width="14" height="8" viewBox="0 0 14 8" fill="none"><path d="M1 1l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
@@ -2805,7 +2908,7 @@ footer {
         </div>
       </div>
 
-      <div class="hypo-card" onclick="openHypoModal(this)">
+      <div class="hypo-card" onclick="abrirModalHipotesis(this)">
         <div class="hypo-num">02</div>
         <div class="hypo-header">
           <div class="hypo-icon">⛰️</div>
@@ -2816,7 +2919,7 @@ footer {
         </div>
         <div class="hypo-bar-wrap"><div class="hypo-bar-label"><span>Probabilidad histórica</span><span style="color:var(--gold)">35%</span></div><div class="hypo-bar"><div class="hypo-bar-fill" style="--fill:35%"></div></div></div>
         <div class="hypo-thumb-wrap">
-          <img class="hypo-thumb" loading="lazy" decoding="async" src="imagenes/thumbs/Imagen_2.webp" alt="Costa de Calabria con formación rocosa" width="270" height="100" onclick="event.stopPropagation();openLightbox('imagenes/Imagen_2.webp','<strong>Calabria, sur de Italia</strong> — La formación rocosa «a tre piedi» sobre el mar, que ilustra el tipo de topónimo natural que pudo dar origen al apellido Tripodi.')">
+          <img class="hypo-thumb" loading="lazy" decoding="async" src="imagenes/thumbs/Imagen_2.webp" alt="Costa de Calabria con formación rocosa" width="270" height="100" onclick="event.stopPropagation();abrirVisorImagen('imagenes/Imagen_2.webp','<strong>Calabria, sur de Italia</strong> — La formación rocosa «a tre piedi» sobre el mar, que ilustra el tipo de topónimo natural que pudo dar origen al apellido Tripodi.')">
           <div class="hypo-thumb-label">El paisaje · toca para ampliar</div>
         </div>
         <div class="hypo-chevron"><svg width="14" height="8" viewBox="0 0 14 8" fill="none"><path d="M1 1l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
@@ -2828,7 +2931,7 @@ footer {
         </div>
       </div>
 
-      <div class="hypo-card" onclick="openHypoModal(this)">
+      <div class="hypo-card" onclick="abrirModalHipotesis(this)">
         <div class="hypo-num">03</div>
         <div class="hypo-header">
           <div class="hypo-icon">🔮</div>
@@ -2839,7 +2942,7 @@ footer {
         </div>
         <div class="hypo-bar-wrap"><div class="hypo-bar-label"><span>Probabilidad histórica</span><span style="color:var(--gold)">20%</span></div><div class="hypo-bar"><div class="hypo-bar-fill" style="--fill:20%"></div></div></div>
         <div class="hypo-thumb-wrap">
-          <img class="hypo-thumb" loading="lazy" decoding="async" src="imagenes/thumbs/Imagen_4.webp" alt="La Pitia sobre el trípode sagrado" width="270" height="100" onclick="event.stopPropagation();openLightbox('imagenes/Imagen_4.webp','<strong>La Pitia sobre el trípode</strong> — La sacerdotisa de Apolo en éxtasis profético. Para los devotos del culto apolíneo, llevar el nombre «Tripodi» era un homenaje al dios.')">
+          <img class="hypo-thumb" loading="lazy" decoding="async" src="imagenes/thumbs/Imagen_4.webp" alt="La Pitia sobre el trípode sagrado" width="270" height="100" onclick="event.stopPropagation();abrirVisorImagen('imagenes/Imagen_4.webp','<strong>La Pitia sobre el trípode</strong> — La sacerdotisa de Apolo en éxtasis profético. Para los devotos del culto apolíneo, llevar el nombre «Tripodi» era un homenaje al dios.')">
           <div class="hypo-thumb-label">El oráculo · toca para ampliar</div>
         </div>
         <div class="hypo-chevron"><svg width="14" height="8" viewBox="0 0 14 8" fill="none"><path d="M1 1l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
@@ -2857,7 +2960,7 @@ footer {
 <div class="section-divider"></div>
 
 <!-- IMAGEN 2: Tripode de bronce (Imagen_3.webp) -->
-<div class="img-banner" onclick="handleBannerClick(this, event)" id="banner2">
+<div class="img-banner" onclick="manejarClicBanner(this, event)" id="banner2">
   <img src="imagenes/Imagen_3.webp" alt="Trípode de bronce griego con decoración de grecas, sobre el fuego"
     loading="lazy" decoding="async" width="1920" height="720">
   <div class="img-caption">
@@ -2888,7 +2991,7 @@ footer {
               alt="La Pitia en el trípode del Oráculo de Delfos, con sacerdotes transcribiendo sus profecías"
               style="max-height:340px;object-fit:cover;object-position:center top;cursor:pointer;" width="340"
               height="340"
-              onclick="openLightbox('imagenes/Imagen_4.webp','<strong>La Pitia sobre el trípode</strong> — La sacerdotisa de Apolo en el adyton del templo de Delfos, inhalando los vapores de etileno de la fisura geológica bajo sus pies. Los sacerdotes transcriben sus profecías en verso. El trípode era el nexo entre lo mortal y lo divino.')">
+              onclick="abrirVisorImagen('imagenes/Imagen_4.webp','<strong>La Pitia sobre el trípode</strong> — La sacerdotisa de Apolo en el adyton del templo de Delfos, inhalando los vapores de etileno de la fisura geológica bajo sus pies. Los sacerdotes transcriben sus profecías en verso. El trípode era el nexo entre lo mortal y lo divino.')">
             <div class="side-img-caption"><strong>La Pitia sobre el trípode</strong> — La sacerdotisa de Apolo en el
               adyton del templo de Delfos, inhalando los vapores de etileno de la fisura geológica bajo sus pies. Los
               sacerdotes transcriben sus profecías en verso. El trípode era el nexo entre lo mortal y lo divino. <span
@@ -2948,7 +3051,7 @@ footer {
     <p class="section-lead fade-up">La distribución del apellido en Italia es una huella casi perfecta de la antigua Magna Grecia: concentrado en el extremo sur, diluyéndose hacia el norte.</p>
     <div style="height: 2rem;"></div>
     
-    <div class="side-img-wrap fade-up" style="margin-bottom:2.5rem;cursor:pointer;" onclick="openLightbox('imagenes/Epicentro_calabres_y_su_irradiacion.webp','<strong>Epicentro calabrés e irradiación del apellido Tripodi</strong> — El apellido nació en la antigua <em>Rhegion</em> (hoy Reggio Calabria) y desde allí se expandió hacia Messina y Sicilia, el norte de Italia y finalmente a América con la diáspora. El mapa del portal Cognomix muestra la alta densidad en Reggio Calabria.')">
+    <div class="side-img-wrap fade-up" style="margin-bottom:2.5rem;cursor:pointer;" onclick="abrirVisorImagen('imagenes/Epicentro_calabres_y_su_irradiacion.webp','<strong>Epicentro calabrés e irradiación del apellido Tripodi</strong> — El apellido nació en la antigua <em>Rhegion</em> (hoy Reggio Calabria) y desde allí se expandió hacia Messina y Sicilia, el norte de Italia y finalmente a América con la diáspora. El mapa del portal Cognomix muestra la alta densidad en Reggio Calabria.')">
       <img src="imagenes/Epicentro_calabres_y_su_irradiacion.webp" alt="Mapa de distribución que muestra la densidad del apellido Tripodi en la provincia de Reggio Calabria" loading="lazy" decoding="async" width="1100" height="600" style="height: auto;">
       <div class="side-img-caption"><strong>Mapa de distribución del apellido en Italia</strong> — Densidad de familias Tripodi. Se observa una concentración absoluta en la punta de la bota italiana (Calabria) y en la vecina provincia de Messina (Sicilia). <span style="color:var(--gold);font-size:.65rem;">↗ toca para ampliar</span></div>
     </div>
@@ -2998,7 +3101,7 @@ footer {
           <div class="flow-era">1880–1910</div>
           <h3 class="flow-title">La partida desde Calabria</h3>
           <div class="flow-text">Familias de Reggio Calabria y Messina se embarcan en los puertos de Nápoles y Génova. Viajan en tercera clase de vapores transatlánticos huyendo de la crisis del sur italiano.</div>
-          <img class="flow-img-thumb" loading="lazy" decoding="async" src="imagenes/thumbs/Diaspora_italiana.webp" alt="Vapor de emigrantes italianos cruzando el Atlántico" width="110" height="80" onclick="openLightbox('imagenes/Diaspora_italiana.webp','<strong>Vapor de emigrantes italianos</strong> — Cruce transatlántico hacia el continente americano.')">
+          <img class="flow-img-thumb" loading="lazy" decoding="async" src="imagenes/thumbs/Diaspora_italiana.webp" alt="Vapor de emigrantes italianos cruzando el Atlántico" width="110" height="80" onclick="abrirVisorImagen('imagenes/Diaspora_italiana.webp','<strong>Vapor de emigrantes italianos</strong> — Cruce transatlántico hacia el continente americano.')">
         </div>
       </div>
 
@@ -3126,7 +3229,7 @@ footer {
         </h3>
         <div class="heraldry-block-grid">
           <div class="coat-of-arms-wrap">
-            <img class="coat-of-arms-img coat-img-clickable" src="imagenes/Tripodi_heraldica1.webp" alt="Escudo heráldico de la rama calabresa/siciliana del apellido Tripodi" loading="lazy" decoding="async" width="180" height="220" onclick="openLightbox(this.src,'<strong>Escudo de la rama Calabria/Sicilia</strong> — León rampante de oro sosteniendo un trípode de bronce sobre fondo de gules. El león simboliza fuerza y bravura; el trípode representa la estabilidad ancestral de la familia.')">
+            <img class="coat-of-arms-img coat-img-clickable" src="imagenes/Tripodi_heraldica1.webp" alt="Escudo heráldico de la rama calabresa/siciliana del apellido Tripodi" loading="lazy" decoding="async" width="180" height="220" onclick="abrirVisorImagen(this.src,'<strong>Escudo de la rama Calabria/Sicilia</strong> — León rampante de oro sosteniendo un trípode de bronce sobre fondo de gules. El león simboliza fuerza y bravura; el trípode representa la estabilidad ancestral de la familia.')">
             <div class="tl-thumb-caption">Blasón principal · Calabria</div>
           </div>
           <div>
@@ -3157,7 +3260,7 @@ footer {
         </h3>
         <div class="heraldry-block-grid">
           <div class="coat-of-arms-wrap">
-            <img class="coat-of-arms-img coat-img-clickable" src="imagenes/Tripodi_heraldica2.webp" alt="Escudo heráldico boloñés del apellido Tripodi" loading="lazy" decoding="async" width="180" height="220" onclick="openLightbox(this.src,'<strong>Escudo de la rama boloñesa</strong> — Escudo partido en diagonal con una rosa roja en la mitad superior de plata y una cruceta de plata sobre campo de gules en la inferior, con banda de oro atravesando.')">
+            <img class="coat-of-arms-img coat-img-clickable" src="imagenes/Tripodi_heraldica2.webp" alt="Escudo heráldico boloñés del apellido Tripodi" loading="lazy" decoding="async" width="180" height="220" onclick="abrirVisorImagen(this.src,'<strong>Escudo de la rama boloñesa</strong> — Escudo partido en diagonal con una rosa roja en la mitad superior de plata y una cruceta de plata sobre campo de gules en la inferior, con banda de oro atravesando.')">
             <div class="tl-thumb-caption">Blasón boloñés · Bolonia</div>
           </div>
           <div>
@@ -3237,6 +3340,99 @@ footer {
       <span>Investigación y desarrollo por <strong>Jorge O. Tripodi</strong></span>
       <span style="opacity:0.4;">·</span>
       <a href="https://jorgetripodi.netlify.app/" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:none;border-bottom:1px dashed rgba(201, 168, 76, 0.4);transition:color 0.2s, border-color 0.2s;" onmouseover="this.style.color='var(--gold-lt)';this.style.borderColor='var(--gold-lt)'" onmouseout="this.style.color='var(--gold)';this.style.borderColor='rgba(201, 168, 76, 0.4)'">Conoce mi portafolio profesional ↗</a>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- SECCIÓN DE TESTIMONIOS Y COMENTARIOS -->
+<section class="comentarios-section" id="comentarios">
+  <div class="section">
+    <p class="section-eyebrow fade-up">Comunidad y memoria</p>
+    <h2 class="section-title fade-up">Testimonios y aportes familiares</h2>
+    <p class="section-lead fade-up">Un espacio de encuentro para descendientes y estudiosos del linaje Tripodi en el mundo. Lee las vivencias compartidas o deja tu propia huella familiar.</p>
+
+    <!-- Muro de Testimonios Exhibidos -->
+    <div class="muro-testimonios-wrap">
+      <div id="muroTestimonios" class="muro-testimonios-grid">
+        <!-- Se cargan dinámicamente desde js/testimonios.js -->
+      </div>
+    </div>
+
+    <!-- Formulario Integrado con Selección de Destino -->
+    <div class="comentarios-form-container">
+      <h3 class="comentarios-form-titulo">Comparte tu mensaje o testimonio</h3>
+      <p class="comentarios-form-bajada">Elige si deseas enviar una consulta confidencial al autor o dejar tu huella en el muro público.</p>
+
+      <form action="https://formspree.io/f/xbjnodgq" method="POST" class="comentarios-form">
+        <!-- Selector de Destino (Privado vs Público) -->
+        <div class="form-destino-wrapper">
+          <label class="destino-opcion">
+            <input type="radio" name="tipoDestino" value="privado" checked>
+            <span class="destino-tarjeta">
+              <span class="destino-icono">🔒</span>
+              <span class="destino-texto">
+                <strong>Mensaje privado al autor</strong>
+                <small>Llega directamente a su casilla de correo</small>
+              </span>
+            </span>
+          </label>
+
+          <label class="destino-opcion">
+            <input type="radio" name="tipoDestino" value="publico">
+            <span class="destino-tarjeta">
+              <span class="destino-icono">🌐</span>
+              <span class="destino-texto">
+                <strong>Publicar en este muro</strong>
+                <small>Visible a los visitantes tras revisión</small>
+              </span>
+            </span>
+          </label>
+        </div>
+
+        <!-- Calificación con estrellas doradas -->
+        <div class="calificacion-box">
+          <span class="calificacion-etiqueta">¿Cómo valoras esta investigación?</span>
+          <div class="stars-wrapper" role="radiogroup" aria-label="Calificación de 1 a 5 estrellas">
+            <button type="button" class="star-btn active" data-rating="1" aria-label="1 estrella">★</button>
+            <button type="button" class="star-btn active" data-rating="2" aria-label="2 estrellas">★</button>
+            <button type="button" class="star-btn active" data-rating="3" aria-label="3 estrellas">★</button>
+            <button type="button" class="star-btn active" data-rating="4" aria-label="4 estrellas">★</button>
+            <button type="button" class="star-btn active" data-rating="5" aria-label="5 estrellas">★</button>
+          </div>
+          <input type="hidden" name="calificacion" id="calificacionSeleccionada" value="5">
+        </div>
+
+        <div class="form-fila-doble">
+          <div class="form-group">
+            <label for="nombre" class="form-label">Nombre y Apellido <span class="required">*</span></label>
+            <input type="text" id="nombre" name="nombre" class="form-input" placeholder="Ej: Alessandro Tripodi" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="pais" class="form-label">Ciudad y País de residencia</label>
+            <input type="text" id="pais" name="pais" class="form-input" placeholder="Ej: Reggio Calabria / Buenos Aires">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="email" class="form-label">Correo electrónico (privado, no se publica)</label>
+          <input type="email" id="email" name="email" class="form-input" placeholder="correo@ejemplo.com">
+        </div>
+
+        <div class="form-group">
+          <label for="comentario" class="form-label">Mensaje o historia familiar <span class="required">*</span></label>
+          <textarea id="comentario" name="comentario" class="form-textarea" placeholder="Relata tu testimonio familiar, orígenes de tus antepasados o mensaje al autor..." required></textarea>
+        </div>
+
+        <div id="formFeedback" class="form-feedback" aria-live="polite"></div>
+        
+        <div class="form-pie-acciones">
+          <button type="submit" class="form-submit">Enviar</button>
+          <button type="button" id="botonModerarComentarios" class="btn-moderacion-discreto" title="Panel de moderación para el autor">⚙️ Moderar</button>
+        </div>
+      </form>
     </div>
   </div>
 </section>
@@ -3398,9 +3594,9 @@ footer {
 </footer>
 
 <!-- VENTANA MODAL DE HIPÓTESIS (ESCRITORIO) -->
-<div id="hypoModal" class="hypo-modal-overlay" onclick="closeHypoModal(event)">
+<div id="hypoModal" class="hypo-modal-overlay" onclick="cerrarModalHipotesis(event)">
   <div class="hypo-modal-inner" onclick="event.stopPropagation()">
-    <button class="hypo-modal-close" onclick="closeHypoModal()">✕</button>
+    <button class="hypo-modal-close" onclick="cerrarModalHipotesis()">✕</button>
     <div class="hypo-modal-num" id="hypoModalNum"></div>
     <div class="hypo-modal-layout">
       <div class="hypo-modal-left">
@@ -3426,11 +3622,11 @@ footer {
 </div>
 
 <!-- VENTANA DE VISUALIZACIÓN (LIGHTBOX) -->
-<div id="lightbox" class="lightbox-overlay" onclick="closeLightbox(event)">
+<div id="lightbox" class="lightbox-overlay" onclick="cerrarVisorImagen(event)">
   <div class="lightbox-inner" onclick="event.stopPropagation()">
-    <button class="lightbox-close" onclick="closeLightbox()">✕</button>
+    <button class="lightbox-close" onclick="cerrarVisorImagen()">✕</button>
     <img id="lightboxImg" src="" alt="">
-    <button class="lightbox-info-btn" id="lightboxInfoBtn" onclick="toggleLightboxCaption()">mostrar info</button>
+    <button class="lightbox-info-btn" id="lightboxInfoBtn" onclick="alternarPieDeFoto()">mostrar info</button>
     <div id="lightboxCaption" class="lightbox-caption"></div>
     <a id="lightboxSourceLink" class="lightbox-source-link" href="#" target="_blank" rel="noopener" style="display:none;">
       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
@@ -3439,17 +3635,22 @@ footer {
   </div>
 </div>
 
-<!-- Scripts modulares de interactividad (Ninguno supera las 200 líneas) -->
+<!-- Scripts modulares de interactividad (Todos por debajo de 200 líneas) -->
 <script src="js/tema.js" defer></script>
 <script src="js/audio.js" defer></script>
-<script src="js/nav.js" defer></script>
-<script src="js/modal.js" defer></script>
+<script src="js/navegacion.js" defer></script>
+<script src="js/modalHipotesis.js" defer></script>
+<script src="js/visorImagenes.js" defer></script>
 <script src="js/tooltips.js" defer></script>
+<script src="js/graficoDonut.js" defer></script>
+<script src="js/graficoRadar.js" defer></script>
 <script src="js/graficos.js" defer></script>
-<script src="js/datos-notables-1.js" defer></script>
-<script src="js/datos-notables-2.js" defer></script>
-<script src="js/datos-notables-3.js" defer></script>
+<script src="js/datosNotables1.js" defer></script>
+<script src="js/datosNotables2.js" defer></script>
+<script src="js/datosNotables3.js" defer></script>
 <script src="js/notables.js" defer></script>
+<script type="module" src="js/testimonios.js"></script>
+<script type="module" src="js/formularioComentarios.js"></script>
 </body>
 </html>
 
