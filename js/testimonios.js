@@ -7,7 +7,8 @@
  * Conforme a SAST SEC-004: Todo el renderizado es seguro y libre de innerHTML.
  */
 
-import { obtenerComentariosAprobadosFirestore, URL_FIRESTORE, configuracionFirebase, formatearFecha } from './configuracionFirebase.js';
+import { obtenerComentariosAprobadosFirestore, formatearFecha } from './configuracionFirebase.js';
+import { abrirModeracionAdmin } from './moderacionComentarios.js';
 
 // Testimonios predeterminados de alta fidelidad genealógica
 const testimoniosIniciales = [
@@ -122,61 +123,8 @@ export async function cargarMuroTestimonios() {
   });
 }
 
-/**
- * Abre el panel de moderación para que Jorge pueda aprobar o descartar mensajes.
- * 
- * @returns {Promise<void>}
- */
-export async function abrirModeracionAdmin() {
-  const clave = prompt('Introduce la clave de administración para moderar:');
-  if (clave !== 'tripodi2026' && clave !== 'admin') {
-    alert('Clave no válida.');
-    return;
-  }
-
-  try {
-    const res = await fetch(`${URL_FIRESTORE}?key=${configuracionFirebase.apiKey}`);
-    const data = await res.json();
-    if (!data.documents) {
-      alert('No hay comentarios pendientes en Firestore.');
-      return;
-    }
-
-    const pendientes = data.documents
-      .map(d => ({ id: d.name.split('/').pop(), pathName: d.name, fields: d.fields }))
-      .filter(d => d.fields.aprobado?.booleanValue === false);
-
-    if (pendientes.length === 0) {
-      alert('¡Excelente! No hay comentarios pendientes de revisión.');
-      return;
-    }
-
-    for (const item of pendientes) {
-      const f = item.fields;
-      const msg = `Mensaje de: ${f.nombre?.stringValue} (${f.pais?.stringValue})\nCalificación: ${f.calificacion?.integerValue}★\n\n"${f.mensaje?.stringValue}"\n\n¿Deseas APROBAR este comentario para publicación pública?`;
-      if (confirm(msg)) {
-        // Aprobar en Firestore
-        await fetch(`https://firestore.googleapis.com/v1/${item.pathName}?updateMask.fieldPaths=aprobado&key=${configuracionFirebase.apiKey}`, {
-          method: 'PATCH',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ fields: { aprobado: { booleanValue: true } } })
-        });
-        alert('Comentario aprobado con éxito.');
-      } else {
-        if (confirm('¿Deseas ELIMINAR definitivamente este comentario?')) {
-          await fetch(`https://firestore.googleapis.com/v1/${item.pathName}?key=${configuracionFirebase.apiKey}`, {
-            method: 'DELETE'
-          });
-          alert('Comentario eliminado.');
-        }
-      }
-    }
-    cargarMuroTestimonios();
-  } catch (err) {
-    console.error('Error al moderar comentarios:', err);
-    alert('Error al conectar con Firestore. Revisa las reglas de seguridad.');
-  }
-}
+// Sincronización reactiva del muro ante eventos del panel de moderación
+window.addEventListener('comentariosActualizados', cargarMuroTestimonios);
 
 // Inicialización automática y detección de enlace de moderación directa
 document.addEventListener('DOMContentLoaded', () => {
