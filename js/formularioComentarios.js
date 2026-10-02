@@ -62,27 +62,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
     try {
       if (esPublico) {
-        // 1. Guardar en Cloud Firestore con estado de aprobación pendiente
-        await guardarComentarioFirestore({
-          nombre: nombre,
-          pais: pais || 'Familia Tripodi',
-          mensaje: mensaje,
-          calificacion: calificacion,
-          tipo: 'publico'
-        });
-
-        // 2. Notificación inmediata por correo al autor informando el nuevo testimonio pendiente
+        // 1. Preparar notificación por correo vía Formspree
         const formDataPublico = new FormData(formulario);
         formDataPublico.append('tipo_mensaje', 'PUBLICACIÓN EN MURO (Requiere Aprobación)');
         formDataPublico.append('calificacion_estrellas', `${calificacion} de 5 estrellas`);
         formDataPublico.append('enlace_para_aprobar_directo', 'https://tripodi.netlify.app/?moderar=true#comentarios');
-        formDataPublico.append('estado_firestore', 'Guardado en Firestore como PENDIENTE. Entra al enlace superior para aprobarlo.');
 
-        await fetch(formulario.action || 'https://formspree.io/f/xzdnplpd', {
+        // 2. Guardar en Cloud Firestore como pendiente de moderación
+        let guardadoFirestore = false;
+        try {
+          await guardarComentarioFirestore({
+            nombre: nombre,
+            pais: pais || 'Familia Tripodi',
+            mensaje: mensaje,
+            calificacion: calificacion,
+            tipo: 'publico'
+          });
+          guardadoFirestore = true;
+        } catch (errorFirestore) {
+          console.warn('Advertencia de permisos en Firestore (Reglas pendientes):', errorFirestore);
+        }
+
+        formDataPublico.append(
+          'estado_firestore',
+          guardadoFirestore
+            ? 'Guardado en Firestore como PENDIENTE. Entra al enlace superior para aprobarlo.'
+            : 'Aviso: Habilita las reglas en Firebase Console para moderación web automática.'
+        );
+
+        // 3. Envío del correo al autor por Formspree
+        const respuestaCorreo = await fetch(formulario.action || 'https://formspree.io/f/xzdnplpd', {
           method: 'POST',
           body: formDataPublico,
           headers: { 'Accept': 'application/json' }
         });
+
+        if (!respuestaCorreo.ok && !guardadoFirestore) {
+          throw new Error('Error al procesar el testimonio.');
+        }
 
         mensajeFeedback.textContent = '¡Gracias! Tu testimonio fue enviado con éxito y se publicará tras la revisión del autor.';
         mensajeFeedback.className = 'form-feedback success';
