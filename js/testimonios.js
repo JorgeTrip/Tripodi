@@ -15,14 +15,14 @@ const testimoniosIniciales = [
     nombre: 'Marcelo Díaz',
     pais: 'Buenos Aires, Argentina',
     calificacion: 5,
-    mensaje: 'Mi mamá, de apellido Tripodi, siempre me contaba sobre el origen griego de la familia, pero ver toda la historia y los documentos compilados en esta página es realmente emocionante.',
+    mensaje: 'Mi mamá, de soltera Tripodi, siempre me contaba sobre el origen griego de su apellido... ver toda la historia y los documentos compilados acá es emocionante.',
     fecha: 'Marzo 2026'
   },
   {
     nombre: 'María Laura Trípodi',
     pais: 'Rosario, Argentina',
     calificacion: 5,
-    mensaje: 'Mi bisabuelo arribó en 1912 desde Calabria y se radicó en Rosario. ¡Felicitaciones por la página!',
+    mensaje: 'Mi bisabuelo llegó a Argentina en 1912 desde Calabria y se radicó en Rosario. ¡Felicitaciones por el proyecto!',
     fecha: 'Enero 2026'
   }
 ];
