@@ -7,7 +7,7 @@
  * Conforme a SAST SEC-004: Todo el renderizado es seguro y libre de innerHTML.
  */
 
-import { obtenerComentariosAprobadosFirestore, URL_FIRESTORE, configuracionFirebase } from './configuracionFirebase.js';
+import { obtenerComentariosAprobadosFirestore, URL_FIRESTORE, configuracionFirebase, formatearFecha } from './configuracionFirebase.js';
 
 // Testimonios predeterminados de alta fidelidad genealógica
 const testimoniosIniciales = [
@@ -16,14 +16,14 @@ const testimoniosIniciales = [
     pais: 'Buenos Aires, Argentina',
     calificacion: 5,
     mensaje: 'Mi mamá, de soltera Tripodi, siempre me contaba sobre el origen griego de su apellido... ver toda la historia y los documentos compilados acá es emocionante.',
-    fecha: 'Marzo 2026'
+    fecha: '15-03-2026'
   },
   {
     nombre: 'María Laura Trípodi',
     pais: 'Rosario, Argentina',
     calificacion: 5,
     mensaje: 'Mi bisabuelo llegó a Argentina en 1912 desde Calabria y se radicó en Rosario. ¡Felicitaciones por el proyecto!',
-    fecha: 'Enero 2026'
+    fecha: '20-01-2026'
   }
 ];
 
@@ -89,7 +89,7 @@ function crearTarjetaTestimonio(testimonio) {
 
   const pie = document.createElement('div');
   pie.className = 'testimonio-pie';
-  pie.textContent = testimonio.fecha || 'Reciente';
+  pie.textContent = formatearFecha(testimonio.fecha);
 
   tarjeta.appendChild(cabecera);
   tarjeta.appendChild(estrellas);

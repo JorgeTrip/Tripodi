@@ -53,6 +53,22 @@ export async function guardarComentarioFirestore(datos) {
 }
 
 /**
+ * Convierte un timestamp ISO o fecha a formato unificado DD-MM-AAAA.
+ * 
+ * @param {string} fechaRaw - Cadena ISO o fecha preformateada.
+ * @returns {string} Fecha en formato DD-MM-AAAA o 'Reciente'.
+ */
+export function formatearFecha(fechaRaw) {
+  if (!fechaRaw) return 'Reciente';
+  if (/^\d{2}-\d{2}-\d{4}$/.test(fechaRaw)) return fechaRaw;
+  const d = new Date(fechaRaw);
+  if (isNaN(d.getTime())) return fechaRaw;
+  const dia = String(d.getDate()).padStart(2, '0');
+  const mes = String(d.getMonth() + 1).padStart(2, '0');
+  return `${dia}-${mes}-${d.getFullYear()}`;
+}
+
+/**
  * Obtiene de Cloud Firestore todos los comentarios aprobados para exhibición pública.
  * 
  * @returns {Promise<Array>} Lista de comentarios homologados con id y campos.
@@ -76,7 +92,7 @@ export async function obtenerComentariosAprobadosFirestore() {
           mensaje: f.mensaje?.stringValue || '',
           calificacion: parseInt(f.calificacion?.integerValue || '5', 10),
           aprobado: f.aprobado?.booleanValue ?? false,
-          fecha: f.fechaCreacion?.timestampValue || ''
+          fecha: formatearFecha(f.fechaCreacion?.timestampValue)
         };
       })
       .filter(c => c.aprobado === true);
