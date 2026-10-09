@@ -1,0 +1,14 @@
+{
+  "name": "tripodi-web",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "compilar": "node compilar.js",
+    "dev": "node scripts/iniciarDesarrollo.mjs",
+    "start": "node scripts/iniciarDesarrollo.mjs"
+  },
+  "devDependencies": {
+    "qrcode-terminal": "^0.12.0"
+  }
+}
