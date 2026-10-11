@@ -7,7 +7,7 @@ echo   Iniciando Tripodi Web - Modo Desarrollo
 echo ====================================================
 echo.
 
-node scripts/iniciarDesarrollo.mjs
+node --watch-path=src --watch-path=css --watch-path=js --watch scripts/iniciarDesarrollo.mjs
 if %ERRORLEVEL% NEQ 0 (
     echo.
     echo ====================================================

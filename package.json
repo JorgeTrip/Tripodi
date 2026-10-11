@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "compilar": "node compilar.js",
-    "dev": "node scripts/iniciarDesarrollo.mjs",
+    "dev": "node --watch-path=src --watch-path=css --watch-path=js --watch scripts/iniciarDesarrollo.mjs",
     "start": "node scripts/iniciarDesarrollo.mjs"
   },
   "devDependencies": {

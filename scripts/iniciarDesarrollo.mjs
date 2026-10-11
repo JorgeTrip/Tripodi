@@ -31,6 +31,7 @@ const PUERTO = process.env.PORT || 8080;
 const URL_LOCAL = `http://localhost:${PUERTO}`;
 const IP_RED = obtenerIpRedLocal();
 const URL_RED = `http://${IP_RED}:${PUERTO}`;
+const ARCHIVO_LOCK = path.join(os.tmpdir(), `iniciar_dev_tripodi_${PUERTO}.lock`);
 
 const TIPOS_MIME = {
     ".html": "text/html; charset=utf-8",
@@ -72,12 +73,28 @@ function obtenerIpRedLocal() {
 }
 
 function abrirNavegador(url) {
+    if (fs.existsSync(ARCHIVO_LOCK)) {
+        console.log("🔄 Servidor reiniciado automáticamente por cambios en el código.");
+        return;
+    }
+    try {
+        fs.writeFileSync(ARCHIVO_LOCK, Date.now().toString());
+    } catch {}
+
     const comando = process.platform === "win32"
         ? `start "" "${url}"`
         : process.platform === "darwin"
         ? `open "${url}"`
         : `xdg-open "${url}"`;
     exec(comando);
+}
+
+function limpiarLock() {
+    try {
+        if (fs.existsSync(ARCHIVO_LOCK)) {
+            fs.unlinkSync(ARCHIVO_LOCK);
+        }
+    } catch {}
 }
 
 function despacharArchivo(rutaArchivo, res, req) {
@@ -93,6 +110,8 @@ function despacharArchivo(rutaArchivo, res, req) {
         const rango = req.headers.range;
 
         res.setHeader("Access-Control-Allow-Origin", "*");
+        res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
+        res.setHeader("Pragma", "no-cache");
 
         if (rango && ext === ".mp3") {
             const partes = rango.replace(/bytes=/, "").split("-");
@@ -154,5 +173,11 @@ servidor.listen(PUERTO, "0.0.0.0", () => {
 });
 
 process.on("SIGINT", () => {
+    limpiarLock();
+    servidor.close(() => process.exit(0));
+});
+
+process.on("SIGTERM", () => {
+    limpiarLock();
     servidor.close(() => process.exit(0));
 });
