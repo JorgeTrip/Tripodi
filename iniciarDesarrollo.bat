@@ -7,6 +7,11 @@ echo   Iniciando Tripodi Web - Modo Desarrollo
 echo ====================================================
 echo.
 
+node scripts/gestorInstancia.mjs --verificar
+if %ERRORLEVEL% EQU 2 (
+    exit /b 0
+)
+
 node --watch-path=src --watch-path=css --watch-path=js --watch scripts/iniciarDesarrollo.mjs
 if %ERRORLEVEL% NEQ 0 (
     echo.
