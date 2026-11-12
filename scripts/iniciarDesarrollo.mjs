@@ -168,10 +168,12 @@ async function iniciar() {
 
 process.on("SIGINT", () => {
   eliminarLock();
+  servidor.closeAllConnections?.();
   servidor.close(() => process.exit(0));
 });
 
 process.on("SIGTERM", () => {
+  servidor.closeAllConnections?.();
   servidor.close(() => process.exit(0));
 });
 
